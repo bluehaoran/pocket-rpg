@@ -7,7 +7,13 @@ import { app } from './session.svelte.ts';
 
 export const sessionPack = (): Pack | undefined => packs[app.session?.packIds[0] ?? ''];
 
+/**
+ * The pack the Tools tab follows: the session's, but only once play has started. Before that the default
+ * session's genre is a placeholder, so Tools works as a plain toolbox (no pack generators, no genre defaults).
+ */
+export const toolPack = (): Pack | undefined => (app.session?.started ? sessionPack() : undefined);
+
 /** Context for rolling tools. `recent` is the session's live no-repeat memory, so call inside `mutate`. */
 export function toolCtx(rng: Rng = mathRng): ToolCtx {
-  return { rng, recent: app.session?.recent ?? {}, registry, lists, pack: sessionPack() };
+  return { rng, recent: app.session?.recent ?? {}, registry, lists, pack: toolPack() };
 }

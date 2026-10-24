@@ -88,12 +88,14 @@ describe('session store', () => {
   });
 
   it('chip shows genre, rules and players', async () => {
-    expect(chipText(undefined)).toBe('no session');
+    expect(chipText(undefined)).toBe('');
     await initSession();
-    expect(chipText(app.session)).toMatch(/^.+ · L&F · 1 player · setup$/);
+    expect(chipText(app.session)).toBe(''); // blank during setup
     mutate(s => (s.players = 3));
-    expect(chipText(app.session)).toMatch(/ · 3 players · setup$/);
+    expect(chipText(app.session)).toBe('');
     mutate(s => (s.started = true));
-    expect(chipText(app.session)).toMatch(/ · 3 players$/);
+    expect(chipText(app.session)).toMatch(/^.+ · L&F · 3 players$/);
+    mutate(s => (s.players = 1));
+    expect(chipText(app.session)).toMatch(/ · 1 player$/);
   });
 });

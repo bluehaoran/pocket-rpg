@@ -57,7 +57,8 @@
         },
         "count": { "$ref": "#/$defs/range" },
         "join": { "type": "string" },
-        "display": { "enum": ["text", "glyph"] }
+        "display": { "enum": ["text", "glyph"] },
+        "description": { "type": "string" }
       },
       "allOf": [
         { "if": { "properties": { "kind": { "const": "dice" } } }, "then": { "required": ["dice"] } },

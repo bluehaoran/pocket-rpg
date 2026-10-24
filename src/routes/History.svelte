@@ -22,11 +22,12 @@
   );
 </script>
 
-<div class="toolhead">
-  <a class="back" href={href(which === 'track' ? '/track' : '/tools')} style="text-decoration:none">‹ {which === 'track' ? 'Track' : 'Tools'}</a>
-  <span class="eyebrow">This session</span>
-</div>
-<h2>{which === 'track' ? 'Track' : 'Tools'} history</h2>
+<section class="group">
+  <h2>
+    <a class="crumb" href={href(which === 'track' ? '/track' : '/tools')}>{which === 'track' ? 'Track' : 'Tools'}</a><span class="sep" aria-hidden="true">›</span>History
+  </h2>
+  <p class="hint">This session</p>
+</section>
 <div class="card">
   {#each rows as r, i (i)}
     <div class="hrow">

@@ -1,11 +1,23 @@
 {
  "id": "tilts",
  "label": "Tilt",
- "version": "0.0.0",
+ "version": "0.1.0",
  "provenance": {
   "author": "PocketRPG",
   "license": "original entries"
  },
- "modifiers": {},
+ "modifiers": {
+  "group": {
+   "label": "Group",
+   "values": [
+    "Mayhem",
+    "Tragedy",
+    "Innocence",
+    "Guilt",
+    "Paranoia",
+    "Failure"
+   ]
+  }
+ },
  "entries": []
 }

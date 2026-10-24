@@ -94,7 +94,13 @@
    "id": "tilt",
    "label": "Tilt",
    "kind": "list",
-   "list": "tilts"
+   "list": "tilts",
+   "modifiers": [
+    {
+     "key": "group",
+     "required": false
+    }
+   ]
   },
   {
    "id": "emoji",
@@ -107,7 +113,8 @@
     "default": 3
    },
    "join": " ",
-   "display": "glyph"
+   "display": "glyph",
+   "description": "Use this like Story Cubes to inspire your story."
   }
  ]
 }

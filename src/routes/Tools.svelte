@@ -2,17 +2,17 @@
   import { registry } from '../lib/content/index.ts';
   import { href } from '../lib/router.svelte.ts';
   import { app } from '../lib/session.svelte.ts';
-  import { sessionPack, toolCtx } from '../lib/toolctx.svelte.ts';
+  import { toolPack, toolCtx } from '../lib/toolctx.svelte.ts';
   import { packTools, toolSub, type AnyTool } from '../lib/tools.ts';
 
-  const pack = $derived(sessionPack());
+  const pack = $derived(toolPack());
   const gens = $derived(packTools(pack));
   const sub = (t: AnyTool) => toolSub(t, app.session?.toolModifiers[t.id] ?? {}, toolCtx());
 </script>
 
 <section class="group">
-  <div class="eyebrow">Game master tools</div>
   <h2>Tools</h2>
+  <p class="hint">Game master tools</p>
 </section>
 
 <section class="gens">

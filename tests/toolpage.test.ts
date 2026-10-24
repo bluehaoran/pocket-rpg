@@ -92,8 +92,8 @@ describe('tool page', () => {
   });
 
   it('shows the file to edit for an empty list', () => {
-    render(ToolPage, { toolId: 'tilt' });
-    expect(document.body.textContent).toContain('content/tools/tilts.json');
+    render(ToolPage, { toolId: 'complication' });
+    expect(document.body.textContent).toContain('content/tools/complications.json');
     expect((screen.getByRole('button', { name: 'Reroll' }) as HTMLButtonElement).disabled).toBe(true);
   });
 
@@ -109,6 +109,6 @@ describe('tool page', () => {
 
   it('unknown tools say so', () => {
     render(ToolPage, { toolId: 'nope' });
-    expect(document.body.textContent).toContain('Unknown tool');
+    expect(document.body.textContent).toContain('No tool with id');
   });
 });

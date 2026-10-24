@@ -49,6 +49,7 @@ Defines which tools appear on the hub and in what order.
 | `count` | Optional. Draw N distinct entries per roll, with a stepper. |
 | `join` | Separator when `count` > 1. Default `", "`. |
 | `display` | `text` (default) or `glyph` (very large, for emoji). |
+| `description` | Optional one line shown under the page title (Emoji: "Use this like Story Cubes to inspire your story."). |
 
 ## 2. List file: `content/tools/{id}.json`
 
@@ -80,6 +81,12 @@ Defines which tools appear on the hub and in what order.
 - Matches entries whose `v` starts with the chosen letter (case-insensitive, ignoring a leading "The ").
 - The picker is an A–Z grid in a sheet. Letters with no entry matching the other selected modifiers are disabled.
 - No declaration needed in the list file.
+
+### Tools without a session
+Until **Start play**, the Tools tab ignores the session's pack: no pack generators on the hub, and no genre default for Names (setting starts at Any). After Start play it follows the session pack as described below. The header session chip is blank until then too.
+
+### Tilt groups
+The six Tilt groups are a `group` modifier on `tilts.json` (entries tagged `{ "group": "Mayhem" }`), not a d66 table. Any = uniform draw over all entries.
 
 ## 3. Genre default: `nameSetting`
 A pack may declare which library setting it matches:

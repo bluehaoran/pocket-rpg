@@ -46,8 +46,10 @@ for (const p of Object.values(packs)) {
 const registry = read('content/tools/registry.json') as Registry;
 schemaCheck('content/tools/registry.json', registry, 'registry');
 const lists: Record<string, ToolList> = {};
-for (const f of jsonFiles('content/tools').filter(f => f !== 'registry.json')) {
-  const file = `content/tools/${f}`;
+// Public lists, then the gitignored private folder when present (same id replaces the public list).
+const toolDirs = ['content/tools', 'content/private/tools'].filter(d => existsSync(join(root, d)));
+for (const file of toolDirs.flatMap(d => jsonFiles(d).filter(f => f !== 'registry.json').map(f => `${d}/${f}`))) {
+  const f = basename(file);
   const data = read(file) as ToolList;
   schemaCheck(file, data, 'tool-list');
   lists[basename(f, '.json')] = data;

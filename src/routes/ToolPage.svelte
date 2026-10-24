@@ -3,7 +3,7 @@
   import { registry } from '../lib/content/index.ts';
   import { href, go } from '../lib/router.svelte.ts';
   import { app, mutate } from '../lib/session.svelte.ts';
-  import { sessionPack, toolCtx } from '../lib/toolctx.svelte.ts';
+  import { toolPack, toolCtx } from '../lib/toolctx.svelte.ts';
   import { buzz } from '../lib/device.ts';
   import { availableLetters } from '../lib/engine/table.ts';
   import {
@@ -19,7 +19,7 @@
 
   let { toolId }: { toolId: string } = $props();
 
-  const pack = $derived(sessionPack());
+  const pack = $derived(toolPack());
   const tool = $derived(findTool(toolId, registry, pack));
   const opts = $derived<ToolOpts>(app.session?.toolModifiers[toolId] ?? {});
   const eff = $derived(tool ? effectiveOpts(tool, opts, toolCtx()) : {});
@@ -111,16 +111,16 @@
   const missing = $derived(defs.filter(d => d.required && !eff[d.key]));
 </script>
 
-<div class="toolhead">
-  <a class="back" href={href('/tools')} style="text-decoration:none">‹ Tools</a>
-  <span class="eyebrow">{tool?.kind === 'gen' ? `${pack?.genre ?? pack?.name} pack` : 'Tool'}</span>
-</div>
-
 {#if !tool}
-  <h2>Unknown tool</h2>
+  <h2><a class="crumb" href={href('/tools')}>Tools</a><span class="sep" aria-hidden="true">›</span>Unknown</h2>
   <div class="empty-card">No tool with id <code>{toolId}</code> in <code>content/tools/registry.json</code> or the active pack.</div>
 {:else}
-  <h2>{tool.label}</h2>
+  <h2><a class="crumb" href={href('/tools')}>Tools</a><span class="sep" aria-hidden="true">›</span>{tool.label}</h2>
+  {#if tool.kind === 'gen'}
+    <p class="hint">{pack?.genre ?? pack?.name} pack</p>
+  {:else if tool.description}
+    <p class="hint">{tool.description}</p>
+  {/if}
 
   {#if empty}
     <div class="empty-card">No entries yet. Add them to <code>content/tools/{tool.kind === 'list' ? tool.list : ''}.json</code>.</div>

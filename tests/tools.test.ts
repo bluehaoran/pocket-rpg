@@ -1,3 +1,5 @@
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { lists, packs, registry } from '../src/lib/content/index.ts';
 import type { ToolList } from '../src/lib/content/types.ts';
@@ -242,5 +244,14 @@ describe('hub summaries', () => {
     expect(toolSub(tool('dice', ctx), { count: 2, type: 8 }, ctx)).toBe('2d8');
     expect(toolSub(tool('emoji', ctx), {}, ctx)).toBe('3 at a time');
     expect(toolSub(tool('emotions', ctx), {}, ctx)).toMatch(/ entries$/);
+  });
+});
+
+describe('private tool lists', () => {
+  it('a private list replaces the public one with the same id', () => {
+    // content/private/ exists only on the author's machine; where it does, tilts come from it.
+    const privateTilts = existsSync(join(import.meta.dirname, '..', 'content/private/tools/tilts.json'));
+    if (privateTilts) expect(lists.tilts!.entries.length).toBeGreaterThan(0);
+    else expect(lists.tilts!.entries).toEqual([]);
   });
 });

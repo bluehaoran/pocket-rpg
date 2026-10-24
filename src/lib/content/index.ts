@@ -9,7 +9,11 @@ const packFiles = import.meta.glob<Pack>(['../../../content/packs/*.json', '../.
   eager: true,
   import: 'default'
 });
-const toolFiles = import.meta.glob<ToolList | Registry>('../../../content/tools/*.json', { eager: true, import: 'default' });
+// content/private/tools/ is gitignored too. A private list with the same id replaces the public one.
+const toolFiles = import.meta.glob<ToolList | Registry>(['../../../content/tools/*.json', '../../../content/private/tools/*.json'], {
+  eager: true,
+  import: 'default'
+});
 
 export const rawPacks: Record<string, Pack> = Object.fromEntries(
   Object.entries(packFiles).map(([path, p]) => [stem(path), p])
@@ -17,9 +21,12 @@ export const rawPacks: Record<string, Pack> = Object.fromEntries(
 export const packs: Record<string, Pack> = resolvePacks(rawPacks);
 
 export const registry = toolFiles['../../../content/tools/registry.json'] as Registry;
+// Glob keys sort with private/ before tools/, so apply public lists first and private ones last to let them win.
+const isPrivate = (path: string) => path.includes('/private/');
 export const lists: Record<string, ToolList> = Object.fromEntries(
   Object.entries(toolFiles)
     .filter(([path]) => stem(path) !== 'registry')
+    .sort(([a], [b]) => Number(isPrivate(a)) - Number(isPrivate(b)))
     .map(([path, l]) => [stem(path), l as ToolList])
 );
 

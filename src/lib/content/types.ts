@@ -176,6 +176,8 @@ export interface ToolDef {
   count?: { min: number; max: number; default: number };
   join?: string;
   display?: 'text' | 'glyph';
+  /** One line shown under the title on the tool page. */
+  description?: string;
 }
 
 export interface Registry {

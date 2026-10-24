@@ -326,3 +326,7 @@ main>*{flex:none}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{overscroll-behavior:none}
 main{overscroll-behavior:contain}
+
+/* Breadcrumb headings (Tools > Names): the parent is an orange link in the heading style. */
+h2 .crumb{color:var(--accent);text-decoration:none;display:inline-block;padding:8px 0;margin:-8px 0}
+h2 .sep{color:var(--muted);margin-inline:.25em}
