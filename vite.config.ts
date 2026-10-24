@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitest/config';
 import { svelte } from '@sveltejs/vite-plugin-svelte';
 import { VitePWA } from 'vite-plugin-pwa';
+import { svelteTesting } from '@testing-library/svelte/vite';
 
 // GitHub Pages serves the site at /pocket-rpg/. Override with BASE=/ for other hosts.
 const base = process.env.BASE ?? '/pocket-rpg/';
@@ -34,7 +35,9 @@ export default defineConfig({
         globPatterns: ['**/*.{js,css,html,svg,png,woff2}'],
         navigateFallback: 'index.html'
       }
-    })
+    }),
+    // Component tests mount Svelte's client build in jsdom and clean up after each test.
+    ...(process.env.VITEST ? [svelteTesting()] : [])
   ],
   test: {
     include: ['tests/**/*.test.ts'],

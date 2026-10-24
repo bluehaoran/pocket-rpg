@@ -1,0 +1,39 @@
+<script lang="ts">
+  import { href } from '../lib/router.svelte.ts';
+  import { app } from '../lib/session.svelte.ts';
+  import { hhmm } from '../lib/format.ts';
+
+  let { which }: { which: 'tools' | 'track' } = $props();
+
+  const KIND = { roll: 'Roll', progress: 'Progress', resource: 'Resource', edit: 'Edit' } as const;
+
+  const rows = $derived.by(() => {
+    const s = app.session;
+    if (!s) return [];
+    const items = which === 'track'
+      ? s.trackHistory.map(h => ({ t: h.t, head: [KIND[h.kind], h.char].filter(Boolean).join(' · '), text: h.text }))
+      : s.toolHistory.map(h => ({ t: h.t, head: h.label, text: h.text }));
+    return items.slice().reverse();
+  });
+  const empty = $derived(
+    which === 'track'
+      ? 'Rolls, XP, new skills, resource changes and edits appear here.'
+      : 'Results you keep appear here. Leaving a tool keeps its result; Reroll discards it.'
+  );
+</script>
+
+<div class="toolhead">
+  <a class="back" href={href(which === 'track' ? '/track' : '/tools')} style="text-decoration:none">‹ {which === 'track' ? 'Track' : 'Tools'}</a>
+  <span class="eyebrow">This session</span>
+</div>
+<h2>{which === 'track' ? 'Track' : 'Tools'} history</h2>
+<div class="card">
+  {#each rows as r, i (i)}
+    <div class="hrow">
+      <time datetime={r.t}>{hhmm(r.t)}</time>
+      <div><span class="eyebrow">{r.head}</span><div class="lt">{r.text}</div></div>
+    </div>
+  {:else}
+    <p class="empty-note">{empty}</p>
+  {/each}
+</div>

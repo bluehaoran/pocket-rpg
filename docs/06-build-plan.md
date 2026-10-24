@@ -68,13 +68,14 @@ Each ends with green CI and a deploy.
 - **Done when:** unit tests cover every rule above against the real content.
 - **Built:** `src/lib/engine/{rng,table,template}.ts`, tests in `tests/engine.test.ts`. `draw` with `strict` returns null rather than repeating (used for distinct multi-picks); without it, the last resort is the whole pool. The `letter` modifier is handled inside `matches`.
 
-### M3 — Tools tab
+### M3 — Tools tab ✅
 - Hub: registry tools in order, then pack generators under the pack's genre.
 - Tool page: roll on open, Reroll (never repeats the shown result), ✓ / Back logs to Tools History, modifiers remembered per tool.
 - Names: gender, setting (genre default via `nameSetting`), A–Z letter sheet with disabled letters, Last name part with family-name order checkbox (re-order without reroll), Description follow-up with its own reroll.
 - Dice (count 1–10, d4–d100), Emoji (count 1–6, glyph display), empty-list state naming the file to edit.
 - Pack generators: required modifiers gate the roll; `data` payload under single-table results.
 - Tools History.
+- **Built:** `src/lib/tools.ts` (pure: roll, modifiers, parts, follow-up, hub summaries), `toolctx.svelte.ts`, routes `Tools`, `ToolPage`, `History` (`#/tools/history`), component tests in `tests/toolpage.test.ts` (jsdom + @testing-library/svelte; per-file `// @vitest-environment jsdom`). Pack generators use tool id `pack:<generatorId>` and the same `toolModifiers` store. No shipped generator has a required modifier yet; the gate is tested with a fabricated one. A tool page logs on unmount (Back, tab switch, ✓), at most once per visit.
 
 ### M4 — Setup wizard
 - Step indicator; Setup (rule system, native packs via picker sheet, starting skills stepper for RfS, players 1–4).

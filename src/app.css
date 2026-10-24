@@ -111,3 +111,41 @@ body{margin:0}
 .dock .die{width:26px;height:26px;padding:4px;border-radius:6px}
 .dock .btn{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font:800 23px/1 var(--f-display)}
 .dock .btn.keep{background:var(--surface);color:var(--accent)}
+
+/* Tools (M3) */
+.seg.dtype{grid-template-columns:repeat(4,1fr);grid-auto-flow:row}
+.seg.dtype button{font-size:19px}
+.d20{width:50px;height:50px;display:grid;place-items:center;border-radius:11px;background:var(--sunk);border:1px solid var(--line);font:700 20px/1 var(--f-mono)}
+.fresh{animation:pop .45s ease-out}
+@keyframes pop{from{background:var(--accent-soft)}}
+.tres{background:var(--surface);border:2px solid var(--ink);border-radius:18px;padding:22px 18px 16px;display:flex;flex-direction:column;gap:12px;min-height:150px;justify-content:center;-webkit-user-select:none;user-select:none}
+.tbig{font:700 34px/1.2 var(--f-body);text-wrap:balance;overflow-wrap:anywhere}
+.tbig.num{font:700 72px/1 var(--f-mono);font-variant-numeric:tabular-nums}
+.tbig.glyph{font-size:64px;line-height:1.2;letter-spacing:.08em}
+.tbig .xtra{color:var(--accent)}
+.tbig .ul{text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:6px}
+.rsub{margin:0;font-size:16px;line-height:1.4;color:var(--muted)}
+.rfoot{font:500 12px/1.3 var(--f-mono);color:var(--muted);display:flex;gap:4px 12px;flex-wrap:wrap}
+.rfoot .relax{color:var(--accent)}
+.dicerow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.mini-btn{min-height:44px;border-radius:12px;border:2px solid var(--line);background:var(--surface);font:700 15px var(--f-body);padding:0 14px;align-self:flex-start}
+.subroll{align-self:flex-end;margin-top:-12px}
+.gen.req small{color:var(--accent)}
+.letterbtn{all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;border:2px solid var(--line);border-radius:14px;background:var(--surface);padding:0 16px;min-height:58px;font:400 17px/1.3 var(--f-body)}
+.letterbtn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.letterbtn .v{font-size:20px;font-weight:700;color:var(--accent)}
+.letterbtn .chev{color:var(--muted);font:700 18px/1 var(--f-mono)}
+.letters{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+.letters button{min-height:50px;border-radius:10px;border:2px solid var(--line);background:var(--surface);font:700 19px var(--f-mono)}
+.letters button.any{grid-column:span 2;font-family:var(--f-body);font-size:16px}
+.letters button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.letters button:disabled{opacity:.3;cursor:not-allowed}
+.checkrow{display:flex;align-items:center;gap:10px;min-height:44px;font-size:15px;color:var(--muted);cursor:pointer}
+.checkrow input{width:22px;height:22px;margin:0;accent-color:var(--accent);flex:none}
+.hrow{display:grid;grid-template-columns:48px minmax(0,1fr);gap:10px;padding:10px 0;border-top:1px solid var(--line)}
+.hrow:first-child{border-top:0}
+.hrow time{font:500 12px/1.6 var(--f-mono);color:var(--muted)}
+.hrow .lt{font-weight:700;font-size:16px;line-height:1.35;overflow-wrap:anywhere}
+.empty-note{margin:0;color:var(--muted);font-size:15px;padding:14px 0}
+@media (prefers-reduced-motion: reduce){.fresh{animation:none}}
+.dock .btn.keep svg{width:30px;height:30px;fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}

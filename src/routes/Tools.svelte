@@ -1,13 +1,13 @@
 <script lang="ts">
-  import { registry, lists } from '../lib/content/index.ts';
+  import { registry } from '../lib/content/index.ts';
   import { href } from '../lib/router.svelte.ts';
-  import type { ToolDef } from '../lib/content/types.ts';
+  import { app } from '../lib/session.svelte.ts';
+  import { sessionPack, toolCtx } from '../lib/toolctx.svelte.ts';
+  import { packTools, toolSub, type AnyTool } from '../lib/tools.ts';
 
-  function sub(t: ToolDef): string {
-    if (t.kind === 'dice') return `${t.dice?.count.default ?? 1}d${t.dice?.defaultType ?? 6}`;
-    const n = lists[t.list ?? '']?.entries.length ?? 0;
-    return n ? `${n} entries` : 'Empty list';
-  }
+  const pack = $derived(sessionPack());
+  const gens = $derived(packTools(pack));
+  const sub = (t: AnyTool) => toolSub(t, app.session?.toolModifiers[t.id] ?? {}, toolCtx());
 </script>
 
 <section class="group">
@@ -17,8 +17,25 @@
 
 <section class="gens">
   {#each registry.tools as t (t.id)}
-    <a class="gen" href={href(`/tools/${t.id}`)} style="color:inherit;text-decoration:none">
-      <b>{t.label}</b><small>{sub(t)}</small>
+    {@const s = sub(t)}
+    <a class="gen" class:req={/^(Choose|Empty)/.test(s)} href={href(`/tools/${t.id}`)} style="color:inherit;text-decoration:none">
+      <b>{t.label}</b><small>{s}</small>
     </a>
   {/each}
 </section>
+
+{#if gens.length}
+  <section class="group">
+    <div class="eyebrow">{pack?.genre ?? pack?.name} pack</div>
+    <div class="gens">
+      {#each gens as t (t.id)}
+        {@const s = sub(t)}
+        <a class="gen" class:req={/^Choose/.test(s)} href={href(`/tools/${encodeURIComponent(t.id)}`)} style="color:inherit;text-decoration:none">
+          <b>{t.label}</b><small>{s}</small>
+        </a>
+      {/each}
+    </div>
+  </section>
+{/if}
+
+<a class="btn ghost" href={href('/tools/history')} style="text-decoration:none">History · {app.session?.toolHistory.length ?? 0}</a>

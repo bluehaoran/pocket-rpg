@@ -8,6 +8,7 @@
   import Tools from './routes/Tools.svelte';
   import ToolPage from './routes/ToolPage.svelte';
   import PackDetails from './routes/PackDetails.svelte';
+  import History from './routes/History.svelte';
 
   let menuOpen = $state(false);
   let confirmNew = $state(false);
@@ -59,8 +60,10 @@
     {:else if route.page === 'packs'}
       <PackDetails packId={route.rest[0]} />
     {:else if route.tab === 'tools'}
-      {#if route.rest[0]}
-        <ToolPage toolId={route.rest[0]} />
+      {#if route.rest[0] === 'history'}
+        <History which="tools" />
+      {:else if route.rest[0]}
+        {#key route.rest[0]}<ToolPage toolId={route.rest[0]} />{/key}
       {:else}
         <Tools />
       {/if}
