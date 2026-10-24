@@ -102,6 +102,10 @@ Each ends with green CI and a deploy.
 - **Done without a device (2026-10-24):** the built app was driven in headless Chromium at 390×844 (setup → story → players → play → rolls → Tools → offline reload), light and dark. That found and fixed real layout bugs (missing `main>*{flex:none}` squashed cards, missing `.stats`, scroll position kept across screens), a save-starvation bug (debounce now has a 2 s max wait), and tap targets under 44 px (inline sentence parts now have a 44 px hit area; compact-card chips are 44 px). Light-mode accent darkened to `#9A4E00` so accent text passes 4.5:1 on the page background. Sheets trap focus and restore it. iOS standalone meta tags, `overscroll-behavior`. Offline reload and console cleanliness verified in the headless run.
 - **Still open (needs you or a phone):** pick the roll result placement and delete `play.mode` and its dev toggle; content review session; run the device checklist; decide whether `autoUpdate` is acceptable in practice. The proprietary tilt table sits in `content/private/tools/tilts.json` in a `d66` shape that the tool schema does not know; supporting it (and the public `tilts.json` staying empty) is a content decision.
 
+### Backlog (after M6)
+- **Custom table import.** Improved interface to upload custom tables (packs and tool lists), e.g. for custom or copyrighted content. Stored on the device, validated with readable errors, exportable. Generalises Phase 2 admin mode (`05-tools-library.md` §8). Design first.
+- **Names and Descriptions at scale.** Massively increase entries across all genres/settings in `names.json`, `surnames.json`, `descriptions.json`. Pure content, no code change; run `npm run validate`.
+
 ## Test plan
 - **Unit (Vitest):** content validation (positive and negative), engine rules with a seeded RNG, both rules engines, template rendering, session store.
 - **Component:** add `@testing-library/svelte` + jsdom at M3 for tool page behaviour (reroll never repeats, leaving logs once).
