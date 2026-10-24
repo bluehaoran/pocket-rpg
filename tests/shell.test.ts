@@ -102,6 +102,12 @@ describe('startup', () => {
     expect(location.hash).toBe('#/tools/names');
   });
 
+  it('does not when a story is in progress', async () => {
+    app.session!.started = true;
+    expect(maybeShowWelcome()).toBe(false);
+    expect(location.hash).toBe('');
+  });
+
   it('works when localStorage is unavailable', () => {
     const spy = vi.spyOn(Storage.prototype, 'getItem').mockImplementation(() => {
       throw new Error('blocked');
