@@ -1,0 +1,513 @@
+{
+ "id": "starfarers",
+ "name": "Starfarers",
+ "genre": "Sci-fi",
+ "version": "0.4.0",
+ "nameSetting": "sci-fi",
+ "extends": [],
+ "provenance": {
+  "author": "PocketRPG",
+  "basedOn": "Lasers & Feelings (John Harper) structure",
+  "license": "original entries",
+  "entries": "original"
+ },
+ "setting": {
+  "premise": "A ship's crew on odd jobs at the edge of charted space."
+ },
+ "modifiers": {
+  "gender": {
+   "label": "Gender",
+   "values": [
+    "m",
+    "f",
+    "x"
+   ]
+  },
+  "origin": {
+   "label": "Origin",
+   "values": [
+    "core",
+    "belt",
+    "fringe"
+   ]
+  }
+ },
+ "tables": {
+  "name.given": [
+   {
+    "v": "Juno",
+    "tags": {
+     "gender": "f",
+     "origin": "core"
+    },
+    "src": "curated"
+   },
+   {
+    "v": "Tamsin",
+    "tags": {
+     "gender": "f",
+     "origin": "fringe"
+    },
+    "src": "curated"
+   },
+   {
+    "v": "Ilse",
+    "tags": {
+     "gender": "f",
+     "origin": "belt"
+    },
+    "src": "curated"
+   },
+   {
+    "v": "Mara",
+    "tags": {
+     "gender": "f",
+     "origin": [
+      "core",
+      "belt"
+     ]
+    },
+    "src": "curated"
+   },
+   {
+    "v": "Oro",
+    "tags": {
+     "gender": "m",
+     "origin": "belt"
+    },
+    "src": "curated"
+   },
+   {
+    "v": "Kade",
+    "tags": {
+     "gender": "m",
+     "origin": "fringe"
+    },
+    "src": "curated"
+   },
+   {
+    "v": "Bastian",
+    "tags": {
+     "gender": "m",
+     "origin": "core"
+    },
+    "src": "curated"
+   },
+   {
+    "v": "Nyx",
+    "tags": {
+     "gender": "x",
+     "origin": "fringe"
+    },
+    "src": "curated"
+   },
+   {
+    "v": "Vex",
+    "tags": {
+     "gender": "x",
+     "origin": [
+      "belt",
+      "fringe"
+     ]
+    },
+    "src": "curated"
+   },
+   {
+    "v": "Sable",
+    "tags": {
+     "gender": [
+      "f",
+      "x"
+     ],
+     "origin": "core"
+    },
+    "src": "curated"
+   },
+   {
+    "v": "Rook",
+    "tags": {
+     "gender": [
+      "m",
+      "f",
+      "x"
+     ],
+     "origin": [
+      "belt",
+      "fringe"
+     ]
+    },
+    "src": "curated"
+   },
+   {
+    "v": "Corin",
+    "tags": {
+     "gender": [
+      "m",
+      "x"
+     ],
+     "origin": "core"
+    },
+    "src": "curated"
+   }
+  ],
+  "name.family": [
+   {
+    "v": "Okoro"
+   },
+   {
+    "v": "Vance"
+   },
+   {
+    "v": "Halloran"
+   },
+   {
+    "v": "Ishida"
+   },
+   {
+    "v": "Brandt"
+   },
+   {
+    "v": "Quill"
+   },
+   {
+    "v": "Tenet"
+   },
+   {
+    "v": "Ashgrove"
+   }
+  ],
+  "seed.threat": [
+   {
+    "v": "A rogue AI warlord"
+   },
+   {
+    "v": "The Hollow Choir cult"
+   },
+   {
+    "v": "A smuggler queen"
+   },
+   {
+    "v": "A sentient nebula"
+   },
+   {
+    "v": "The Admiralty's own inspector"
+   },
+   {
+    "v": "A swarm of hungry machines"
+   }
+  ],
+  "seed.wants": [
+   {
+    "v": "steal"
+   },
+   {
+    "v": "awaken"
+   },
+   {
+    "v": "sell"
+   },
+   {
+    "v": "destroy"
+   },
+   {
+    "v": "hide"
+   },
+   {
+    "v": "rewrite"
+   }
+  ],
+  "seed.object": [
+   {
+    "v": "last working star-gate"
+   },
+   {
+    "v": "Captain's memories"
+   },
+   {
+    "v": "colony's water supply"
+   },
+   {
+    "v": "ancient seed vault"
+   },
+   {
+    "v": "peace treaty"
+   },
+   {
+    "v": "ship's mascot"
+   }
+  ],
+  "seed.consequence": [
+   {
+    "v": "plunge the sector into war"
+   },
+   {
+    "v": "erase a world from the charts"
+   },
+   {
+    "v": "wake something older"
+   },
+   {
+    "v": "bankrupt the Guild"
+   },
+   {
+    "v": "turn the crew against each other"
+   },
+   {
+    "v": "make the villain a god"
+   }
+  ],
+  "lf.style": [
+   {
+    "v": "Brash"
+   },
+   {
+    "v": "Haunted"
+   },
+   {
+    "v": "Meticulous"
+   },
+   {
+    "v": "Charming"
+   },
+   {
+    "v": "Reckless"
+   },
+   {
+    "v": "Weary"
+   }
+  ],
+  "lf.role": [
+   {
+    "v": "Pilot"
+   },
+   {
+    "v": "Medic"
+   },
+   {
+    "v": "Engineer"
+   },
+   {
+    "v": "Diplomat"
+   },
+   {
+    "v": "Scout"
+   },
+   {
+    "v": "Gunner"
+   }
+  ],
+  "lf.goal": [
+   {
+    "v": "Become captain"
+   },
+   {
+    "v": "Pay off an old debt"
+   },
+   {
+    "v": "Find a lost sibling"
+   },
+   {
+    "v": "Prove the rumours wrong"
+   },
+   {
+    "v": "Meet new life"
+   },
+   {
+    "v": "Get rich, then retire"
+   }
+  ],
+  "ship.strength": [
+   {
+    "v": "Fast"
+   },
+   {
+    "v": "Nimble"
+   },
+   {
+    "v": "Well armed"
+   },
+   {
+    "v": "Long range"
+   },
+   {
+    "v": "Hidden cargo bays"
+   },
+   {
+    "v": "Tough shields"
+   }
+  ],
+  "ship.problem": [
+   {
+    "v": "Fuel hog"
+   },
+   {
+    "v": "Wanted by the Admiralty"
+   },
+   {
+    "v": "Temperamental AI"
+   },
+   {
+    "v": "Held together with tape"
+   }
+  ]
+ },
+ "generators": [
+  {
+   "id": "name",
+   "label": "Name",
+   "modifiers": [
+    {
+     "key": "gender",
+     "required": false
+    },
+    {
+     "key": "origin",
+     "required": false
+    }
+   ],
+   "output": "{name.given} {name.family?}"
+  }
+ ],
+ "seed": {
+  "columns": [
+   {
+    "label": "Threat",
+    "table": "seed.threat"
+   },
+   {
+    "label": "Wants to",
+    "table": "seed.wants"
+   },
+   {
+    "label": "The",
+    "table": "seed.object"
+   },
+   {
+    "label": "Which will",
+    "table": "seed.consequence"
+   }
+  ],
+  "template": "{0} wants to {1} the {2}, which will {3}."
+ },
+ "groupFields": [
+  {
+   "id": "shipStrengths",
+   "label": "Ship strengths",
+   "kind": "multi",
+   "count": 2,
+   "table": "ship.strength"
+  },
+  {
+   "id": "shipProblem",
+   "label": "Ship problem",
+   "kind": "pick",
+   "table": "ship.problem"
+  }
+ ],
+ "flavour": {
+  "lasers-feelings": {
+   "checks": [
+    {
+     "id": "under",
+     "label": "Lasers",
+     "roll": "under",
+     "hint": "technology, science, cold rationality, calm, precise action"
+    },
+    {
+     "id": "over",
+     "label": "Feelings",
+     "roll": "over",
+     "hint": "intuition, diplomacy, seduction, wild passionate action"
+    }
+   ],
+   "numberRange": [
+    2,
+    5
+   ],
+   "fields": [
+    {
+     "id": "name",
+     "label": "Name",
+     "kind": "text",
+     "generator": "name"
+    },
+    {
+     "id": "style",
+     "label": "Style",
+     "kind": "pick",
+     "table": "lf.style"
+    },
+    {
+     "id": "role",
+     "label": "Role",
+     "kind": "pick",
+     "table": "lf.role"
+    },
+    {
+     "id": "number",
+     "label": "Number",
+     "kind": "number",
+     "range": [
+      2,
+      5
+     ]
+    },
+    {
+     "id": "goal",
+     "label": "Goal",
+     "kind": "pick-or-text",
+     "table": "lf.goal"
+    }
+   ],
+   "dice": {
+    "base": 1,
+    "bonuses": [
+     {
+      "id": "prepared",
+      "label": "Prepared",
+      "dice": 1
+     },
+     {
+      "id": "expert",
+      "label": "Expert",
+      "dice": 1
+     }
+    ],
+    "min": 1,
+    "max": 3
+   },
+   "outcomes": [
+    {
+     "successes": 0,
+     "label": "Goes wrong",
+     "text": "GM says how things get worse."
+    },
+    {
+     "successes": 1,
+     "label": "Barely",
+     "text": "GM inflicts a complication, harm, or cost."
+    },
+    {
+     "successes": 2,
+     "label": "Well",
+     "text": "You do it well."
+    },
+    {
+     "successes": 3,
+     "label": "Critical",
+     "text": "GM tells you an extra effect."
+    }
+   ],
+   "exact": {
+    "name": "Laser Feelings",
+    "countsAsSuccess": true,
+    "text": "Special insight. Ask the GM a question; they answer honestly.",
+    "checks": "any"
+   },
+   "help": {
+    "text": "Say how you help and roll. If you succeed, give them +1d."
+   },
+   "sentence": "{name}\nis {a} {style|lower} {role|lower} who wants to\n{goal|lower}"
+  }
+ }
+}

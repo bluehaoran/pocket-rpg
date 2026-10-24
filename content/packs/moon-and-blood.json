@@ -1,0 +1,609 @@
+{
+ "id": "moon-and-blood",
+ "name": "Moon & Blood",
+ "genre": "Gothic horror",
+ "version": "0.1.0",
+ "nameSetting": "gothic",
+ "extends": [
+  "base-names"
+ ],
+ "provenance": {
+  "extracted": true,
+  "author": "Marco Ricco (The Silent Mage)",
+  "basedOn": "Lasers & Feelings (John Harper)",
+  "license": "CC BY 4.0",
+  "tagline": "Hunt the Vampire Lord, survive the Castle!",
+  "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+ },
+ "setting": {
+  "premise": "Vampire hunters. Vampire castles return when the Moon turns red and fade at dawn, taking whatever they want."
+ },
+ "modifiers": {},
+ "tables": {
+  "lf.style": [
+   {
+    "v": "Arrogant"
+   },
+   {
+    "v": "Deceptive"
+   },
+   {
+    "v": "Charming"
+   },
+   {
+    "v": "Hot-headed"
+   },
+   {
+    "v": "Leader"
+   },
+   {
+    "v": "Tactical"
+   }
+  ],
+  "lf.role": [
+   {
+    "v": "Cleric"
+   },
+   {
+    "v": "Rogue"
+   },
+   {
+    "v": "Sorcerer"
+   },
+   {
+    "v": "Warrior"
+   }
+  ],
+  "lineage.strength": [
+   {
+    "v": "Alchemists"
+   },
+   {
+    "v": "Engineers"
+   },
+   {
+    "v": "Elementalist"
+   },
+   {
+    "v": "Summoner"
+   },
+   {
+    "v": "Sword master"
+   }
+  ],
+  "lineage.flaw": [
+   {
+    "v": "Code of honor"
+   },
+   {
+    "v": "Addicted"
+   },
+   {
+    "v": "Hunted"
+   }
+  ],
+  "castle.strength": [
+   {
+    "v": "Full of traps"
+   },
+   {
+    "v": "Infested"
+   },
+   {
+    "v": "Labyrinthine"
+   }
+  ],
+  "castle.curse.examples": [
+   {
+    "v": "Weakness"
+   },
+   {
+    "v": "Rot"
+   },
+   {
+    "v": "Bad luck"
+   },
+   {
+    "v": "Haunted"
+   }
+  ],
+  "castle.room.type": [
+   {
+    "v": "Hall"
+   },
+   {
+    "v": "Corridor"
+   },
+   {
+    "v": "Chamber"
+   },
+   {
+    "v": "Library"
+   },
+   {
+    "v": "Inner garden"
+   },
+   {
+    "v": "Study"
+   }
+  ],
+  "castle.room.threat": [
+   {
+    "v": "Infestation"
+   },
+   {
+    "v": "Ritual going on"
+   },
+   {
+    "v": "Blade Trap"
+   },
+   {
+    "v": "Vampire Minions"
+   },
+   {
+    "v": "Controlled slaves"
+   },
+   {
+    "v": "Magic Beasts"
+   }
+  ],
+  "castle.room.twist": [
+   {
+    "v": "Hidden passage"
+   },
+   {
+    "v": "Dead End + Threat"
+   },
+   {
+    "v": "Major Threat"
+   },
+   {
+    "v": "Prisoner"
+   },
+   {
+    "v": "Revelation"
+   },
+   {
+    "v": "Potential ally"
+   }
+  ],
+  "castle.room.loot": [
+   {
+    "v": "Potion"
+   },
+   {
+    "v": "Incense / Sulphur"
+   },
+   {
+    "v": "Magic Scroll"
+   },
+   {
+    "v": "Magic Weapon"
+   },
+   {
+    "v": "Magic Trinket"
+   },
+   {
+    "v": "Blood Vial"
+   }
+  ],
+  "powers": [
+   {
+    "v": "Adaptive",
+    "data": {
+     "mode": "A",
+     "text": "Change your N for the next roll."
+    }
+   },
+   {
+    "v": "Alertness",
+    "data": {
+     "mode": "P",
+     "text": "You are prepared in combat."
+    }
+   },
+   {
+    "v": "Brutal",
+    "data": {
+     "mode": "P",
+     "text": "When you deal 2+ Hits, you deal +1 Hit."
+    }
+   },
+   {
+    "v": "Chosen",
+    "data": {
+     "mode": "P",
+     "text": "1/session, ignore any consequence."
+    }
+   },
+   {
+    "v": "Grace",
+    "data": {
+     "mode": "P",
+     "text": "When you sneak, you can reroll 1d."
+    }
+   },
+   {
+    "v": "Interrogator",
+    "data": {
+     "mode": "P",
+     "text": "You are prepared when you negotiate."
+    }
+   },
+   {
+    "v": "Occultist",
+    "data": {
+     "mode": "A",
+     "text": "If you use any magic, you can reroll."
+    }
+   }
+  ],
+  "curses": [
+   {
+    "v": "Arcane Storm",
+    "data": {
+     "text": "Sorcerous magic costs 2 Sulphur."
+    }
+   },
+   {
+    "v": "Dazed",
+    "data": {
+     "text": "You can't roll a critical success on mental tasks."
+    }
+   },
+   {
+    "v": "Egoism",
+    "data": {
+     "text": "You can't help or be helped."
+    }
+   },
+   {
+    "v": "Obsessed",
+    "data": {
+     "text": "You can only target a specific creature until slain or gone."
+    }
+   },
+   {
+    "v": "Rage of the Gods",
+    "data": {
+     "text": "Divine magic costs 2 Incense."
+    }
+   },
+   {
+    "v": "Rotten",
+    "data": {
+     "text": "You can't be healed, but you ignore any non-magic damage above the last."
+    }
+   },
+   {
+    "v": "Stunned",
+    "data": {
+     "text": "When you roll, -1d or take 1 heart."
+    }
+   },
+   {
+    "v": "Weakened",
+    "data": {
+     "text": "You can't roll a critical success on physical tasks."
+    }
+   }
+  ],
+  "threats.sample": [
+   {
+    "v": "Blade Trap",
+    "data": {
+     "drive": "protect an area",
+     "defense": "mechanism",
+     "risk": "many",
+     "hearts": 2
+    }
+   },
+   {
+    "v": "Secret Hall",
+    "data": {
+     "drive": "ritual",
+     "defense": "cultists",
+     "risk": "spotted, arrested",
+     "hearts": 8
+    }
+   },
+   {
+    "v": "Half-Vampire",
+    "data": {
+     "drive": "satisfy their lord",
+     "defense": "sorcery",
+     "hearts": 1
+    }
+   }
+  ],
+  "lineage.trials": [
+   {
+    "v": "Kill 3 non-Undead Minions alone"
+   },
+   {
+    "v": "Discover 2 Secrets"
+   },
+   {
+    "v": "Voluntarily roll -1d from a magic roll"
+   },
+   {
+    "v": "Destroy a Relic"
+   },
+   {
+    "v": "Lose 2 hearts and survive the next room"
+   },
+   {
+    "v": "Face the Curse"
+   },
+   {
+    "v": "Open your mind to the Lord"
+   },
+   {
+    "v": "The Lord can move up to 3 Rooms next time"
+   }
+  ]
+ },
+ "generators": [
+  {
+   "id": "room",
+   "label": "Room",
+   "output": "{castle.room.type} — {castle.room.threat}; twist: {castle.room.twist}; loot: {castle.room.loot}"
+  },
+  {
+   "id": "room-type",
+   "label": "Room type",
+   "output": "{castle.room.type}"
+  },
+  {
+   "id": "room-threat",
+   "label": "Room threat",
+   "output": "{castle.room.threat}"
+  },
+  {
+   "id": "room-twist",
+   "label": "Room twist",
+   "output": "{castle.room.twist}"
+  },
+  {
+   "id": "room-loot",
+   "label": "Loot",
+   "output": "{castle.room.loot}"
+  },
+  {
+   "id": "power",
+   "label": "Power",
+   "output": "{powers}"
+  },
+  {
+   "id": "curse",
+   "label": "Curse",
+   "output": "{curses}"
+  },
+  {
+   "id": "trial",
+   "label": "Lineage trial",
+   "output": "{lineage.trials}"
+  }
+ ],
+ "seed": null,
+ "groupFields": [
+  {
+   "id": "castleStrengths",
+   "label": "Castle strengths",
+   "kind": "multi",
+   "count": 3,
+   "table": "castle.strength"
+  },
+  {
+   "id": "castleCurse",
+   "label": "Castle curse",
+   "kind": "pick-or-text",
+   "table": "castle.curse.examples"
+  }
+ ],
+ "flavour": {
+  "lasers-feelings": {
+   "checks": [
+    {
+     "id": "under",
+     "label": "Moon",
+     "roll": "under",
+     "hint": "reason, study, divine magic"
+    },
+    {
+     "id": "over",
+     "label": "Blood",
+     "roll": "over",
+     "hint": "passion, instinct, empathy, sorcery"
+    }
+   ],
+   "numberRange": [
+    2,
+    5
+   ],
+   "fields": [
+    {
+     "id": "style",
+     "label": "Style",
+     "kind": "pick",
+     "table": "lf.style"
+    },
+    {
+     "id": "role",
+     "label": "Class",
+     "kind": "pick",
+     "table": "lf.role"
+    },
+    {
+     "id": "number",
+     "label": "Number",
+     "kind": "number",
+     "range": [
+      2,
+      5
+     ]
+    },
+    {
+     "id": "name",
+     "label": "Gothic name",
+     "kind": "text",
+     "table": "name.gothic"
+    },
+    {
+     "id": "title",
+     "label": "Title",
+     "kind": "text",
+     "table": null
+    },
+    {
+     "id": "gear",
+     "label": "Weapon set, armor, two items",
+     "kind": "text",
+     "note": "tailored to Class; no lists in source",
+     "table": null
+    },
+    {
+     "id": "lineageStrengths",
+     "label": "Lineage strengths",
+     "kind": "multi",
+     "count": 2,
+     "table": "lineage.strength"
+    },
+    {
+     "id": "lineageFlaw",
+     "label": "Lineage flaw",
+     "kind": "pick",
+     "table": "lineage.flaw",
+     "note": "When flaw puts Hunter at risk, grant 1d, usable once, any time"
+    }
+   ],
+   "resources": [
+    {
+     "id": "hearts",
+     "label": "Hearts",
+     "start": 3,
+     "max": 3,
+     "perHit": "lose max 1 at a time",
+     "states": [
+      {
+       "lost": 1,
+       "label": "bruised",
+       "text": "Cosmetic, might intimidate."
+      },
+      {
+       "lost": 2,
+       "label": "wounded",
+       "text": "Discard 1d after each roll."
+      },
+      {
+       "lost": 3,
+       "label": "in danger",
+       "text": "No effect, but GM narrates further loss."
+      }
+     ],
+     "heal": "Items or rest heal 2. Hearts gained above 3 count as Bruised."
+    },
+    {
+     "id": "incense",
+     "label": "Incense",
+     "appliesTo": {
+      "role": "Cleric"
+     },
+     "start": 3,
+     "max": 6,
+     "use": "Divine Magic (1 Incense + time)"
+    },
+    {
+     "id": "sulphur",
+     "label": "Sulphur",
+     "appliesTo": {
+      "role": "Sorcerer"
+     },
+     "start": 3,
+     "max": 6,
+     "use": "Sorcerous Magic (Sulphur + great risks)"
+    }
+   ],
+   "roleAbilities": {
+    "Cleric": "Heal, protect, bless, summon benevolent spirits, temporarily turn weak undead.",
+    "Sorcerer": "Channel raw power, dispel sorcerous magic, enhance gear, create illusion, slightly alter reality."
+   },
+   "resourceGain": "Kill Spectral undead: +1 Incense. Physical undead drop 1 Sulphur. Both on d6 3+.",
+   "dice": {
+    "base": 1,
+    "bonuses": [
+     {
+      "id": "styleClass",
+      "label": "Style/Class applies",
+      "dice": 1
+     },
+     {
+      "id": "item",
+      "label": "Relevant Item",
+      "dice": 1
+     },
+     {
+      "id": "prepared",
+      "label": "Prepared",
+      "dice": 1
+     },
+     {
+      "id": "helped",
+      "label": "Helped",
+      "dice": 1
+     }
+    ],
+    "min": 1,
+    "max": 4
+   },
+   "outcomes": [
+    {
+     "successes": 0,
+     "label": "Fail",
+     "text": "Consequences: narrative trouble, temporarily lose an item, lose heart."
+    },
+    {
+     "successes": 1,
+     "label": "Succeed with consequences",
+     "text": "Lose heart, temporary trouble, etc."
+    },
+    {
+     "successes": 2,
+     "label": "Get what you want",
+     "text": ""
+    },
+    {
+     "successes": 3,
+     "label": "Get what you want + pick 1",
+     "text": "",
+     "picks": [
+      "Narrate a Benefit",
+      "Setup the next roll (yours or an ally's), grant +1d",
+      "Gain 1 Incense or Sulphur if you hit an undead"
+     ]
+    }
+   ],
+   "exact": {
+    "name": "Blood Moon",
+    "countsAsSuccess": true,
+    "text": "Insight: ask the GM a question.",
+    "questions": [
+     "What's about to happen?",
+     "What's the best way to…?",
+     "How can I prepare for…?",
+     "What's hiding before my eyes?"
+    ],
+    "checks": "any"
+   },
+   "help": {
+    "text": "Grant +1d and share the risks."
+   },
+   "gmGuidance": {
+    "principles": "Play to find out; use threats not solutions; make things personal; ask questions and use the answers; split into scenes; create challenges you wouldn't know how to overcome.",
+    "threatModel": "Enemy or place with drive, defenses (remove to deal hearts), risks. Threats 1–10 hearts; Hunters deal 1 heart per success.",
+    "lootAndSecrets": "Always include special items, consumables, relics giving small boosts. Searching always finds something useful, but time passes."
+   },
+   "sentence": "{name}, {title}\nis {a} {style|lower} {role|lower}"
+  }
+ }
+}

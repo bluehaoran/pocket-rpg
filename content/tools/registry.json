@@ -1,0 +1,113 @@
+{
+ "version": "0.1.0",
+ "tools": [
+  {
+   "id": "dice",
+   "label": "Dice",
+   "kind": "dice",
+   "dice": {
+    "types": [
+     4,
+     6,
+     8,
+     10,
+     12,
+     20,
+     100
+    ],
+    "count": {
+     "min": 1,
+     "max": 10,
+     "default": 1
+    },
+    "defaultType": 6
+   }
+  },
+  {
+   "id": "names",
+   "label": "Names",
+   "kind": "list",
+   "list": "names",
+   "modifiers": [
+    {
+     "key": "gender",
+     "required": false
+    },
+    {
+     "key": "setting",
+     "required": false,
+     "default": "genre"
+    },
+    {
+     "key": "letter",
+     "required": false
+    }
+   ],
+   "parts": [
+    {
+     "key": "surname",
+     "label": "Last name",
+     "list": "surnames",
+     "join": " ",
+     "default": false,
+     "filterBy": [
+      "setting"
+     ],
+     "order": {
+      "label": "Honour traditional family name order",
+      "default": true
+     }
+    }
+   ],
+   "followUp": {
+    "label": "Description",
+    "tool": "description",
+    "join": " — ",
+    "default": false
+   }
+  },
+  {
+   "id": "description",
+   "label": "Description",
+   "kind": "list",
+   "list": "descriptions"
+  },
+  {
+   "id": "items",
+   "label": "Items",
+   "kind": "list",
+   "list": "items"
+  },
+  {
+   "id": "emotions",
+   "label": "Emotions",
+   "kind": "list",
+   "list": "emotions"
+  },
+  {
+   "id": "complication",
+   "label": "Complication",
+   "kind": "list",
+   "list": "complications"
+  },
+  {
+   "id": "tilt",
+   "label": "Tilt",
+   "kind": "list",
+   "list": "tilts"
+  },
+  {
+   "id": "emoji",
+   "label": "Emoji",
+   "kind": "list",
+   "list": "emoji",
+   "count": {
+    "min": 1,
+    "max": 6,
+    "default": 3
+   },
+   "join": " ",
+   "display": "glyph"
+  }
+ ]
+}

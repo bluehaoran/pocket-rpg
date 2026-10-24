@@ -1,0 +1,132 @@
+{
+ "id": "emotions",
+ "label": "Emotions",
+ "version": "0.1.0",
+ "provenance": {
+  "author": "PocketRPG",
+  "license": "original entries"
+ },
+ "modifiers": {},
+ "entries": [
+  {
+   "v": "sad"
+  },
+  {
+   "v": "happy"
+  },
+  {
+   "v": "delighted"
+  },
+  {
+   "v": "frustrated"
+  },
+  {
+   "v": "humiliated"
+  },
+  {
+   "v": "weary"
+  },
+  {
+   "v": "anxious"
+  },
+  {
+   "v": "smug"
+  },
+  {
+   "v": "furious"
+  },
+  {
+   "v": "giddy"
+  },
+  {
+   "v": "suspicious"
+  },
+  {
+   "v": "grieving"
+  },
+  {
+   "v": "hopeful"
+  },
+  {
+   "v": "bored"
+  },
+  {
+   "v": "terrified"
+  },
+  {
+   "v": "embarrassed"
+  },
+  {
+   "v": "proud"
+  },
+  {
+   "v": "resentful"
+  },
+  {
+   "v": "lonely"
+  },
+  {
+   "v": "relieved"
+  },
+  {
+   "v": "curious"
+  },
+  {
+   "v": "guilty"
+  },
+  {
+   "v": "jealous"
+  },
+  {
+   "v": "bitter"
+  },
+  {
+   "v": "content"
+  },
+  {
+   "v": "nervous"
+  },
+  {
+   "v": "impatient"
+  },
+  {
+   "v": "ashamed"
+  },
+  {
+   "v": "amused"
+  },
+  {
+   "v": "homesick"
+  },
+  {
+   "v": "defiant"
+  },
+  {
+   "v": "desperate"
+  },
+  {
+   "v": "wistful"
+  },
+  {
+   "v": "overjoyed"
+  },
+  {
+   "v": "betrayed"
+  },
+  {
+   "v": "calm"
+  },
+  {
+   "v": "panicked"
+  },
+  {
+   "v": "stubborn"
+  },
+  {
+   "v": "grateful"
+  },
+  {
+   "v": "sheepish"
+  }
+ ]
+}

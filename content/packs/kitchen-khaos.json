@@ -1,0 +1,189 @@
+{
+ "id": "kitchen-khaos",
+ "name": "Kitchen Khaos",
+ "genre": "Fantasy comedy",
+ "version": "0.1.0",
+ "nameSetting": "fantasy",
+ "extends": [
+  "rfs-base",
+  "base-names"
+ ],
+ "provenance": {
+  "author": "Roll for Shoes (rollforshoes.com)",
+  "basedOn": "Kitchen Khaos setting, rollforshoes.com/settings/kitchen-khaos",
+  "license": "CC0 1.0 (public domain dedication)",
+  "entries": "Source tables verbatim or lightly reworded. Entries marked src=pocketrpg are original additions where the source gives only a prompt.",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+ },
+ "setting": {
+  "premise": "Servants in the king's court have fallen behind and must rush to prepare a grand royal feast."
+ },
+ "modifiers": {},
+ "tables": {
+  "kk.species": [
+   {
+    "v": "Dragonkin"
+   },
+   {
+    "v": "Dwarf"
+   },
+   {
+    "v": "Elf"
+   },
+   {
+    "v": "Halfling"
+   },
+   {
+    "v": "Human"
+   },
+   {
+    "v": "Orc"
+   }
+  ],
+  "kk.position": [
+   {
+    "v": "Scullery maid",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Page",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Cupbearer",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Pastry cook",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Royal taster",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Under-butler",
+    "src": "pocketrpg"
+   }
+  ],
+  "kk.task": [
+   {
+    "v": "Carve the roast",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Bake the centrepiece",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Pour the wine",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Set the great hall",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Fetch the rare ingredient",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Keep the fires going",
+    "src": "pocketrpg"
+   }
+  ]
+ },
+ "generators": [
+  {
+   "id": "look",
+   "label": "Description",
+   "output": "{npc.description|lower}, {npc.personality|lower}"
+  },
+  {
+   "id": "npc",
+   "label": "Courtier",
+   "output": "{npc.personality} {npc.description|lower} {kk.species|lower}"
+  }
+ ],
+ "seed": null,
+ "story": {
+  "questions": [
+   {
+    "id": "occasion",
+    "text": "What is the big occasion?"
+   },
+   {
+    "id": "uptight",
+    "text": "Why is the court so uptight about it?"
+   },
+   {
+    "id": "late",
+    "text": "Why haven't you had enough time to prepare?"
+   },
+   {
+    "id": "stakes",
+    "text": "What's at stake if the feast goes badly?"
+   },
+   {
+    "id": "ingredient",
+    "text": "What rare, nigh-mythical ingredient will you need?"
+   },
+   {
+    "id": "hard",
+    "text": "What makes it so hard to obtain?"
+   }
+  ],
+  "segments": [
+   {
+    "name": "Gathering the Ingredients",
+    "text": "The King's Food Chancellor hands out tasks. Prep ingredients under pressure to perform."
+   },
+   {
+    "name": "If You Can't Stand the Heat…",
+    "text": "Cooking begins. Some characters are forced into a critical kitchen action."
+   },
+   {
+    "name": "Dinner is Served",
+    "text": "The court is served. The King and nobles judge the food, and the consequences follow."
+   }
+  ]
+ },
+ "flavour": {
+  "roll-for-shoes": {
+   "rootSkill": "Do anything",
+   "fields": [
+    {
+     "id": "name",
+     "label": "Name",
+     "kind": "text",
+     "table": "name.fantasy"
+    },
+    {
+     "id": "species",
+     "label": "Species",
+     "kind": "pick-or-text",
+     "table": "kk.species"
+    },
+    {
+     "id": "look",
+     "label": "Description",
+     "kind": "text",
+     "generator": "look"
+    },
+    {
+     "id": "position",
+     "label": "Court position",
+     "kind": "pick-or-text",
+     "table": "kk.position"
+    },
+    {
+     "id": "task",
+     "label": "Feast task",
+     "kind": "pick-or-text",
+     "table": "kk.task"
+    }
+   ],
+   "sentence": "{name}, {a} {look} {species|lower}\nthe {position|lower}, told to\n{task|lower}"
+  }
+ }
+}

@@ -1,0 +1,144 @@
+{
+ "id": "the-stranger",
+ "name": "The Stranger",
+ "genre": "Western",
+ "version": "0.1.0",
+ "nameSetting": "western",
+ "extends": [
+  "rfs-base"
+ ],
+ "provenance": {
+  "author": "Roll for Shoes (rollforshoes.com)",
+  "basedOn": "The Stranger setting, rollforshoes.com/settings/the-stranger",
+  "license": "CC0 1.0 (public domain dedication)",
+  "entries": "Source tables verbatim or lightly reworded. Entries marked src=pocketrpg are original additions where the source gives only a prompt.",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+ },
+ "setting": {
+  "premise": "Folk of a frontier town get a visit from an ominous stranger."
+ },
+ "modifiers": {},
+ "tables": {
+  "ts.profession": [
+   {
+    "v": "Blacksmith"
+   },
+   {
+    "v": "Barkeep"
+   },
+   {
+    "v": "Doctor"
+   },
+   {
+    "v": "Prospector"
+   },
+   {
+    "v": "Prostitute"
+   },
+   {
+    "v": "Tailor"
+   }
+  ],
+  "ts.pastime": [
+   {
+    "v": "Whittling",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Card games",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Church choir",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Horse racing",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Reading dime novels",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Fishing the creek",
+    "src": "pocketrpg"
+   }
+  ]
+ },
+ "generators": [
+  {
+   "id": "look",
+   "label": "Description",
+   "output": "{npc.description|lower}, {npc.personality|lower}"
+  },
+  {
+   "id": "npc",
+   "label": "Townsfolk",
+   "output": "{npc.personality} {npc.description|lower} {ts.profession|lower}"
+  }
+ ],
+ "seed": null,
+ "story": {
+  "questions": [
+   {
+    "id": "name",
+    "text": "What is the town called?"
+   },
+   {
+    "id": "why",
+    "text": "Why does the town exist, and what is it known for?"
+   },
+   {
+    "id": "landmarks",
+    "text": "What landscapes or landmarks are nearby?"
+   }
+  ],
+  "segments": [
+   {
+    "name": "A Typical Afternoon",
+    "text": "Normal town life and character interactions. As evening comes, give everyone a reason to be at the saloon or on Main Street."
+   },
+   {
+    "name": "The Stranger's Arrival",
+    "text": "A dark-clad, heavily armed stranger rides in and heads to the saloon looking for trouble. Everyone interacts with him. Whoever bothers him most is called out to a duel at high noon. Play out the uneasy night."
+   },
+   {
+    "name": "High Noon",
+    "text": "Whispers, bets, a crowd on Main Street. Show each character preparing. Stare-down, draw, fire. Player actions may change how it ends, but the stranger is dealt with. If he lives, he drinks and rides off."
+   }
+  ]
+ },
+ "flavour": {
+  "roll-for-shoes": {
+   "rootSkill": "Do anything",
+   "fields": [
+    {
+     "id": "name",
+     "label": "Name",
+     "kind": "text",
+     "table": "name.western"
+    },
+    {
+     "id": "look",
+     "label": "Description",
+     "kind": "text",
+     "generator": "look"
+    },
+    {
+     "id": "living",
+     "label": "How you make a living",
+     "kind": "pick-or-text",
+     "table": "ts.profession"
+    },
+    {
+     "id": "pastime",
+     "label": "Spare time",
+     "kind": "pick-or-text",
+     "table": "ts.pastime"
+    }
+   ],
+   "sentence": "{name}, {look}\nthe town {living|lower}.\nSpare time: {pastime|lower}"
+  }
+ }
+}

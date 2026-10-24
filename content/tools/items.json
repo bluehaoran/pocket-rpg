@@ -1,0 +1,156 @@
+{
+ "id": "items",
+ "label": "Items",
+ "version": "0.1.0",
+ "provenance": {
+  "author": "PocketRPG",
+  "license": "original entries"
+ },
+ "modifiers": {},
+ "entries": [
+  {
+   "v": "silver locket"
+  },
+  {
+   "v": "rusted key"
+  },
+  {
+   "v": "sealed letter"
+  },
+  {
+   "v": "compass that points the wrong way"
+  },
+  {
+   "v": "cracked hourglass"
+  },
+  {
+   "v": "map with a torn corner"
+  },
+  {
+   "v": "pouch of foreign coins"
+  },
+  {
+   "v": "pair of bone dice"
+  },
+  {
+   "v": "music box"
+  },
+  {
+   "v": "signet ring"
+  },
+  {
+   "v": "shuttered lantern"
+  },
+  {
+   "v": "coil of rope"
+  },
+  {
+   "v": "crowbar"
+  },
+  {
+   "v": "spyglass"
+  },
+  {
+   "v": "ledger of debts"
+  },
+  {
+   "v": "glass eye"
+  },
+  {
+   "v": "stopped pocket watch"
+  },
+  {
+   "v": "jar of teeth"
+  },
+  {
+   "v": "wedding veil"
+  },
+  {
+   "v": "locked strongbox"
+  },
+  {
+   "v": "child's drawing"
+  },
+  {
+   "v": "bottle of something green"
+  },
+  {
+   "v": "broken sword hilt"
+  },
+  {
+   "v": "deck of marked cards"
+  },
+  {
+   "v": "lock of hair in a ribbon"
+  },
+  {
+   "v": "stolen badge"
+  },
+  {
+   "v": "unfinished portrait"
+  },
+  {
+   "v": "vial of black sand"
+  },
+  {
+   "v": "whistle carved from bone"
+  },
+  {
+   "v": "bundle of unsent love letters"
+  },
+  {
+   "v": "cursed doll"
+  },
+  {
+   "v": "deed to a house"
+  },
+  {
+   "v": "feather that never gets wet"
+  },
+  {
+   "v": "tin of good tea"
+  },
+  {
+   "v": "medal for bravery"
+  },
+  {
+   "v": "wanted poster"
+  },
+  {
+   "v": "lucky stone"
+  },
+  {
+   "v": "tuning fork"
+  },
+  {
+   "v": "surgeon's kit"
+  },
+  {
+   "v": "half of a torn photograph"
+  },
+  {
+   "v": "ring of iron keys"
+  },
+  {
+   "v": "crown with a missing jewel"
+  },
+  {
+   "v": "seed that hums"
+  },
+  {
+   "v": "mask with no eyeholes"
+  },
+  {
+   "v": "dog-eared prayer book"
+  },
+  {
+   "v": "flask of strong spirits"
+  },
+  {
+   "v": "heavy ingot"
+  },
+  {
+   "v": "recording of a stranger's voice"
+  }
+ ]
+}

@@ -1,0 +1,164 @@
+{
+ "id": "outbreak-hotel",
+ "name": "Outbreak Hotel",
+ "genre": "Zombie survival",
+ "version": "0.1.0",
+ "nameSetting": "modern",
+ "extends": [
+  "rfs-base"
+ ],
+ "provenance": {
+  "author": "Roll for Shoes (rollforshoes.com)",
+  "basedOn": "Outbreak Hotel setting, rollforshoes.com/settings/outbreak-hotel",
+  "license": "CC0 1.0 (public domain dedication)",
+  "entries": "Source tables verbatim or lightly reworded. Entries marked src=pocketrpg are original additions where the source gives only a prompt.",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+ },
+ "setting": {
+  "premise": "Guests and staff of a busy hotel try to survive a zombie outbreak."
+ },
+ "modifiers": {},
+ "tables": {
+  "oh.occupation": [
+   {
+    "v": "Bellhop"
+   },
+   {
+    "v": "Housekeeper"
+   },
+   {
+    "v": "Manager"
+   },
+   {
+    "v": "Pool maintenance person"
+   },
+   {
+    "v": "Receptionist"
+   },
+   {
+    "v": "Valet"
+   }
+  ],
+  "oh.reason": [
+   {
+    "v": "Employee"
+   },
+   {
+    "v": "Vacationer"
+   },
+   {
+    "v": "Business traveller"
+   }
+  ],
+  "oh.phobia": [
+   {
+    "v": "Heights",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Elevators",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Pigeons",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Germs",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "The dark",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Crowds",
+    "src": "pocketrpg"
+   }
+  ]
+ },
+ "generators": [
+  {
+   "id": "look",
+   "label": "Description",
+   "output": "{npc.description|lower}, {npc.personality|lower}"
+  },
+  {
+   "id": "npc",
+   "label": "Hotel NPC",
+   "output": "{npc.personality} {npc.description|lower} {oh.occupation|lower}"
+  }
+ ],
+ "seed": null,
+ "story": {
+  "questions": [
+   {
+    "id": "where",
+    "text": "Where is the hotel?"
+   },
+   {
+    "id": "name",
+    "text": "What is the hotel called?"
+   }
+  ],
+  "segments": [
+   {
+    "name": "Checking In",
+    "text": "A busy, overwhelming hotel. Vacancies shrink and scenes get more chaotic. Foreshadow: NPCs cough, sneeze, act oddly."
+   },
+   {
+    "name": "The Outbreak",
+    "text": "NPCs turn and the hotel is overrun. The PCs are forced together. Run set pieces built on the hotel's hazards."
+   },
+   {
+    "name": "Escape",
+    "text": "Give a clear route to safety. NPCs suggest routes; zombies give the cast horrific ends. Final actions are heavily punished or rewarded."
+   }
+  ],
+  "note": "Tie each character to an NPC they worry about. Shared NPCs are better."
+ },
+ "flavour": {
+  "roll-for-shoes": {
+   "rootSkill": "Do anything",
+   "fields": [
+    {
+     "id": "name",
+     "label": "Name",
+     "kind": "text",
+     "table": "name.modern"
+    },
+    {
+     "id": "look",
+     "label": "Description",
+     "kind": "text",
+     "generator": "look"
+    },
+    {
+     "id": "reason",
+     "label": "Why you're here",
+     "kind": "pick-or-text",
+     "table": "oh.reason"
+    },
+    {
+     "id": "phobia",
+     "label": "Phobia",
+     "kind": "pick-or-text",
+     "table": "oh.phobia",
+     "status": {
+      "level": -2,
+      "format": "Fear of {v}",
+      "optional": true
+     },
+     "note": "Mostly flavour. The GM may make it a -2 status."
+    },
+    {
+     "id": "worry",
+     "label": "NPC you're worried about",
+     "kind": "text",
+     "generator": "npc"
+    }
+   ],
+   "sentence": "{name}, {look}\n{a} {reason|lower} afraid of {phobia|lower}"
+  }
+ }
+}

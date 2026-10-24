@@ -1,0 +1,169 @@
+{
+ "id": "the-heist",
+ "name": "The Heist",
+ "genre": "Heist",
+ "version": "0.1.0",
+ "nameSetting": "modern",
+ "extends": [
+  "rfs-base"
+ ],
+ "provenance": {
+  "author": "Roll for Shoes (rollforshoes.com)",
+  "basedOn": "The Heist setting, rollforshoes.com/settings/the-heist",
+  "license": "CC0 1.0 (public domain dedication)",
+  "entries": "Source tables verbatim or lightly reworded. Entries marked src=pocketrpg are original additions where the source gives only a prompt.",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+ },
+ "setting": {
+  "premise": "A team of skilled specialists plans and pulls off a big score: steal one valuable or important item."
+ },
+ "modifiers": {},
+ "tables": {
+  "heist.profession": [
+   {
+    "v": "Law enforcement"
+   },
+   {
+    "v": "Charismatic \"expert\""
+   },
+   {
+    "v": "Stuntperson"
+   },
+   {
+    "v": "Lockpicker"
+   },
+   {
+    "v": "Self-proclaimed master of disguise"
+   },
+   {
+    "v": "Loudmouth jerk"
+   }
+  ],
+  "heist.twist": [
+   {
+    "v": "The item is in another location"
+   },
+   {
+    "v": "A double-cross: one of the team is working against the team"
+   },
+   {
+    "v": "A trap is sprung, capturing at least one of the team"
+   },
+   {
+    "v": "Another thief or team is going after the item"
+   },
+   {
+    "v": "The item is not what it seems"
+   },
+   {
+    "v": "The authorities get the jump on the team"
+   }
+  ],
+  "heist.reason": [
+   {
+    "v": "Owes the wrong people",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Revenge on the owner",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "The thrill of it",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "One last job, then out",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Paid up front",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Wants the item for themselves",
+    "src": "pocketrpg"
+   }
+  ]
+ },
+ "generators": [
+  {
+   "id": "look",
+   "label": "Description",
+   "output": "{npc.description|lower}, {npc.personality|lower}"
+  },
+  {
+   "id": "npc",
+   "label": "Teammate",
+   "output": "{npc.personality} {npc.description|lower} {heist.profession|lower}"
+  },
+  {
+   "id": "twist",
+   "label": "Twist",
+   "output": "{heist.twist}"
+  }
+ ],
+ "seed": null,
+ "story": {
+  "questions": [
+   {
+    "id": "item",
+    "text": "What is the treasured item?"
+   },
+   {
+    "id": "where",
+    "text": "Where is it, and how is it secured?"
+   }
+  ],
+  "segments": [
+   {
+    "name": "Planning and Recon",
+    "text": "In character, set up connections, obstacles and positioning. Prompt with problems the location raises until there is enough to outline the heist."
+   },
+   {
+    "name": "Action!",
+    "text": "Each character gets a turn to advance the plan through the obstacles and NPCs, with the item as the goal. Near the end, introduce a twist.",
+    "tables": [
+     "twist"
+    ]
+   },
+   {
+    "name": "The Escape",
+    "text": "Raise the pressure until they want out, item or not. Bring back obstacles and NPCs. End on a cliffhanger or set piece."
+   }
+  ],
+  "note": "Larger groups: add NPC teammates (Teammate generator) to support the PCs."
+ },
+ "flavour": {
+  "roll-for-shoes": {
+   "rootSkill": "Do anything",
+   "fields": [
+    {
+     "id": "name",
+     "label": "Name",
+     "kind": "text",
+     "table": "name.modern"
+    },
+    {
+     "id": "look",
+     "label": "Description",
+     "kind": "text",
+     "generator": "look"
+    },
+    {
+     "id": "job",
+     "label": "Team job",
+     "kind": "pick-or-text",
+     "table": "heist.profession"
+    },
+    {
+     "id": "reason",
+     "label": "Reason for joining",
+     "kind": "pick-or-text",
+     "table": "heist.reason"
+    }
+   ],
+   "sentence": "{name}, {look}\nthe team's {job|lower}.\nIn it because: {reason|lower}"
+  }
+ }
+}

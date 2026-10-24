@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pocket-rpg/schemas/tool-list.schema.json",
+  "title": "PocketRPG tools library list",
+  "description": "See docs/05-tools-library.md §2. An empty entries array is valid.",
+  "type": "object",
+  "required": ["id", "label", "version", "modifiers", "entries"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "$ref": "common.schema.json#/$defs/id" },
+    "label": { "type": "string" },
+    "version": { "$ref": "common.schema.json#/$defs/version" },
+    "provenance": { "$ref": "common.schema.json#/$defs/provenance" },
+    "modifiers": { "type": "object", "additionalProperties": { "$ref": "common.schema.json#/$defs/modifierDecl" } },
+    "entries": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/entry" } },
+    "notes": { "type": "string" }
+  }
+}

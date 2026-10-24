@@ -1,0 +1,357 @@
+{
+ "id": "rfs-base",
+ "name": "Roll for Shoes tools",
+ "version": "0.1.0",
+ "library": true,
+ "extends": [],
+ "provenance": {
+  "author": "Roll for Shoes (rollforshoes.com/tools); name lists by PocketRPG",
+  "license": "CC0 1.0 (NPC tables); name lists original",
+  "entries": "NPC tables verbatim (d66).",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+ },
+ "modifiers": {},
+ "tables": {
+  "npc.description": [
+   {
+    "v": "Adorable"
+   },
+   {
+    "v": "Attractive"
+   },
+   {
+    "v": "Bald"
+   },
+   {
+    "v": "Bearded"
+   },
+   {
+    "v": "Beefy"
+   },
+   {
+    "v": "Bony"
+   },
+   {
+    "v": "Bulky"
+   },
+   {
+    "v": "Chiseled"
+   },
+   {
+    "v": "Chubby"
+   },
+   {
+    "v": "Clean"
+   },
+   {
+    "v": "Creepy"
+   },
+   {
+    "v": "Elderly"
+   },
+   {
+    "v": "Filthy"
+   },
+   {
+    "v": "Furry"
+   },
+   {
+    "v": "Glamorous"
+   },
+   {
+    "v": "Huge"
+   },
+   {
+    "v": "Lanky"
+   },
+   {
+    "v": "Muscular"
+   },
+   {
+    "v": "Obese"
+   },
+   {
+    "v": "Pasty"
+   },
+   {
+    "v": "Petite"
+   },
+   {
+    "v": "Scary"
+   },
+   {
+    "v": "Shifty"
+   },
+   {
+    "v": "Short"
+   },
+   {
+    "v": "Slender"
+   },
+   {
+    "v": "Slimy"
+   },
+   {
+    "v": "Spiky"
+   },
+   {
+    "v": "Stinky"
+   },
+   {
+    "v": "Stylish"
+   },
+   {
+    "v": "Sunburned"
+   },
+   {
+    "v": "Tall"
+   },
+   {
+    "v": "Tattooed"
+   },
+   {
+    "v": "Tentacled"
+   },
+   {
+    "v": "Tiny"
+   },
+   {
+    "v": "Ugly"
+   },
+   {
+    "v": "Voluptuous"
+   }
+  ],
+  "npc.personality": [
+   {
+    "v": "Annoying"
+   },
+   {
+    "v": "Arrogant"
+   },
+   {
+    "v": "Awkward"
+   },
+   {
+    "v": "Bossy"
+   },
+   {
+    "v": "Clumsy"
+   },
+   {
+    "v": "Confident"
+   },
+   {
+    "v": "Courageous"
+   },
+   {
+    "v": "Demanding"
+   },
+   {
+    "v": "Embarrassed"
+   },
+   {
+    "v": "Enthusiastic"
+   },
+   {
+    "v": "Evil"
+   },
+   {
+    "v": "Excited"
+   },
+   {
+    "v": "Fearless"
+   },
+   {
+    "v": "Fidgety"
+   },
+   {
+    "v": "Friendly"
+   },
+   {
+    "v": "Grumpy"
+   },
+   {
+    "v": "Judgemental"
+   },
+   {
+    "v": "Kind"
+   },
+   {
+    "v": "Lazy"
+   },
+   {
+    "v": "Maniacal"
+   },
+   {
+    "v": "Mean"
+   },
+   {
+    "v": "Messy"
+   },
+   {
+    "v": "Murderous"
+   },
+   {
+    "v": "Nervous"
+   },
+   {
+    "v": "Noisy"
+   },
+   {
+    "v": "Optimistic"
+   },
+   {
+    "v": "Quiet"
+   },
+   {
+    "v": "Rowdy"
+   },
+   {
+    "v": "Rude"
+   },
+   {
+    "v": "Sad"
+   },
+   {
+    "v": "Sarcastic"
+   },
+   {
+    "v": "Selfish"
+   },
+   {
+    "v": "Shy"
+   },
+   {
+    "v": "Silly"
+   },
+   {
+    "v": "Simple-Minded"
+   },
+   {
+    "v": "Stubborn"
+   }
+  ],
+  "body.part": [
+   {
+    "v": "Head"
+   },
+   {
+    "v": "Left arm"
+   },
+   {
+    "v": "Right arm"
+   },
+   {
+    "v": "Torso"
+   },
+   {
+    "v": "Left leg"
+   },
+   {
+    "v": "Right leg"
+   }
+  ],
+  "name.modern": [
+   {
+    "v": "Dana Cruz",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Mo Patel",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Rina Okafor",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Theo Lindqvist",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Jules Moreau",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Sam Kowalski",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Priya Nair",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Lou Bennett",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Marco Silva",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Tess Hargreave",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Ken Watanabe",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Ada Byrne",
+    "src": "pocketrpg"
+   }
+  ],
+  "name.western": [
+   {
+    "v": "Clem Hollis",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Ada Whitlock",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Josiah Pike",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Mae Calloway",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Eli Tanner",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Hattie Rourke",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Silas Booth",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Lottie Greer",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Amos Crane",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Della Faye",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Wyatt Mercer",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Nell Barlow",
+    "src": "pocketrpg"
+   }
+  ]
+ },
+ "generators": []
+}

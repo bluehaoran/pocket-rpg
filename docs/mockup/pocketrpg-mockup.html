@@ -1,0 +1,1638 @@
+<title>PocketRPG Mockup</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Big+Shoulders+Display:wght@700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: one-handed phone column — header, scrolling step view, thumb-reach step bar at the bottom. */
+:root{
+  --bg:#E8EBEF; --surface:#FBFCFD; --sunk:#DCE1E7; --ink:#11151B; --muted:#566070;
+  --line:#CBD2DA; --accent:#B35C00; --accent-ink:#FFFFFF; --accent-soft:#F5E2CB; --pin:#2D6AD0;
+  --f-display:"Big Shoulders Display","Arial Narrow",system-ui,sans-serif;
+  --f-body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0C0F14; --surface:#161A21; --sunk:#1F242D; --ink:#EDF0F4; --muted:#909AA9;
+  --line:#2A313C; --accent:#FFA53D; --accent-ink:#1A1205; --accent-soft:#3A2810; --pin:#7EA9FF; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0C0F14; --surface:#161A21; --sunk:#1F242D; --ink:#EDF0F4; --muted:#909AA9;
+  --line:#2A313C; --accent:#FFA53D; --accent-ink:#1A1205; --accent-soft:#3A2810; --pin:#7EA9FF; color-scheme:dark}
+
+*,*::before,*::after{box-sizing:border-box}
+html{box-sizing:border-box;height:100%}
+body{height:100%;background:var(--bg);color:var(--ink);font:400 17px/1.4 var(--f-body)}
+button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+.app{height:100%;max-width:460px;margin:0 auto;display:grid;grid-template-rows:auto minmax(0,1fr) auto;background:var(--bg)}
+@media (min-width:600px){.app{border-inline:1px solid var(--line)}}
+.gutter{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:12px;border-bottom:1px solid var(--line)}
+.brand{font:800 24px/1 var(--f-display);text-transform:uppercase;letter-spacing:.02em}
+.brand b{color:var(--accent);font-weight:800}
+.chip{font:500 12px/1.3 var(--f-mono);color:var(--muted);text-align:right;min-width:0}
+
+main{overflow-y:auto;padding-block:18px 28px;display:flex;flex-direction:column;gap:22px;-webkit-overflow-scrolling:touch}
+h2{font:800 34px/1 var(--f-display);text-transform:uppercase;letter-spacing:.01em;margin:0;text-wrap:balance}
+.eyebrow{font:700 12px/1.2 var(--f-body);text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+.group{display:flex;flex-direction:column;gap:10px}
+.hint{margin:0;color:var(--muted);font-size:15px}
+
+.opt{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 14px;align-items:center;text-align:left;width:100%;min-height:68px;padding:12px 16px;border:2px solid var(--line);border-radius:14px;background:var(--surface)}
+.opt[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.opt:disabled{opacity:.5;cursor:not-allowed}
+.radio{width:24px;height:24px;border-radius:50%;border:2px solid var(--muted);grid-row:span 2}
+.opt[aria-pressed="true"] .radio{border:8px solid var(--accent)}
+.opt .t{font-weight:700;font-size:19px}
+.opt .m{font:500 12px/1.3 var(--f-mono);color:var(--muted)}
+.opt .m.err{color:#C0392B}
+
+.seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:6px}
+.seg button{min-height:58px;border-radius:12px;border:2px solid var(--line);background:var(--surface);font:700 22px/1 var(--f-mono);font-variant-numeric:tabular-nums}
+.seg button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+
+.stepper{display:grid;grid-template-columns:64px minmax(0,1fr) 64px;align-items:stretch;min-height:64px;border:2px solid var(--line);border-radius:14px;background:var(--surface);overflow:hidden}
+.stepper button{border:0;background:var(--sunk);font:700 28px/1 var(--f-mono)}
+.stepper button:disabled{opacity:.35;cursor:not-allowed}
+.stepper output{display:grid;place-items:center;font:700 30px/1 var(--f-mono);font-variant-numeric:tabular-nums}
+.btn{min-height:62px;width:100%;border-radius:14px;border:2px solid var(--accent);background:var(--accent);color:var(--accent-ink);font:800 23px/1 var(--f-display);text-transform:uppercase;letter-spacing:.05em;display:flex;align-items:center;justify-content:center;gap:10px}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.ghost[aria-pressed="true"]{border-color:var(--pin);color:var(--pin)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+
+/* Story seed */
+.sentence{background:var(--surface);border:2px solid var(--line);border-radius:18px;padding:20px 18px;font:700 25px/1.4 var(--f-body);text-wrap:pretty;display:flex;flex-direction:column;gap:12px}
+.sentence p{margin:0}
+.part{all:unset;cursor:pointer;color:var(--accent);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:5px;border-radius:4px}
+.part:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+.vtabs{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px;border-radius:14px;background:var(--sunk)}
+.vtabs button{min-height:50px;border:0;border-radius:10px;background:transparent;color:var(--muted);font:700 16px/1 var(--f-body);text-transform:uppercase;letter-spacing:.08em}
+.vtabs button[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.15)}
+.cols{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--surface)}
+.col{all:unset;cursor:pointer;display:grid;grid-template-columns:42px minmax(0,1fr) auto;gap:14px;align-items:center;padding:12px 16px;min-height:66px;border-top:1px solid var(--line)}
+.col:first-child{border-top:0}
+.col:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}
+.col .val{font-weight:700;font-size:18px;line-height:1.25}
+.col .re{font:700 20px/1 var(--f-mono);color:var(--muted)}
+
+.die{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);width:40px;height:40px;padding:6px;gap:2px;border-radius:9px;background:var(--sunk);border:1px solid var(--line);flex:none}
+.die i{border-radius:50%}
+.die i.on{background:var(--ink)}
+.die.sm{width:30px;height:30px;padding:5px;border-radius:7px}
+
+/* Crew */
+.pnav{display:grid;grid-template-columns:64px minmax(0,1fr) 64px;align-items:stretch;min-height:60px;border:2px solid var(--line);border-radius:14px;background:var(--surface);overflow:hidden}
+.pnav button{border:0;background:var(--sunk);font:700 26px/1 var(--f-mono)}
+.pnav button:disabled{opacity:.35;cursor:not-allowed}
+.pnav>span{display:flex;align-items:center;justify-content:center;gap:8px}
+.pnav b{font:700 19px/1 var(--f-mono)}
+.pnav .of{color:var(--muted);font-size:15px}
+
+.sentence.crew p{line-height:1.5}
+.sentence.crew .nm{font-size:32px;line-height:1.3}
+.part.fresh{animation:pop .45s ease-out}
+.scalebtn{all:unset;cursor:pointer;display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;gap:10px;align-items:center;min-height:56px;padding:6px 0 0;border-top:1px solid var(--line)}
+.scalebtn:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
+.scalebtn .lab{font:700 12px/1 var(--f-body);text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.scalebtn .ticks{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
+.scalebtn .ticks i{height:12px;border-radius:3px;background:var(--sunk)}
+.scalebtn .ticks i.on{background:var(--accent)}
+.scalebtn .n{font:700 34px/1 var(--f-mono);color:var(--accent);min-width:1.2em;text-align:right}
+
+.scrim{position:fixed;inset:0;background:rgba(5,8,12,.45);z-index:20}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:21;max-width:460px;margin:0 auto;background:var(--surface);border-top:1px solid var(--line);border-radius:20px 20px 0 0;padding-top:18px;padding-bottom:calc(18px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:14px;box-shadow:0 -8px 30px rgba(0,0,0,.25);animation:rise .2s ease-out}
+.sheet .field{grid-template-columns:minmax(0,1fr) 58px}
+@keyframes rise{from{transform:translateY(24px);opacity:.6}}
+
+.field{display:grid;grid-template-columns:minmax(0,1fr) 58px;gap:6px 8px;align-items:center}
+.field>.eyebrow{grid-column:1/-1}
+.field input,.field select,.sheet select,.sheet input{width:100%;min-height:58px;border-radius:12px;border:2px solid var(--line);background:var(--surface);color:var(--ink);font:700 19px var(--f-body);padding:0 40px 0 14px;appearance:none;-webkit-appearance:none}
+.field input,.sheet input{padding-right:14px}
+.sel{position:relative;min-width:0}
+.sel::after{content:"";position:absolute;right:16px;top:50%;width:9px;height:9px;border-right:2.5px solid var(--muted);border-bottom:2.5px solid var(--muted);transform:translateY(-70%) rotate(45deg);pointer-events:none}
+.dice{width:58px;height:58px;border-radius:12px;border:2px solid var(--line);background:var(--sunk);display:grid;place-items:center}
+.dice:active{transform:scale(.94)}
+
+.fresh{animation:pop .45s ease-out}
+@keyframes pop{from{background:var(--accent-soft)}}
+
+/* Pack */
+.check{display:flex;flex-direction:column;gap:6px;margin:0;padding:0;list-style:none;font-size:15px}
+.check li{padding:10px 12px;border-radius:10px;background:var(--surface);border:1px solid var(--line)}
+.check code,.note code{font:500 13px var(--f-mono)}
+.json{margin:0;overflow:auto;max-height:55vh;font:500 12px/1.5 var(--f-mono);background:var(--sunk);padding:12px;border-radius:12px;border:1px solid var(--line)}
+.linkbtn{all:unset;cursor:pointer;color:var(--muted);text-decoration:underline;font-size:15px;align-self:flex-start;padding:8px 0}
+
+/* Step bar */
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);background:var(--surface)}
+.tabs button{min-height:64px;background:none;border:0;border-top:3px solid transparent;color:var(--muted);font:700 12px/1 var(--f-body);text-transform:uppercase;letter-spacing:.1em;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+.tabs button .n{font:700 17px/1 var(--f-mono)}
+.tabs button[aria-current="page"]{color:var(--ink);border-top-color:var(--accent)}
+
+
+/* v2: data-driven fields */
+.part.empty{color:var(--muted);text-decoration-style:dashed}
+.drows{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.drow{all:unset;cursor:pointer;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);font:400 17px/1.3 var(--f-body)}
+.drow:last-child{border-bottom:0}
+.drow:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
+.drow .eyebrow{grid-column:1}
+.drow .v{grid-column:1;font-weight:700;color:var(--accent)}
+.drow .v.empty{color:var(--muted);font-weight:400;font-style:italic}
+.drow .chev{grid-column:2;grid-row:1/span 2;color:var(--muted);font:700 18px/1 var(--f-mono)}
+.stats{display:flex;flex-wrap:wrap;gap:6px}
+.stat{display:flex;align-items:baseline;gap:6px;padding:6px 10px;border-radius:999px;background:var(--sunk);font:400 13px/1 var(--f-body);color:var(--muted)}
+.stat b{font:700 16px/1 var(--f-mono);color:var(--ink)}
+.premise{margin:0;font-size:16px;line-height:1.45}
+.card{background:var(--surface);border:2px solid var(--line);border-radius:18px;padding:6px 18px;display:flex;flex-direction:column}
+.sheet .stack{display:flex;flex-direction:column;gap:8px;min-width:0}
+.sheet .free{min-height:52px;width:100%;border-radius:12px;border:2px dashed var(--line);background:var(--bg);color:var(--ink);font:700 17px var(--f-body);padding:0 14px}
+.sheet .row{display:grid;grid-template-columns:minmax(0,1fr) 58px;gap:8px;align-items:start}
+.empty-card{background:var(--surface);border:2px dashed var(--line);border-radius:18px;padding:18px;color:var(--muted)}
+/* v3: Roll for Shoes skill tree */
+.skills{display:flex;flex-direction:column}
+.skill{all:unset;box-sizing:border-box;display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;gap:10px;align-items:center;min-height:58px;padding:8px 0;border-top:1px solid var(--line);font:700 18px/1.25 var(--f-body)}
+.skill:first-child{border-top:0}
+.skill.root{grid-template-columns:minmax(0,1fr) auto}
+button.skill{cursor:pointer}
+button.skill:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
+.skill .sn{min-width:0}
+.skill.child .sn{color:var(--accent)}
+.skill .sn.empty{color:var(--muted);font-style:italic;font-weight:400}
+.skill .tw{color:var(--muted);font:500 18px/1 var(--f-mono);padding-left:6px}
+.skill .lv{display:flex;align-items:baseline;gap:2px;padding:7px 10px;border-radius:9px;background:var(--sunk);font:700 20px/1 var(--f-mono)}
+.skill .lv small{font-size:12px;color:var(--muted)}
+.skill .chev{color:var(--muted);font:700 18px/1 var(--f-mono)}
+.skill.fresh{animation:pop .45s ease-out}
+.skill .sn small{display:block;font:400 12px/1.3 var(--f-body);color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:2px}
+.skill.status .tw{color:var(--accent)}
+.skill .lv.neg{color:var(--accent)}
+.drow .qt{grid-column:1;font:700 16px/1.3 var(--f-body);color:var(--ink)}
+.outline{list-style:none;margin:0;padding:0;counter-reset:sc;display:flex;flex-direction:column;border:2px solid var(--line);border-radius:18px;background:var(--surface)}
+.outline li{counter-increment:sc;display:grid;grid-template-columns:34px minmax(0,1fr);gap:4px 10px;padding:14px 16px;border-top:1px solid var(--line);font-size:16px;line-height:1.4}
+.outline li:first-child{border-top:0}
+.outline li::before{content:counter(sc);grid-row:1/span 3;font:700 22px/1.1 var(--f-mono);color:var(--accent)}
+.outline b{font:800 20px/1.1 var(--f-display);text-transform:uppercase;letter-spacing:.03em}
+.outline .rolls{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font:700 11px/1 var(--f-body);text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-top:4px}
+.outline .rolls i{font:500 12px/1 var(--f-mono);font-style:normal;text-transform:none;letter-spacing:0;color:var(--ink);background:var(--sunk);padding:5px 8px;border-radius:999px}
+/* v4: Phase 3 play — sticky result card, generator grid, character roll controls, dice dock, log */
+.app{grid-template-rows:auto minmax(0,1fr) auto auto auto}
+.tabs{grid-template-columns:repeat(5,1fr)}
+.playtop{position:sticky;top:-18px;z-index:5;margin-top:-18px;padding-top:18px;padding-bottom:6px;background:var(--bg);display:flex;flex-direction:column;gap:8px}
+.result{background:var(--surface);border:2px solid var(--ink);border-radius:18px;padding:12px 16px;display:flex;flex-direction:column;gap:8px;max-height:46vh;overflow-y:auto;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.result.pinned{border-color:var(--pin)}
+.result.empty{border:2px dashed var(--line)}
+.result.fresh{animation:pop .45s ease-out}
+.rhead{display:flex;justify-content:space-between;align-items:center;gap:10px;min-height:40px}
+.rhead .eyebrow{min-width:0;overflow-wrap:anywhere}
+.rbig{all:unset;cursor:pointer;font:700 28px/1.2 var(--f-body);text-wrap:pretty;overflow-wrap:anywhere;border-radius:6px}
+.rbig:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.rbig.num{font:700 54px/1 var(--f-mono);font-variant-numeric:tabular-nums}
+.rbig.static{cursor:default}
+.rsub{margin:0;font-size:16px;line-height:1.4;color:var(--muted)}
+.rfoot{font:500 12px/1.3 var(--f-mono);color:var(--muted);display:flex;gap:4px 12px;flex-wrap:wrap}
+.rfoot .relax{color:var(--accent)}
+.pinbtn{flex:none;min-height:40px;border-radius:999px;border:2px solid var(--line);background:var(--surface);color:var(--muted);font:700 13px/1 var(--f-body);text-transform:uppercase;letter-spacing:.08em;padding:0 12px;display:inline-flex;align-items:center;gap:6px}
+.pinbtn[aria-pressed="true"]{border-color:var(--pin);color:var(--pin)}
+.pinbtn svg{width:14px;height:14px}
+.dicerow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.dicerow .lab{font:700 12px/1 var(--f-body);text-transform:uppercase;letter-spacing:.1em;color:var(--muted);min-width:3.2em}
+.dicerow .sum{font:700 24px/1 var(--f-mono);margin-left:4px}
+.die.lg{width:50px;height:50px;padding:8px;border-radius:11px}
+.die.ok{background:var(--accent-soft);border:2px solid var(--accent)}
+.die.ok i.on{background:var(--accent)}
+.die.ex{border:3px solid var(--pin)}
+.die.ex i.on{background:var(--pin)}
+.die.no{opacity:.4}
+.d20{width:50px;height:50px;display:grid;place-items:center;border-radius:11px;background:var(--sunk);border:1px solid var(--line);font:700 20px/1 var(--f-mono)}
+.outc{font:800 32px/1 var(--f-display);text-transform:uppercase;letter-spacing:.03em}
+.outc small{font:700 15px/1 var(--f-mono);color:var(--muted);letter-spacing:0;text-transform:none;margin-left:6px}
+.callout{border-top:1px solid var(--line);padding-top:8px;display:flex;flex-direction:column;gap:6px;font-size:15px;line-height:1.4}
+.callout .t{font:700 12px/1.2 var(--f-body);text-transform:uppercase;letter-spacing:.12em;color:var(--pin)}
+.callout.acc .t{color:var(--accent)}
+.callout ul{margin:0;padding-left:18px}
+.choice{min-height:48px;width:100%;border-radius:12px;border:2px solid var(--line);background:var(--bg);text-align:left;padding:8px 12px;font-size:15px;line-height:1.3}
+.choice b{display:block}
+.choice[aria-pressed="true"]{border-color:var(--pin);background:var(--surface)}
+.mini-btn{min-height:44px;border-radius:12px;border:2px solid var(--line);background:var(--surface);font:700 15px var(--f-body);padding:0 14px;align-self:flex-start}
+.mini-btn.acc{border-color:var(--accent);color:var(--accent)}
+.recent{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.recent::-webkit-scrollbar{display:none}
+.rchip{flex:none;max-width:62%;min-height:46px;padding:5px 12px;border-radius:12px;border:1px solid var(--line);background:var(--surface);text-align:left;display:flex;flex-direction:column;justify-content:center;gap:2px}
+.rchip small{font:500 10px/1.2 var(--f-mono);color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.rchip span{font-weight:700;font-size:15px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.rchip.pinned{border-color:var(--pin)}
+.ptabs{display:flex;gap:4px;padding:4px;border-radius:14px;background:var(--sunk);overflow-x:auto;scrollbar-width:none}
+.ptabs button{flex:1 0 auto;min-height:48px;max-width:9.5em;border:0;border-radius:10px;background:transparent;color:var(--muted);font:700 15px/1.1 var(--f-body);padding:0 12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ptabs button[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.15)}
+.gens{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.gens>:last-child:nth-child(odd){grid-column:1/-1}
+.gen{min-height:82px;border-radius:14px;border:2px solid var(--line);background:var(--surface);text-align:left;padding:12px 14px;display:flex;flex-direction:column;justify-content:space-between;gap:6px;min-width:0}
+.gen b{font:800 clamp(17px,5vw,22px)/1.05 var(--f-display);text-transform:uppercase;letter-spacing:.01em;overflow-wrap:normal;hyphens:auto}
+.gen small{font:500 11px/1.3 var(--f-mono);color:var(--muted);overflow-wrap:anywhere}
+.gen.req small{color:var(--accent)}
+.gen:active,.chk:active,.dock button:active{transform:scale(.97)}
+.dock{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding-block:10px;border-top:1px solid var(--line);background:var(--bg)}
+.dock:empty{display:none}
+.dock button{min-height:56px;border-radius:14px;border:2px solid var(--ink);background:var(--surface);font:700 21px/1 var(--f-mono);display:flex;align-items:center;justify-content:center;gap:8px}
+.dock button .die{width:26px;height:26px;padding:4px;border-radius:6px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.tog{min-height:46px;padding:0 14px;border-radius:999px;border:2px solid var(--line);background:var(--surface);font:700 15px var(--f-body)}
+.tog[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.chk{min-height:112px;border-radius:16px;border:2px solid var(--accent);background:var(--accent);color:var(--accent-ink);padding:12px 14px;text-align:left;display:flex;flex-direction:column;gap:6px;justify-content:space-between;min-width:0}
+.chk.alt{background:var(--surface);color:var(--ink)}
+.chk b{font:800 30px/1 var(--f-display);text-transform:uppercase;letter-spacing:.02em;overflow-wrap:anywhere}
+.chk span{font:700 14px/1.2 var(--f-mono)}
+.chk small{font-size:12px;line-height:1.3;opacity:.85}
+.sentence.mini{font-size:19px;padding:14px 16px;gap:8px}
+.sentence.mini .nm{font-size:24px}
+.sentence.mini .scalebtn .n{font-size:28px}
+.res{display:grid;grid-template-columns:minmax(0,1fr) 52px 4.2ch 52px;gap:8px;align-items:center;padding:8px 0;border-top:1px solid var(--line)}
+.res:first-child{border-top:0}
+.res button{min-height:52px;border-radius:12px;border:2px solid var(--line);background:var(--sunk);font:700 24px/1 var(--f-mono)}
+.res button:disabled{opacity:.35;cursor:not-allowed}
+.res output{font:700 22px/1 var(--f-mono);text-align:center;font-variant-numeric:tabular-nums}
+.res .st{display:block;font:400 13px/1.3 var(--f-body);color:var(--accent);text-transform:none;letter-spacing:0;margin-top:3px}
+.skill.sroll{cursor:pointer;grid-template-columns:auto minmax(0,1fr) auto auto;padding-left:calc(var(--dep,0) * 18px)}
+.skill.sroll .go{font:800 15px/1 var(--f-display);text-transform:uppercase;letter-spacing:.08em;color:var(--accent-ink);background:var(--accent);padding:9px 12px;border-radius:9px}
+.skill.sroll:disabled{opacity:.5;cursor:not-allowed}
+.skill.earned .tw{padding-left:calc((var(--dep,1) - 1) * 18px + 6px)}
+.logrow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}
+.logrow:first-child{border-top:0}
+.logrow .lr{all:unset;cursor:pointer;display:grid;grid-template-columns:48px minmax(0,1fr);gap:2px 10px;min-width:0;border-radius:6px}
+.logrow .lr:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.logrow time{font:500 12px/1.4 var(--f-mono);color:var(--muted);grid-row:span 2}
+.logrow .lt{font-weight:700;font-size:16px;line-height:1.3;overflow-wrap:anywhere}
+.logrow .pinbtn{min-height:44px}
+.catbtn{min-height:40px;border-radius:999px;border:2px solid var(--pin);color:var(--pin);background:var(--surface);font:700 12px/1 var(--f-body);text-transform:uppercase;letter-spacing:.08em;padding:0 12px}
+.empty-note{margin:0;color:var(--muted);font-size:15px;padding:14px 0}
+
+/* v5: Track | Tools shell */
+main>*{flex:none}
+.hdr{display:flex;align-items:center;gap:10px;min-width:0}
+.menubtn{width:44px;height:44px;border-radius:12px;border:2px solid var(--line);background:var(--surface);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;flex:none}
+.menubtn i{display:block;width:18px;height:2.5px;border-radius:2px;background:var(--ink)}
+.tabs{grid-template-columns:repeat(2,1fr)}
+.tabs button .n{font-size:20px}
+.vtabs.three{grid-template-columns:repeat(3,1fr)}
+.toolhead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:-10px}
+.back{min-height:44px;border:0;background:none;padding:0 4px 0 0;font:700 17px var(--f-body);color:var(--accent)}
+.tres{background:var(--surface);border:2px solid var(--ink);border-radius:18px;padding:22px 18px 16px;display:flex;flex-direction:column;gap:12px;min-height:150px;justify-content:center}
+.tres.fresh{animation:pop .45s ease-out}
+.tbig{font:700 34px/1.2 var(--f-body);text-wrap:balance;overflow-wrap:anywhere}
+.tbig.num{font:700 72px/1 var(--f-mono);font-variant-numeric:tabular-nums}
+.tbig.glyph{font-size:64px;line-height:1.2;letter-spacing:.08em}
+.tbig .xtra{color:var(--accent)}
+.seg.dtype{grid-template-columns:repeat(4,1fr);grid-auto-flow:row}
+.seg.dtype button{font-size:19px}
+.seg.gmseg button{font-size:17px;min-height:52px}
+.letterbtn{border:2px solid var(--line);border-radius:14px;background:var(--surface);padding:0 16px;min-height:58px}
+.letterbtn .v{font-size:20px}
+.letters{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+.letters button{min-height:50px;border-radius:10px;border:2px solid var(--line);background:var(--surface);font:700 19px var(--f-mono)}
+.letters button.any{grid-column:span 2;font-family:var(--f-body);font-size:16px}
+.letters button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.letters button:disabled{opacity:.3;cursor:not-allowed}
+.tbig .ul{text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:6px}
+.pcard.compact{background:var(--surface);border:2px solid var(--line);border-radius:18px;padding:4px 14px 14px;gap:10px}
+.pcard.compact .prow{border-top:0;padding:10px 0 8px}
+.checks.compact .chk{min-height:76px;padding:10px 12px}
+.checks.compact .chk b{font-size:26px}
+.reslist .res{padding:4px 0;border-top:0;grid-template-columns:minmax(0,1fr) 44px 4.2ch 44px}
+.reslist .res button{min-height:44px;font-size:20px}
+.reslist .res output{font-size:19px}
+.pcard.compact .tog{min-height:42px;font-size:14px;padding:0 12px}
+.skchip small{font:700 12px var(--f-mono);opacity:.75;margin-left:4px}
+.skchips .tog{border-color:var(--accent);color:var(--accent)}
+.plainsent .pv{color:var(--ink)}
+.plainsent .pv.empty{color:var(--muted)}
+.scalebtn.static{cursor:default}
+dl.plain{margin:0;display:flex;flex-direction:column}
+dl.plain>div{padding:10px 0;border-top:1px solid var(--line)}
+dl.plain>div:first-child{border-top:0}
+dl.plain dd{margin:2px 0 0;font-weight:700;overflow-wrap:anywhere}
+dl.plain dd.empty{color:var(--muted);font-weight:400}
+.subroll{align-self:flex-end;margin-top:-12px}
+.checkrow{display:flex;align-items:center;gap:10px;min-height:44px;font-size:15px;color:var(--muted);cursor:pointer}
+.checkrow input{width:22px;height:22px;margin:0;accent-color:var(--accent);flex:none}
+.dock.one{grid-template-columns:2fr 1fr}
+.dock .btn.keep{background:var(--surface);color:var(--accent);border-color:var(--accent)}
+.dock .btn.keep svg{width:30px;height:30px;fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.dock .btn{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font:800 23px/1 var(--f-display)}
+.mock{border:2px dashed var(--line);border-radius:14px;padding:10px 12px;display:flex;flex-direction:column;gap:8px}
+.mockrow{display:grid;grid-template-columns:5.5em minmax(0,1fr);gap:8px;align-items:center;font-size:14px;color:var(--muted)}
+.mock .tog{min-height:40px;font-size:14px;padding:0 12px}
+.story .seedline{margin:0;padding:14px 0 12px;font:700 20px/1.45 var(--f-body);text-wrap:pretty}
+.gchips .tog{background:var(--sunk);border-color:var(--sunk)}
+.pcard{display:flex;flex-direction:column;gap:10px;padding-bottom:18px;border-bottom:2px solid var(--line)}
+.pcard:last-of-type{border-bottom:0}
+.rollbox{display:flex;flex-direction:column;gap:8px}
+.prow{all:unset;cursor:pointer;box-sizing:border-box;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 10px;align-items:center;padding:12px 0;border-top:1px solid var(--line);min-height:64px}
+.prow:first-child{border-top:0}
+.prow:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
+.prow .pn b{display:block;font-size:20px}
+.prow .pn small{color:var(--muted);font-size:14px}
+.prow .stats{grid-column:1}
+.prow .chev{grid-column:2;grid-row:1/span 2;color:var(--muted);font:700 20px/1 var(--f-mono)}
+.result.big{max-height:none;padding:18px}
+.rollsheet{max-height:88vh;overflow-y:auto}
+.mini-btn small{font-weight:400;color:var(--muted)}
+.hrow{display:grid;grid-template-columns:48px minmax(0,1fr);gap:10px;padding:10px 0;border-top:1px solid var(--line)}
+.hrow:first-child{border-top:0}
+.hrow time{font:500 12px/1.6 var(--f-mono);color:var(--muted)}
+.hrow .lt{font-weight:700;font-size:16px;line-height:1.35;overflow-wrap:anywhere}
+.empty-card code{font:500 14px var(--f-mono)}
+
+@media (prefers-reduced-motion: reduce){.fresh,.part.fresh,.sheet{animation:none}.dice:active{transform:none}}
+</style>
+
+<div class="app">
+  <header class="top gutter"><div class="brand">Pocket<b>RPG</b></div><div class="hdr"><div class="chip" id="chip"></div><button class="menubtn" data-act="menu" aria-label="Menu"><i></i><i></i><i></i></button></div></header>
+  <main id="view" class="gutter"></main>
+  <div id="sheet"></div>
+  <div id="dock" class="dock gutter"></div>
+  <nav class="tabs gutter" aria-label="Main">
+    <button data-act="tab" data-v="track"><span class="n">≡</span>Track</button>
+    <button data-act="tab" data-v="tools"><span class="n">⚄</span>Tools</button>
+  </nav>
+</div>
+
+<script type="application/json" data-pack="base-names">
+{"id":"base-names","name":"Base names","version":"0.1.0","library":true,"extends":[],"provenance":{"author":"PocketRPG","license":"original entries","entries":"original"},"modifiers":{},"tables":{"name.fantasy":[{"v":"Aldric"},{"v":"Brenna the Bold"},{"v":"Corwin Ashfeld"},{"v":"Dagny"},{"v":"Elowen of the Reeds"},{"v":"Fenwick Crane"},{"v":"Isolde"},{"v":"Jory Two-Knives"},{"v":"Maelis"},{"v":"Orrin the Patient"},{"v":"Petra Stonebough"},{"v":"Wren"}],"name.samurai":[{"v":"Akane"},{"v":"Daisuke"},{"v":"Haruki"},{"v":"Hotaru"},{"v":"Isamu"},{"v":"Kaede"},{"v":"Kenji"},{"v":"Mitsuko"},{"v":"Ren"},{"v":"Sora"},{"v":"Takeshi"},{"v":"Yuki"}],"name.gothic":[{"v":"Adrian Vale"},{"v":"Anselm"},{"v":"Casimir Dorn"},{"v":"Isadora"},{"v":"Lenore Ashby"},{"v":"Lucian"},{"v":"Mircea"},{"v":"Morwenna Grey"},{"v":"Ottilie"},{"v":"Severin Holt"},{"v":"Valentin"},{"v":"Vesna"}]},"generators":[]}
+</script>
+<script type="application/json" data-pack="starfarers">
+{"id":"starfarers","nameSetting":"sci-fi","name":"Starfarers","version":"0.4.0","extends":[],"provenance":{"author":"PocketRPG","basedOn":"Lasers & Feelings (John Harper) structure","license":"original entries","entries":"original"},"setting":{"premise":"A ship's crew on odd jobs at the edge of charted space."},"modifiers":{"gender":{"label":"Gender","values":["m","f","x"]},"origin":{"label":"Origin","values":["core","belt","fringe"]}},"tables":{"name.given":[{"v":"Juno","tags":{"gender":"f","origin":"core"},"src":"curated"},{"v":"Tamsin","tags":{"gender":"f","origin":"fringe"},"src":"curated"},{"v":"Ilse","tags":{"gender":"f","origin":"belt"},"src":"curated"},{"v":"Mara","tags":{"gender":"f","origin":["core","belt"]},"src":"curated"},{"v":"Oro","tags":{"gender":"m","origin":"belt"},"src":"curated"},{"v":"Kade","tags":{"gender":"m","origin":"fringe"},"src":"curated"},{"v":"Bastian","tags":{"gender":"m","origin":"core"},"src":"curated"},{"v":"Nyx","tags":{"gender":"x","origin":"fringe"},"src":"curated"},{"v":"Vex","tags":{"gender":"x","origin":["belt","fringe"]},"src":"curated"},{"v":"Sable","tags":{"gender":["f","x"],"origin":"core"},"src":"curated"},{"v":"Rook","tags":{"gender":["m","f","x"],"origin":["belt","fringe"]},"src":"curated"},{"v":"Corin","tags":{"gender":["m","x"],"origin":"core"},"src":"curated"}],"name.family":[{"v":"Okoro"},{"v":"Vance"},{"v":"Halloran"},{"v":"Ishida"},{"v":"Brandt"},{"v":"Quill"},{"v":"Tenet"},{"v":"Ashgrove"}],"seed.threat":[{"v":"A rogue AI warlord"},{"v":"The Hollow Choir cult"},{"v":"A smuggler queen"},{"v":"A sentient nebula"},{"v":"The Admiralty's own inspector"},{"v":"A swarm of hungry machines"}],"seed.wants":[{"v":"steal"},{"v":"awaken"},{"v":"sell"},{"v":"destroy"},{"v":"hide"},{"v":"rewrite"}],"seed.object":[{"v":"last working star-gate"},{"v":"Captain's memories"},{"v":"colony's water supply"},{"v":"ancient seed vault"},{"v":"peace treaty"},{"v":"ship's mascot"}],"seed.consequence":[{"v":"plunge the sector into war"},{"v":"erase a world from the charts"},{"v":"wake something older"},{"v":"bankrupt the Guild"},{"v":"turn the crew against each other"},{"v":"make the villain a god"}],"lf.style":[{"v":"Brash"},{"v":"Haunted"},{"v":"Meticulous"},{"v":"Charming"},{"v":"Reckless"},{"v":"Weary"}],"lf.role":[{"v":"Pilot"},{"v":"Medic"},{"v":"Engineer"},{"v":"Diplomat"},{"v":"Scout"},{"v":"Gunner"}],"lf.goal":[{"v":"Become captain"},{"v":"Pay off an old debt"},{"v":"Find a lost sibling"},{"v":"Prove the rumours wrong"},{"v":"Meet new life"},{"v":"Get rich, then retire"}],"ship.strength":[{"v":"Fast"},{"v":"Nimble"},{"v":"Well armed"},{"v":"Long range"},{"v":"Hidden cargo bays"},{"v":"Tough shields"}],"ship.problem":[{"v":"Fuel hog"},{"v":"Wanted by the Admiralty"},{"v":"Temperamental AI"},{"v":"Held together with tape"}]},"generators":[{"id":"name","label":"Name","modifiers":[{"key":"gender","required":false},{"key":"origin","required":false}],"output":"{name.given} {name.family?}"}],"seed":{"columns":[{"label":"Threat","table":"seed.threat"},{"label":"Wants to","table":"seed.wants"},{"label":"The","table":"seed.object"},{"label":"Which will","table":"seed.consequence"}],"template":"{0} wants to {1} the {2}, which will {3}."},"flavour":{"lasers-feelings":{"checks":[{"id":"under","label":"Lasers","roll":"under","hint":"technology, science, cold rationality, calm, precise action"},{"id":"over","label":"Feelings","roll":"over","hint":"intuition, diplomacy, seduction, wild passionate action"}],"numberRange":[2,5],"fields":[{"id":"name","label":"Name","kind":"text","generator":"name"},{"id":"style","label":"Style","kind":"pick","table":"lf.style"},{"id":"role","label":"Role","kind":"pick","table":"lf.role"},{"id":"number","label":"Number","kind":"number","range":[2,5]},{"id":"goal","label":"Goal","kind":"pick-or-text","table":"lf.goal"}],"dice":{"base":1,"bonuses":[{"id":"prepared","label":"Prepared","dice":1},{"id":"expert","label":"Expert","dice":1}],"min":1,"max":3},"outcomes":[{"successes":0,"label":"Goes wrong","text":"GM says how things get worse."},{"successes":1,"label":"Barely","text":"GM inflicts a complication, harm, or cost."},{"successes":2,"label":"Well","text":"You do it well."},{"successes":3,"label":"Critical","text":"GM tells you an extra effect."}],"exact":{"name":"Laser Feelings","countsAsSuccess":true,"text":"Special insight. Ask the GM a question; they answer honestly.","checks":"any"},"help":{"text":"Say how you help and roll. If you succeed, give them +1d."},"sentence":"{name}\nis {a} {style|lower} {role|lower} who wants to\n{goal|lower}"}},"genre":"Sci-fi","groupFields":[{"id":"shipStrengths","label":"Ship strengths","kind":"multi","count":2,"table":"ship.strength"},{"id":"shipProblem","label":"Ship problem","kind":"pick","table":"ship.problem"}]}
+</script>
+<script type="application/json" data-pack="swords-and-sorcery">
+{"id":"swords-and-sorcery","nameSetting":"fantasy","name":"Swords & Sorcery","version":"1.1.0","extends":["base-names"],"provenance":{"extracted":true,"author":"James Lennox-Gordon (UnknownDungeon.itch.io)","basedOn":"Lasers & Feelings (John Harper)","license":"CC BY-SA 4.0 (ShareAlike: derived pack data must also be CC BY-SA 4.0)","sourceVersion":"v1.1 2020","subtitle":"An OSR Fantasy Hack of Lasers and Feelings"},"setting":{"premise":"Adventuring party for The Fissure's Breach Adventurers' Guild, exploring to uncover lost treasures, solve mysteries and defeat evil. The GM is the Guild Manager, sending PCs on adventures to have fun, make money and keep the kingdom safe."},"modifiers":{"spellLevel":{"label":"Spell level","values":["0","1","2","3"]},"threat":{"label":"Threat","values":["easy","medium","hard","deadly"]}},"tables":{"seed.patron":[{"v":"Mage-King Tholex XI"},{"v":"Lord Garrington"},{"v":"The Hunters' Guild"},{"v":"Wizard Nimdronde"},{"v":"The Thieves' Guild"},{"v":"The Conclave"}],"seed.quest":[{"v":"Slay the Helvella Dragon"},{"v":"Destroy the ancient seal"},{"v":"Investigate a murder"},{"v":"Recover the Lǎo Mei"},{"v":"Deliver some Wyldfyre"},{"v":"Capture the bandits"}],"seed.place":[{"v":"The Wilderlands"},{"v":"The Undercity"},{"v":"Tanglewood"},{"v":"The Planegate"},{"v":"Fröstfell"},{"v":"The Fissure"}],"seed.beware":[{"v":"The Necromancer"},{"v":"Cultists"},{"v":"Archduke Tallan"},{"v":"The Queen of Wasps"},{"v":"The One-Eyed Prince"},{"v":"The Great Old One"}],"lf.style":[{"v":"Human"},{"v":"Elf"},{"v":"Dwarf"},{"v":"Gnome"},{"v":"Orc"},{"v":"Catfolk"}],"lf.role":[{"v":"Noble"},{"v":"Sage"},{"v":"Thief"},{"v":"Soldier"},{"v":"Tracker"},{"v":"Entertainer"}],"spells":[{"v":"Illuminate","data":{"level":0}},{"v":"Telepathy","data":{"level":0}},{"v":"Mend","data":{"level":0}},{"v":"Minor Illusion","data":{"level":0}},{"v":"Beast-Speak","data":{"level":1}},{"v":"Icebolt","data":{"level":1}},{"v":"Friendship","data":{"level":1}},{"v":"Grease","data":{"level":1}},{"v":"Heal","data":{"level":2}},{"v":"Invisibility","data":{"level":2}},{"v":"Fireball","data":{"level":2}},{"v":"Resize","data":{"level":2}},{"v":"Animate","data":{"level":2}},{"v":"Flight","data":{"level":3}},{"v":"Darkness","data":{"level":3}},{"v":"Lightning Storm","data":{"level":3}},{"v":"Summon","data":{"level":3}}],"monsters":[{"v":"Easy","tags":{"threat":"easy"},"data":{"hp":5,"dmg":2}},{"v":"Medium","tags":{"threat":"medium"},"data":{"hp":10,"dmg":3}},{"v":"Hard","tags":{"threat":"hard"},"data":{"hp":20,"dmg":4}},{"v":"Deadly","tags":{"threat":"deadly"},"data":{"hp":30,"dmg":6}}],"divine.questions":[{"v":"What are they really feeling?"},{"v":"Who's behind this?"},{"v":"How could I get them to do what I want?"},{"v":"What should I lookout for?"},{"v":"What's the best way to do this thing?"},{"v":"What's really going on here?"}]},"generators":[{"id":"spell","label":"Spell","modifiers":[{"key":"spellLevel","required":false}],"output":"{spells}"},{"id":"monster","label":"Monster stats","modifiers":[{"key":"threat","required":false}],"output":"{monsters}"},{"id":"patron","label":"Patron","output":"{seed.patron}"},{"id":"quest","label":"Quest","output":"{seed.quest}"},{"id":"place","label":"Place","output":"{seed.place}"},{"id":"beware","label":"Beware","output":"{seed.beware}"},{"id":"oracle","label":"Divine question","output":"{divine.questions}"}],"seed":{"columns":[{"label":"Your patron…","table":"seed.patron"},{"label":"Has given you a quest to…","table":"seed.quest","case":"lower"},{"label":"So adventure forth into…","table":"seed.place"},{"label":"But beware…","table":"seed.beware"}],"template":"{0} has given you a quest to {1}. Adventure forth into {2}, but beware {3}.","dice":"d6 per column"},"flavour":{"lasers-feelings":{"checks":[{"id":"under","label":"Swords","roll":"under","hint":"physicality, fighting, sneaking, intimidation"},{"id":"over","label":"Sorcery","roll":"over","hint":"magic, knowledge, insight, persuasion"}],"numberRange":[2,5],"numberRoll":{"dice":"1d6","reroll":[1,6],"note":"GM may allow choosing instead"},"fields":[{"id":"style","label":"Ancestry","kind":"pick-or-text","table":"lf.style"},{"id":"role","label":"Background","kind":"pick","table":"lf.role"},{"id":"number","label":"S&S number","kind":"number","range":[2,5],"randomise":"numberRoll"},{"id":"name","label":"Name","kind":"text","hint":"A cool fantasy adventurer name, like Gunther the Brave","table":"name.fantasy"}],"derived":[{"id":"hp","label":"Max HP","formula":"3 * N","note":"0 HP = unconscious; allies get one chance to save you before you die"},{"id":"sp","label":"Max SP (spirit)","formula":"10 - 2 * N","note":"Successful cast reduces SP by spell level"},{"id":"wd","label":"Weapon damage dice","formula":"N - 1","note":"Roll WD d6 on a hit; deal the highest"},{"id":"en","label":"Encumbrance","formula":"N + 3","note":"Items carried/worn"},{"id":"spellsKnown","label":"Spells known","formula":"max SP"}],"rest":"Night's rest restores all HP and SP.","magic":{"roll":"Sorcery (level 1+)","onFail":"Something bad and magical happens.","effectDice":"Roll spell-level d6, take highest; damage/heal = result + 2 * level; may split among close targets.","duration":"Continuous effects last one minute."},"dice":{"base":1,"bonuses":[{"id":"prepared","label":"Prepared","dice":1},{"id":"trained","label":"Trained","dice":1}],"min":1,"max":3},"outcomes":[{"successes":0,"label":"Goes wrong","text":"GM says how things get worse."},{"successes":1,"label":"Barely","text":"GM inflicts a complication, harm, or cost."},{"successes":2,"label":"Well","text":"You do it well."},{"successes":3,"label":"Critical","text":"GM tells you an extra effect."}],"exact":{"name":"Divine Intervention","countsAsSuccess":true,"text":"A deity or otherworldly being gives insight. Ask the GM a question (answered honestly). You may change your action and roll again instead.","questions":"divine.questions","checks":"any"},"help":{"text":"Say how you help and roll. If you succeed, give them +1d."},"gmGuidance":{"conversation":"Describe the scene, introduce a threat, ask what players do; ask for rolls when uncertain.","playerSkill":"Players solve problems themselves; Sorcery is not intelligence.","playersRollOnly":"Monsters have HP and DMG (see monsters table); if players fail they take damage or are put in a worse situation. Enemy spell is a threat by itself; a trap deals monster-equivalent damage."},"numberLabel":"S&S number","sentence":"{name}\nis {a} {style|lower} {role|lower}"}},"genre":"Fantasy"}
+</script>
+<script type="application/json" data-pack="moon-and-blood">
+{"id":"moon-and-blood","nameSetting":"gothic","name":"Moon & Blood","version":"0.1.0","extends":["base-names"],"provenance":{"extracted":true,"author":"Marco Ricco (The Silent Mage)","basedOn":"Lasers & Feelings (John Harper)","license":"CC BY 4.0","tagline":"Hunt the Vampire Lord, survive the Castle!","mockupNote":"castle and scenarios blocks omitted from the mockup copy (not used in Phases 1-3)"},"setting":{"premise":"Vampire hunters. Vampire castles return when the Moon turns red and fade at dawn, taking whatever they want."},"modifiers":{},"tables":{"lf.style":[{"v":"Arrogant"},{"v":"Deceptive"},{"v":"Charming"},{"v":"Hot-headed"},{"v":"Leader"},{"v":"Tactical"}],"lf.role":[{"v":"Cleric"},{"v":"Rogue"},{"v":"Sorcerer"},{"v":"Warrior"}],"lineage.strength":[{"v":"Alchemists"},{"v":"Engineers"},{"v":"Elementalist"},{"v":"Summoner"},{"v":"Sword master"}],"lineage.flaw":[{"v":"Code of honor"},{"v":"Addicted"},{"v":"Hunted"}],"castle.strength":[{"v":"Full of traps"},{"v":"Infested"},{"v":"Labyrinthine"}],"castle.curse.examples":[{"v":"Weakness"},{"v":"Rot"},{"v":"Bad luck"},{"v":"Haunted"}],"castle.room.type":[{"v":"Hall"},{"v":"Corridor"},{"v":"Chamber"},{"v":"Library"},{"v":"Inner garden"},{"v":"Study"}],"castle.room.threat":[{"v":"Infestation"},{"v":"Ritual going on"},{"v":"Blade Trap"},{"v":"Vampire Minions"},{"v":"Controlled slaves"},{"v":"Magic Beasts"}],"castle.room.twist":[{"v":"Hidden passage"},{"v":"Dead End + Threat"},{"v":"Major Threat"},{"v":"Prisoner"},{"v":"Revelation"},{"v":"Potential ally"}],"castle.room.loot":[{"v":"Potion"},{"v":"Incense / Sulphur"},{"v":"Magic Scroll"},{"v":"Magic Weapon"},{"v":"Magic Trinket"},{"v":"Blood Vial"}],"powers":[{"v":"Adaptive","data":{"mode":"A","text":"Change your N for the next roll."}},{"v":"Alertness","data":{"mode":"P","text":"You are prepared in combat."}},{"v":"Brutal","data":{"mode":"P","text":"When you deal 2+ Hits, you deal +1 Hit."}},{"v":"Chosen","data":{"mode":"P","text":"1/session, ignore any consequence."}},{"v":"Grace","data":{"mode":"P","text":"When you sneak, you can reroll 1d."}},{"v":"Interrogator","data":{"mode":"P","text":"You are prepared when you negotiate."}},{"v":"Occultist","data":{"mode":"A","text":"If you use any magic, you can reroll."}}],"curses":[{"v":"Arcane Storm","data":{"text":"Sorcerous magic costs 2 Sulphur."}},{"v":"Dazed","data":{"text":"You can't roll a critical success on mental tasks."}},{"v":"Egoism","data":{"text":"You can't help or be helped."}},{"v":"Obsessed","data":{"text":"You can only target a specific creature until slain or gone."}},{"v":"Rage of the Gods","data":{"text":"Divine magic costs 2 Incense."}},{"v":"Rotten","data":{"text":"You can't be healed, but you ignore any non-magic damage above the last."}},{"v":"Stunned","data":{"text":"When you roll, -1d or take 1 heart."}},{"v":"Weakened","data":{"text":"You can't roll a critical success on physical tasks."}}],"threats.sample":[{"v":"Blade Trap","data":{"drive":"protect an area","defense":"mechanism","risk":"many","hearts":2}},{"v":"Secret Hall","data":{"drive":"ritual","defense":"cultists","risk":"spotted, arrested","hearts":8}},{"v":"Half-Vampire","data":{"drive":"satisfy their lord","defense":"sorcery","hearts":1}}],"lineage.trials":[{"v":"Kill 3 non-Undead Minions alone"},{"v":"Discover 2 Secrets"},{"v":"Voluntarily roll -1d from a magic roll"},{"v":"Destroy a Relic"},{"v":"Lose 2 hearts and survive the next room"},{"v":"Face the Curse"},{"v":"Open your mind to the Lord"},{"v":"The Lord can move up to 3 Rooms next time"}]},"generators":[{"id":"room","label":"Room","output":"{castle.room.type} — {castle.room.threat}; twist: {castle.room.twist}; loot: {castle.room.loot}"},{"id":"room-type","label":"Room type","output":"{castle.room.type}"},{"id":"room-threat","label":"Room threat","output":"{castle.room.threat}"},{"id":"room-twist","label":"Room twist","output":"{castle.room.twist}"},{"id":"room-loot","label":"Loot","output":"{castle.room.loot}"},{"id":"power","label":"Power","output":"{powers}"},{"id":"curse","label":"Curse","output":"{curses}"},{"id":"trial","label":"Lineage trial","output":"{lineage.trials}"}],"seed":null,"flavour":{"lasers-feelings":{"checks":[{"id":"under","label":"Moon","roll":"under","hint":"reason, study, divine magic"},{"id":"over","label":"Blood","roll":"over","hint":"passion, instinct, empathy, sorcery"}],"numberRange":[2,5],"fields":[{"id":"style","label":"Style","kind":"pick","table":"lf.style"},{"id":"role","label":"Class","kind":"pick","table":"lf.role"},{"id":"number","label":"Number","kind":"number","range":[2,5]},{"id":"name","label":"Gothic name","kind":"text","table":"name.gothic"},{"id":"title","label":"Title","kind":"text","table":null},{"id":"gear","label":"Weapon set, armor, two items","kind":"text","note":"tailored to Class; no lists in source","table":null},{"id":"lineageStrengths","label":"Lineage strengths","kind":"multi","count":2,"table":"lineage.strength"},{"id":"lineageFlaw","label":"Lineage flaw","kind":"pick","table":"lineage.flaw","note":"When flaw puts Hunter at risk, grant 1d, usable once, any time"}],"resources":[{"id":"hearts","label":"Hearts","start":3,"max":3,"perHit":"lose max 1 at a time","states":[{"lost":1,"label":"bruised","text":"Cosmetic, might intimidate."},{"lost":2,"label":"wounded","text":"Discard 1d after each roll."},{"lost":3,"label":"in danger","text":"No effect, but GM narrates further loss."}],"heal":"Items or rest heal 2. Hearts gained above 3 count as Bruised."},{"id":"incense","label":"Incense","appliesTo":{"role":"Cleric"},"start":3,"max":6,"use":"Divine Magic (1 Incense + time)"},{"id":"sulphur","label":"Sulphur","appliesTo":{"role":"Sorcerer"},"start":3,"max":6,"use":"Sorcerous Magic (Sulphur + great risks)"}],"roleAbilities":{"Cleric":"Heal, protect, bless, summon benevolent spirits, temporarily turn weak undead.","Sorcerer":"Channel raw power, dispel sorcerous magic, enhance gear, create illusion, slightly alter reality."},"resourceGain":"Kill Spectral undead: +1 Incense. Physical undead drop 1 Sulphur. Both on d6 3+.","dice":{"base":1,"bonuses":[{"id":"styleClass","label":"Style/Class applies","dice":1},{"id":"item","label":"Relevant Item","dice":1},{"id":"prepared","label":"Prepared","dice":1},{"id":"helped","label":"Helped","dice":1}],"min":1,"max":4},"outcomes":[{"successes":0,"label":"Fail","text":"Consequences: narrative trouble, temporarily lose an item, lose heart."},{"successes":1,"label":"Succeed with consequences","text":"Lose heart, temporary trouble, etc."},{"successes":2,"label":"Get what you want","text":""},{"successes":3,"label":"Get what you want + pick 1","text":"","picks":["Narrate a Benefit","Setup the next roll (yours or an ally's), grant +1d","Gain 1 Incense or Sulphur if you hit an undead"]}],"exact":{"name":"Blood Moon","countsAsSuccess":true,"text":"Insight: ask the GM a question.","questions":["What's about to happen?","What's the best way to…?","How can I prepare for…?","What's hiding before my eyes?"],"checks":"any"},"help":{"text":"Grant +1d and share the risks."},"gmGuidance":{"principles":"Play to find out; use threats not solutions; make things personal; ask questions and use the answers; split into scenes; create challenges you wouldn't know how to overcome.","threatModel":"Enemy or place with drive, defenses (remove to deal hearts), risks. Threats 1–10 hearts; Hunters deal 1 heart per success.","lootAndSecrets":"Always include special items, consumables, relics giving small boosts. Searching always finds something useful, but time passes."},"sentence":"{name}, {title}\nis {a} {style|lower} {role|lower}"}},"genre":"Gothic horror","groupFields":[{"id":"castleStrengths","label":"Castle strengths","kind":"multi","count":3,"table":"castle.strength"},{"id":"castleCurse","label":"Castle curse","kind":"pick-or-text","table":"castle.curse.examples"}]}
+</script>
+<script type="application/json" data-pack="rfs-base">
+{"id":"rfs-base","name":"Roll for Shoes tools","version":"0.1.0","library":true,"extends":[],"provenance":{"author":"Roll for Shoes (rollforshoes.com/tools); name lists by PocketRPG","license":"CC0 1.0 (NPC tables); name lists original","entries":"NPC tables verbatim (d66)."},"modifiers":{},"tables":{"npc.description":[{"v":"Adorable"},{"v":"Attractive"},{"v":"Bald"},{"v":"Bearded"},{"v":"Beefy"},{"v":"Bony"},{"v":"Bulky"},{"v":"Chiseled"},{"v":"Chubby"},{"v":"Clean"},{"v":"Creepy"},{"v":"Elderly"},{"v":"Filthy"},{"v":"Furry"},{"v":"Glamorous"},{"v":"Huge"},{"v":"Lanky"},{"v":"Muscular"},{"v":"Obese"},{"v":"Pasty"},{"v":"Petite"},{"v":"Scary"},{"v":"Shifty"},{"v":"Short"},{"v":"Slender"},{"v":"Slimy"},{"v":"Spiky"},{"v":"Stinky"},{"v":"Stylish"},{"v":"Sunburned"},{"v":"Tall"},{"v":"Tattooed"},{"v":"Tentacled"},{"v":"Tiny"},{"v":"Ugly"},{"v":"Voluptuous"}],"npc.personality":[{"v":"Annoying"},{"v":"Arrogant"},{"v":"Awkward"},{"v":"Bossy"},{"v":"Clumsy"},{"v":"Confident"},{"v":"Courageous"},{"v":"Demanding"},{"v":"Embarrassed"},{"v":"Enthusiastic"},{"v":"Evil"},{"v":"Excited"},{"v":"Fearless"},{"v":"Fidgety"},{"v":"Friendly"},{"v":"Grumpy"},{"v":"Judgemental"},{"v":"Kind"},{"v":"Lazy"},{"v":"Maniacal"},{"v":"Mean"},{"v":"Messy"},{"v":"Murderous"},{"v":"Nervous"},{"v":"Noisy"},{"v":"Optimistic"},{"v":"Quiet"},{"v":"Rowdy"},{"v":"Rude"},{"v":"Sad"},{"v":"Sarcastic"},{"v":"Selfish"},{"v":"Shy"},{"v":"Silly"},{"v":"Simple-Minded"},{"v":"Stubborn"}],"body.part":[{"v":"Head"},{"v":"Left arm"},{"v":"Right arm"},{"v":"Torso"},{"v":"Left leg"},{"v":"Right leg"}],"name.modern":[{"v":"Dana Cruz","src":"pocketrpg"},{"v":"Mo Patel","src":"pocketrpg"},{"v":"Rina Okafor","src":"pocketrpg"},{"v":"Theo Lindqvist","src":"pocketrpg"},{"v":"Jules Moreau","src":"pocketrpg"},{"v":"Sam Kowalski","src":"pocketrpg"},{"v":"Priya Nair","src":"pocketrpg"},{"v":"Lou Bennett","src":"pocketrpg"},{"v":"Marco Silva","src":"pocketrpg"},{"v":"Tess Hargreave","src":"pocketrpg"},{"v":"Ken Watanabe","src":"pocketrpg"},{"v":"Ada Byrne","src":"pocketrpg"}],"name.western":[{"v":"Clem Hollis","src":"pocketrpg"},{"v":"Ada Whitlock","src":"pocketrpg"},{"v":"Josiah Pike","src":"pocketrpg"},{"v":"Mae Calloway","src":"pocketrpg"},{"v":"Eli Tanner","src":"pocketrpg"},{"v":"Hattie Rourke","src":"pocketrpg"},{"v":"Silas Booth","src":"pocketrpg"},{"v":"Lottie Greer","src":"pocketrpg"},{"v":"Amos Crane","src":"pocketrpg"},{"v":"Della Faye","src":"pocketrpg"},{"v":"Wyatt Mercer","src":"pocketrpg"},{"v":"Nell Barlow","src":"pocketrpg"}]},"generators":[]}
+</script>
+<script type="application/json" data-pack="the-heist">
+{"id":"the-heist","nameSetting":"modern","name":"The Heist","genre":"Heist","version":"0.1.0","extends":["rfs-base"],"provenance":{"author":"Roll for Shoes (rollforshoes.com)","basedOn":"The Heist setting, rollforshoes.com/settings/the-heist","license":"CC0 1.0 (public domain dedication)","entries":"Source tables verbatim or lightly reworded. Entries marked src=pocketrpg are original additions where the source gives only a prompt."},"setting":{"premise":"A team of skilled specialists plans and pulls off a big score: steal one valuable or important item."},"modifiers":{},"tables":{"heist.profession":[{"v":"Law enforcement"},{"v":"Charismatic \"expert\""},{"v":"Stuntperson"},{"v":"Lockpicker"},{"v":"Self-proclaimed master of disguise"},{"v":"Loudmouth jerk"}],"heist.twist":[{"v":"The item is in another location"},{"v":"A double-cross: one of the team is working against the team"},{"v":"A trap is sprung, capturing at least one of the team"},{"v":"Another thief or team is going after the item"},{"v":"The item is not what it seems"},{"v":"The authorities get the jump on the team"}],"heist.reason":[{"v":"Owes the wrong people","src":"pocketrpg"},{"v":"Revenge on the owner","src":"pocketrpg"},{"v":"The thrill of it","src":"pocketrpg"},{"v":"One last job, then out","src":"pocketrpg"},{"v":"Paid up front","src":"pocketrpg"},{"v":"Wants the item for themselves","src":"pocketrpg"}]},"generators":[{"id":"look","label":"Description","output":"{npc.description|lower}, {npc.personality|lower}"},{"id":"npc","label":"Teammate","output":"{npc.personality} {npc.description|lower} {heist.profession|lower}"},{"id":"twist","label":"Twist","output":"{heist.twist}"}],"seed":null,"story":{"questions":[{"id":"item","text":"What is the treasured item?"},{"id":"where","text":"Where is it, and how is it secured?"}],"segments":[{"name":"Planning and Recon","text":"In character, set up connections, obstacles and positioning. Prompt with problems the location raises until there is enough to outline the heist."},{"name":"Action!","text":"Each character gets a turn to advance the plan through the obstacles and NPCs, with the item as the goal. Near the end, introduce a twist.","tables":["twist"]},{"name":"The Escape","text":"Raise the pressure until they want out, item or not. Bring back obstacles and NPCs. End on a cliffhanger or set piece."}],"note":"Larger groups: add NPC teammates (Teammate generator) to support the PCs."},"flavour":{"roll-for-shoes":{"rootSkill":"Do anything","fields":[{"id":"name","label":"Name","kind":"text","table":"name.modern"},{"id":"look","label":"Description","kind":"text","generator":"look"},{"id":"job","label":"Team job","kind":"pick-or-text","table":"heist.profession"},{"id":"reason","label":"Reason for joining","kind":"pick-or-text","table":"heist.reason"}],"sentence":"{name}, {look}\nthe team's {job|lower}.\nIn it because: {reason|lower}"}}}
+</script>
+<script type="application/json" data-pack="kitchen-khaos">
+{"id":"kitchen-khaos","nameSetting":"fantasy","name":"Kitchen Khaos","genre":"Fantasy comedy","version":"0.1.0","extends":["rfs-base","base-names"],"provenance":{"author":"Roll for Shoes (rollforshoes.com)","basedOn":"Kitchen Khaos setting, rollforshoes.com/settings/kitchen-khaos","license":"CC0 1.0 (public domain dedication)","entries":"Source tables verbatim or lightly reworded. Entries marked src=pocketrpg are original additions where the source gives only a prompt."},"setting":{"premise":"Servants in the king's court have fallen behind and must rush to prepare a grand royal feast."},"modifiers":{},"tables":{"kk.species":[{"v":"Dragonkin"},{"v":"Dwarf"},{"v":"Elf"},{"v":"Halfling"},{"v":"Human"},{"v":"Orc"}],"kk.position":[{"v":"Scullery maid","src":"pocketrpg"},{"v":"Page","src":"pocketrpg"},{"v":"Cupbearer","src":"pocketrpg"},{"v":"Pastry cook","src":"pocketrpg"},{"v":"Royal taster","src":"pocketrpg"},{"v":"Under-butler","src":"pocketrpg"}],"kk.task":[{"v":"Carve the roast","src":"pocketrpg"},{"v":"Bake the centrepiece","src":"pocketrpg"},{"v":"Pour the wine","src":"pocketrpg"},{"v":"Set the great hall","src":"pocketrpg"},{"v":"Fetch the rare ingredient","src":"pocketrpg"},{"v":"Keep the fires going","src":"pocketrpg"}]},"generators":[{"id":"look","label":"Description","output":"{npc.description|lower}, {npc.personality|lower}"},{"id":"npc","label":"Courtier","output":"{npc.personality} {npc.description|lower} {kk.species|lower}"}],"seed":null,"story":{"questions":[{"id":"occasion","text":"What is the big occasion?"},{"id":"uptight","text":"Why is the court so uptight about it?"},{"id":"late","text":"Why haven't you had enough time to prepare?"},{"id":"stakes","text":"What's at stake if the feast goes badly?"},{"id":"ingredient","text":"What rare, nigh-mythical ingredient will you need?"},{"id":"hard","text":"What makes it so hard to obtain?"}],"segments":[{"name":"Gathering the Ingredients","text":"The King's Food Chancellor hands out tasks. Prep ingredients under pressure to perform."},{"name":"If You Can't Stand the Heat…","text":"Cooking begins. Some characters are forced into a critical kitchen action."},{"name":"Dinner is Served","text":"The court is served. The King and nobles judge the food, and the consequences follow."}]},"flavour":{"roll-for-shoes":{"rootSkill":"Do anything","fields":[{"id":"name","label":"Name","kind":"text","table":"name.fantasy"},{"id":"species","label":"Species","kind":"pick-or-text","table":"kk.species"},{"id":"look","label":"Description","kind":"text","generator":"look"},{"id":"position","label":"Court position","kind":"pick-or-text","table":"kk.position"},{"id":"task","label":"Feast task","kind":"pick-or-text","table":"kk.task"}],"sentence":"{name}, {a} {look} {species|lower}\nthe {position|lower}, told to\n{task|lower}"}}}
+</script>
+<script type="application/json" data-pack="minimon">
+{"id":"minimon","name":"Minimon","genre":"Monster catching","version":"0.1.0","extends":["rfs-base"],"provenance":{"author":"Roll for Shoes (rollforshoes.com)","basedOn":"Minimon: Miniature Monsters setting, rollforshoes.com/settings/minimon","license":"CC0 1.0 (public domain dedication)","entries":"Source tables verbatim or lightly reworded. Entries marked src=pocketrpg are original additions where the source gives only a prompt."},"setting":{"premise":"The players are a Coach's team of Minimon, hunting down the last, hardest-to-find Minimon. The GM plays the Coach."},"modifiers":{},"tables":{"mm.location":[{"v":"Slimy swamp"},{"v":"Snowy mountain"},{"v":"Windy desert"},{"v":"Spooky cave"},{"v":"Sunny beach"},{"v":"Tangled forest"}],"mm.form":[{"v":"Bird"},{"v":"Blob"},{"v":"Canine"},{"v":"Feline"},{"v":"Insect"},{"v":"Rodent"}],"mm.type":[{"v":"Bug"},{"v":"Electric"},{"v":"Fighting"},{"v":"Fire"},{"v":"Grass"},{"v":"Ground"},{"v":"Ice"},{"v":"Metal"},{"v":"Poison"},{"v":"Psychic"},{"v":"Rock"},{"v":"Water"}],"mm.move":[{"v":"Blast","src":"pocketrpg"},{"v":"Fang","src":"pocketrpg"},{"v":"Whirl","src":"pocketrpg"},{"v":"Shield","src":"pocketrpg"},{"v":"Dash","src":"pocketrpg"},{"v":"Roar","src":"pocketrpg"},{"v":"Burst","src":"pocketrpg"},{"v":"Grip","src":"pocketrpg"}],"mm.origin":[{"v":"Hatched in the Coach's backpack","src":"pocketrpg"},{"v":"Lost a fight and joined the winner","src":"pocketrpg"},{"v":"Followed the Coach home","src":"pocketrpg"},{"v":"Traded for a sandwich","src":"pocketrpg"},{"v":"Rescued from a rival","src":"pocketrpg"},{"v":"Chose the Coach, not the other way round","src":"pocketrpg"}]},"generators":[{"id":"move","label":"Signature move","output":"{mm.type} {mm.move}"},{"id":"rival","label":"Rival's Minimon","output":"{mm.type} {mm.form|lower}"},{"id":"location","label":"Location","output":"{mm.location}"},{"id":"npc","label":"Trainer","output":"{npc.personality} {npc.description|lower} {mm.form|lower}"}],"seed":null,"groupFields":[{"id":"legendary","label":"The final Minimon","kind":"text","generator":"rival"}],"story":{"questions":[{"id":"final","text":"What is the final Minimon? Name and describe it."},{"id":"hard","text":"Why is it so hard to find?"},{"id":"evaded","text":"How has it evaded capture so far?"}],"segments":[{"name":"I Choose You!","text":"Roll a location. Start mid-battle against another trainer. The Coach calls out each player's Minimon to show off and deal narrative damage.","tables":["location"]},{"name":"Missile Squad","text":"Two bully trainers with a mean Minimon. Usually not a straight fight: it tests problem-solving.","tables":["npc","rival"]},{"name":"The Legendary","text":"A location mixing the Legendary's domain and the way in. The Coach tries to capture it while the team attacks, defends and ensnares it."}]},"flavour":{"roll-for-shoes":{"rootSkill":"Do anything","fields":[{"id":"name","label":"Species name","kind":"text","hint":"Minimon look like an animal or object."},{"id":"form","label":"Looks like","kind":"pick-or-text","table":"mm.form"},{"id":"origin","label":"How you met your Coach","kind":"pick-or-text","table":"mm.origin"},{"id":"element","label":"Aligned element","kind":"pick-or-text","table":"mm.type","skill":{"level":2}},{"id":"weak","label":"Weak element","kind":"pick-or-text","table":"mm.type","status":{"level":-2,"format":"Weak to {v}"}},{"id":"signature","label":"Signature move","kind":"text","generator":"move","skill":{"level":3}}],"sentence":"{name}\n{a|cap} {element|lower}-type {form|lower}.\n{origin}"}}}
+</script>
+<script type="application/json" data-pack="outbreak-hotel">
+{"id":"outbreak-hotel","nameSetting":"modern","name":"Outbreak Hotel","genre":"Zombie survival","version":"0.1.0","extends":["rfs-base"],"provenance":{"author":"Roll for Shoes (rollforshoes.com)","basedOn":"Outbreak Hotel setting, rollforshoes.com/settings/outbreak-hotel","license":"CC0 1.0 (public domain dedication)","entries":"Source tables verbatim or lightly reworded. Entries marked src=pocketrpg are original additions where the source gives only a prompt."},"setting":{"premise":"Guests and staff of a busy hotel try to survive a zombie outbreak."},"modifiers":{},"tables":{"oh.occupation":[{"v":"Bellhop"},{"v":"Housekeeper"},{"v":"Manager"},{"v":"Pool maintenance person"},{"v":"Receptionist"},{"v":"Valet"}],"oh.reason":[{"v":"Employee"},{"v":"Vacationer"},{"v":"Business traveller"}],"oh.phobia":[{"v":"Heights","src":"pocketrpg"},{"v":"Elevators","src":"pocketrpg"},{"v":"Pigeons","src":"pocketrpg"},{"v":"Germs","src":"pocketrpg"},{"v":"The dark","src":"pocketrpg"},{"v":"Crowds","src":"pocketrpg"}]},"generators":[{"id":"look","label":"Description","output":"{npc.description|lower}, {npc.personality|lower}"},{"id":"npc","label":"Hotel NPC","output":"{npc.personality} {npc.description|lower} {oh.occupation|lower}"}],"seed":null,"story":{"questions":[{"id":"where","text":"Where is the hotel?"},{"id":"name","text":"What is the hotel called?"}],"segments":[{"name":"Checking In","text":"A busy, overwhelming hotel. Vacancies shrink and scenes get more chaotic. Foreshadow: NPCs cough, sneeze, act oddly."},{"name":"The Outbreak","text":"NPCs turn and the hotel is overrun. The PCs are forced together. Run set pieces built on the hotel's hazards."},{"name":"Escape","text":"Give a clear route to safety. NPCs suggest routes; zombies give the cast horrific ends. Final actions are heavily punished or rewarded."}],"note":"Tie each character to an NPC they worry about. Shared NPCs are better."},"flavour":{"roll-for-shoes":{"rootSkill":"Do anything","fields":[{"id":"name","label":"Name","kind":"text","table":"name.modern"},{"id":"look","label":"Description","kind":"text","generator":"look"},{"id":"reason","label":"Why you're here","kind":"pick-or-text","table":"oh.reason"},{"id":"phobia","label":"Phobia","kind":"pick-or-text","table":"oh.phobia","status":{"level":-2,"format":"Fear of {v}","optional":true},"note":"Mostly flavour. The GM may make it a -2 status."},{"id":"worry","label":"NPC you're worried about","kind":"text","generator":"npc"}],"sentence":"{name}, {look}\n{a} {reason|lower} afraid of {phobia|lower}"}}}
+</script>
+<script type="application/json" data-pack="redshirt-recon">
+{"id":"redshirt-recon","nameSetting":"sci-fi","name":"Redshirt Recon","genre":"Sci-fi comedy","version":"0.1.0","extends":["rfs-base"],"provenance":{"author":"Roll for Shoes (rollforshoes.com)","basedOn":"Redshirt Recon setting, rollforshoes.com/settings/redshirt-recon","license":"CC0 1.0 (public domain dedication)","entries":"Source tables verbatim or lightly reworded. Entries marked src=pocketrpg are original additions where the source gives only a prompt."},"setting":{"premise":"A Spacefleet ship picks up a weak distress signal. A team of lowly crew is sent down to the planet."},"modifiers":{},"tables":{"rr.danger":[{"v":"Aggressive wildlife"},{"v":"A corrupt former Spacefleet Admiral"},{"v":"A rogue, violent android"},{"v":"Environmental disaster"},{"v":"Attack from a primitive local species"},{"v":"Evil clones of the away team"}],"rr.species":[{"v":"Robot"},{"v":"Reptilian alien"},{"v":"Sentient plant"},{"v":"Insectoid alien"},{"v":"Mutant"},{"v":"Space pirate"}],"rr.signal":[{"v":"A crashed ship"},{"v":"A trap laid by enemies"},{"v":"A creature giving off the signal"},{"v":"A failed colony"},{"v":"A space anomaly"},{"v":"An otherworldly artifact"}],"rr.job":[{"v":"Junior cook","src":"pocketrpg"},{"v":"Sanitation tech","src":"pocketrpg"},{"v":"Ensign, third class","src":"pocketrpg"},{"v":"Botany intern","src":"pocketrpg"},{"v":"Cargo handler","src":"pocketrpg"},{"v":"Security trainee","src":"pocketrpg"}],"rr.chosen":[{"v":"Lost a bet","src":"pocketrpg"},{"v":"Nobody else volunteered","src":"pocketrpg"},{"v":"Clerical error","src":"pocketrpg"},{"v":"Knows the planet's language (badly)","src":"pocketrpg"},{"v":"The Chief Officer likes them","src":"pocketrpg"},{"v":"Being punished","src":"pocketrpg"}],"rr.gear":[{"v":"Tricorder with a cracked screen","src":"pocketrpg"},{"v":"Phaser set to stun (probably)","src":"pocketrpg"},{"v":"Spare red shirt","src":"pocketrpg"},{"v":"Universal translator, beta","src":"pocketrpg"},{"v":"Emergency rations","src":"pocketrpg"},{"v":"Grappling cable","src":"pocketrpg"}]},"generators":[{"id":"npc","label":"Alien","output":"{npc.personality} {npc.description|lower} {rr.species|lower}"},{"id":"danger","label":"Danger","output":"{rr.danger}"},{"id":"signal","label":"Signal source","output":"{rr.signal}"},{"id":"leader","label":"Team leader","output":"Chief Officer, {npc.personality|lower} and {npc.description|lower}"},{"id":"look","label":"Description","output":"{npc.description|lower}, {npc.personality|lower}"}],"seed":null,"groupFields":[{"id":"leader","label":"Team leader (NPC)","kind":"text","generator":"leader"}],"story":{"questions":[{"id":"planet","text":"What type of planet is it?"},{"id":"hesitant","text":"What makes the crew hesitant to investigate?"},{"id":"convinced","text":"What finally convinces the Captain to send a team?"}],"segments":[{"name":"Mission Briefing","text":"Assemble the team, hand out red shirts, outline the mission. Players suggest obstacles; note them for later. Set a clear goal for once the source is found."},{"name":"Planet Exploration","text":"Track the signal across the surface. Add distractions, including obstacles from the briefing. The leader keeps them on task; reward using their gear.","tables":["npc","danger"]},{"name":"Source Encounter","text":"A hard final confrontation at the source. Use the hesitation from the introduction. Draw on skills gained and weaknesses shown.","tables":["signal","danger"]}]},"flavour":{"roll-for-shoes":{"rootSkill":"Do anything","fields":[{"id":"name","label":"Name","kind":"text","table":"name.modern"},{"id":"look","label":"Description","kind":"text","generator":"look"},{"id":"job","label":"Lowly job on the ship","kind":"pick-or-text","table":"rr.job"},{"id":"chosen","label":"Why you were chosen","kind":"pick-or-text","table":"rr.chosen"},{"id":"gear","label":"Equipment issued","kind":"pick-or-text","table":"rr.gear"}],"sentence":"{name}\n{job}, carrying {a} {gear|lower}.\nChosen because: {chosen|lower}"}}}
+</script>
+<script type="application/json" data-pack="the-stranger">
+{"id":"the-stranger","nameSetting":"western","name":"The Stranger","genre":"Western","version":"0.1.0","extends":["rfs-base"],"provenance":{"author":"Roll for Shoes (rollforshoes.com)","basedOn":"The Stranger setting, rollforshoes.com/settings/the-stranger","license":"CC0 1.0 (public domain dedication)","entries":"Source tables verbatim or lightly reworded. Entries marked src=pocketrpg are original additions where the source gives only a prompt."},"setting":{"premise":"Folk of a frontier town get a visit from an ominous stranger."},"modifiers":{},"tables":{"ts.profession":[{"v":"Blacksmith"},{"v":"Barkeep"},{"v":"Doctor"},{"v":"Prospector"},{"v":"Prostitute"},{"v":"Tailor"}],"ts.pastime":[{"v":"Whittling","src":"pocketrpg"},{"v":"Card games","src":"pocketrpg"},{"v":"Church choir","src":"pocketrpg"},{"v":"Horse racing","src":"pocketrpg"},{"v":"Reading dime novels","src":"pocketrpg"},{"v":"Fishing the creek","src":"pocketrpg"}]},"generators":[{"id":"look","label":"Description","output":"{npc.description|lower}, {npc.personality|lower}"},{"id":"npc","label":"Townsfolk","output":"{npc.personality} {npc.description|lower} {ts.profession|lower}"}],"seed":null,"story":{"questions":[{"id":"name","text":"What is the town called?"},{"id":"why","text":"Why does the town exist, and what is it known for?"},{"id":"landmarks","text":"What landscapes or landmarks are nearby?"}],"segments":[{"name":"A Typical Afternoon","text":"Normal town life and character interactions. As evening comes, give everyone a reason to be at the saloon or on Main Street."},{"name":"The Stranger's Arrival","text":"A dark-clad, heavily armed stranger rides in and heads to the saloon looking for trouble. Everyone interacts with him. Whoever bothers him most is called out to a duel at high noon. Play out the uneasy night."},{"name":"High Noon","text":"Whispers, bets, a crowd on Main Street. Show each character preparing. Stare-down, draw, fire. Player actions may change how it ends, but the stranger is dealt with. If he lives, he drinks and rides off."}]},"flavour":{"roll-for-shoes":{"rootSkill":"Do anything","fields":[{"id":"name","label":"Name","kind":"text","table":"name.western"},{"id":"look","label":"Description","kind":"text","generator":"look"},{"id":"living","label":"How you make a living","kind":"pick-or-text","table":"ts.profession"},{"id":"pastime","label":"Spare time","kind":"pick-or-text","table":"ts.pastime"}],"sentence":"{name}, {look}\nthe town {living|lower}.\nSpare time: {pastime|lower}"}}}
+</script>
+
+<script type="application/json" data-lib="registry">
+{"version":"0.1.0","tools":[{"id":"dice","label":"Dice","kind":"dice","dice":{"types":[4,6,8,10,12,20,100],"count":{"min":1,"max":10,"default":1},"defaultType":6}},{"id":"names","label":"Names","kind":"list","list":"names","modifiers":[{"key":"gender","required":false},{"key":"setting","required":false,"default":"genre"},{"key":"letter","required":false}],"parts":[{"key":"surname","label":"Last name","list":"surnames","join":" ","default":false,"filterBy":["setting"],"order":{"label":"Honour traditional family name order","default":true}}],"followUp":{"label":"Description","tool":"description","join":" — ","default":false}},{"id":"description","label":"Description","kind":"list","list":"descriptions"},{"id":"items","label":"Items","kind":"list","list":"items"},{"id":"emotions","label":"Emotions","kind":"list","list":"emotions"},{"id":"complication","label":"Complication","kind":"list","list":"complications"},{"id":"tilt","label":"Tilt","kind":"list","list":"tilts"},{"id":"emoji","label":"Emoji","kind":"list","list":"emoji","count":{"min":1,"max":6,"default":3},"join":" ","display":"glyph"}]}
+</script>
+<script type="application/json" data-lib="names">
+{"id":"names","label":"Names","version":"0.1.0","provenance":{"author":"PocketRPG","license":"original entries"},"modifiers":{"gender":{"label":"Gender","values":["f","m","x"],"valueLabels":{"f":"Female","m":"Male","x":"Neutral"}},"setting":{"label":"Setting","values":["fantasy","sci-fi","samurai","gothic","modern","western"],"valueLabels":{"sci-fi":"Sci-fi"}}},"entries":[{"v":"Liria","tags":{"gender":"f","setting":"fantasy"},"src":"curated"},{"v":"Brenna","tags":{"gender":"f","setting":"fantasy"},"src":"curated"},{"v":"Maelis","tags":{"gender":"f","setting":"fantasy"},"src":"curated"},{"v":"Isolde","tags":{"gender":"f","setting":"fantasy"},"src":"curated"},{"v":"Dagny","tags":{"gender":"f","setting":"fantasy"},"src":"curated"},{"v":"Elowen","tags":{"gender":"f","setting":"fantasy"},"src":"curated"},{"v":"Seraphine","tags":{"gender":"f","setting":"fantasy"},"src":"curated"},{"v":"Thessaly","tags":{"gender":"f","setting":"fantasy"},"src":"curated"},{"v":"Aldric","tags":{"gender":"m","setting":"fantasy"},"src":"curated"},{"v":"Corwin","tags":{"gender":"m","setting":"fantasy"},"src":"curated"},{"v":"Fenwick","tags":{"gender":"m","setting":"fantasy"},"src":"curated"},{"v":"Orrin","tags":{"gender":"m","setting":"fantasy"},"src":"curated"},{"v":"Borin","tags":{"gender":"m","setting":"fantasy"},"src":"curated"},{"v":"Tamlin","tags":{"gender":"m","setting":"fantasy"},"src":"curated"},{"v":"Gareth","tags":{"gender":"m","setting":"fantasy"},"src":"curated"},{"v":"Halvard","tags":{"gender":"m","setting":"fantasy"},"src":"curated"},{"v":"Wren","tags":{"gender":["f","m","x"],"setting":"fantasy"},"src":"curated"},{"v":"Rowan","tags":{"gender":["f","m","x"],"setting":"fantasy"},"src":"curated"},{"v":"Ash","tags":{"gender":["f","m","x"],"setting":["fantasy","gothic"]},"src":"curated"},{"v":"Sorrel","tags":{"gender":["f","m","x"],"setting":"fantasy"},"src":"curated"},{"v":"Juno","tags":{"gender":"f","setting":"sci-fi"},"src":"curated"},{"v":"Tamsin","tags":{"gender":"f","setting":"sci-fi"},"src":"curated"},{"v":"Ilse","tags":{"gender":"f","setting":"sci-fi"},"src":"curated"},{"v":"Mara","tags":{"gender":"f","setting":"sci-fi"},"src":"curated"},{"v":"Kaia","tags":{"gender":"f","setting":"sci-fi"},"src":"curated"},{"v":"Nova","tags":{"gender":"f","setting":"sci-fi"},"src":"curated"},{"v":"Vesper","tags":{"gender":"f","setting":"sci-fi"},"src":"curated"},{"v":"Zadie","tags":{"gender":"f","setting":"sci-fi"},"src":"curated"},{"v":"Oro","tags":{"gender":"m","setting":"sci-fi"},"src":"curated"},{"v":"Kade","tags":{"gender":"m","setting":"sci-fi"},"src":"curated"},{"v":"Bastian","tags":{"gender":"m","setting":"sci-fi"},"src":"curated"},{"v":"Idris","tags":{"gender":"m","setting":"sci-fi"},"src":"curated"},{"v":"Marlo","tags":{"gender":"m","setting":"sci-fi"},"src":"curated"},{"v":"Teo","tags":{"gender":"m","setting":"sci-fi"},"src":"curated"},{"v":"Riven","tags":{"gender":"m","setting":"sci-fi"},"src":"curated"},{"v":"Dax","tags":{"gender":"m","setting":"sci-fi"},"src":"curated"},{"v":"Nyx","tags":{"gender":["f","m","x"],"setting":"sci-fi"},"src":"curated"},{"v":"Vex","tags":{"gender":["f","m","x"],"setting":"sci-fi"},"src":"curated"},{"v":"Rook","tags":{"gender":["f","m","x"],"setting":"sci-fi"},"src":"curated"},{"v":"Sable","tags":{"gender":["f","m","x"],"setting":"sci-fi"},"src":"curated"},{"v":"Akane","tags":{"gender":"f","setting":"samurai"},"src":"curated"},{"v":"Hotaru","tags":{"gender":"f","setting":"samurai"},"src":"curated"},{"v":"Kaede","tags":{"gender":"f","setting":"samurai"},"src":"curated"},{"v":"Mitsuko","tags":{"gender":"f","setting":"samurai"},"src":"curated"},{"v":"Sayuri","tags":{"gender":"f","setting":"samurai"},"src":"curated"},{"v":"Tomoe","tags":{"gender":"f","setting":"samurai"},"src":"curated"},{"v":"Yuna","tags":{"gender":"f","setting":"samurai"},"src":"curated"},{"v":"Chiyo","tags":{"gender":"f","setting":"samurai"},"src":"curated"},{"v":"Daisuke","tags":{"gender":"m","setting":"samurai"},"src":"curated"},{"v":"Haruki","tags":{"gender":"m","setting":"samurai"},"src":"curated"},{"v":"Isamu","tags":{"gender":"m","setting":"samurai"},"src":"curated"},{"v":"Kenji","tags":{"gender":"m","setting":"samurai"},"src":"curated"},{"v":"Takeshi","tags":{"gender":"m","setting":"samurai"},"src":"curated"},{"v":"Goro","tags":{"gender":"m","setting":"samurai"},"src":"curated"},{"v":"Jiro","tags":{"gender":"m","setting":"samurai"},"src":"curated"},{"v":"Ryota","tags":{"gender":"m","setting":"samurai"},"src":"curated"},{"v":"Ren","tags":{"gender":["f","m","x"],"setting":"samurai"},"src":"curated"},{"v":"Sora","tags":{"gender":["f","m","x"],"setting":"samurai"},"src":"curated"},{"v":"Yuki","tags":{"gender":["f","m","x"],"setting":"samurai"},"src":"curated"},{"v":"Hikaru","tags":{"gender":["f","m","x"],"setting":"samurai"},"src":"curated"},{"v":"Isadora","tags":{"gender":"f","setting":"gothic"},"src":"curated"},{"v":"Lenore","tags":{"gender":"f","setting":"gothic"},"src":"curated"},{"v":"Morwenna","tags":{"gender":"f","setting":"gothic"},"src":"curated"},{"v":"Ottilie","tags":{"gender":"f","setting":"gothic"},"src":"curated"},{"v":"Vesna","tags":{"gender":"f","setting":"gothic"},"src":"curated"},{"v":"Ligeia","tags":{"gender":"f","setting":"gothic"},"src":"curated"},{"v":"Clarimonde","tags":{"gender":"f","setting":"gothic"},"src":"curated"},{"v":"Beatrix","tags":{"gender":"f","setting":"gothic"},"src":"curated"},{"v":"Anselm","tags":{"gender":"m","setting":"gothic"},"src":"curated"},{"v":"Casimir","tags":{"gender":"m","setting":"gothic"},"src":"curated"},{"v":"Lucian","tags":{"gender":"m","setting":"gothic"},"src":"curated"},{"v":"Mircea","tags":{"gender":"m","setting":"gothic"},"src":"curated"},{"v":"Severin","tags":{"gender":"m","setting":"gothic"},"src":"curated"},{"v":"Valentin","tags":{"gender":"m","setting":"gothic"},"src":"curated"},{"v":"Ambrose","tags":{"gender":"m","setting":"gothic"},"src":"curated"},{"v":"Crispin","tags":{"gender":"m","setting":"gothic"},"src":"curated"},{"v":"Morgan","tags":{"gender":["f","m","x"],"setting":"gothic"},"src":"curated"},{"v":"Sasha","tags":{"gender":["f","m","x"],"setting":"gothic"},"src":"curated"},{"v":"Lark","tags":{"gender":["f","m","x"],"setting":"gothic"},"src":"curated"},{"v":"Dana","tags":{"gender":"f","setting":"modern"},"src":"curated"},{"v":"Rina","tags":{"gender":"f","setting":"modern"},"src":"curated"},{"v":"Priya","tags":{"gender":"f","setting":"modern"},"src":"curated"},{"v":"Tess","tags":{"gender":"f","setting":"modern"},"src":"curated"},{"v":"Ada","tags":{"gender":"f","setting":["modern","western"]},"src":"curated"},{"v":"Maya","tags":{"gender":"f","setting":"modern"},"src":"curated"},{"v":"Leah","tags":{"gender":"f","setting":"modern"},"src":"curated"},{"v":"Nadia","tags":{"gender":"f","setting":"modern"},"src":"curated"},{"v":"Mo","tags":{"gender":"m","setting":"modern"},"src":"curated"},{"v":"Theo","tags":{"gender":"m","setting":"modern"},"src":"curated"},{"v":"Marco","tags":{"gender":"m","setting":"modern"},"src":"curated"},{"v":"Ken","tags":{"gender":"m","setting":"modern"},"src":"curated"},{"v":"Ravi","tags":{"gender":"m","setting":"modern"},"src":"curated"},{"v":"Omar","tags":{"gender":"m","setting":"modern"},"src":"curated"},{"v":"Liam","tags":{"gender":"m","setting":"modern"},"src":"curated"},{"v":"Felix","tags":{"gender":"m","setting":"modern"},"src":"curated"},{"v":"Sam","tags":{"gender":["f","m","x"],"setting":"modern"},"src":"curated"},{"v":"Jules","tags":{"gender":["f","m","x"],"setting":"modern"},"src":"curated"},{"v":"Lou","tags":{"gender":["f","m","x"],"setting":"modern"},"src":"curated"},{"v":"Alex","tags":{"gender":["f","m","x"],"setting":"modern"},"src":"curated"},{"v":"Mae","tags":{"gender":"f","setting":"western"},"src":"curated"},{"v":"Hattie","tags":{"gender":"f","setting":"western"},"src":"curated"},{"v":"Lottie","tags":{"gender":"f","setting":"western"},"src":"curated"},{"v":"Della","tags":{"gender":"f","setting":"western"},"src":"curated"},{"v":"Nell","tags":{"gender":"f","setting":"western"},"src":"curated"},{"v":"Clementine","tags":{"gender":"f","setting":"western"},"src":"curated"},{"v":"Opal","tags":{"gender":"f","setting":"western"},"src":"curated"},{"v":"Clem","tags":{"gender":"m","setting":"western"},"src":"curated"},{"v":"Josiah","tags":{"gender":"m","setting":"western"},"src":"curated"},{"v":"Eli","tags":{"gender":"m","setting":"western"},"src":"curated"},{"v":"Silas","tags":{"gender":"m","setting":"western"},"src":"curated"},{"v":"Amos","tags":{"gender":"m","setting":"western"},"src":"curated"},{"v":"Wyatt","tags":{"gender":"m","setting":"western"},"src":"curated"},{"v":"Jebediah","tags":{"gender":"m","setting":"western"},"src":"curated"},{"v":"Virgil","tags":{"gender":"m","setting":"western"},"src":"curated"},{"v":"Jesse","tags":{"gender":["f","m","x"],"setting":"western"},"src":"curated"},{"v":"Frankie","tags":{"gender":["f","m","x"],"setting":"western"},"src":"curated"},{"v":"Billie","tags":{"gender":["f","m","x"],"setting":"western"},"src":"curated"},{"v":"Marion","tags":{"gender":["f","m","x"],"setting":"western"},"src":"curated"}]}
+</script>
+<script type="application/json" data-lib="surnames">
+{"id":"surnames","label":"Last names","version":"0.1.0","provenance":{"author":"PocketRPG","license":"original entries"},"modifiers":{"setting":{"label":"Setting","values":["fantasy","sci-fi","samurai","gothic","modern","western"],"valueLabels":{"sci-fi":"Sci-fi"}}},"entries":[{"v":"Ashfeld","tags":{"setting":"fantasy"},"src":"curated"},{"v":"Stonebough","tags":{"setting":"fantasy"},"src":"curated"},{"v":"Crane","tags":{"setting":"fantasy"},"src":"curated"},{"v":"Thornwood","tags":{"setting":"fantasy"},"src":"curated"},{"v":"Blackwater","tags":{"setting":"fantasy"},"src":"curated"},{"v":"Merrow","tags":{"setting":"fantasy"},"src":"curated"},{"v":"Greaves","tags":{"setting":"fantasy"},"src":"curated"},{"v":"Holloway","tags":{"setting":"fantasy"},"src":"curated"},{"v":"Fairbairn","tags":{"setting":"fantasy"},"src":"curated"},{"v":"Redmayne","tags":{"setting":"fantasy"},"src":"curated"},{"v":"Okoro","tags":{"setting":"sci-fi"},"src":"curated"},{"v":"Vance","tags":{"setting":"sci-fi"},"src":"curated"},{"v":"Halloran","tags":{"setting":"sci-fi"},"src":"curated"},{"v":"Ishida","tags":{"setting":"sci-fi"},"src":"curated"},{"v":"Brandt","tags":{"setting":"sci-fi"},"src":"curated"},{"v":"Quill","tags":{"setting":"sci-fi"},"src":"curated"},{"v":"Tenet","tags":{"setting":"sci-fi"},"src":"curated"},{"v":"Ashgrove","tags":{"setting":"sci-fi"},"src":"curated"},{"v":"Kovac","tags":{"setting":"sci-fi"},"src":"curated"},{"v":"Sorensen","tags":{"setting":"sci-fi"},"src":"curated"},{"v":"Tanaka","tags":{"setting":"samurai"},"src":"curated","position":"before"},{"v":"Mori","tags":{"setting":"samurai"},"src":"curated","position":"before"},{"v":"Kurosawa","tags":{"setting":"samurai"},"src":"curated","position":"before"},{"v":"Hayashi","tags":{"setting":"samurai"},"src":"curated","position":"before"},{"v":"Sato","tags":{"setting":"samurai"},"src":"curated","position":"before"},{"v":"Fujiwara","tags":{"setting":"samurai"},"src":"curated","position":"before"},{"v":"Ishikawa","tags":{"setting":"samurai"},"src":"curated","position":"before"},{"v":"Matsuda","tags":{"setting":"samurai"},"src":"curated","position":"before"},{"v":"Nakamura","tags":{"setting":"samurai"},"src":"curated","position":"before"},{"v":"Shimizu","tags":{"setting":"samurai"},"src":"curated","position":"before"},{"v":"Vale","tags":{"setting":"gothic"},"src":"curated"},{"v":"Dorn","tags":{"setting":"gothic"},"src":"curated"},{"v":"Ashby","tags":{"setting":"gothic"},"src":"curated"},{"v":"Grey","tags":{"setting":"gothic"},"src":"curated"},{"v":"Holt","tags":{"setting":"gothic"},"src":"curated"},{"v":"Ravensworth","tags":{"setting":"gothic"},"src":"curated"},{"v":"Mordaunt","tags":{"setting":"gothic"},"src":"curated"},{"v":"Blackwood","tags":{"setting":"gothic"},"src":"curated"},{"v":"Szekely","tags":{"setting":"gothic"},"src":"curated"},{"v":"Lorne","tags":{"setting":"gothic"},"src":"curated"},{"v":"Cruz","tags":{"setting":"modern"},"src":"curated"},{"v":"Patel","tags":{"setting":"modern"},"src":"curated"},{"v":"Okafor","tags":{"setting":"modern"},"src":"curated"},{"v":"Lindqvist","tags":{"setting":"modern"},"src":"curated"},{"v":"Moreau","tags":{"setting":"modern"},"src":"curated"},{"v":"Kowalski","tags":{"setting":"modern"},"src":"curated"},{"v":"Nair","tags":{"setting":"modern"},"src":"curated"},{"v":"Bennett","tags":{"setting":"modern"},"src":"curated"},{"v":"Silva","tags":{"setting":"modern"},"src":"curated"},{"v":"Hargreave","tags":{"setting":"modern"},"src":"curated"},{"v":"Hollis","tags":{"setting":"western"},"src":"curated"},{"v":"Whitlock","tags":{"setting":"western"},"src":"curated"},{"v":"Pike","tags":{"setting":"western"},"src":"curated"},{"v":"Calloway","tags":{"setting":"western"},"src":"curated"},{"v":"Tanner","tags":{"setting":"western"},"src":"curated"},{"v":"Rourke","tags":{"setting":"western"},"src":"curated"},{"v":"Booth","tags":{"setting":"western"},"src":"curated"},{"v":"Greer","tags":{"setting":"western"},"src":"curated"},{"v":"Mercer","tags":{"setting":"western"},"src":"curated"},{"v":"Barlow","tags":{"setting":"western"},"src":"curated"},{"v":"Wang","tags":{"setting":"modern"},"src":"curated","position":"before"},{"v":"Li","tags":{"setting":"modern"},"src":"curated","position":"before"},{"v":"Zhang","tags":{"setting":"modern"},"src":"curated","position":"before"},{"v":"Liu","tags":{"setting":"modern"},"src":"curated","position":"before"},{"v":"Chen","tags":{"setting":"modern"},"src":"curated","position":"before"},{"v":"Yang","tags":{"setting":"modern"},"src":"curated","position":"before"},{"v":"Huang","tags":{"setting":"modern"},"src":"curated","position":"before"},{"v":"Zhao","tags":{"setting":"modern"},"src":"curated","position":"before"},{"v":"Wu","tags":{"setting":"modern"},"src":"curated","position":"before"},{"v":"Zhou","tags":{"setting":"modern"},"src":"curated","position":"before"},{"v":"Xu","tags":{"setting":"modern"},"src":"curated","position":"before"},{"v":"Sun","tags":{"setting":"modern"},"src":"curated","position":"before"},{"v":"Lin","tags":{"setting":"modern"},"src":"curated","position":"before"},{"v":"Guo","tags":{"setting":"modern"},"src":"curated","position":"before"},{"v":"He","tags":{"setting":"modern"},"src":"curated","position":"before"},{"v":"Ma","tags":{"setting":"modern"},"src":"curated","position":"before"}],"notes":"Entry field 'position': 'before' puts the family name before the given name when the user honours traditional order. Default is 'after'."}
+</script>
+<script type="application/json" data-lib="descriptions">
+{"id":"descriptions","label":"Description","version":"0.1.0","provenance":{"author":"PocketRPG","license":"original entries"},"modifiers":{},"entries":[{"v":"tall"},{"v":"short"},{"v":"lanky"},{"v":"stocky"},{"v":"rotund"},{"v":"wiry"},{"v":"swarthy"},{"v":"pale"},{"v":"freckled"},{"v":"scarred"},{"v":"bearded"},{"v":"bald"},{"v":"hunched"},{"v":"broad-shouldered"},{"v":"gaunt"},{"v":"plump"},{"v":"muscular"},{"v":"willowy"},{"v":"weathered"},{"v":"sunburned"},{"v":"tattooed"},{"v":"one-eyed"},{"v":"limping"},{"v":"elderly"},{"v":"youthful"},{"v":"towering"},{"v":"tiny"},{"v":"pot-bellied"},{"v":"bony"},{"v":"grizzled"},{"v":"sharp-featured"},{"v":"round-faced"},{"v":"ruddy"},{"v":"sallow"},{"v":"heavy-browed"},{"v":"gap-toothed"},{"v":"long-haired"},{"v":"shaven-headed"},{"v":"elegant"},{"v":"scruffy"}]}
+</script>
+<script type="application/json" data-lib="items">
+{"id":"items","label":"Items","version":"0.1.0","provenance":{"author":"PocketRPG","license":"original entries"},"modifiers":{},"entries":[{"v":"silver locket"},{"v":"rusted key"},{"v":"sealed letter"},{"v":"compass that points the wrong way"},{"v":"cracked hourglass"},{"v":"map with a torn corner"},{"v":"pouch of foreign coins"},{"v":"pair of bone dice"},{"v":"music box"},{"v":"signet ring"},{"v":"shuttered lantern"},{"v":"coil of rope"},{"v":"crowbar"},{"v":"spyglass"},{"v":"ledger of debts"},{"v":"glass eye"},{"v":"stopped pocket watch"},{"v":"jar of teeth"},{"v":"wedding veil"},{"v":"locked strongbox"},{"v":"child's drawing"},{"v":"bottle of something green"},{"v":"broken sword hilt"},{"v":"deck of marked cards"},{"v":"lock of hair in a ribbon"},{"v":"stolen badge"},{"v":"unfinished portrait"},{"v":"vial of black sand"},{"v":"whistle carved from bone"},{"v":"bundle of unsent love letters"},{"v":"cursed doll"},{"v":"deed to a house"},{"v":"feather that never gets wet"},{"v":"tin of good tea"},{"v":"medal for bravery"},{"v":"wanted poster"},{"v":"lucky stone"},{"v":"tuning fork"},{"v":"surgeon's kit"},{"v":"half of a torn photograph"},{"v":"ring of iron keys"},{"v":"crown with a missing jewel"},{"v":"seed that hums"},{"v":"mask with no eyeholes"},{"v":"dog-eared prayer book"},{"v":"flask of strong spirits"},{"v":"heavy ingot"},{"v":"recording of a stranger's voice"}]}
+</script>
+<script type="application/json" data-lib="emotions">
+{"id":"emotions","label":"Emotions","version":"0.1.0","provenance":{"author":"PocketRPG","license":"original entries"},"modifiers":{},"entries":[{"v":"sad"},{"v":"happy"},{"v":"delighted"},{"v":"frustrated"},{"v":"humiliated"},{"v":"weary"},{"v":"anxious"},{"v":"smug"},{"v":"furious"},{"v":"giddy"},{"v":"suspicious"},{"v":"grieving"},{"v":"hopeful"},{"v":"bored"},{"v":"terrified"},{"v":"embarrassed"},{"v":"proud"},{"v":"resentful"},{"v":"lonely"},{"v":"relieved"},{"v":"curious"},{"v":"guilty"},{"v":"jealous"},{"v":"bitter"},{"v":"content"},{"v":"nervous"},{"v":"impatient"},{"v":"ashamed"},{"v":"amused"},{"v":"homesick"},{"v":"defiant"},{"v":"desperate"},{"v":"wistful"},{"v":"overjoyed"},{"v":"betrayed"},{"v":"calm"},{"v":"panicked"},{"v":"stubborn"},{"v":"grateful"},{"v":"sheepish"}]}
+</script>
+<script type="application/json" data-lib="complications">
+{"id":"complications","label":"Complication","version":"0.0.0","provenance":{"author":"PocketRPG","license":"original entries"},"modifiers":{},"entries":[]}
+</script>
+<script type="application/json" data-lib="tilts">
+{"id":"tilts","label":"Tilt","version":"0.0.0","provenance":{"author":"PocketRPG","license":"original entries"},"modifiers":{},"entries":[]}
+</script>
+<script type="application/json" data-lib="emoji">
+{"id":"emoji","label":"Emoji","version":"0.1.0","provenance":{"author":"PocketRPG","license":"Unicode emoji; placeholder selection, to be curated"},"modifiers":{},"entries":[{"v":"🗝️"},{"v":"🕯️"},{"v":"🗺️"},{"v":"⚔️"},{"v":"🛡️"},{"v":"🏹"},{"v":"🔮"},{"v":"📜"},{"v":"💀"},{"v":"🐉"},{"v":"🦉"},{"v":"🐺"},{"v":"🐍"},{"v":"🦇"},{"v":"🕷️"},{"v":"🌙"},{"v":"☀️"},{"v":"⭐"},{"v":"🌊"},{"v":"🔥"},{"v":"⛈️"},{"v":"🌲"},{"v":"🏔️"},{"v":"🏰"},{"v":"⛪"},{"v":"🏚️"},{"v":"🚪"},{"v":"🪜"},{"v":"⚓"},{"v":"🚂"},{"v":"🚀"},{"v":"🛸"},{"v":"🤖"},{"v":"👑"},{"v":"💍"},{"v":"💰"},{"v":"🎭"},{"v":"🎲"},{"v":"🃏"},{"v":"🧭"},{"v":"⏳"},{"v":"⚖️"},{"v":"🔒"},{"v":"🩸"},{"v":"🌹"},{"v":"🍷"},{"v":"🍞"},{"v":"🐎"},{"v":"🧪"},{"v":"📯"},{"v":"🪦"},{"v":"👁️"},{"v":"🗡️"},{"v":"🎻"},{"v":"🪞"},{"v":"🧶"}]}
+</script>
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const rnd = n => Math.floor(Math.random() * n);
+const pick = a => a[rnd(a.length)];
+const lc = s => (s || '').charAt(0).toLowerCase() + (s || '').slice(1);
+const cap = s => (s || '').charAt(0).toUpperCase() + (s || '').slice(1);
+const NO_REPEAT = 3;            // open question: window size. Mockup uses 3.
+const KEY = 'pocketrpg-mockup-v5';
+
+const ORDER = ['starfarers', 'swords-and-sorcery', 'blade-and-spirit', 'moon-and-blood', 'other-tales', 'the-heist', 'kitchen-khaos', 'minimon', 'outbreak-hotel', 'redshirt-recon', 'the-stranger'];
+const RULES = { 'lasers-feelings': 'Lasers & Feelings', 'roll-for-shoes': 'Roll for Shoes' };
+const native = (p, r) => !!p.flavour?.[r];
+
+/* ---------- Packs ---------- */
+const RAW = {}, PACKS = {};
+document.querySelectorAll('script[data-pack]').forEach(s => {
+  try { const p = JSON.parse(s.textContent); RAW[p.id] = p; } catch (e) { console.error('Pack JSON failed to parse', e); }
+});
+// extends: tables from listed packs are merged in; same table id = entries concatenated.
+for (const [id, raw] of Object.entries(RAW)) {
+  const p = JSON.parse(JSON.stringify(raw));
+  for (const baseId of p.extends || []) {
+    const base = RAW[baseId]; if (!base) continue;
+    for (const [t, rows] of Object.entries(base.tables || {})) p.tables[t] = (p.tables[t] || []).concat(rows);
+  }
+  PACKS[id] = p;
+}
+const packIds = () => ORDER.filter(id => PACKS[id]).concat(Object.keys(PACKS).filter(id => !ORDER.includes(id))).filter(id => !PACKS[id].library);
+const packBasis = p => `Based on ${p.name}${p.version ? ' v' + p.version : ''}`;
+
+// Fallback when a pack has no lasers-feelings flavour.
+const GENERIC_LF = {
+  checks: [{ id: 'under', label: 'Lasers', roll: 'under' }, { id: 'over', label: 'Feelings', roll: 'over' }],
+  numberRange: [2, 5],
+  fields: [
+    { id: 'name', label: 'Name', kind: 'text', table: null },
+    { id: 'style', label: 'Style', kind: 'pick', values: ['Bold', 'Quiet', 'Clever', 'Kind', 'Stubborn', 'Curious'] },
+    { id: 'role', label: 'Role', kind: 'pick', values: ['Leader', 'Fighter', 'Fixer', 'Talker', 'Seeker', 'Healer'] },
+    { id: 'number', label: 'Number', kind: 'number', range: [2, 5] },
+    { id: 'goal', label: 'Goal', kind: 'pick', values: ['Protect someone', 'Find something', 'Win respect', 'Escape the past', 'Learn the truth', 'Get rich'] }
+  ],
+  dice: { base: 1, bonuses: [], min: 1, max: 3 },
+  exact: { name: 'Exact', countsAsSuccess: true }
+};
+
+const KINDS = ['pick', 'pick-or-text', 'multi', 'number', 'text'];
+function validate(p) {
+  const errs = [], T = p.tables || {}, ids = Object.keys(T);
+  let entries = 0;
+  for (const id of ids) for (const e of T[id]) {
+    entries++;
+    for (const [k, val] of Object.entries(e.tags || {})) {
+      const m = p.modifiers?.[k];
+      if (!m) { errs.push(`${id}: "${e.v}" uses tag "${k}", which is not a declared modifier`); continue; }
+      for (const x of [].concat(val)) if (!m.values.includes(x)) errs.push(`${id}: "${e.v}" has ${k}=${x}, not a declared value`);
+    }
+  }
+  const ref = (id, where) => { if (id && !T[id]) errs.push(`${where} references missing table ${id}`); };
+  for (const g of p.generators || []) for (const m of g.output.matchAll(/\{([\w.-]+)\??(?:\|\w+)?\}/g)) ref(m[1], `generator "${g.id}"`);
+  for (const c of p.seed?.columns || []) ref(c.table, `seed column "${c.label}"`);
+  const checkFields = (list, name) => { for (const x of list) {
+    if (!KINDS.includes(x.kind)) errs.push(`${name}.${x.id}: unknown kind "${x.kind}"`);
+    ref(x.table, `${name}.${x.id}`); ref(x.examples, `${name}.${x.id}.examples`);
+    if (x.generator && !(p.generators || []).some(g => g.id === x.generator)) errs.push(`${name}.${x.id} references missing generator ${x.generator}`);
+  } };
+  checkFields(p.groupFields || [], 'groupFields');
+  for (const q of p.story?.questions || []) ref(q.table, `story question "${q.id}"`);
+  for (const sg of p.story?.segments || []) for (const g of sg.tables || []) if (!(p.generators || []).some(x => x.id === g)) errs.push(`story segment "${sg.name}" references missing generator ${g}`);
+  if (!p.flavour?.['lasers-feelings'] && !p.flavour?.['roll-for-shoes']) errs.push('pack has no rules flavour');
+  const r = p.flavour?.['roll-for-shoes'];
+  if (r) { checkFields(r.fields || [], 'roll-for-shoes.fields'); ref(r.starterSkills?.table, 'roll-for-shoes.starterSkills'); }
+  const f = p.flavour?.['lasers-feelings'];
+  if (f) {
+    if (!Array.isArray(f.checks) || f.checks.length !== 2) errs.push('lasers-feelings.checks must have exactly two checks');
+    checkFields(f.fields || [], 'fields');
+    if (f.groupFields) errs.push('lasers-feelings.groupFields: move to the pack root');
+    if (!(f.fields || []).some(x => x.kind === 'number')) errs.push('lasers-feelings.fields has no number field');
+    if (typeof f.startingGear === 'string') ref(f.startingGear, 'startingGear');
+    if (typeof f.exact?.questions === 'string') ref(f.exact.questions, 'exact.questions');
+  }
+  return { errs, tables: ids.length, entries };
+}
+
+/* ---------- Session state ---------- */
+function blank() {
+  return { view: 'setup', packId: packIds()[0], rulesId: 'lasers-feelings', players: 1, starter: null, answers: {},
+           seed: null, seedTab: 'text', chars: [], group: {}, active: 0, recent: {}, lastModifiers: {}, log: [],
+           tab: 'track', started: false, resultMode: 'sheet', openChar: null, panel: null, tool: null,
+           toolMods: {}, toolHistory: [], trackHistory: [], bonuses: {}, apply: {}, gmDice: 0, inline: null };
+}
+function load() { try { const s = JSON.parse(localStorage.getItem(KEY)); if (s && PACKS[s.packId]) return s; } catch (e) {} return null; }
+function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
+let S = load() || blank();
+const fresh = new Set();
+let sheet = null;   // { scope: 'char' | 'group', id }
+const pack = () => PACKS[S.packId];
+function buzz() { try { navigator.vibrate && navigator.vibrate(12); } catch (e) {} }
+function log() {}   // setup-phase rolls are not logged; play uses trackLog / toolHistory
+
+/* ---------- Table engine ---------- */
+function matches(e, mods) {
+  for (const [k, v] of Object.entries(mods || {})) {
+    if (v == null || v === '') continue;
+    const t = e.tags?.[k];
+    if (t == null) continue;
+    if (Array.isArray(t) ? !t.includes(v) : t !== v) return false;
+  }
+  return true;
+}
+function remember(id, v) { const r = (S.recent[id] || []).filter(x => x !== v); r.unshift(v); S.recent[id] = r.slice(0, NO_REPEAT); }
+function draw(id, mods, avoid) {
+  const pool = (pack().tables[id] || []).filter(e => matches(e, mods));
+  if (!pool.length) return null;
+  const recent = S.recent[id] || [];
+  let c = pool.filter(e => e.v !== avoid && !recent.includes(e.v));
+  if (!c.length) c = pool.filter(e => e.v !== avoid);
+  if (!c.length) c = pool;
+  const e = pick(c); remember(id, e.v); return e;
+}
+function expand(tpl, mods) {
+  return tpl.replace(/\{([\w.-]+)(\?)?(?:\|(\w+))?\}/g, (m, id, opt, mod) => {
+    if (opt && Math.random() < 0.4) return '';
+    const e = draw(id, mods); return e ? (mod === 'lower' ? e.v.toLowerCase() : e.v) : '';
+  }).replace(/\s+/g, ' ').trim();
+}
+
+/* ---------- L&F engine, driven by pack data ---------- */
+function lf() {
+  const p = pack(), own = p.flavour?.['lasers-feelings'];
+  if (own) return own;
+  const r = p.flavour?.['roll-for-shoes'];
+  if (!r) return GENERIC_LF;
+  // Fallback for Roll for Shoes settings: keep their character fields, add the number.
+  return { ...GENERIC_LF, fallback: true, sentence: r.sentence,
+    fields: [...r.fields.map(({ skill, status, ...f }) => f), { id: 'number', label: 'Number', kind: 'number', range: [2, 5] }] };
+}
+const chk = dir => lf().checks.find(c => c.roll === dir) || { label: dir };
+const range = () => lf().numberRange || [2, 5];
+/* ---------- Roll for Shoes flavour (pack data, or generic fallback) ---------- */
+const GENERIC_SKILLS = ['Sneak', 'Hit hard', 'Talk my way out', 'Fix things', 'Notice details', 'Run', 'Climb', 'Lie', 'Patch wounds', 'Read old writing'];
+const isRfs = () => S.rulesId === 'roll-for-shoes';
+function rfs() {
+  const p = pack(), own = p.flavour?.['roll-for-shoes'];
+  if (own) return own;
+  // Fallback: reuse the pack's name field and style x role tables, generic skill list.
+  const nameF = p.flavour?.['lasers-feelings']?.fields?.find(x => x.id === 'name');
+  const st = p.tables['lf.style'], ro = p.tables['lf.role'];
+  const concepts = st && ro ? st.flatMap(a => ro.map(b => `${a.v} ${lc(b.v)}`)) : null;
+  return { fallback: true, rootSkill: 'Do anything',
+    fields: [nameF ? { ...nameF, label: 'Name' } : { id: 'name', label: 'Name', kind: 'text', table: null },
+             concepts ? { id: 'concept', label: 'Concept', kind: 'pick-or-text', values: concepts } : { id: 'concept', label: 'Concept', kind: 'text', table: null }],
+    sentence: '{name}\nis {a} {concept|lower}',
+    starterSkills: { values: GENERIC_SKILLS, count: 0, max: 3, level: 2 } };
+}
+const rf = () => isRfs() ? rfs() : lf();
+const rootSkill = () => rfs().rootSkill || 'Do anything';
+const skillCfg = () => ({ count: 0, max: 3, level: 2, ...(rfs().starterSkills || {}) });
+const starterCount = () => Math.min(skillCfg().max, S.starter ?? skillCfg().count);
+function skillList() { const k = skillCfg(); return k.table && pack().tables[k.table] ? pack().tables[k.table].map(e => e.v) : (k.values || []); }
+function skillTree(c) {
+  // Nodes: root, setting-field skills, starting skills (children of root), then skills earned in play (child of any node).
+  const nodes = [{ key: 'r', name: rootSkill(), level: 1, root: true, parent: null, depth: 0 }];
+  for (const f of rfs().fields) if (f.skill) nodes.push({ key: 'f:' + f.id, name: c.fields[f.id], level: f.skill.level, field: f.id, label: shortLabel(f.label), parent: 'r' });
+  (c.extra || []).forEach((n, i) => nodes.push({ key: 'x:' + i, name: n, level: skillCfg().level, extra: i, parent: 'r' }));
+  (c.earned || []).forEach((sk, i) => nodes.push({ key: 'e:' + i, name: sk.name, level: sk.level, earned: i, parent: sk.parent }));
+  const out = [nodes[0]];
+  const walk = (k, d) => nodes.filter(n => n.parent === k).forEach(n => { n.depth = d; out.push(n); walk(n.key, d + 1); });
+  walk('r', 1);
+  return out;
+}
+function statuses(c) {
+  return rfs().fields.filter(f => f.status && !isEmpty(c.fields[f.id]))
+    .map(f => ({ text: (f.status.format || '{v}').replace('{v}', c.fields[f.id]), level: f.status.level, field: f.id, optional: f.status.optional }));
+}
+function pickSkill(c, cur) {
+  const taken = new Set(skillTree(c).map(x => x.name));
+  const pool = skillList().filter(v => !taken.has(v) && v !== cur);
+  return pool.length ? pick(pool) : (cur || '');
+}
+const skillField = i => ({ id: String(i), label: `Starting skill ${+i + 1}`, kind: 'text', values: skillList(),
+  hint: `Level ${skillCfg().level}: rolls ${skillCfg().level}d6. Branches from ${rootSkill()} 1.` });
+
+const groupFieldsOf = () => pack().groupFields || pack().flavour?.['lasers-feelings']?.groupFields || [];
+const fieldsOf = scope => scope === 'group' ? groupFieldsOf() : rf().fields;
+function qField(id) {
+  const q = (pack().story?.questions || []).find(x => x.id === id);
+  return q && { id: q.id, label: q.text, kind: 'text', table: q.table || null, hint: 'Ask the table aloud. Typing the answer is optional.' };
+}
+const fieldDef = (scope, id) => scope === 'skill' ? skillField(id) : scope === 'q' ? qField(id) : fieldsOf(scope).find(f => f.id === id);
+function getVal(scope, id) {
+  if (scope === 'group') return S.group[id];
+  if (scope === 'q') return S.answers?.[id] ?? '';
+  const c = S.chars[S.active];
+  if (scope === 'skill') return c.extra?.[+id] ?? '';
+  if (scope === 'q') return S.answers[id] ?? '';
+  return c.fields[id];
+}
+
+function listOf(f) {
+  if (f.table && pack().tables[f.table]) return pack().tables[f.table].map(e => e.v);
+  if (f.values) return f.values;
+  return null;
+}
+function canRandom(f) {
+  return f.kind === 'number' || !!listOf(f) || !!(f.examples && pack().tables[f.examples]) || !!f.generator;
+}
+function rollNumber(f, avoid) {
+  const [lo, hi] = f.range || range(), nr = lf().numberRoll;
+  for (let i = 0; i < 20; i++) {
+    let n;
+    if (f.randomise === 'numberRoll' && nr?.reroll) { do n = 1 + rnd(6); while (nr.reroll.includes(n)); }
+    else n = lo + rnd(hi - lo + 1);
+    if (n !== avoid) return n;
+  }
+  return lo;
+}
+function drawFrom(f, avoid) {
+  if (f.table && pack().tables[f.table]) return draw(f.table, null, avoid)?.v;
+  const list = listOf(f) || []; const c = list.filter(v => v !== avoid);
+  return pick(c.length ? c : list);
+}
+function randomValue(f, cur) {
+  if (f.kind === 'number') return rollNumber(f, cur);
+  if (f.kind === 'multi') {
+    const list = [...(listOf(f) || [])], out = [];
+    while (out.length < (f.count || 2) && list.length) out.push(list.splice(rnd(list.length), 1)[0]);
+    return out;
+  }
+  if (f.generator) {
+    const g = pack().generators.find(g => g.id === f.generator);
+    for (let i = 0; i < 6; i++) { const n = expand(g.output, S.lastModifiers[g.id]); if (n && n !== cur) return n; }
+  }
+  if (f.examples && pack().tables[f.examples]) return draw(f.examples, null, cur)?.v;
+  if (listOf(f)) return drawFrom(f, cur);
+  return cur ?? '';
+}
+function newCharacter() {
+  const c = { id: Math.random().toString(36).slice(2, 8), fields: {}, resources: {} };
+  for (const f of rf().fields) c.fields[f.id] = canRandom(f) ? randomValue(f) : (f.kind === 'multi' ? [] : '');
+  if (isRfs()) {
+    c.xp = 0;
+    c.extra = [];
+    for (let i = 0; i < starterCount(); i++) c.extra.push(pickSkill(c));
+  } else syncResources(c);
+  return c;
+}
+function syncResources(c) {
+  for (const r of lf().resources || []) {
+    const ok = !r.appliesTo || Object.entries(r.appliesTo).every(([k, v]) => c.fields[k] === v);
+    if (ok && c.resources[r.id] == null) c.resources[r.id] = r.start;
+    if (!ok) delete c.resources[r.id];
+  }
+}
+function ensureState() {
+  S.answers = S.answers || {};
+  // Each rule system lists only its own packs; switching rules picks that system's first pack.
+  if (!native(pack(), S.rulesId)) {
+    const first = packIds().find(id => native(PACKS[id], S.rulesId));
+    if (first) { S.packId = first; S.seed = null; S.group = {}; S.answers = {}; S.recent = {}; S.chars = []; S.active = 0; S.starter = null; }
+  }
+  while (S.chars.length < S.players) S.chars.push(newCharacter());
+  if (S.active >= S.players) S.active = S.players - 1;
+  for (const f of groupFieldsOf()) if (S.group[f.id] == null) S.group[f.id] = canRandom(f) ? randomValue(f) : (f.kind === 'multi' ? [] : '');
+}
+function derive(c) {
+  const N = c.fields.number, out = [];
+  for (const d of lf().derived || []) {
+    let v = null;
+    if (/^[\dN\s*+\-()/]+$/.test(d.formula)) { try { v = Function('N', `return (${d.formula})`)(N); } catch (e) {} }
+    else { const ref = out.find(o => o.label.toLowerCase().startsWith(d.formula.toLowerCase())); if (ref) v = ref.v; }
+    out.push({ label: d.label, v });
+  }
+  return out;
+}
+const shortLabel = l => l.replace(/\s*\(.*\)\s*$/, '');
+
+/* ---------- Seed ---------- */
+function seedCol(i, avoid) {
+  const col = pack().seed.columns[i], t = pack().tables[col.table];
+  const e = draw(col.table, null, avoid); return { v: e.v, face: t.indexOf(e) + 1 };
+}
+const seedPart = i => pack().seed.columns[i].case === 'lower' ? lc(S.seed[i].v) : S.seed[i].v;
+function seedText() { return pack().seed.template.replace(/\{(\d+)\}/g, (m, i) => seedPart(+i)); }
+function rollAll() {
+  S.seed = pack().seed.columns.map((c, i) => seedCol(i));
+  S.seed.forEach((_, i) => fresh.add('col' + i));
+  log('seed', 'seed', seedText());
+}
+
+/* ---------- View helpers ---------- */
+const PIPS = { 1: [4], 2: [0, 8], 3: [0, 4, 8], 4: [0, 2, 6, 8], 5: [0, 2, 4, 6, 8], 6: [0, 2, 3, 5, 6, 8] };
+function die(n, cls = '') {
+  if (!PIPS[n]) return `<span class="die ${cls}" aria-label="${n}"></span>`;
+  return `<span class="die ${cls}" role="img" aria-label="d6 showing ${n}">${[...Array(9)].map((_, i) => `<i${PIPS[n].includes(i) ? ' class="on"' : ''}></i>`).join('')}</span>`;
+}
+const fr = k => fresh.has(k) ? ' fresh' : '';
+const show = v => Array.isArray(v) ? v.filter(Boolean).join(' & ') : (v ?? '');
+const isEmpty = v => Array.isArray(v) ? !v.filter(Boolean).length : (v == null || v === '');
+
+function renderSetup() {
+  const opt = id => {
+    const p = PACKS[id], v = validate(p);
+    const status = `<span class="m${v.errs.length ? ' err' : ''}">${esc(packBasis(p))} · ${v.tables} tables · ${v.entries} entries${v.errs.length ? ` · ${v.errs.length} schema error${v.errs.length > 1 ? 's' : ''}` : ''}</span>`;
+    return `<button class="opt" data-act="pack" data-id="${esc(id)}" aria-pressed="${id === S.packId}"><span class="radio"></span><span class="t">${esc(p.genre || p.name)}</span>${status}</button>`;
+  };
+  const own = packIds().filter(id => native(PACKS[id], S.rulesId));
+  const L = lf(), d = L.dice || GENERIC_LF.dice;
+  return `
+  <section class="group"><div class="eyebrow">Step 1 of 3</div><h2>New session</h2></section>
+  <section class="group"><div class="eyebrow">Rule system</div>
+    <button class="opt" data-act="rules" data-id="lasers-feelings" aria-pressed="${!isRfs()}"><span class="radio"></span><span class="t">Lasers &amp; Feelings</span><span class="m">One number, two checks · ${d.min}–${d.max}d6 · number ${range().join('–')}</span></button>
+    <button class="opt" data-act="rules" data-id="roll-for-shoes" aria-pressed="${isRfs()}"><span class="radio"></span><span class="t">Roll for Shoes</span><span class="m">Skill tree · level = d6 vs GM · XP on fail</span></button>
+  </section>
+  ${isRfs() ? `<section class="group"><div class="eyebrow">Starting skills per character</div>
+    <div class="stepper">
+      <button data-act="starter" data-d="-1" aria-label="Fewer starting skills"${starterCount() <= 0 ? ' disabled' : ''}>−</button>
+      <output aria-live="polite">${starterCount()}</output>
+      <button data-act="starter" data-d="1" aria-label="More starting skills"${starterCount() >= skillCfg().max ? ' disabled' : ''}>+</button>
+    </div>
+    <p class="hint">${starterCount() ? `Each character also starts with ${starterCount()} level-${skillCfg().level} skill${starterCount() > 1 ? 's' : ''} under ${esc(rootSkill())}. House rule.` : `Original rules: everyone starts with ${esc(rootSkill())} 1${rfs().fields.some(f => f.skill) ? ', plus any skills the setting gives' : ' only'}.`}</p>
+  </section>` : ''}
+  <section class="group"><div class="eyebrow">${isRfs() ? 'Setting' : 'Genre'}</div>${own.map(opt).join('') || '<p class="hint">No packs written for this rule system yet.</p>'}</section>  <section class="group"><div class="eyebrow">Players</div>
+    <div class="stepper">
+      <button data-act="players" data-d="-1" aria-label="Remove player"${S.players <= 1 ? ' disabled' : ''}>−</button>
+      <output aria-live="polite">${S.players}</output>
+      <button data-act="players" data-d="1" aria-label="Add player"${S.players >= 4 ? ' disabled' : ''}>+</button>
+    </div>
+    <p class="hint">One character per player. Up to 4.</p>
+  </section>
+  <button class="btn" data-act="go" data-v="seed">Story →</button>`;
+}
+
+function drows(scope, ids, emptyText = 'Not set') {
+  return ids.map(id => {
+    const f = fieldDef(scope, id), v = getVal(scope, id);
+    return `<button class="drow${fr(id)}" data-act="openSheet" data-scope="${scope}" data-id="${esc(id)}">
+      <span class="${scope === 'q' ? 'qt' : 'eyebrow'}">${esc(scope === 'q' ? f.label : shortLabel(f.label))}</span>
+      <span class="v${isEmpty(v) ? ' empty' : ''}">${isEmpty(v) ? esc(emptyText) : esc(show(v))}</span>
+      <span class="chev" aria-hidden="true">›</span></button>`;
+  }).join('');
+}
+
+function renderSeed() {
+  const p = pack();
+  const premise = p.setting?.premise ? `<section class="group"><div class="eyebrow">Premise</div><p class="premise">${esc(p.setting.premise)}</p></section>` : '';
+  const shared = groupFieldsOf().length ? `<section class="group"><div class="eyebrow">Shared by the party</div>
+    <div class="card"><div class="drows" style="border-top:0">${drows('group', groupFieldsOf().map(f => f.id))}</div></div></section>` : '';
+  const st = p.story || {};
+  const intro = (st.questions || []).length ? `<section class="group"><div class="eyebrow">Introduction · ask the table</div>
+    <div class="card"><div class="drows" style="border-top:0">${drows('q', st.questions.map(q => q.id), 'Ask aloud, or tap to note the answer')}</div></div></section>` : '';
+  const genLabel = id => (p.generators || []).find(g => g.id === id)?.label || id;
+  const outline = (st.segments || []).length ? `<section class="group"><div class="eyebrow">Session outline · ${st.segments.length} scenes</div>
+    <ol class="outline">${st.segments.map(sg => `<li><b>${esc(sg.name)}</b><span>${esc(sg.text)}</span>${(sg.tables || []).length ? `<span class="rolls">Roll: ${sg.tables.map(t => `<i>${esc(genLabel(t))}</i>`).join('')}</span>` : ''}</li>`).join('')}</ol>
+    ${st.note ? `<p class="hint">${esc(st.note)}</p>` : ''}</section>` : '';
+  let seedHtml = '';
+  if (!p.seed) {
+    if (!intro) seedHtml = `<div class="empty-card">${esc(p.name)} has no story seed table.</div>`;
+  } else {
+    if (!S.seed) rollAll();
+    const parts = p.seed.template.split(/(\{\d+\})/).map(s => {
+      const m = s.match(/^\{(\d+)\}$/);
+      return m ? `<button class="part${fr('col' + m[1])}" data-act="col" data-i="${m[1]}" aria-label="Reroll ${esc(p.seed.columns[m[1]].label)}">${esc(seedPart(+m[1]))}</button>` : esc(s);
+    }).join('');
+    const rows = p.seed.columns.map((c, i) => `
+      <button class="col${fr('col' + i)}" data-act="col" data-i="${i}">
+        ${die(S.seed[i].face)}
+        <span><span class="eyebrow">${esc(c.label)}</span><br><span class="val">${esc(S.seed[i].v)}</span></span>
+        <span class="re" aria-hidden="true">↻</span>
+      </button>`).join('');
+    const adv = S.seedTab === 'advanced';
+    seedHtml = `
+      <div class="vtabs" role="tablist">
+        <button role="tab" data-act="seedTab" data-v="text" aria-selected="${!adv}">Text</button>
+        <button role="tab" data-act="seedTab" data-v="advanced" aria-selected="${adv}">Advanced</button>
+      </div>
+      ${adv ? `<div class="cols">${rows}</div><p class="hint">Each part is a d6 table. Tap a row to reroll only that part.</p>`
+            : `<div class="sentence"><p>${parts}</p></div><p class="hint">Tap an underlined part to reroll only that part.</p>`}
+      <button class="btn" data-act="rollAll">Roll all</button>`;
+  }
+  return `
+  <section class="group"><div class="eyebrow">Step 2 of 3 · ${esc(p.genre || p.name)}</div><h2>Story</h2></section>
+  ${intro ? premise : ''}
+  ${seedHtml ? `<section class="group">${seedHtml}</section>` : ''}
+  ${intro}
+  ${shared}
+  ${outline}
+  ${intro ? '' : premise}
+  <button class="btn ghost" data-act="go" data-v="crew">Players →</button>`;
+}
+
+function defaultSentence() {
+  const has = id => rf().fields.some(f => f.id === id);
+  if (isRfs()) return `${has('name') ? '{name}\n' : ''}is {a} {concept|lower}`;
+  return `${has('name') ? '{name}\n' : ''}is {a} {style|lower} {role|lower}${has('goal') ? ' who wants to\n{goal|lower}' : ''}`;
+}
+function sentenceHtml(c, plain) {
+  const tpl = rf().sentence || defaultSentence();
+  const used = new Set();
+  const toks = tpl.split(/(\{[\w|]+\}|\n)/).filter(t => t !== '').map(t => {
+    if (t === '\n') return { br: true };
+    const m = t.match(/^\{(\w+)(?:\|(\w+))?\}$/);
+    if (!m) return { text: t };
+    if (m[1] === 'a') return { article: true, mod: m[2] };
+    const f = fieldDef('char', m[1]);
+    if (!f) return { text: '' };
+    used.add(f.id);
+    const v = c.fields[f.id], empty = isEmpty(v);
+    let txt = empty ? shortLabel(f.label) : show(v);
+    if (!empty && m[2] === 'lower') txt = lc(txt);
+    return { field: f.id, txt, empty, cls: f.id === 'name' ? 'nm' : '' };
+  });
+  toks.forEach((t, i) => {
+    if (!t.article) return;
+    const next = toks.slice(i + 1).find(x => x.field);
+    const a = /^[aeiou]/i.test(next?.txt || '') ? 'an' : 'a';
+    t.text = t.mod === 'cap' ? cap(a) : a;
+  });
+  // Read-only view: drop empty fields and the comma that introduced them ("Casimir Dorn, —").
+  if (plain) toks.forEach((t, i) => { if (t.field && t.empty) { t.drop = true; const prev = toks[i - 1]; if (prev?.text) prev.text = prev.text.replace(/,\s*$/, ''); } });
+  const html = toks.filter(t => !t.drop).map(t => {
+    if (t.br) return '<br>';
+    if (t.field && plain) { const v = `<b class="pv${t.empty ? ' empty' : ''}">${esc(t.empty ? '—' : t.txt)}</b>`; return t.cls ? `<span class="${t.cls}">${v}</span>` : v; }
+    if (t.field) {
+      const b = `<button class="part${t.empty ? ' empty' : ''}${fr(t.field)}" data-act="openSheet" data-scope="char" data-id="${t.field}" id="cp-${t.field}">${esc(t.txt)}</button>`;
+      return t.cls ? `<span class="${t.cls}">${b}</span>` : b;
+    }
+    return esc(t.text);
+  }).join('');
+  return { html, used };
+}
+
+function scaleHtml(n) {
+  const [lo, hi] = range(), ticks = [];
+  for (let x = lo; x <= hi; x++) ticks.push(`<i class="${x === n ? 'on' : ''}"></i>`);
+  return `<button class="scalebtn${fr('number')}" data-act="openSheet" data-scope="char" data-id="${lf().fields.find(f => f.kind === 'number').id}" aria-label="Change number, now ${n}">
+    <span class="lab">${esc(chk('over').label)}</span>
+    <span class="ticks" style="grid-template-columns:repeat(${ticks.length},1fr)">${ticks.join('')}</span>
+    <span class="lab">${esc(chk('under').label)}</span>
+    <span class="n">${n}</span></button>`;
+}
+
+function renderRfsCrew(c, nav) {
+  const { html, used } = sentenceHtml(c);
+  const rest = rf().fields.filter(f => !used.has(f.id) && !f.skill && !(f.status && !f.status.optional)).map(f => f.id);
+  const tree = skillTree(c), sts = statuses(c);
+  const rows = tree.map(sk => {
+    if (sk.root) return `<div class="skill root"><span class="sn">${esc(sk.name)}</span><span class="lv">${sk.level}<small>d6</small></span></div>`;
+    if (sk.earned != null) return `<div class="skill child earned" style="--dep:${sk.depth}"><span class="tw" aria-hidden="true">└</span><span class="sn">${esc(sk.name)}<small>Earned in play</small></span><span class="lv">${sk.level}<small>d6</small></span><span></span></div>`;
+    const scope = sk.field ? 'char' : 'skill', id = sk.field || sk.extra, key = sk.field || 'sk' + sk.extra;
+    return `<button class="skill child${fr(key)}" data-act="openSheet" data-scope="${scope}" data-id="${id}">
+        <span class="tw" aria-hidden="true">└</span><span class="sn${sk.name ? '' : ' empty'}">${esc(sk.name || 'Name this skill')}${sk.label ? `<small>${esc(sk.label)}</small>` : ''}</span>
+        <span class="lv">${sk.level}<small>d6</small></span><span class="chev" aria-hidden="true">›</span></button>`;
+  }).join('');
+  const strows = sts.map(t => `<button class="skill child status${fr(t.field)}" data-act="openSheet" data-scope="char" data-id="${t.field}">
+        <span class="tw" aria-hidden="true">!</span><span class="sn">${esc(t.text)}${t.optional ? '<small>GM may apply</small>' : ''}</span>
+        <span class="lv neg">${t.level}</span><span class="chev" aria-hidden="true">›</span></button>`).join('');
+  return `
+  <section class="group"><div class="eyebrow">Step 3 of 3 · ${esc(pack().genre || pack().name)} · Roll for Shoes</div><h2>Players</h2></section>
+  ${nav}
+  <section class="group">
+    <div class="sentence crew">
+      <p>${html}</p>
+      <div class="stats"><span class="stat">XP <b>${c.xp}</b></span><span class="stat">Skills <b>${tree.length}</b></span></div>
+    </div>
+    ${rest.length ? `<div class="card"><div class="drows" style="border-top:0">${drows('char', rest)}</div></div>` : ''}
+  </section>
+  <section class="group"><div class="eyebrow">Skills</div>
+    <div class="card"><div class="skills">${rows}${strows}</div></div>
+    <p class="hint">${tree.length > 1 ? 'Tap a skill to change it. ' : ''}New skills are earned in play: when every die shows 6, the player names a skill one level higher.</p>
+  </section>
+  <button class="btn ghost" data-act="randAll">Roll all</button>
+  <button class="btn" data-act="start">${S.started ? 'Back to play' : 'Start play'}</button>`;
+}
+
+function renderCrew() {
+  const c = S.chars[S.active], L = lf();
+  const nav = S.players > 1 ? `<div class="pnav">
+    <button data-act="ctab" data-i="${S.active - 1}" aria-label="Previous player"${S.active === 0 ? ' disabled' : ''}>←</button>
+    <span><span class="eyebrow">Player</span> <b>${S.active + 1}</b> <span class="of">of ${S.players}</span></span>
+    <button data-act="ctab" data-i="${S.active + 1}" aria-label="Next player"${S.active >= S.players - 1 ? ' disabled' : ''}>→</button>
+  </div>` : '';
+  if (isRfs()) return renderRfsCrew(c, nav);
+  const { html, used } = sentenceHtml(c);
+  const numF = L.fields.find(f => f.kind === 'number');
+  const rest = L.fields.filter(f => !used.has(f.id) && f.kind !== 'number').map(f => f.id);
+  const stats = [
+    ...derive(c).filter(d => d.v != null).map(d => `<span class="stat">${esc(shortLabel(d.label))} <b>${d.v}</b></span>`),
+    ...(L.resources || []).filter(r => c.resources[r.id] != null).map(r => `<span class="stat">${esc(r.label)} <b>${c.resources[r.id]}/${r.max}</b></span>`)
+  ].join('');
+  return `
+  <section class="group"><div class="eyebrow">Step 3 of 3 · ${esc(pack().genre || pack().name)}</div><h2>Players</h2></section>
+  ${nav}
+  <section class="group">
+    <div class="sentence crew">
+      <p>${html}</p>
+      ${numF ? scaleHtml(c.fields[numF.id]) : ''}
+      ${stats ? `<div class="stats">${stats}</div>` : ''}
+    </div>
+    ${rest.length ? `<div class="card"><div class="drows" style="border-top:0">${drows('char', rest)}</div></div>` : ''}
+    <p class="hint">Tap any part to change it.</p>
+  </section>
+  <button class="btn ghost" data-act="randAll">Roll all</button>
+  <button class="btn" data-act="start">${S.started ? 'Back to play' : 'Start play'}</button>`;
+}
+
+function renderSheet() {
+  const { scope, id } = sheet, f = fieldDef(scope, id), v = getVal(scope, id);
+  const list = listOf(f);
+  const dieBtn = canRandom(f) ? `<button class="dice" data-act="rand" data-scope="${scope}" data-id="${esc(id)}" aria-label="Random ${esc(shortLabel(f.label).toLowerCase())}">${die(5, 'sm')}</button>` : '<span></span>';
+  const select = (cur, idx = '') => {
+    const opts = list.includes(cur) || isEmpty(cur) ? list : [cur, ...list];
+    return `<div class="sel"><select data-field="${esc(id)}" data-scope="${scope}"${idx !== '' ? ` data-idx="${idx}"` : ''} aria-label="${esc(f.label)}${idx !== '' ? ' ' + (idx + 1) : ''}">
+      ${isEmpty(cur) ? '<option value="" selected>Choose…</option>' : ''}${opts.map(o => `<option${o === cur ? ' selected' : ''}>${esc(o)}</option>`).join('')}</select></div>`;
+  };
+  let control;
+  if (f.kind === 'number') {
+    const [lo, hi] = f.range || range(), b = [];
+    for (let n = lo; n <= hi; n++) b.push(`<button data-act="num" data-n="${n}" aria-pressed="${n === v}">${n}</button>`);
+    control = `<div class="seg${fr(id)}">${b.join('')}</div>`;
+  } else if (f.kind === 'multi') {
+    const arr = Array.isArray(v) ? v : [];
+    control = `<div class="stack">${[...Array(f.count || 2)].map((_, i) => select(arr[i] || '', i)).join('')}</div>`;
+  } else if (f.kind === 'pick') {
+    control = select(v);
+  } else if (f.kind === 'pick-or-text') {
+    control = `<div class="stack">${select(list.includes(v) ? v : '')}<input class="free" data-field="${esc(id)}" data-scope="${scope}" data-free="1" placeholder="Or write your own" value="${list.includes(v) ? '' : esc(v)}" autocomplete="off"></div>`;
+  } else {
+    control = `<input id="f-${esc(id)}" data-field="${esc(id)}" data-scope="${scope}" value="${esc(v)}" autocomplete="off" placeholder="${esc(shortLabel(f.label))}">`;
+  }
+  const notes = [f.hint, f.note].filter(Boolean).map(t => `<p class="hint">${esc(t)}</p>`).join('');
+  const numHint = f.kind === 'number'
+    ? `<p class="hint">Higher number = better at ${esc(chk('under').label)}. ${esc(chk('under').label)}: roll under ${v}. ${esc(chk('over').label)}: roll over ${v}. Exactly ${v}: ${esc(lf().exact?.name || 'special effect')}${lf().exact?.countsAsSuccess === false ? ' (not a success)' : ''}.</p>` : '';
+  const noRandom = !canRandom(f) ? `<p class="hint">The source has no list for this field, so it can't be randomised.</p>` : '';
+  return `
+  <div class="scrim" data-act="closeSheet"></div>
+  <div class="sheet gutter" role="dialog" aria-modal="true" aria-labelledby="sheet-t">
+    <div class="eyebrow" id="sheet-t">${esc(f.label)}</div>
+    <div class="row">${control}${dieBtn}</div>
+    ${numHint}${notes}${noRandom}
+    <button class="btn" data-act="closeSheet">Done</button>
+  </div>`;
+}
+
+function renderPack() {
+  const p = pack(), v = validate(p);
+  const checks = v.errs.length ? v.errs.map(e => `<li>${esc(e)}</li>`).join('') : `<li>Schema OK · ${v.tables} tables · ${v.entries} entries</li>`;
+  const prov = p.provenance || {};
+  return `
+  <section class="group"><div class="eyebrow">Loaded pack</div><h2>${esc(p.name)}</h2>
+    <p class="hint">${esc(prov.author || '')}${prov.license ? ' · ' + esc(prov.license) : ''}</p></section>
+  <section class="group"><div class="eyebrow">Validation</div><ul class="check">${checks}</ul></section>
+  <section class="group"><div class="eyebrow">Pack JSON${(p.extends || []).length ? ' · extends ' + esc(p.extends.join(', ')) : ''}</div><pre class="json">${esc(JSON.stringify(RAW[p.id], null, 2))}</pre></section>
+  <button class="linkbtn" data-act="reset">Reset mockup session</button>`;
+}
+
+/* ---------- Phase 3: shared helpers ---------- */
+const LIB = {};
+document.querySelectorAll('script[data-lib]').forEach(s => { try { LIB[s.dataset.lib] = JSON.parse(s.textContent); } catch (e) { console.error('Library JSON failed to parse', e); } });
+const REG = LIB.registry?.tools || [];
+const now = () => new Date().toISOString();
+const hhmm = t => new Date(t).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+const roll = n => 1 + rnd(n);
+function charName(c, i) {
+  if (c.fields.name) return show(c.fields.name);
+  const alt = c.fields.role || c.fields.concept || c.fields.form;
+  return alt ? cap(show(alt)) : `Player ${i + 1}`;
+}
+function trackLog(kind, c, text) { S.trackHistory.push({ t: now(), kind, char: c ? charName(c, S.chars.indexOf(c)) : null, text }); }
+const KIND = { roll: 'Roll', progress: 'Progress', resource: 'Resource', edit: 'Edit' };
+
+let wake = null;
+async function keepAwake() {
+  if (wake || !S.started || !navigator.wakeLock || document.visibilityState !== 'visible') return;
+  try { wake = await navigator.wakeLock.request('screen'); wake.addEventListener('release', () => { wake = null; }); } catch (e) {}
+}
+document.addEventListener('visibilitychange', keepAwake);
+
+function dieFace(v, sides, cls = '') {
+  return sides === 6 ? die(v, 'lg ' + cls) : `<span class="d20 ${cls}" role="img" aria-label="d${sides} showing ${v}">${v}</span>`;
+}
+function slots(tpl) { return [...tpl.matchAll(/\{([\w.-]+)(\?)?(?:\|\w+)?\}/g)].filter(m => !m[2]).map(m => m[1]); }
+function fmtData(d) {
+  if (!d) return '';
+  const parts = Object.entries(d).filter(([k]) => k !== 'text').map(([k, v]) => `${k} ${v}`);
+  if (d.text) parts.push(d.text);
+  return parts.join(' · ');
+}
+
+/* ---------- Tools: registry, library lists, pack generators ---------- */
+const packTools = () => (pack().generators || []).map(g => ({ id: 'pack:' + g.id, label: g.label, kind: 'gen', gen: g }));
+const toolById = id => id.startsWith('pack:') ? packTools().find(t => t.id === id) : REG.find(t => t.id === id);
+const libList = id => LIB[id] || { entries: [], modifiers: {} };
+const tmods = id => (S.toolMods[id] = S.toolMods[id] || {});
+const initial = v => v.replace(/^the\s+/i, '').charAt(0).toUpperCase();
+function libPool(listId, mods) {
+  return libList(listId).entries.filter(e => matches(e, { ...mods, letter: null }) && (!mods.letter || initial(e.v) === mods.letter));
+}
+function libDraw(listId, mods, avoid) {
+  const pool = libPool(listId, mods); if (!pool.length) return null;
+  const key = 'lib:' + listId, recent = S.recent[key] || [];
+  let c = pool.filter(e => !avoid.includes(e.v) && !recent.includes(e.v));
+  if (!c.length) c = pool.filter(e => !avoid.includes(e.v));
+  if (!c.length) return null;
+  const e = pick(c); remember(key, e.v); return e;
+}
+function modDefs(t) {
+  // [{ key, required, label, values, valueLabels }]
+  const decl = t.kind === 'gen' ? pack().modifiers || {} : libList(t.list).modifiers || {};
+  return ((t.kind === 'gen' ? t.gen.modifiers : t.modifiers) || []).map(m => ({ ...m, ...(decl[m.key] || {}), label: m.key === 'letter' ? 'Starting letter' : decl[m.key]?.label || cap(m.key) }));
+}
+const valLabel = (d, v) => d.valueLabels?.[v] || cap(v);
+function effMods(t) {
+  const m = { ...tmods(t.id) };
+  for (const d of modDefs(t)) if (d.default === 'genre' && m[d.key] === undefined) {
+    const g = d.key === 'setting' ? pack().nameSetting : pack()[d.key];
+    if (g && (d.values || []).includes(g)) m[d.key] = g;
+  }
+  return m;
+}
+const diceMods = t => ({ count: tmods(t.id).count ?? t.dice.count.default, type: tmods(t.id).type ?? t.dice.defaultType });
+const countOf = t => tmods(t.id).count ?? t.count.default;
+
+function relax(defs, sel, ok) {
+  let relaxed = false;
+  for (const d of defs) { if (ok()) break; if (!d.required && sel[d.key]) { delete sel[d.key]; relaxed = true; } }
+  return relaxed;
+}
+function rollTool() {
+  const st = S.tool, t = toolById(st.id), prev = st.result?.text;
+  const prevExtra = st.extra; st.extra = null;
+  if (!t) { st.result = null; return; }
+  if (t.kind === 'dice') {
+    const m = diceMods(t), dice = [...Array(m.count)].map(() => roll(m.type));
+    st.result = { text: String(dice.reduce((a, b) => a + b, 0)), dice, sides: m.type, note: `${m.count}d${m.type}${m.count > 1 ? ' = ' + dice.join(' + ') : ''}` };
+  } else if (t.kind === 'gen') {
+    const g = t.gen, mods = tmods(t.id), defs = modDefs(t);
+    if (defs.some(d => d.required && !mods[d.key])) { st.result = null; return; }
+    const sel = {}; for (const d of defs) if (mods[d.key]) sel[d.key] = mods[d.key];
+    const relaxed = relax(defs, sel, () => slots(g.output).every(id => (pack().tables[id] || []).some(e => matches(e, sel))));
+    const single = g.output.match(/^\{([\w.-]+)\}$/);
+    let text = '', sub = '';
+    for (let i = 0; i < 6; i++) {
+      if (single) { const e = draw(single[1], sel, prev); text = e?.v || ''; sub = fmtData(e?.data); }
+      else text = expand(g.output, sel);
+      if (text !== prev) break;
+    }
+    st.result = text ? { text, sub, relaxed, mods: sel } : null;
+  } else {
+    const defs = modDefs(t), mods = effMods(t), sel = {};
+    for (const d of defs) if (mods[d.key]) sel[d.key] = mods[d.key];
+    const relaxed = relax(defs, sel, () => libPool(t.list, sel).length > 0);
+    const n = t.count ? countOf(t) : 1, got = [], prevBase = st.result?.base?.[0] ?? prev;
+    for (let i = 0; i < n; i++) { const e = libDraw(t.list, sel, n === 1 && prevBase ? [prevBase, ...got] : got); if (e) got.push(e.v); }
+    // Optional parts (e.g. last name): drawn when switched on, filtered by the listed modifiers only.
+    // Kept separate from the main result so the order option can re-order without rerolling.
+    const drawn = [];
+    if (got.length === 1) for (const part of t.parts || []) {
+      if (!(tmods(t.id)[part.key] ?? part.default)) continue;
+      const psel = {}; for (const k of part.filterBy || []) if (sel[k]) psel[k] = sel[k];
+      const e = libDraw(part.list, psel, []);
+      if (e) drawn.push({ key: part.key, v: e.v, before: e.position === 'before', join: part.join ?? ' ' });
+    }
+    st.result = got.length ? { base: got, drawn, relaxed, mods: sel, glyph: t.display === 'glyph' } : null;
+    if (st.result) st.result.text = composeList(t, st.result);
+    if (st.result && followOn(t)) st.extra = drawFollow(t, prevExtra);
+  }
+  fresh.add('tool'); buzz();
+}
+// Follow-up toggle (e.g. Names → Description): when on, every reroll also draws a new follow-up.
+const followOn = t => !!(t.followUp && (tmods(t.id).followUp ?? t.followUp.default));
+const drawFollow = (t, avoid) => libDraw(toolById(t.followUp.tool).list, {}, avoid ? [avoid] : [])?.v || null;
+function composeList(t, r, html) {
+  // An entry may prefer to lead (position: "before"), e.g. Japanese family names. Applied only while the order option is on.
+  // html: escape, and underline each added part (e.g. the last name) for display.
+  const fmt = v => html ? esc(v) : v;
+  let out = fmt(r.base.join(t.join ?? ', '));
+  for (const d of r.drawn || []) {
+    const part = (t.parts || []).find(p => p.key === d.key);
+    const lead = d.before && part?.order && (tmods(t.id)[d.key + ':order'] ?? part.order.default);
+    const v = html ? `<span class="ul">${esc(d.v)}</span>` : d.v;
+    out = lead ? v + fmt(d.join) + out : out + fmt(d.join) + v;
+  }
+  return out;
+}
+function leaveTool() {
+  const st = S.tool; if (!st) return;
+  const t = toolById(st.id), r = st.result;
+  if (t && r?.text) S.toolHistory.push({ t: now(), tool: st.id, label: t.label, text: r.text + (st.extra ? (t.followUp?.join || ' — ') + st.extra : ''), relaxed: r.relaxed });
+  S.tool = null;
+}
+function openTool(id) { leaveTool(); S.tab = 'tools'; S.panel = null; S.tool = { id }; rollTool(); $('#view').scrollTop = 0; }
+
+function toolSub(t) {
+  if (t.kind === 'dice') { const m = diceMods(t); return `${m.count}d${m.type}`; }
+  const defs = modDefs(t), mods = t.kind === 'gen' ? tmods(t.id) : effMods(t);
+  if (t.kind !== 'gen' && !libList(t.list).entries.length) return 'Empty list';
+  const missing = defs.filter(d => d.required && !mods[d.key]);
+  if (missing.length) return 'Choose ' + missing.map(d => d.label.toLowerCase()).join(', ');
+  const set = defs.filter(d => mods[d.key]).map(d => d.key === 'letter' ? `Starts ${mods[d.key]}` : valLabel(d, mods[d.key]));
+  for (const part of t.parts || []) if (tmods(t.id)[part.key] ?? part.default) set.push('+ ' + part.label.toLowerCase());
+  if (followOn(t)) set.push('+ ' + t.followUp.label.toLowerCase());
+  if (set.length) return set.join(' · ');
+  if (t.count) return `${countOf(t)} at a time`;
+  return t.kind === 'gen' ? 'Pack table' : `${libList(t.list).entries.length} entries`;
+}
+function renderToolsHub() {
+  const btn = t => { const sub = toolSub(t); return `<button class="gen${/^Choose|Empty/.test(sub) ? ' req' : ''}" data-act="tool" data-id="${esc(t.id)}"><b>${esc(t.label)}</b><small>${esc(sub)}</small></button>`; };
+  const pt = packTools();
+  return `
+  <section class="group"><div class="eyebrow">Game master tools</div><h2>Tools</h2></section>
+  <section class="gens">${REG.map(btn).join('')}</section>
+  ${pt.length ? `<section class="group"><div class="eyebrow">${esc(pack().genre || pack().name)} pack</div><div class="gens">${pt.map(btn).join('')}</div></section>` : ''}
+  <button class="btn ghost" data-act="panel" data-v="toolHistory">History · ${S.toolHistory.length}</button>`;
+}
+function chipRow(t, d, cur) {
+  const opts = (d.required ? [] : [['', 'Any']]).concat((d.values || []).map(v => [v, valLabel(d, v)]));
+  return `<div class="group"><div class="eyebrow">${esc(d.label)}${d.required ? ' · required' : ''}</div><div class="chips">${opts.map(([v, l]) => `<button class="tog" data-act="tmod" data-key="${esc(d.key)}" data-v="${esc(v)}" aria-pressed="${(cur ?? '') === v}">${esc(l)}</button>`).join('')}</div></div>`;
+}
+function stepRow(label, act, n, lo, hi) {
+  return `<div class="group"><div class="eyebrow">${esc(label)}</div><div class="stepper">
+    <button data-act="${act}" data-d="-1" aria-label="Fewer"${n <= lo ? ' disabled' : ''}>−</button><output aria-live="polite">${n}</output>
+    <button data-act="${act}" data-d="1" aria-label="More"${n >= hi ? ' disabled' : ''}>+</button></div></div>`;
+}
+function renderToolMods(t) {
+  if (t.kind === 'dice') {
+    const m = diceMods(t);
+    return stepRow('Number of dice', 'tcount', m.count, t.dice.count.min, t.dice.count.max) +
+      `<div class="group"><div class="eyebrow">Type</div><div class="seg dtype">${t.dice.types.map(n => `<button data-act="tmod" data-key="type" data-v="${n}" aria-pressed="${m.type === n}">d${n}</button>`).join('')}</div></div>`;
+  }
+  const mods = t.kind === 'gen' ? tmods(t.id) : effMods(t);
+  let h = modDefs(t).map(d => d.key === 'letter'
+    ? `<div class="group"><div class="eyebrow">Starting letter</div><button class="drow letterbtn" data-act="letters"><span class="v">${mods.letter ? esc(mods.letter) : 'Any'}</span><span class="chev" aria-hidden="true">›</span></button></div>`
+    : chipRow(t, d, mods[d.key])).join('');
+  for (const part of t.parts || []) {
+    const on = !!(tmods(t.id)[part.key] ?? part.default);
+    const ord = !!(tmods(t.id)[part.key + ':order'] ?? part.order?.default);
+    h += `<div class="group"><div class="eyebrow">${esc(part.label)}</div><div class="chips">${[[false, 'Off'], [true, 'On']].map(([v, l]) => `<button class="tog" data-act="tpart" data-key="${esc(part.key)}" data-v="${v ? 1 : ''}" aria-pressed="${on === v}">${l}</button>`).join('')}</div>
+      ${on && part.order ? `<label class="checkrow"><input type="checkbox" id="ord-${esc(part.key)}" data-act="tpartorder" data-key="${esc(part.key)}"${ord ? ' checked' : ''}> ${esc(part.order.label)}?</label>` : ''}</div>`;
+  }
+  if (t.followUp) h += `<div class="group"><div class="eyebrow">${esc(t.followUp.label)}</div><div class="chips">${[[false, 'Off'], [true, 'On']].map(([v, l]) => `<button class="tog" data-act="tfollow" data-v="${v ? 1 : ''}" aria-pressed="${followOn(t) === v}">${l}</button>`).join('')}</div></div>`;
+  if (t.count) h += stepRow('How many', 'tcount', countOf(t), t.count.min, t.count.max);
+  return h;
+}
+function renderToolPage() {
+  const st = S.tool, t = toolById(st.id);
+  if (!t) { S.tool = null; return renderToolsHub(); }
+  const r = st.result, empty = t.kind === 'list' && !libList(t.list).entries.length;
+  let res;
+  if (empty) res = `<div class="empty-card">No entries yet. Add them to <code>tools/${esc(t.list)}.json</code>.</div>`;
+  else if (!r && t.kind === 'gen') res = `<div class="empty-card">Choose ${esc(modDefs(t).filter(d => d.required).map(d => d.label.toLowerCase()).join(', '))} below to roll.</div>`;
+  else if (!r) res = `<div class="empty-card">Nothing matches. Clear a filter below.</div>`;
+  else if (t.kind === 'dice') res = `<div class="tres${fr('tool')}"><div class="tbig num">${esc(r.text)}</div><div class="dicerow">${r.dice.map(v => dieFace(v, r.sides)).join('')}</div><div class="rfoot">${esc(r.note)}</div></div>`;
+  else res = `<div class="tres${fr('tool')}"><div class="tbig${r.glyph ? ' glyph' : ''}">${r.base ? composeList(t, r, true) : esc(r.text)}${st.extra ? `<span class="xtra">${esc(t.followUp.join)}${esc(st.extra)}</span>` : ''}</div>
+      ${r.sub ? `<p class="rsub">${esc(r.sub)}</p>` : ''}${r.relaxed ? '<div class="rfoot"><span class="relax">No exact match: some filters relaxed</span></div>' : ''}</div>`;
+  const follow = t.followUp && r && followOn(t) ? `<button class="mini-btn subroll" data-act="followUp">↻ New ${esc(t.followUp.label.toLowerCase())}</button>` : '';
+  return `
+  <div class="toolhead"><button class="back" data-act="toolBack">‹ Tools</button><span class="eyebrow">${t.kind === 'gen' ? esc(pack().genre || pack().name) + ' pack' : 'Tool'}</span></div>
+  <h2>${esc(t.label)}</h2>
+  ${res}${follow}
+  ${renderToolMods(t)}
+  <p class="hint">✓ or Back keeps this result in History. Reroll discards it.</p>`;
+}
+function renderLetterSheet() {
+  const t = toolById(S.tool.id), mods = effMods(t), sel = {};
+  for (const d of modDefs(t)) if (d.key !== 'letter' && mods[d.key]) sel[d.key] = mods[d.key];
+  const have = new Set(libPool(t.list, sel).map(e => initial(e.v)));
+  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  return `<div class="scrim" data-act="closeSheet"></div>
+  <div class="sheet gutter" role="dialog" aria-modal="true" aria-labelledby="sheet-t">
+    <div class="eyebrow" id="sheet-t">Starting letter</div>
+    <div class="letters">
+      <button class="any" data-act="letter" data-v="" aria-pressed="${!mods.letter}">Any</button>
+      ${letters.map(L => `<button data-act="letter" data-v="${L}" aria-pressed="${mods.letter === L}"${have.has(L) ? '' : ' disabled'}>${L}</button>`).join('')}
+    </div>
+    <p class="hint">Greyed letters have no names with your other settings.</p>
+  </div>`;
+}
+
+/* ---------- Track: rules rolls ---------- */
+const DEFAULT_OUT = [{ successes: 0, label: 'Goes wrong', text: 'GM says how things get worse.' }, { successes: 1, label: 'Barely', text: 'GM inflicts a complication, harm, or cost.' }, { successes: 2, label: 'Well', text: 'You do it well.' }, { successes: 3, label: 'Critical', text: 'GM tells you an extra effect.' }];
+const numId = () => lf().fields.find(f => f.kind === 'number').id;
+function lfPool(i) {
+  const dc = lf().dice || GENERIC_LF.dice, on = S.bonuses[i] || {};
+  const n = dc.base + (dc.bonuses || []).filter(b => on[b.id]).reduce((a, b) => a + b.dice, 0);
+  return Math.max(dc.min, Math.min(dc.max, n));
+}
+function lfRoll(i, dir) {
+  const c = S.chars[i], L = lf(), N = +c.fields[numId()], k = chk(dir), ex = L.exact || {};
+  const n = lfPool(i), dice = [...Array(n)].map(() => roll(6));
+  const marks = dice.map(v => v === N ? 'ex' : ((dir === 'under' ? v < N : v > N) ? 'ok' : 'no'));
+  const succ = marks.filter(m => m === 'ok' || (m === 'ex' && ex.countsAsSuccess !== false)).length;
+  const outs = [...(L.outcomes || DEFAULT_OUT)].sort((a, b) => b.successes - a.successes);
+  const o = outs.find(x => succ >= x.successes) || outs[outs.length - 1];
+  const bonuses = (L.dice?.bonuses || []).filter(b => S.bonuses[i]?.[b.id]).map(b => b.label);
+  S.bonuses[i] = {};
+  const e = { kind: 'lf', ci: i, who: charName(c, i), check: k.label, dir, N, dice, marks, successes: succ, outcome: o.label, outText: o.text, picks: o.picks, exact: marks.includes('ex'), bonuses };
+  trackLog('roll', c, `${k.label} ${n}d6 ${dir} ${N}: ${dice.join(' ')} → ${o.label} (${succ} success${succ === 1 ? '' : 'es'})${e.exact ? ' · ' + (ex.name || 'exact') : ''}`);
+  showRoll(e);
+}
+function rfsResolve(e) {
+  e.sum = e.dice.reduce((a, b) => a + b, 0) + e.mod;
+  e.gmSum = e.gm ? e.gm.reduce((a, b) => a + b, 0) : null;
+  e.allSix = e.dice.every(v => v === 6);
+  e.result = e.gm ? (e.sum > e.gmSum ? 'win' : e.sum < e.gmSum ? 'lose' : 'tie') : null;
+  e.text = e.gm ? { win: 'Success', lose: 'Fail', tie: 'Tie' }[e.result] : `Total ${e.sum}`;
+}
+function rfsRoll(i, key) {
+  const c = S.chars[i], sk = skillTree(c).find(s => s.key === key); if (!sk) return;
+  const dice = [...Array(sk.level)].map(() => roll(6));
+  const sts = statuses(c).filter(s => S.apply[i]?.[s.field]); S.apply[i] = {};
+  const e = { kind: 'rfs', ci: i, who: charName(c, i), skill: key, skillName: sk.name, level: sk.level, dice,
+    mod: sts.reduce((a, s) => a + s.level, 0), mods: sts.map(s => `${s.level} ${s.text}`), gm: S.gmDice ? [...Array(S.gmDice)].map(() => roll(6)) : null, spent: 0, xpGiven: false };
+  rfsResolve(e);
+  trackLog('roll', c, `${sk.name} ${sk.level}d6: ${dice.join(' ')}${e.mod ? ' (' + e.mod + ')' : ''}${dice.length > 1 || e.mod ? ' = ' + e.sum : ''}${e.gm ? ` vs GM ${e.gmSum}` : ''} → ${e.text}${e.allSix ? ' · all sixes' : ''}`);
+  if (e.result === 'lose') giveFailXp(e);
+  showRoll(e);
+}
+function giveFailXp(e) { const c = S.chars[e.ci]; if (e.xpGiven) return; c.xp = (c.xp || 0) + 1; e.xpGiven = true; trackLog('progress', c, `+1 XP (failed ${e.skillName})`); }
+const xpAvail = e => (S.chars[e.ci].xp || 0) - (e.xpGiven ? 1 : 0);
+function spendXp(e) {
+  const c = S.chars[e.ci];
+  if (xpAvail(e) < 1 || e.allSix) return;
+  const idx = e.dice.reduce((b, v, j) => v < 6 && (b < 0 || v < e.dice[b]) ? j : b, -1);
+  c.xp--; e.dice[idx] = 6; e.spent++; rfsResolve(e);
+  trackLog('progress', c, `Spent 1 XP: a die becomes 6 (${e.skillName}, now ${e.sum}${e.gm ? ' vs ' + e.gmSum : ''})`);
+  if (e.xpGiven && e.result !== 'lose') { c.xp--; e.xpGiven = false; trackLog('progress', c, '−1 XP: the roll no longer fails'); }
+}
+function showRoll(e) { S.roll = e; fresh.add('roll'); buzz(); if (S.resultMode === 'page') $('#view').scrollTop = 0; }
+
+function rollBody(e) {
+  if (e.kind === 'lf') {
+    const ex = lf().exact || {};
+    let h = `<div class="eyebrow">${esc(e.who)} · ${esc(e.check)} · ${e.dice.length}d6 ${e.dir} ${e.N}${e.bonuses.length ? ' · ' + esc(e.bonuses.join(', ')) : ''}</div>
+      <div class="dicerow">${e.dice.map((v, j) => dieFace(v, 6, e.marks[j])).join('')}</div>
+      <div class="outc">${esc(e.outcome)}<small>${e.successes} success${e.successes === 1 ? '' : 'es'}</small></div>
+      ${e.outText ? `<p class="rsub">${esc(e.outText)}</p>` : ''}`;
+    if (e.picks?.length) h += `<div class="callout acc"><span class="t">Pick one</span><ul>${e.picks.map(p => `<li>${esc(p)}</li>`).join('')}</ul></div>`;
+    if (e.exact) {
+      h += `<div class="callout"><span class="t">${esc(ex.name || 'Exact number')}${ex.countsAsSuccess === false ? ' · not a success' : ''}</span>${ex.text ? `<span>${esc(ex.text)}</span>` : ''}`;
+      if (ex.options) h += ex.options.map((o, j) => `<button class="choice" data-act="exopt" data-i="${j}" aria-pressed="${e.exChoice === j}"><b>${esc(o.label)}</b>${esc(o.text)}</button>`).join('');
+      if (Array.isArray(ex.questions)) h += `<ul>${ex.questions.map(q => `<li>${esc(q)}</li>`).join('')}</ul>`;
+      else if (typeof ex.questions === 'string') h += (e.exQ ? `<b>${esc(e.exQ)}</b>` : '') + `<button class="mini-btn" data-act="exq">${e.exQ ? 'Another question' : 'Draw a question'}</button>`;
+      h += '</div>';
+    }
+    return h;
+  }
+  let h = `<div class="eyebrow">${esc(e.who)} · ${esc(e.skillName)} · ${e.level}d6${e.gm ? ` vs GM ${e.gm.length}d6` : ''}</div>
+    <div class="dicerow"><span class="lab">Roll</span>${e.dice.map(v => dieFace(v, 6, v === 6 ? 'ok' : '')).join('')}${e.mod ? `<span class="sum">${e.mod}</span>` : ''}<span class="sum">= ${e.sum}</span></div>
+    ${e.gm ? `<div class="dicerow"><span class="lab">GM</span>${e.gm.map(v => dieFace(v, 6, 'no')).join('')}<span class="sum">= ${e.gmSum}</span></div>` : ''}
+    <div class="outc">${esc(e.text)}${e.spent ? `<small>${e.spent} XP spent</small>` : ''}</div>
+    ${e.mods.length ? `<p class="rsub">Status applied: ${esc(e.mods.join(', '))}</p>` : ''}
+    ${e.result === 'tie' ? '<p class="rsub">Tie. The GM decides; if it counts as a fail, add the XP.</p>' : ''}
+    ${!e.gm ? '<p class="rsub">Compare with the GM\'s roll. Higher wins.</p>' : ''}`;
+  if (e.xpGiven) h += '<div class="callout acc"><span class="t">+1 XP for failing</span></div>';
+  if (e.allSix) h += `<div class="callout acc"><span class="t">Every die is a 6</span><span>New skill at level ${e.level + 1}, branching from ${esc(e.skillName)}.</span>${e.newSkill ? `<b>Learned: ${esc(e.newSkill)} ${e.level + 1}</b>` : '<button class="mini-btn acc" data-act="newskill">Name the new skill</button>'}</div>`;
+  const acts = [];
+  if (!e.xpGiven && !e.allSix && (!e.gm || e.result === 'tie')) acts.push('<button class="mini-btn" data-act="failxp">Failed: +1 XP</button>');
+  if (!e.allSix && xpAvail(e) >= 1) acts.push(`<button class="mini-btn" data-act="spend">Spend 1 XP: lowest die → 6 <small>(${xpAvail(e)} left)</small></button>`);
+  if (acts.length) h += `<div class="chips">${acts.join('')}</div>`;
+  return h;
+}
+const rollSheet = () => `<div class="scrim" data-act="rollDone"></div>
+  <div class="sheet gutter rollsheet" role="dialog" aria-modal="true" aria-label="Roll result"><div class="result${fr('roll')}" style="border:0;padding:0;max-height:none">${rollBody(S.roll)}</div><button class="btn" data-act="rollDone">Done</button></div>`;
+function inlineRoll(i) {
+  if (S.resultMode !== 'inline' || !S.roll || S.roll.ci !== i) return '';
+  return `<div class="result${fr('roll')}">${rollBody(S.roll)}<button class="btn ghost" data-act="rollDone">Done</button></div>`;
+}
+function renderRollPage() {
+  return `<div class="toolhead"><button class="back" data-act="rollDone">‹ Track</button><span class="eyebrow">Roll</span></div>
+  <h2>${esc(S.roll.kind === 'lf' ? S.roll.check : S.roll.skillName)}</h2>
+  <div class="result big${fr('roll')}">${rollBody(S.roll)}</div>
+  <p class="hint">Same layout as the Dice tool. Done returns to Track.</p>`;
+}
+function renderNewSkill() {
+  const e = S.roll;
+  return `<div class="scrim" data-act="closeSheet"></div>
+  <div class="sheet gutter" role="dialog" aria-modal="true" aria-labelledby="sheet-t">
+    <div class="eyebrow" id="sheet-t">New skill · level ${e.level + 1} · from ${esc(e.skillName)}</div>
+    <div class="row"><input id="ns-name" data-ns="1" value="${esc(sheet.val || '')}" placeholder="Name it after the action" autocomplete="off">
+      <button class="dice" data-act="nsrand" aria-label="Suggest a skill name">${die(5, 'sm')}</button></div>
+    <p class="hint">Roll for Shoes: name it after what the character just did, e.g. "Jump the gap".</p>
+    <button class="btn" data-act="nsadd">Add skill</button>
+  </div>`;
+}
+
+/* ---------- Track: views ---------- */
+function resRow(c, r) {
+  const v = c.resources[r.id], lost = r.max - v, st = (r.states || []).filter(s => lost >= s.lost).pop();
+  return `<div class="res"><span class="eyebrow">${esc(r.label)}${st ? `<span class="st">${esc(cap(st.label))}: ${esc(st.text)}</span>` : ''}</span>
+    <button data-act="res" data-id="${r.id}" data-d="-1" aria-label="Lose 1 ${esc(r.label)}"${v <= 0 ? ' disabled' : ''}>−</button>
+    <output>${v}/${r.max}</output>
+    <button data-act="res" data-id="${r.id}" data-d="1" aria-label="Gain 1 ${esc(r.label)}"${v >= r.max ? ' disabled' : ''}>+</button></div>`;
+}
+function plainScale(n) {
+  const [lo, hi] = range(), ticks = [];
+  for (let x = lo; x <= hi; x++) ticks.push(`<i class="${x === n ? 'on' : ''}"></i>`);
+  return `<div class="scalebtn static"><span class="lab">${esc(chk('over').label)}</span><span class="ticks" style="grid-template-columns:repeat(${ticks.length},1fr)">${ticks.join('')}</span><span class="lab">${esc(chk('under').label)}</span><span class="n">${n}</span></div>`;
+}
+function plainRows(c, ids) {
+  if (!ids.length) return '';
+  return `<div class="card"><dl class="plain">${ids.map(id => { const f = fieldDef('char', id), v = c.fields[id];
+    return `<div><dt class="eyebrow">${esc(shortLabel(f.label))}</dt><dd${isEmpty(v) ? ' class="empty"' : ''}>${isEmpty(v) ? '—' : esc(show(v))}</dd></div>`; }).join('')}</dl></div>`;
+}
+function lfControls(c, i, compact) {
+  const L = lf(), N = c.fields[numId()], dc = L.dice || GENERIC_LF.dice, pool = lfPool(i);
+  const res = (L.resources || []).filter(r => c.resources[r.id] != null).map(r => resRow(c, r)).join('');
+  return `
+    ${res ? `<div class="${compact ? 'reslist' : 'card'}">${res}</div>` : ''}
+    <div class="rollbox">
+      ${(dc.bonuses || []).length ? `<div class="chips">${dc.bonuses.map(b => `<button class="tog" data-act="bonus" data-id="${b.id}" aria-pressed="${!!S.bonuses[i]?.[b.id]}">+${b.dice}d ${esc(b.label)}</button>`).join('')}</div>` : ''}
+      <div class="checks${compact ? ' compact' : ''}">${(L.checks || []).map((k, j) => `<button class="chk${j ? ' alt' : ''}" data-act="lfroll" data-dir="${k.roll}"><b>${esc(k.label)}</b><span>${pool}d6 · ${k.roll} ${N}</span>${!compact && k.hint ? `<small>${esc(k.hint)}</small>` : ''}</button>`).join('')}</div>
+      ${compact ? '' : `<p class="hint">Exactly ${N}: ${esc(L.exact?.name || 'special effect')}${L.exact?.countsAsSuccess === false ? ' (not a success)' : ''}.${L.help?.text ? ' Helping: ' + esc(L.help.text) : ''}</p>`}
+    </div>`;
+}
+function rfsControls(c, i, compact) {
+  const tree = skillTree(c), sts = statuses(c);
+  const statusChips = sts.length ? `<div class="chips">${sts.map(s => `<button class="tog" data-act="apply" data-id="${s.field}" aria-pressed="${!!S.apply[i]?.[s.field]}">${s.level} ${esc(s.text)}</button>`).join('')}</div>` : '';
+  const skills = compact
+    ? `<div class="chips skchips">${tree.filter(sk => sk.name).map(sk => `<button class="tog skchip" data-act="rfsroll" data-k="${sk.key}">${esc(sk.name)} <small>${sk.level}d6</small></button>`).join('')}</div>`
+    : `<div class="card skills">${tree.map(sk => `<button class="skill sroll" data-act="rfsroll" data-k="${sk.key}" style="--dep:${sk.depth}"${sk.name ? '' : ' disabled'}>
+        <span class="tw" aria-hidden="true">${sk.depth ? '└' : ''}</span><span class="sn">${esc(sk.name || 'Unnamed skill')}</span>
+        <span class="lv">${sk.level}<small>d6</small></span><span class="go">Roll</span></button>`).join('')}</div>`;
+  return statusChips + skills;
+}
+// Character page: read-only description, then the same controls in full.
+function lfBody(c, i) {
+  const L = lf(), N = c.fields[numId()];
+  const { html, used } = sentenceHtml(c, true);
+  const stats = derive(c).filter(d => d.v != null).map(d => `<span class="stat">${esc(shortLabel(d.label))} <b>${d.v}</b></span>`).join('');
+  return `
+    <div class="sentence crew mini plainsent"><p>${html}</p>${plainScale(N)}${stats ? `<div class="stats">${stats}</div>` : ''}</div>
+    ${plainRows(c, L.fields.filter(f => !used.has(f.id) && f.kind !== 'number').map(f => f.id))}
+    ${lfControls(c, i, false)}
+    ${inlineRoll(i)}`;
+}
+function rfsBody(c, i) {
+  const { html, used } = sentenceHtml(c, true), tree = skillTree(c);
+  return `
+    <div class="sentence crew mini plainsent"><p>${html}</p><div class="stats"><span class="stat">XP <b>${c.xp || 0}</b></span><span class="stat">Skills <b>${tree.length}</b></span></div></div>
+    ${plainRows(c, rf().fields.filter(f => !used.has(f.id) && !f.skill && !(f.status && !f.status.optional)).map(f => f.id))}
+    ${rfsControls(c, i, false)}
+    ${inlineRoll(i)}`;
+}
+const charBody = (c, i) => isRfs() ? rfsBody(c, i) : lfBody(c, i);
+// Track: one compact card per character. Name row opens the character page; roll controls sit right under it.
+function compactCard(c, i) {
+  return `<div class="pcard compact" data-ci="${i}">
+    <button class="prow" data-act="openchar" data-i="${i}"><span class="pn"><b>${esc(charName(c, i))}</b><small>${esc(partySub(c))}</small></span><span class="stats">${partyStats(c)}</span><span class="chev" aria-hidden="true">›</span></button>
+    ${isRfs() ? rfsControls(c, i, true) : lfControls(c, i, true)}
+    ${inlineRoll(i)}</div>`;
+}
+function gmControl() {
+  if (!isRfs()) return '';
+  return `<div class="group"><div class="eyebrow">Opposed by GM</div><div class="seg gmseg">${[0, 1, 2, 3, 4].map(n => `<button data-act="gm" data-n="${n}" aria-pressed="${S.gmDice === n}">${n ? n + 'd6' : 'Off'}</button>`).join('')}</div></div>`;
+}
+function partySub(c) {
+  if (!isRfs()) return [show(c.fields.style), lc(show(c.fields.role))].filter(Boolean).join(' ');
+  // Skip the field already standing in for a missing name.
+  const nm = charName(c, S.chars.indexOf(c)).toLowerCase();
+  const f = rf().fields.find(f => f.id !== 'name' && !isEmpty(c.fields[f.id]) && show(c.fields[f.id]).toLowerCase() !== nm);
+  return f ? show(c.fields[f.id]) : '';
+}
+function partyStats(c) {
+  if (isRfs()) return `<span class="stat">XP <b>${c.xp || 0}</b></span><span class="stat">Skills <b>${skillTree(c).length}</b></span>`;
+  // Resources are shown as counters on the card, so only the number goes here.
+  return `<span class="stat">N <b>${c.fields[numId()]}</b></span>`;
+}
+function storyCard() {
+  const p = pack();
+  let seed = '';
+  if (p.seed) {
+    if (!S.seed) rollAll();
+    seed = p.seed.template.split(/(\{\d+\})/).map(s => {
+      const m = s.match(/^\{(\d+)\}$/);
+      return m ? `<button class="part${fr('col' + m[1])}" data-act="col" data-i="${m[1]}" aria-label="Reroll ${esc(p.seed.columns[m[1]].label)}">${esc(seedPart(+m[1]))}</button>` : esc(s);
+    }).join('');
+  }
+  const qs = p.story?.questions || [], gf = groupFieldsOf(), pt = packTools();
+  return `<section class="group"><div class="eyebrow">Story · ${esc(p.genre || p.name)}</div>
+    <div class="card story">
+      ${seed ? `<p class="seedline">${seed}</p>` : ''}
+      ${qs.length || gf.length ? `<div class="drows"${seed ? '' : ' style="border-top:0"'}>${qs.length ? drows('q', qs.map(q => q.id), 'Not answered') : ''}${gf.length ? drows('group', gf.map(f => f.id)) : ''}</div>` : ''}
+      ${!seed && !qs.length && !gf.length ? `<p class="hint" style="padding:12px 0">${esc(p.name)} has no story seed.</p>` : ''}
+    </div>
+    ${pt.length ? `<div class="chips gchips">${pt.map(t => `<button class="tog" data-act="tool" data-id="${esc(t.id)}">${esc(t.label)} ›</button>`).join('')}</div>` : ''}
+  </section>`;
+}
+function mockupBar() {
+  const opt = (act, v, l, cur) => `<button class="tog" data-act="${act}" data-v="${v}" aria-pressed="${cur === v}">${l}</button>`;
+  return `<section class="mock" aria-label="Mockup options"><div class="eyebrow">Mockup options · pick one to compare</div>
+    <div class="mockrow"><span>Roll result</span><div class="chips">${opt('rmode', 'sheet', 'Sheet', S.resultMode)}${opt('rmode', 'inline', 'Inline', S.resultMode)}${opt('rmode', 'page', 'Page', S.resultMode)}</div></div></section>`;
+}
+function renderTrackPlay() {
+  if (S.panel === 'trackHistory') return renderHistory('track');
+  if (S.roll && S.resultMode === 'page') return renderRollPage();
+  if (S.openChar != null && S.chars[S.openChar]) return renderCharPage(S.openChar);
+  const list = S.chars.slice(0, S.players).map((c, i) => compactCard(c, i)).join('');
+  return `
+  ${mockupBar()}
+  ${storyCard()}
+  <section class="group"><div class="eyebrow">Party</div>${gmControl()}${list}</section>
+  <button class="btn ghost" data-act="panel" data-v="trackHistory">History · ${S.trackHistory.length}</button>`;
+}
+function renderCharPage(i) {
+  const c = S.chars[i];
+  const nav = S.players > 1 ? `<div class="pnav">
+    <button data-act="openchar" data-i="${i - 1}" aria-label="Previous player"${i === 0 ? ' disabled' : ''}>←</button>
+    <span><span class="eyebrow">Player</span> <b>${i + 1}</b> <span class="of">of ${S.players}</span></span>
+    <button data-act="openchar" data-i="${i + 1}" aria-label="Next player"${i >= S.players - 1 ? ' disabled' : ''}>→</button></div>` : '';
+  return `<div class="toolhead"><button class="back" data-act="party">‹ Track</button><span class="eyebrow">Character</span></div>
+  ${nav}${gmControl()}<div class="pcard" data-ci="${i}">${charBody(c, i)}</div>`;
+}
+function renderHistory(which) {
+  const items = (which === 'track' ? S.trackHistory : S.toolHistory).slice().reverse();
+  const rows = items.map(h => `<div class="hrow"><time>${hhmm(h.t)}</time><div><span class="eyebrow">${esc(which === 'track' ? [KIND[h.kind], h.char].filter(Boolean).join(' · ') : h.label)}</span><div class="lt">${esc(h.text)}</div></div></div>`).join('');
+  const empty = which === 'track' ? 'Rolls, XP, new skills, resource changes and edits appear here.' : 'Results you keep appear here. Leaving a tool keeps its result; Reroll discards it.';
+  return `<div class="toolhead"><button class="back" data-act="panel" data-v="">‹ ${which === 'track' ? 'Track' : 'Tools'}</button><span class="eyebrow">This session</span></div>
+  <h2>${which === 'track' ? 'Track' : 'Tools'} history</h2>
+  <div class="card">${rows || `<p class="empty-note">${empty}</p>`}</div>`;
+}
+function wizSteps() {
+  return `<div class="vtabs three" role="tablist" aria-label="Setup steps">${[['setup', '1 Setup'], ['seed', '2 Story'], ['crew', '3 Players']].map(([v, l]) => `<button role="tab" data-act="go" data-v="${v}" aria-selected="${S.view === v}">${l}</button>`).join('')}</div>`;
+}
+function renderMenu() {
+  return `<div class="scrim" data-act="closeSheet"></div>
+  <div class="sheet gutter" role="dialog" aria-modal="true" aria-labelledby="sheet-t">
+    <div class="eyebrow" id="sheet-t">Session · ${esc(pack().genre || pack().name)} · ${isRfs() ? 'Roll for Shoes' : 'Lasers & Feelings'}</div>
+    <button class="btn ghost" data-act="panel" data-v="pack">Pack details</button>
+    <button class="btn ghost" data-act="newSession">${sheet.confirm ? 'Tap again: clear this session' : 'New session'}</button>
+    <p class="hint">New session clears characters, story and both histories.</p>
+    <button class="btn" data-act="closeSheet">Close</button>
+  </div>`;
+}
+
+/* ---------- Render + events ---------- */
+const VIEWS = { setup: renderSetup, seed: renderSeed, crew: renderCrew };
+function renderMain() {
+  if (S.panel === 'pack') return `<div class="toolhead"><button class="back" data-act="panel" data-v="">‹ Back</button></div>` + renderPack();
+  if (S.tab === 'tools') return S.panel === 'toolHistory' ? renderHistory('tools') : S.tool ? renderToolPage() : renderToolsHub();
+  if (!S.started) return wizSteps() + VIEWS[S.view === 'pack' ? 'setup' : S.view]();
+  return renderTrackPlay();
+}
+function renderSheetLayer() {
+  if (sheet?.scope === 'menu') return renderMenu();
+  if (sheet?.scope === 'letter') return S.tool ? renderLetterSheet() : '';
+  if (sheet?.scope === 'newskill') return S.roll ? renderNewSkill() : '';
+  if (sheet) return renderSheet();
+  if (S.roll && S.resultMode === 'sheet' && S.tab === 'track' && S.started && !S.panel) return rollSheet();
+  return '';
+}
+function render() {
+  ensureState(); ensurePlayState();
+  $('#view').innerHTML = renderMain();
+  $('#sheet').innerHTML = renderSheetLayer();
+  const t = S.tab === 'tools' && S.tool && !S.panel ? toolById(S.tool.id) : null;
+  const canRe = t && !(t.kind === 'list' && !libList(t.list).entries.length) && !(t.kind === 'gen' && !S.tool.result);
+  $('#dock').innerHTML = t ? `<button class="btn" data-act="reroll"${canRe ? '' : ' disabled'}>Reroll</button><button class="btn keep" data-act="toolBack" aria-label="Keep and close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>` : '';
+  $('#dock').classList.toggle('one', !!t);
+  document.querySelectorAll('.tabs button').forEach(b => b.setAttribute('aria-current', b.dataset.v === S.tab ? 'page' : 'false'));
+  $('#chip').textContent = `${pack().genre || pack().name} · ${isRfs() ? 'RfS' : 'L&F'} · ${S.players}P${S.started ? '' : ' · setup'}`;
+  fresh.clear();
+  save();
+  keepAwake();
+}
+function ensurePlayState() {
+  for (const k of ['toolMods', 'bonuses', 'apply']) S[k] = S[k] || {};
+  for (const k of ['toolHistory', 'trackHistory']) S[k] = S[k] || [];
+  S.tab = S.tab || 'track'; S.resultMode = S.resultMode || 'sheet'; S.gmDice = S.gmDice || 0;
+  if (S.openChar != null && S.openChar >= S.players) S.openChar = null;
+  if (S.roll && !S.chars[S.roll.ci]) S.roll = null;
+}
+function setField(scope, id, value) {
+  if (scope === 'group') { S.group[id] = value; return; }
+  if (scope === 'q') { S.answers[id] = value; return; }
+  const c = S.chars[S.active];
+  if (scope === 'skill') { c.extra[+id] = value; return; }
+  c.fields[id] = value;
+  if (!isRfs()) syncResources(c);
+}
+function closeSheet() {
+  // On Track in play, an edit made through a sheet is logged once, when the sheet closes.
+  if (sheet && S.started && ['char', 'group', 'q', 'skill'].includes(sheet.scope)) {
+    const after = getVal(sheet.scope, sheet.id), f = fieldDef(sheet.scope, sheet.id);
+    if (JSON.stringify(after) !== sheet.before) {
+      const fmt = v => isEmpty(v) ? '(blank)' : show(v);
+      trackLog('edit', ['char', 'skill'].includes(sheet.scope) ? S.chars[S.active] : null, `${shortLabel(f.label)}: ${fmt(JSON.parse(sheet.before ?? 'null'))} → ${fmt(after)}`);
+    }
+  }
+  sheet = null;
+}
+
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-act]');
+  if (!b || b.disabled) return;
+  const host = b.closest('[data-ci]'); if (host) S.active = +host.dataset.ci;
+  const { scope, id } = b.dataset, i = S.active;
+  switch (b.dataset.act) {
+    case 'tab': {
+      const v = b.dataset.v;
+      if (S.tab === 'tools') leaveTool();
+      S.tab = v; S.panel = null; sheet = null; $('#view').scrollTop = 0; break;
+    }
+    case 'menu': sheet = { scope: 'menu' }; break;
+    case 'newSession': if (!sheet.confirm) { sheet.confirm = true; break; } S = blank(); sheet = null; break;
+    case 'panel': if (S.tab === 'tools' && b.dataset.v === 'pack') leaveTool(); S.panel = b.dataset.v || null; sheet = null; $('#view').scrollTop = 0; break;
+    case 'go': S.view = b.dataset.v; sheet = null; $('#view').scrollTop = 0; break;
+    case 'start': S.started = true; S.tab = 'track'; S.panel = null; S.openChar = null; $('#view').scrollTop = 0; trackLog('edit', null, `Session started · ${pack().genre || pack().name} · ${S.players} player${S.players > 1 ? 's' : ''}`); break;
+    case 'pack': if (S.packId !== b.dataset.id) { S.packId = b.dataset.id; S.starter = null; S.answers = {}; S.seed = null; S.chars = []; S.group = {}; S.recent = {}; S.active = 0; } break;
+    case 'rules': if (S.rulesId !== b.dataset.id) { S.rulesId = b.dataset.id; S.chars = []; S.active = 0; S.starter = null; } break;
+    case 'starter': {
+      const k = skillCfg(), n = Math.min(k.max, Math.max(0, starterCount() + +b.dataset.d));
+      S.starter = n;
+      for (const c of S.chars) { if (!c.extra) continue; while (c.extra.length < n) c.extra.push(pickSkill(c)); c.extra.length = n; }
+      break;
+    }
+    case 'players': S.players = Math.min(4, Math.max(1, S.players + +b.dataset.d)); break;
+    case 'rollAll': rollAll(); buzz(); break;
+    case 'seedTab': S.seedTab = b.dataset.v; break;
+    case 'col': { const k = +b.dataset.i; S.seed[k] = seedCol(k, S.seed[k].v); fresh.add('col' + k); if (S.started) trackLog('edit', null, `Story: ${seedText()}`); buzz(); break; }
+    case 'ctab': S.active = +b.dataset.i; sheet = null; break;
+    case 'openSheet': sheet = { scope, id, before: JSON.stringify(getVal(scope, id)) }; break;
+    case 'closeSheet': closeSheet(); break;
+    case 'randAll': { const old = S.chars[S.active]; const c = newCharacter(); rf().fields.forEach(f => { if (!canRandom(f)) c.fields[f.id] = old.fields[f.id]; fresh.add(f.id); }); (c.extra || []).forEach((_, k) => fresh.add('sk' + k)); S.chars[S.active] = c; buzz(); break; }
+    case 'rand': { const f = fieldDef(scope, id); setField(scope, id, scope === 'skill' ? pickSkill(S.chars[S.active], getVal(scope, id)) : randomValue(f, getVal(scope, id))); if (scope === 'skill') fresh.add('sk' + id); fresh.add(id); buzz(); break; }
+    case 'num': setField('char', sheet.id, +b.dataset.n); break;
+    case 'reset': S = blank(); sheet = null; break;
+    // Tools
+    case 'tool': openTool(b.dataset.id); break;
+    case 'toolBack': leaveTool(); $('#view').scrollTop = 0; break;
+    case 'reroll': rollTool(); break;
+    case 'tmod': {
+      const t = toolById(S.tool.id), v = b.dataset.v, key = b.dataset.key;
+      tmods(t.id)[key] = key === 'type' ? +v : v; rollTool(); break;
+    }
+    case 'tcount': {
+      const t = toolById(S.tool.id), lim = t.kind === 'dice' ? t.dice.count : t.count, cur = t.kind === 'dice' ? diceMods(t).count : countOf(t);
+      tmods(t.id).count = Math.min(lim.max, Math.max(lim.min, cur + +b.dataset.d)); rollTool(); break;
+    }
+    case 'tpart': tmods(S.tool.id)[b.dataset.key] = !!b.dataset.v; rollTool(); break;
+    case 'tpartorder': {
+      // Re-order the name on screen; no reroll.
+      const t = toolById(S.tool.id); tmods(t.id)[b.dataset.key + ':order'] = b.checked;
+      if (S.tool.result?.base) S.tool.result.text = composeList(t, S.tool.result);
+      break;
+    }
+    case 'letters': sheet = { scope: 'letter' }; break;
+    case 'letter': tmods(S.tool.id).letter = b.dataset.v; sheet = null; rollTool(); break;
+    case 'followUp': { const t = toolById(S.tool.id); S.tool.extra = drawFollow(t, S.tool.extra); fresh.add('tool'); buzz(); break; }
+    case 'tfollow': {
+      // Toggling adds or removes the follow-up without rerolling the main result.
+      const t = toolById(S.tool.id); tmods(t.id).followUp = !!b.dataset.v;
+      S.tool.extra = followOn(t) && S.tool.result ? drawFollow(t, null) : null; fresh.add('tool'); break;
+    }
+    // Track
+    case 'rmode': S.resultMode = b.dataset.v; break;
+    case 'openchar': S.openChar = +b.dataset.i; S.active = S.openChar; $('#view').scrollTop = 0; break;
+    case 'party': S.openChar = null; break;
+    case 'gm': S.gmDice = +b.dataset.n; break;
+    case 'bonus': { const on = S.bonuses[i] = S.bonuses[i] || {}; on[id] = !on[id]; break; }
+    case 'apply': { const on = S.apply[i] = S.apply[i] || {}; on[id] = !on[id]; break; }
+    case 'res': {
+      const c = S.chars[i], r = lf().resources.find(x => x.id === id), old = c.resources[id];
+      c.resources[id] = Math.max(0, Math.min(r.max, old + +b.dataset.d));
+      const st = (r.states || []).filter(s => r.max - c.resources[id] >= s.lost).pop();
+      trackLog('resource', c, `${r.label} ${old} → ${c.resources[id]}${st ? ' (' + st.label + ')' : ''}`); break;
+    }
+    case 'lfroll': lfRoll(i, b.dataset.dir); break;
+    case 'rfsroll': rfsRoll(i, b.dataset.k); break;
+    case 'rollDone': S.roll = null; break;
+    case 'exopt': {
+      const e = S.roll, o = lf().exact.options[+b.dataset.i]; e.exChoice = +b.dataset.i;
+      trackLog('progress', S.chars[e.ci], `${lf().exact.name}: ${o.label}`); break;
+    }
+    case 'exq': { const e = S.roll; e.exQ = draw(lf().exact.questions, null, e.exQ)?.v; break; }
+    case 'failxp': giveFailXp(S.roll); break;
+    case 'spend': spendXp(S.roll); fresh.add('roll'); buzz(); break;
+    case 'newskill': sheet = { scope: 'newskill', val: '' }; break;
+    case 'nsrand': { const c = S.chars[S.roll.ci], taken = new Set(skillTree(c).map(s => s.name)), pool = skillList().concat(GENERIC_SKILLS).filter(v => !taken.has(v) && v !== sheet.val); if (pool.length) sheet.val = pick(pool); break; }
+    case 'nsadd': {
+      const e = S.roll, c = S.chars[e.ci], name = (sheet.val || '').trim();
+      if (!name) break;
+      c.earned = c.earned || []; c.earned.push({ name, level: e.level + 1, parent: e.skill }); e.newSkill = name;
+      trackLog('progress', c, `New skill: ${name} ${e.level + 1} (from ${e.skillName})`); sheet = null; break;
+    }
+    default: return;
+  }
+  render();
+});
+document.addEventListener('input', e => {
+  const t = e.target;
+  if (t.dataset?.ns) { sheet.val = t.value; return; }
+  const id = t.dataset?.field;
+  if (!id || t.tagName !== 'INPUT') return;
+  setField(t.dataset.scope, id, t.value); save();
+  const part = $('#cp-' + id); if (part) { part.textContent = t.value || shortLabel(fieldDef(t.dataset.scope, id).label); part.classList.toggle('empty', !t.value); }
+  if (t.dataset.free) { const s = t.closest('.stack')?.querySelector('select'); if (s) s.value = ''; }
+});
+document.addEventListener('change', e => {
+  const t = e.target, id = t.dataset?.field;
+  if (!id || t.tagName !== 'SELECT') return;
+  const scope = t.dataset.scope;
+  if (t.dataset.idx != null) { const arr = [...(getVal(scope, id) || [])]; arr[+t.dataset.idx] = t.value; setField(scope, id, arr); }
+  else setField(scope, id, t.value);
+  render();
+});
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Escape') return;
+  if (sheet) { closeSheet(); render(); } else if (S.roll && S.resultMode === 'sheet') { S.roll = null; render(); }
+});
+
+render();
+
+</script>

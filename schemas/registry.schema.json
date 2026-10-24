@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pocket-rpg/schemas/registry.schema.json",
+  "title": "PocketRPG tools registry",
+  "description": "See docs/05-tools-library.md §1.",
+  "type": "object",
+  "required": ["version", "tools"],
+  "additionalProperties": false,
+  "properties": {
+    "version": { "$ref": "common.schema.json#/$defs/version" },
+    "tools": { "type": "array", "items": { "$ref": "#/$defs/tool" } }
+  },
+  "$defs": {
+    "range": {
+      "type": "object", "required": ["min", "max", "default"], "additionalProperties": false,
+      "properties": { "min": { "type": "integer", "minimum": 1 }, "max": { "type": "integer", "minimum": 1 }, "default": { "type": "integer", "minimum": 1 } }
+    },
+    "tool": {
+      "type": "object",
+      "required": ["id", "label", "kind"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "common.schema.json#/$defs/id" },
+        "label": { "type": "string" },
+        "kind": { "enum": ["dice", "list"] },
+        "list": { "type": "string" },
+        "dice": {
+          "type": "object", "required": ["types", "count", "defaultType"], "additionalProperties": false,
+          "properties": {
+            "types": { "type": "array", "items": { "type": "integer", "minimum": 2 }, "minItems": 1 },
+            "count": { "$ref": "#/$defs/range" },
+            "defaultType": { "type": "integer" }
+          }
+        },
+        "modifiers": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/modifierUse" } },
+        "parts": {
+          "type": "array",
+          "items": {
+            "type": "object", "required": ["key", "label", "list"], "additionalProperties": false,
+            "properties": {
+              "key": { "type": "string" },
+              "label": { "type": "string" },
+              "list": { "type": "string" },
+              "join": { "type": "string" },
+              "default": { "type": "boolean" },
+              "filterBy": { "type": "array", "items": { "type": "string" } },
+              "order": {
+                "type": "object", "required": ["label", "default"], "additionalProperties": false,
+                "properties": { "label": { "type": "string" }, "default": { "type": "boolean" } }
+              }
+            }
+          }
+        },
+        "followUp": {
+          "type": "object", "required": ["label", "tool"], "additionalProperties": false,
+          "properties": { "label": { "type": "string" }, "tool": { "type": "string" }, "join": { "type": "string" }, "default": { "type": "boolean" } }
+        },
+        "count": { "$ref": "#/$defs/range" },
+        "join": { "type": "string" },
+        "display": { "enum": ["text", "glyph"] }
+      },
+      "allOf": [
+        { "if": { "properties": { "kind": { "const": "dice" } } }, "then": { "required": ["dice"] } },
+        { "if": { "properties": { "kind": { "const": "list" } } }, "then": { "required": ["list"] } }
+      ]
+    }
+  }
+}

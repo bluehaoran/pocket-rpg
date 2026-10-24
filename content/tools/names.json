@@ -1,0 +1,1082 @@
+{
+ "id": "names",
+ "label": "Names",
+ "version": "0.1.0",
+ "provenance": {
+  "author": "PocketRPG",
+  "license": "original entries"
+ },
+ "modifiers": {
+  "gender": {
+   "label": "Gender",
+   "values": [
+    "f",
+    "m",
+    "x"
+   ],
+   "valueLabels": {
+    "f": "Female",
+    "m": "Male",
+    "x": "Neutral"
+   }
+  },
+  "setting": {
+   "label": "Setting",
+   "values": [
+    "fantasy",
+    "sci-fi",
+    "samurai",
+    "gothic",
+    "modern",
+    "western"
+   ],
+   "valueLabels": {
+    "sci-fi": "Sci-fi"
+   }
+  }
+ },
+ "entries": [
+  {
+   "v": "Liria",
+   "tags": {
+    "gender": "f",
+    "setting": "fantasy"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Brenna",
+   "tags": {
+    "gender": "f",
+    "setting": "fantasy"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Maelis",
+   "tags": {
+    "gender": "f",
+    "setting": "fantasy"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Isolde",
+   "tags": {
+    "gender": "f",
+    "setting": "fantasy"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Dagny",
+   "tags": {
+    "gender": "f",
+    "setting": "fantasy"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Elowen",
+   "tags": {
+    "gender": "f",
+    "setting": "fantasy"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Seraphine",
+   "tags": {
+    "gender": "f",
+    "setting": "fantasy"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Thessaly",
+   "tags": {
+    "gender": "f",
+    "setting": "fantasy"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Aldric",
+   "tags": {
+    "gender": "m",
+    "setting": "fantasy"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Corwin",
+   "tags": {
+    "gender": "m",
+    "setting": "fantasy"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Fenwick",
+   "tags": {
+    "gender": "m",
+    "setting": "fantasy"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Orrin",
+   "tags": {
+    "gender": "m",
+    "setting": "fantasy"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Borin",
+   "tags": {
+    "gender": "m",
+    "setting": "fantasy"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Tamlin",
+   "tags": {
+    "gender": "m",
+    "setting": "fantasy"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Gareth",
+   "tags": {
+    "gender": "m",
+    "setting": "fantasy"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Halvard",
+   "tags": {
+    "gender": "m",
+    "setting": "fantasy"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Wren",
+   "tags": {
+    "gender": [
+     "f",
+     "m",
+     "x"
+    ],
+    "setting": "fantasy"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Rowan",
+   "tags": {
+    "gender": [
+     "f",
+     "m",
+     "x"
+    ],
+    "setting": "fantasy"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Ash",
+   "tags": {
+    "gender": [
+     "f",
+     "m",
+     "x"
+    ],
+    "setting": [
+     "fantasy",
+     "gothic"
+    ]
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Sorrel",
+   "tags": {
+    "gender": [
+     "f",
+     "m",
+     "x"
+    ],
+    "setting": "fantasy"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Juno",
+   "tags": {
+    "gender": "f",
+    "setting": "sci-fi"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Tamsin",
+   "tags": {
+    "gender": "f",
+    "setting": "sci-fi"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Ilse",
+   "tags": {
+    "gender": "f",
+    "setting": "sci-fi"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Mara",
+   "tags": {
+    "gender": "f",
+    "setting": "sci-fi"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Kaia",
+   "tags": {
+    "gender": "f",
+    "setting": "sci-fi"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Nova",
+   "tags": {
+    "gender": "f",
+    "setting": "sci-fi"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Vesper",
+   "tags": {
+    "gender": "f",
+    "setting": "sci-fi"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Zadie",
+   "tags": {
+    "gender": "f",
+    "setting": "sci-fi"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Oro",
+   "tags": {
+    "gender": "m",
+    "setting": "sci-fi"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Kade",
+   "tags": {
+    "gender": "m",
+    "setting": "sci-fi"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Bastian",
+   "tags": {
+    "gender": "m",
+    "setting": "sci-fi"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Idris",
+   "tags": {
+    "gender": "m",
+    "setting": "sci-fi"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Marlo",
+   "tags": {
+    "gender": "m",
+    "setting": "sci-fi"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Teo",
+   "tags": {
+    "gender": "m",
+    "setting": "sci-fi"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Riven",
+   "tags": {
+    "gender": "m",
+    "setting": "sci-fi"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Dax",
+   "tags": {
+    "gender": "m",
+    "setting": "sci-fi"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Nyx",
+   "tags": {
+    "gender": [
+     "f",
+     "m",
+     "x"
+    ],
+    "setting": "sci-fi"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Vex",
+   "tags": {
+    "gender": [
+     "f",
+     "m",
+     "x"
+    ],
+    "setting": "sci-fi"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Rook",
+   "tags": {
+    "gender": [
+     "f",
+     "m",
+     "x"
+    ],
+    "setting": "sci-fi"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Sable",
+   "tags": {
+    "gender": [
+     "f",
+     "m",
+     "x"
+    ],
+    "setting": "sci-fi"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Akane",
+   "tags": {
+    "gender": "f",
+    "setting": "samurai"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Hotaru",
+   "tags": {
+    "gender": "f",
+    "setting": "samurai"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Kaede",
+   "tags": {
+    "gender": "f",
+    "setting": "samurai"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Mitsuko",
+   "tags": {
+    "gender": "f",
+    "setting": "samurai"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Sayuri",
+   "tags": {
+    "gender": "f",
+    "setting": "samurai"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Tomoe",
+   "tags": {
+    "gender": "f",
+    "setting": "samurai"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Yuna",
+   "tags": {
+    "gender": "f",
+    "setting": "samurai"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Chiyo",
+   "tags": {
+    "gender": "f",
+    "setting": "samurai"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Daisuke",
+   "tags": {
+    "gender": "m",
+    "setting": "samurai"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Haruki",
+   "tags": {
+    "gender": "m",
+    "setting": "samurai"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Isamu",
+   "tags": {
+    "gender": "m",
+    "setting": "samurai"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Kenji",
+   "tags": {
+    "gender": "m",
+    "setting": "samurai"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Takeshi",
+   "tags": {
+    "gender": "m",
+    "setting": "samurai"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Goro",
+   "tags": {
+    "gender": "m",
+    "setting": "samurai"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Jiro",
+   "tags": {
+    "gender": "m",
+    "setting": "samurai"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Ryota",
+   "tags": {
+    "gender": "m",
+    "setting": "samurai"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Ren",
+   "tags": {
+    "gender": [
+     "f",
+     "m",
+     "x"
+    ],
+    "setting": "samurai"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Sora",
+   "tags": {
+    "gender": [
+     "f",
+     "m",
+     "x"
+    ],
+    "setting": "samurai"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Yuki",
+   "tags": {
+    "gender": [
+     "f",
+     "m",
+     "x"
+    ],
+    "setting": "samurai"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Hikaru",
+   "tags": {
+    "gender": [
+     "f",
+     "m",
+     "x"
+    ],
+    "setting": "samurai"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Isadora",
+   "tags": {
+    "gender": "f",
+    "setting": "gothic"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Lenore",
+   "tags": {
+    "gender": "f",
+    "setting": "gothic"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Morwenna",
+   "tags": {
+    "gender": "f",
+    "setting": "gothic"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Ottilie",
+   "tags": {
+    "gender": "f",
+    "setting": "gothic"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Vesna",
+   "tags": {
+    "gender": "f",
+    "setting": "gothic"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Ligeia",
+   "tags": {
+    "gender": "f",
+    "setting": "gothic"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Clarimonde",
+   "tags": {
+    "gender": "f",
+    "setting": "gothic"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Beatrix",
+   "tags": {
+    "gender": "f",
+    "setting": "gothic"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Anselm",
+   "tags": {
+    "gender": "m",
+    "setting": "gothic"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Casimir",
+   "tags": {
+    "gender": "m",
+    "setting": "gothic"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Lucian",
+   "tags": {
+    "gender": "m",
+    "setting": "gothic"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Mircea",
+   "tags": {
+    "gender": "m",
+    "setting": "gothic"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Severin",
+   "tags": {
+    "gender": "m",
+    "setting": "gothic"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Valentin",
+   "tags": {
+    "gender": "m",
+    "setting": "gothic"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Ambrose",
+   "tags": {
+    "gender": "m",
+    "setting": "gothic"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Crispin",
+   "tags": {
+    "gender": "m",
+    "setting": "gothic"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Morgan",
+   "tags": {
+    "gender": [
+     "f",
+     "m",
+     "x"
+    ],
+    "setting": "gothic"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Sasha",
+   "tags": {
+    "gender": [
+     "f",
+     "m",
+     "x"
+    ],
+    "setting": "gothic"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Lark",
+   "tags": {
+    "gender": [
+     "f",
+     "m",
+     "x"
+    ],
+    "setting": "gothic"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Dana",
+   "tags": {
+    "gender": "f",
+    "setting": "modern"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Rina",
+   "tags": {
+    "gender": "f",
+    "setting": "modern"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Priya",
+   "tags": {
+    "gender": "f",
+    "setting": "modern"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Tess",
+   "tags": {
+    "gender": "f",
+    "setting": "modern"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Ada",
+   "tags": {
+    "gender": "f",
+    "setting": [
+     "modern",
+     "western"
+    ]
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Maya",
+   "tags": {
+    "gender": "f",
+    "setting": "modern"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Leah",
+   "tags": {
+    "gender": "f",
+    "setting": "modern"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Nadia",
+   "tags": {
+    "gender": "f",
+    "setting": "modern"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Mo",
+   "tags": {
+    "gender": "m",
+    "setting": "modern"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Theo",
+   "tags": {
+    "gender": "m",
+    "setting": "modern"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Marco",
+   "tags": {
+    "gender": "m",
+    "setting": "modern"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Ken",
+   "tags": {
+    "gender": "m",
+    "setting": "modern"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Ravi",
+   "tags": {
+    "gender": "m",
+    "setting": "modern"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Omar",
+   "tags": {
+    "gender": "m",
+    "setting": "modern"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Liam",
+   "tags": {
+    "gender": "m",
+    "setting": "modern"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Felix",
+   "tags": {
+    "gender": "m",
+    "setting": "modern"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Sam",
+   "tags": {
+    "gender": [
+     "f",
+     "m",
+     "x"
+    ],
+    "setting": "modern"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Jules",
+   "tags": {
+    "gender": [
+     "f",
+     "m",
+     "x"
+    ],
+    "setting": "modern"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Lou",
+   "tags": {
+    "gender": [
+     "f",
+     "m",
+     "x"
+    ],
+    "setting": "modern"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Alex",
+   "tags": {
+    "gender": [
+     "f",
+     "m",
+     "x"
+    ],
+    "setting": "modern"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Mae",
+   "tags": {
+    "gender": "f",
+    "setting": "western"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Hattie",
+   "tags": {
+    "gender": "f",
+    "setting": "western"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Lottie",
+   "tags": {
+    "gender": "f",
+    "setting": "western"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Della",
+   "tags": {
+    "gender": "f",
+    "setting": "western"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Nell",
+   "tags": {
+    "gender": "f",
+    "setting": "western"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Clementine",
+   "tags": {
+    "gender": "f",
+    "setting": "western"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Opal",
+   "tags": {
+    "gender": "f",
+    "setting": "western"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Clem",
+   "tags": {
+    "gender": "m",
+    "setting": "western"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Josiah",
+   "tags": {
+    "gender": "m",
+    "setting": "western"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Eli",
+   "tags": {
+    "gender": "m",
+    "setting": "western"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Silas",
+   "tags": {
+    "gender": "m",
+    "setting": "western"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Amos",
+   "tags": {
+    "gender": "m",
+    "setting": "western"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Wyatt",
+   "tags": {
+    "gender": "m",
+    "setting": "western"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Jebediah",
+   "tags": {
+    "gender": "m",
+    "setting": "western"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Virgil",
+   "tags": {
+    "gender": "m",
+    "setting": "western"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Jesse",
+   "tags": {
+    "gender": [
+     "f",
+     "m",
+     "x"
+    ],
+    "setting": "western"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Frankie",
+   "tags": {
+    "gender": [
+     "f",
+     "m",
+     "x"
+    ],
+    "setting": "western"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Billie",
+   "tags": {
+    "gender": [
+     "f",
+     "m",
+     "x"
+    ],
+    "setting": "western"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Marion",
+   "tags": {
+    "gender": [
+     "f",
+     "m",
+     "x"
+    ],
+    "setting": "western"
+   },
+   "src": "curated"
+  }
+ ]
+}

@@ -1,0 +1,39 @@
+{
+  "name": "pocket-rpg",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Offline phone PWA for running conversational, story-heavy RPGs (Lasers & Feelings, Roll for Shoes).",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-check --tsconfig ./tsconfig.json --fail-on-warnings",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "validate": "node scripts/validate.ts",
+    "ci": "npm run validate && npm run check && npm run test && npm run build"
+  },
+  "dependencies": {
+    "@fontsource/atkinson-hyperlegible": "^5.3.0",
+    "@fontsource/big-shoulders-display": "^5.3.0",
+    "@fontsource/jetbrains-mono": "^5.3.0",
+    "dexie": "^4.4.7"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^7.3.1",
+    "@tsconfig/svelte": "^5.0.6",
+    "@types/node": "^22.19.0",
+    "ajv": "^8.20.0",
+    "fake-indexeddb": "^6.2.5",
+    "svelte": "^5.57.2",
+    "svelte-check": "^4.4.7",
+    "typescript": "~5.9.3",
+    "vite": "^8.3.5",
+    "vite-plugin-pwa": "^2.0.0",
+    "vitest": "^5.0.5"
+  }
+}

@@ -1,0 +1,130 @@
+{
+ "id": "base-names",
+ "name": "Base names",
+ "version": "0.1.0",
+ "library": true,
+ "extends": [],
+ "provenance": {
+  "author": "PocketRPG",
+  "license": "original entries",
+  "entries": "original"
+ },
+ "modifiers": {},
+ "tables": {
+  "name.fantasy": [
+   {
+    "v": "Aldric"
+   },
+   {
+    "v": "Brenna the Bold"
+   },
+   {
+    "v": "Corwin Ashfeld"
+   },
+   {
+    "v": "Dagny"
+   },
+   {
+    "v": "Elowen of the Reeds"
+   },
+   {
+    "v": "Fenwick Crane"
+   },
+   {
+    "v": "Isolde"
+   },
+   {
+    "v": "Jory Two-Knives"
+   },
+   {
+    "v": "Maelis"
+   },
+   {
+    "v": "Orrin the Patient"
+   },
+   {
+    "v": "Petra Stonebough"
+   },
+   {
+    "v": "Wren"
+   }
+  ],
+  "name.samurai": [
+   {
+    "v": "Akane"
+   },
+   {
+    "v": "Daisuke"
+   },
+   {
+    "v": "Haruki"
+   },
+   {
+    "v": "Hotaru"
+   },
+   {
+    "v": "Isamu"
+   },
+   {
+    "v": "Kaede"
+   },
+   {
+    "v": "Kenji"
+   },
+   {
+    "v": "Mitsuko"
+   },
+   {
+    "v": "Ren"
+   },
+   {
+    "v": "Sora"
+   },
+   {
+    "v": "Takeshi"
+   },
+   {
+    "v": "Yuki"
+   }
+  ],
+  "name.gothic": [
+   {
+    "v": "Adrian Vale"
+   },
+   {
+    "v": "Anselm"
+   },
+   {
+    "v": "Casimir Dorn"
+   },
+   {
+    "v": "Isadora"
+   },
+   {
+    "v": "Lenore Ashby"
+   },
+   {
+    "v": "Lucian"
+   },
+   {
+    "v": "Mircea"
+   },
+   {
+    "v": "Morwenna Grey"
+   },
+   {
+    "v": "Ottilie"
+   },
+   {
+    "v": "Severin Holt"
+   },
+   {
+    "v": "Valentin"
+   },
+   {
+    "v": "Vesna"
+   }
+  ]
+ },
+ "generators": []
+}

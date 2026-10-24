@@ -1,0 +1,282 @@
+{
+ "id": "minimon",
+ "name": "Minimon",
+ "genre": "Monster catching",
+ "version": "0.1.0",
+ "extends": [
+  "rfs-base"
+ ],
+ "provenance": {
+  "author": "Roll for Shoes (rollforshoes.com)",
+  "basedOn": "Minimon: Miniature Monsters setting, rollforshoes.com/settings/minimon",
+  "license": "CC0 1.0 (public domain dedication)",
+  "entries": "Source tables verbatim or lightly reworded. Entries marked src=pocketrpg are original additions where the source gives only a prompt.",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+ },
+ "setting": {
+  "premise": "The players are a Coach's team of Minimon, hunting down the last, hardest-to-find Minimon. The GM plays the Coach."
+ },
+ "modifiers": {},
+ "tables": {
+  "mm.location": [
+   {
+    "v": "Slimy swamp"
+   },
+   {
+    "v": "Snowy mountain"
+   },
+   {
+    "v": "Windy desert"
+   },
+   {
+    "v": "Spooky cave"
+   },
+   {
+    "v": "Sunny beach"
+   },
+   {
+    "v": "Tangled forest"
+   }
+  ],
+  "mm.form": [
+   {
+    "v": "Bird"
+   },
+   {
+    "v": "Blob"
+   },
+   {
+    "v": "Canine"
+   },
+   {
+    "v": "Feline"
+   },
+   {
+    "v": "Insect"
+   },
+   {
+    "v": "Rodent"
+   }
+  ],
+  "mm.type": [
+   {
+    "v": "Bug"
+   },
+   {
+    "v": "Electric"
+   },
+   {
+    "v": "Fighting"
+   },
+   {
+    "v": "Fire"
+   },
+   {
+    "v": "Grass"
+   },
+   {
+    "v": "Ground"
+   },
+   {
+    "v": "Ice"
+   },
+   {
+    "v": "Metal"
+   },
+   {
+    "v": "Poison"
+   },
+   {
+    "v": "Psychic"
+   },
+   {
+    "v": "Rock"
+   },
+   {
+    "v": "Water"
+   }
+  ],
+  "mm.move": [
+   {
+    "v": "Blast",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Fang",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Whirl",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Shield",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Dash",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Roar",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Burst",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Grip",
+    "src": "pocketrpg"
+   }
+  ],
+  "mm.origin": [
+   {
+    "v": "Hatched in the Coach's backpack",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Lost a fight and joined the winner",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Followed the Coach home",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Traded for a sandwich",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Rescued from a rival",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Chose the Coach, not the other way round",
+    "src": "pocketrpg"
+   }
+  ]
+ },
+ "generators": [
+  {
+   "id": "move",
+   "label": "Signature move",
+   "output": "{mm.type} {mm.move}"
+  },
+  {
+   "id": "rival",
+   "label": "Rival's Minimon",
+   "output": "{mm.type} {mm.form|lower}"
+  },
+  {
+   "id": "location",
+   "label": "Location",
+   "output": "{mm.location}"
+  },
+  {
+   "id": "npc",
+   "label": "Trainer",
+   "output": "{npc.personality} {npc.description|lower} {mm.form|lower}"
+  }
+ ],
+ "seed": null,
+ "story": {
+  "questions": [
+   {
+    "id": "final",
+    "text": "What is the final Minimon? Name and describe it."
+   },
+   {
+    "id": "hard",
+    "text": "Why is it so hard to find?"
+   },
+   {
+    "id": "evaded",
+    "text": "How has it evaded capture so far?"
+   }
+  ],
+  "segments": [
+   {
+    "name": "I Choose You!",
+    "text": "Roll a location. Start mid-battle against another trainer. The Coach calls out each player's Minimon to show off and deal narrative damage.",
+    "tables": [
+     "location"
+    ]
+   },
+   {
+    "name": "Missile Squad",
+    "text": "Two bully trainers with a mean Minimon. Usually not a straight fight: it tests problem-solving.",
+    "tables": [
+     "npc",
+     "rival"
+    ]
+   },
+   {
+    "name": "The Legendary",
+    "text": "A location mixing the Legendary's domain and the way in. The Coach tries to capture it while the team attacks, defends and ensnares it."
+   }
+  ]
+ },
+ "groupFields": [
+  {
+   "id": "legendary",
+   "label": "The final Minimon",
+   "kind": "text",
+   "generator": "rival"
+  }
+ ],
+ "flavour": {
+  "roll-for-shoes": {
+   "rootSkill": "Do anything",
+   "fields": [
+    {
+     "id": "name",
+     "label": "Species name",
+     "kind": "text",
+     "hint": "Minimon look like an animal or object."
+    },
+    {
+     "id": "form",
+     "label": "Looks like",
+     "kind": "pick-or-text",
+     "table": "mm.form"
+    },
+    {
+     "id": "origin",
+     "label": "How you met your Coach",
+     "kind": "pick-or-text",
+     "table": "mm.origin"
+    },
+    {
+     "id": "element",
+     "label": "Aligned element",
+     "kind": "pick-or-text",
+     "table": "mm.type",
+     "skill": {
+      "level": 2
+     }
+    },
+    {
+     "id": "weak",
+     "label": "Weak element",
+     "kind": "pick-or-text",
+     "table": "mm.type",
+     "status": {
+      "level": -2,
+      "format": "Weak to {v}"
+     }
+    },
+    {
+     "id": "signature",
+     "label": "Signature move",
+     "kind": "text",
+     "generator": "move",
+     "skill": {
+      "level": 3
+     }
+    }
+   ],
+   "sentence": "{name}\n{a|cap} {element|lower}-type {form|lower}.\n{origin}"
+  }
+ }
+}

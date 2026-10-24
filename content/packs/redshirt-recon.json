@@ -1,0 +1,273 @@
+{
+ "id": "redshirt-recon",
+ "name": "Redshirt Recon",
+ "genre": "Sci-fi comedy",
+ "version": "0.1.0",
+ "nameSetting": "sci-fi",
+ "extends": [
+  "rfs-base"
+ ],
+ "provenance": {
+  "author": "Roll for Shoes (rollforshoes.com)",
+  "basedOn": "Redshirt Recon setting, rollforshoes.com/settings/redshirt-recon",
+  "license": "CC0 1.0 (public domain dedication)",
+  "entries": "Source tables verbatim or lightly reworded. Entries marked src=pocketrpg are original additions where the source gives only a prompt.",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+ },
+ "setting": {
+  "premise": "A Spacefleet ship picks up a weak distress signal. A team of lowly crew is sent down to the planet."
+ },
+ "modifiers": {},
+ "tables": {
+  "rr.danger": [
+   {
+    "v": "Aggressive wildlife"
+   },
+   {
+    "v": "A corrupt former Spacefleet Admiral"
+   },
+   {
+    "v": "A rogue, violent android"
+   },
+   {
+    "v": "Environmental disaster"
+   },
+   {
+    "v": "Attack from a primitive local species"
+   },
+   {
+    "v": "Evil clones of the away team"
+   }
+  ],
+  "rr.species": [
+   {
+    "v": "Robot"
+   },
+   {
+    "v": "Reptilian alien"
+   },
+   {
+    "v": "Sentient plant"
+   },
+   {
+    "v": "Insectoid alien"
+   },
+   {
+    "v": "Mutant"
+   },
+   {
+    "v": "Space pirate"
+   }
+  ],
+  "rr.signal": [
+   {
+    "v": "A crashed ship"
+   },
+   {
+    "v": "A trap laid by enemies"
+   },
+   {
+    "v": "A creature giving off the signal"
+   },
+   {
+    "v": "A failed colony"
+   },
+   {
+    "v": "A space anomaly"
+   },
+   {
+    "v": "An otherworldly artifact"
+   }
+  ],
+  "rr.job": [
+   {
+    "v": "Junior cook",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Sanitation tech",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Ensign, third class",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Botany intern",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Cargo handler",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Security trainee",
+    "src": "pocketrpg"
+   }
+  ],
+  "rr.chosen": [
+   {
+    "v": "Lost a bet",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Nobody else volunteered",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Clerical error",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Knows the planet's language (badly)",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "The Chief Officer likes them",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Being punished",
+    "src": "pocketrpg"
+   }
+  ],
+  "rr.gear": [
+   {
+    "v": "Tricorder with a cracked screen",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Phaser set to stun (probably)",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Spare red shirt",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Universal translator, beta",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Emergency rations",
+    "src": "pocketrpg"
+   },
+   {
+    "v": "Grappling cable",
+    "src": "pocketrpg"
+   }
+  ]
+ },
+ "generators": [
+  {
+   "id": "npc",
+   "label": "Alien",
+   "output": "{npc.personality} {npc.description|lower} {rr.species|lower}"
+  },
+  {
+   "id": "danger",
+   "label": "Danger",
+   "output": "{rr.danger}"
+  },
+  {
+   "id": "signal",
+   "label": "Signal source",
+   "output": "{rr.signal}"
+  },
+  {
+   "id": "leader",
+   "label": "Team leader",
+   "output": "Chief Officer, {npc.personality|lower} and {npc.description|lower}"
+  },
+  {
+   "id": "look",
+   "label": "Description",
+   "output": "{npc.description|lower}, {npc.personality|lower}"
+  }
+ ],
+ "seed": null,
+ "story": {
+  "questions": [
+   {
+    "id": "planet",
+    "text": "What type of planet is it?"
+   },
+   {
+    "id": "hesitant",
+    "text": "What makes the crew hesitant to investigate?"
+   },
+   {
+    "id": "convinced",
+    "text": "What finally convinces the Captain to send a team?"
+   }
+  ],
+  "segments": [
+   {
+    "name": "Mission Briefing",
+    "text": "Assemble the team, hand out red shirts, outline the mission. Players suggest obstacles; note them for later. Set a clear goal for once the source is found."
+   },
+   {
+    "name": "Planet Exploration",
+    "text": "Track the signal across the surface. Add distractions, including obstacles from the briefing. The leader keeps them on task; reward using their gear.",
+    "tables": [
+     "npc",
+     "danger"
+    ]
+   },
+   {
+    "name": "Source Encounter",
+    "text": "A hard final confrontation at the source. Use the hesitation from the introduction. Draw on skills gained and weaknesses shown.",
+    "tables": [
+     "signal",
+     "danger"
+    ]
+   }
+  ]
+ },
+ "groupFields": [
+  {
+   "id": "leader",
+   "label": "Team leader (NPC)",
+   "kind": "text",
+   "generator": "leader"
+  }
+ ],
+ "flavour": {
+  "roll-for-shoes": {
+   "rootSkill": "Do anything",
+   "fields": [
+    {
+     "id": "name",
+     "label": "Name",
+     "kind": "text",
+     "table": "name.modern"
+    },
+    {
+     "id": "look",
+     "label": "Description",
+     "kind": "text",
+     "generator": "look"
+    },
+    {
+     "id": "job",
+     "label": "Lowly job on the ship",
+     "kind": "pick-or-text",
+     "table": "rr.job"
+    },
+    {
+     "id": "chosen",
+     "label": "Why you were chosen",
+     "kind": "pick-or-text",
+     "table": "rr.chosen"
+    },
+    {
+     "id": "gear",
+     "label": "Equipment issued",
+     "kind": "pick-or-text",
+     "table": "rr.gear"
+    }
+   ],
+   "sentence": "{name}\n{job}, carrying {a} {gear|lower}.\nChosen because: {chosen|lower}"
+  }
+ }
+}

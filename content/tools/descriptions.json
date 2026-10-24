@@ -1,0 +1,132 @@
+{
+ "id": "descriptions",
+ "label": "Description",
+ "version": "0.1.0",
+ "provenance": {
+  "author": "PocketRPG",
+  "license": "original entries"
+ },
+ "modifiers": {},
+ "entries": [
+  {
+   "v": "tall"
+  },
+  {
+   "v": "short"
+  },
+  {
+   "v": "lanky"
+  },
+  {
+   "v": "stocky"
+  },
+  {
+   "v": "rotund"
+  },
+  {
+   "v": "wiry"
+  },
+  {
+   "v": "swarthy"
+  },
+  {
+   "v": "pale"
+  },
+  {
+   "v": "freckled"
+  },
+  {
+   "v": "scarred"
+  },
+  {
+   "v": "bearded"
+  },
+  {
+   "v": "bald"
+  },
+  {
+   "v": "hunched"
+  },
+  {
+   "v": "broad-shouldered"
+  },
+  {
+   "v": "gaunt"
+  },
+  {
+   "v": "plump"
+  },
+  {
+   "v": "muscular"
+  },
+  {
+   "v": "willowy"
+  },
+  {
+   "v": "weathered"
+  },
+  {
+   "v": "sunburned"
+  },
+  {
+   "v": "tattooed"
+  },
+  {
+   "v": "one-eyed"
+  },
+  {
+   "v": "limping"
+  },
+  {
+   "v": "elderly"
+  },
+  {
+   "v": "youthful"
+  },
+  {
+   "v": "towering"
+  },
+  {
+   "v": "tiny"
+  },
+  {
+   "v": "pot-bellied"
+  },
+  {
+   "v": "bony"
+  },
+  {
+   "v": "grizzled"
+  },
+  {
+   "v": "sharp-featured"
+  },
+  {
+   "v": "round-faced"
+  },
+  {
+   "v": "ruddy"
+  },
+  {
+   "v": "sallow"
+  },
+  {
+   "v": "heavy-browed"
+  },
+  {
+   "v": "gap-toothed"
+  },
+  {
+   "v": "long-haired"
+  },
+  {
+   "v": "shaven-headed"
+  },
+  {
+   "v": "elegant"
+  },
+  {
+   "v": "scruffy"
+  }
+ ]
+}

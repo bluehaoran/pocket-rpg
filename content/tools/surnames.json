@@ -1,0 +1,586 @@
+{
+ "id": "surnames",
+ "label": "Last names",
+ "version": "0.1.0",
+ "provenance": {
+  "author": "PocketRPG",
+  "license": "original entries"
+ },
+ "modifiers": {
+  "setting": {
+   "label": "Setting",
+   "values": [
+    "fantasy",
+    "sci-fi",
+    "samurai",
+    "gothic",
+    "modern",
+    "western"
+   ],
+   "valueLabels": {
+    "sci-fi": "Sci-fi"
+   }
+  }
+ },
+ "entries": [
+  {
+   "v": "Ashfeld",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Stonebough",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Crane",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Thornwood",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Blackwater",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Merrow",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Greaves",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Holloway",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Fairbairn",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Redmayne",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Okoro",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Vance",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Halloran",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Ishida",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Brandt",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Quill",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Tenet",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Ashgrove",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Kovac",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Sorensen",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Tanaka",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "curated",
+   "position": "before"
+  },
+  {
+   "v": "Mori",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "curated",
+   "position": "before"
+  },
+  {
+   "v": "Kurosawa",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "curated",
+   "position": "before"
+  },
+  {
+   "v": "Hayashi",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "curated",
+   "position": "before"
+  },
+  {
+   "v": "Sato",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "curated",
+   "position": "before"
+  },
+  {
+   "v": "Fujiwara",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "curated",
+   "position": "before"
+  },
+  {
+   "v": "Ishikawa",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "curated",
+   "position": "before"
+  },
+  {
+   "v": "Matsuda",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "curated",
+   "position": "before"
+  },
+  {
+   "v": "Nakamura",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "curated",
+   "position": "before"
+  },
+  {
+   "v": "Shimizu",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "curated",
+   "position": "before"
+  },
+  {
+   "v": "Vale",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Dorn",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Ashby",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Grey",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Holt",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Ravensworth",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Mordaunt",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Blackwood",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Szekely",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Lorne",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Cruz",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Patel",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Okafor",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Lindqvist",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Moreau",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Kowalski",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Nair",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Bennett",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Silva",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Hargreave",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Hollis",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Whitlock",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Pike",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Calloway",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Tanner",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Rourke",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Booth",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Greer",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Mercer",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Barlow",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "curated"
+  },
+  {
+   "v": "Wang",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "curated",
+   "position": "before"
+  },
+  {
+   "v": "Li",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "curated",
+   "position": "before"
+  },
+  {
+   "v": "Zhang",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "curated",
+   "position": "before"
+  },
+  {
+   "v": "Liu",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "curated",
+   "position": "before"
+  },
+  {
+   "v": "Chen",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "curated",
+   "position": "before"
+  },
+  {
+   "v": "Yang",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "curated",
+   "position": "before"
+  },
+  {
+   "v": "Huang",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "curated",
+   "position": "before"
+  },
+  {
+   "v": "Zhao",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "curated",
+   "position": "before"
+  },
+  {
+   "v": "Wu",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "curated",
+   "position": "before"
+  },
+  {
+   "v": "Zhou",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "curated",
+   "position": "before"
+  },
+  {
+   "v": "Xu",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "curated",
+   "position": "before"
+  },
+  {
+   "v": "Sun",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "curated",
+   "position": "before"
+  },
+  {
+   "v": "Lin",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "curated",
+   "position": "before"
+  },
+  {
+   "v": "Guo",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "curated",
+   "position": "before"
+  },
+  {
+   "v": "He",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "curated",
+   "position": "before"
+  },
+  {
+   "v": "Ma",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "curated",
+   "position": "before"
+  }
+ ],
+ "notes": "Entry field 'position': 'before' puts the family name before the given name when the user honours traditional order. Default is 'after'."
+}

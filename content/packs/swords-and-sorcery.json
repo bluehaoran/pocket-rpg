@@ -1,0 +1,557 @@
+{
+ "id": "swords-and-sorcery",
+ "name": "Swords & Sorcery",
+ "genre": "Fantasy",
+ "version": "1.1.0",
+ "nameSetting": "fantasy",
+ "extends": [
+  "base-names"
+ ],
+ "provenance": {
+  "extracted": true,
+  "author": "James Lennox-Gordon (UnknownDungeon.itch.io)",
+  "basedOn": "Lasers & Feelings (John Harper)",
+  "license": "CC BY-SA 4.0 (ShareAlike: derived pack data must also be CC BY-SA 4.0)",
+  "sourceVersion": "v1.1 2020",
+  "subtitle": "An OSR Fantasy Hack of Lasers and Feelings",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+ },
+ "setting": {
+  "premise": "Adventuring party for The Fissure's Breach Adventurers' Guild, exploring to uncover lost treasures, solve mysteries and defeat evil. The GM is the Guild Manager, sending PCs on adventures to have fun, make money and keep the kingdom safe."
+ },
+ "modifiers": {
+  "spellLevel": {
+   "label": "Spell level",
+   "values": [
+    "0",
+    "1",
+    "2",
+    "3"
+   ]
+  },
+  "threat": {
+   "label": "Threat",
+   "values": [
+    "easy",
+    "medium",
+    "hard",
+    "deadly"
+   ]
+  }
+ },
+ "tables": {
+  "seed.patron": [
+   {
+    "v": "Mage-King Tholex XI"
+   },
+   {
+    "v": "Lord Garrington"
+   },
+   {
+    "v": "The Hunters' Guild"
+   },
+   {
+    "v": "Wizard Nimdronde"
+   },
+   {
+    "v": "The Thieves' Guild"
+   },
+   {
+    "v": "The Conclave"
+   }
+  ],
+  "seed.quest": [
+   {
+    "v": "Slay the Helvella Dragon"
+   },
+   {
+    "v": "Destroy the ancient seal"
+   },
+   {
+    "v": "Investigate a murder"
+   },
+   {
+    "v": "Recover the Lǎo Mei"
+   },
+   {
+    "v": "Deliver some Wyldfyre"
+   },
+   {
+    "v": "Capture the bandits"
+   }
+  ],
+  "seed.place": [
+   {
+    "v": "The Wilderlands"
+   },
+   {
+    "v": "The Undercity"
+   },
+   {
+    "v": "Tanglewood"
+   },
+   {
+    "v": "The Planegate"
+   },
+   {
+    "v": "Fröstfell"
+   },
+   {
+    "v": "The Fissure"
+   }
+  ],
+  "seed.beware": [
+   {
+    "v": "The Necromancer"
+   },
+   {
+    "v": "Cultists"
+   },
+   {
+    "v": "Archduke Tallan"
+   },
+   {
+    "v": "The Queen of Wasps"
+   },
+   {
+    "v": "The One-Eyed Prince"
+   },
+   {
+    "v": "The Great Old One"
+   }
+  ],
+  "lf.style": [
+   {
+    "v": "Human"
+   },
+   {
+    "v": "Elf"
+   },
+   {
+    "v": "Dwarf"
+   },
+   {
+    "v": "Gnome"
+   },
+   {
+    "v": "Orc"
+   },
+   {
+    "v": "Catfolk"
+   }
+  ],
+  "lf.role": [
+   {
+    "v": "Noble"
+   },
+   {
+    "v": "Sage"
+   },
+   {
+    "v": "Thief"
+   },
+   {
+    "v": "Soldier"
+   },
+   {
+    "v": "Tracker"
+   },
+   {
+    "v": "Entertainer"
+   }
+  ],
+  "spells": [
+   {
+    "v": "Illuminate",
+    "data": {
+     "level": 0
+    }
+   },
+   {
+    "v": "Telepathy",
+    "data": {
+     "level": 0
+    }
+   },
+   {
+    "v": "Mend",
+    "data": {
+     "level": 0
+    }
+   },
+   {
+    "v": "Minor Illusion",
+    "data": {
+     "level": 0
+    }
+   },
+   {
+    "v": "Beast-Speak",
+    "data": {
+     "level": 1
+    }
+   },
+   {
+    "v": "Icebolt",
+    "data": {
+     "level": 1
+    }
+   },
+   {
+    "v": "Friendship",
+    "data": {
+     "level": 1
+    }
+   },
+   {
+    "v": "Grease",
+    "data": {
+     "level": 1
+    }
+   },
+   {
+    "v": "Heal",
+    "data": {
+     "level": 2
+    }
+   },
+   {
+    "v": "Invisibility",
+    "data": {
+     "level": 2
+    }
+   },
+   {
+    "v": "Fireball",
+    "data": {
+     "level": 2
+    }
+   },
+   {
+    "v": "Resize",
+    "data": {
+     "level": 2
+    }
+   },
+   {
+    "v": "Animate",
+    "data": {
+     "level": 2
+    }
+   },
+   {
+    "v": "Flight",
+    "data": {
+     "level": 3
+    }
+   },
+   {
+    "v": "Darkness",
+    "data": {
+     "level": 3
+    }
+   },
+   {
+    "v": "Lightning Storm",
+    "data": {
+     "level": 3
+    }
+   },
+   {
+    "v": "Summon",
+    "data": {
+     "level": 3
+    }
+   }
+  ],
+  "monsters": [
+   {
+    "v": "Easy",
+    "tags": {
+     "threat": "easy"
+    },
+    "data": {
+     "hp": 5,
+     "dmg": 2
+    }
+   },
+   {
+    "v": "Medium",
+    "tags": {
+     "threat": "medium"
+    },
+    "data": {
+     "hp": 10,
+     "dmg": 3
+    }
+   },
+   {
+    "v": "Hard",
+    "tags": {
+     "threat": "hard"
+    },
+    "data": {
+     "hp": 20,
+     "dmg": 4
+    }
+   },
+   {
+    "v": "Deadly",
+    "tags": {
+     "threat": "deadly"
+    },
+    "data": {
+     "hp": 30,
+     "dmg": 6
+    }
+   }
+  ],
+  "divine.questions": [
+   {
+    "v": "What are they really feeling?"
+   },
+   {
+    "v": "Who's behind this?"
+   },
+   {
+    "v": "How could I get them to do what I want?"
+   },
+   {
+    "v": "What should I lookout for?"
+   },
+   {
+    "v": "What's the best way to do this thing?"
+   },
+   {
+    "v": "What's really going on here?"
+   }
+  ]
+ },
+ "generators": [
+  {
+   "id": "spell",
+   "label": "Spell",
+   "modifiers": [
+    {
+     "key": "spellLevel",
+     "required": false
+    }
+   ],
+   "output": "{spells}"
+  },
+  {
+   "id": "monster",
+   "label": "Monster stats",
+   "modifiers": [
+    {
+     "key": "threat",
+     "required": false
+    }
+   ],
+   "output": "{monsters}"
+  },
+  {
+   "id": "patron",
+   "label": "Patron",
+   "output": "{seed.patron}"
+  },
+  {
+   "id": "quest",
+   "label": "Quest",
+   "output": "{seed.quest}"
+  },
+  {
+   "id": "place",
+   "label": "Place",
+   "output": "{seed.place}"
+  },
+  {
+   "id": "beware",
+   "label": "Beware",
+   "output": "{seed.beware}"
+  },
+  {
+   "id": "oracle",
+   "label": "Divine question",
+   "output": "{divine.questions}"
+  }
+ ],
+ "seed": {
+  "columns": [
+   {
+    "label": "Your patron…",
+    "table": "seed.patron"
+   },
+   {
+    "label": "Has given you a quest to…",
+    "table": "seed.quest",
+    "case": "lower"
+   },
+   {
+    "label": "So adventure forth into…",
+    "table": "seed.place"
+   },
+   {
+    "label": "But beware…",
+    "table": "seed.beware"
+   }
+  ],
+  "template": "{0} has given you a quest to {1}. Adventure forth into {2}, but beware {3}.",
+  "dice": "d6 per column"
+ },
+ "flavour": {
+  "lasers-feelings": {
+   "checks": [
+    {
+     "id": "under",
+     "label": "Swords",
+     "roll": "under",
+     "hint": "physicality, fighting, sneaking, intimidation"
+    },
+    {
+     "id": "over",
+     "label": "Sorcery",
+     "roll": "over",
+     "hint": "magic, knowledge, insight, persuasion"
+    }
+   ],
+   "numberRange": [
+    2,
+    5
+   ],
+   "numberRoll": {
+    "dice": "1d6",
+    "reroll": [
+     1,
+     6
+    ],
+    "note": "GM may allow choosing instead"
+   },
+   "fields": [
+    {
+     "id": "style",
+     "label": "Ancestry",
+     "kind": "pick-or-text",
+     "table": "lf.style"
+    },
+    {
+     "id": "role",
+     "label": "Background",
+     "kind": "pick",
+     "table": "lf.role"
+    },
+    {
+     "id": "number",
+     "label": "S&S number",
+     "kind": "number",
+     "range": [
+      2,
+      5
+     ],
+     "randomise": "numberRoll"
+    },
+    {
+     "id": "name",
+     "label": "Name",
+     "kind": "text",
+     "hint": "A cool fantasy adventurer name, like Gunther the Brave",
+     "table": "name.fantasy"
+    }
+   ],
+   "derived": [
+    {
+     "id": "hp",
+     "label": "Max HP",
+     "formula": "3 * N",
+     "note": "0 HP = unconscious; allies get one chance to save you before you die"
+    },
+    {
+     "id": "sp",
+     "label": "Max SP (spirit)",
+     "formula": "10 - 2 * N",
+     "note": "Successful cast reduces SP by spell level"
+    },
+    {
+     "id": "wd",
+     "label": "Weapon damage dice",
+     "formula": "N - 1",
+     "note": "Roll WD d6 on a hit; deal the highest"
+    },
+    {
+     "id": "en",
+     "label": "Encumbrance",
+     "formula": "N + 3",
+     "note": "Items carried/worn"
+    },
+    {
+     "id": "spellsKnown",
+     "label": "Spells known",
+     "formula": "max SP"
+    }
+   ],
+   "rest": "Night's rest restores all HP and SP.",
+   "magic": {
+    "roll": "Sorcery (level 1+)",
+    "onFail": "Something bad and magical happens.",
+    "effectDice": "Roll spell-level d6, take highest; damage/heal = result + 2 * level; may split among close targets.",
+    "duration": "Continuous effects last one minute."
+   },
+   "dice": {
+    "base": 1,
+    "bonuses": [
+     {
+      "id": "prepared",
+      "label": "Prepared",
+      "dice": 1
+     },
+     {
+      "id": "trained",
+      "label": "Trained",
+      "dice": 1
+     }
+    ],
+    "min": 1,
+    "max": 3
+   },
+   "outcomes": [
+    {
+     "successes": 0,
+     "label": "Goes wrong",
+     "text": "GM says how things get worse."
+    },
+    {
+     "successes": 1,
+     "label": "Barely",
+     "text": "GM inflicts a complication, harm, or cost."
+    },
+    {
+     "successes": 2,
+     "label": "Well",
+     "text": "You do it well."
+    },
+    {
+     "successes": 3,
+     "label": "Critical",
+     "text": "GM tells you an extra effect."
+    }
+   ],
+   "exact": {
+    "name": "Divine Intervention",
+    "countsAsSuccess": true,
+    "text": "A deity or otherworldly being gives insight. Ask the GM a question (answered honestly). You may change your action and roll again instead.",
+    "questions": "divine.questions",
+    "checks": "any"
+   },
+   "help": {
+    "text": "Say how you help and roll. If you succeed, give them +1d."
+   },
+   "gmGuidance": {
+    "conversation": "Describe the scene, introduce a threat, ask what players do; ask for rolls when uncertain.",
+    "playerSkill": "Players solve problems themselves; Sorcery is not intelligence.",
+    "playersRollOnly": "Monsters have HP and DMG (see monsters table); if players fail they take damage or are put in a worse situation. Enemy spell is a threat by itself; a trap deals monster-equivalent damage."
+   },
+   "numberLabel": "S&S number",
+   "sentence": "{name}\nis {a} {style|lower} {role|lower}"
+  }
+ }
+}

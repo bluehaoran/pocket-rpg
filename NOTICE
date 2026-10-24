@@ -1,0 +1,50 @@
+PocketRPG licensing notice
+==========================
+
+This repository uses different licences for different parts.
+
+1. Code — MIT (see LICENSE)
+   src/, scripts/, schemas/, tests/, public/, and build configuration.
+
+2. Original content — CC0 1.0 Universal (see LICENSE-CONTENT)
+   Docs (docs/), the tools library (content/tools/), and these packs:
+     content/packs/starfarers.json
+     content/packs/base-names.json
+   Plus every entry marked "src": "pocketrpg" inside third-party packs.
+
+3. Third-party packs — their own licences, listed below and in each
+   pack's "provenance" block. These terms apply to the pack data only;
+   the app reads packs as data and is not a derivative of them.
+
+   content/packs/swords-and-sorcery.json
+     "Swords & Sorcery: An OSR Fantasy Hack of Lasers and Feelings" v1.1 (2020)
+     by James Lennox-Gordon (UnknownDungeon.itch.io).
+     Licence: CC BY-SA 4.0 — https://creativecommons.org/licenses/by-sa/4.0/
+     Changes: tables and rules extracted and restructured as JSON; some
+     text summarised. This pack data is shared under CC BY-SA 4.0.
+
+   content/packs/moon-and-blood.json
+     "Moon & Blood" by Marco Ricco (The Silent Mage).
+     Licence: CC BY 4.0 — https://creativecommons.org/licenses/by/4.0/
+     Changes: tables and rules extracted and restructured as JSON; text
+     summarised; castle and scenario sections omitted.
+
+   content/packs/rfs-base.json, the-heist.json, kitchen-khaos.json,
+   minimon.json, outbreak-hotel.json, redshirt-recon.json, the-stranger.json
+     Roll for Shoes settings and tools, rollforshoes.com.
+     Licence: CC0 1.0 — https://creativecommons.org/publicdomain/zero/1.0/
+     Name lists and entries marked "src": "pocketrpg" are original (CC0).
+
+4. Not published
+   Two packs are kept out of this repository because their sources carry
+   no licence that permits redistribution. They live in the gitignored
+   content/private/packs/ folder and are only included in local builds:
+     blade-and-spirit.json — "Blade and Spirit" by Benjamin Herder
+       (permission requested).
+     other-tales.json — "Other Tales", an Outer Wilds fan hack by @Justonky.
+
+Game systems
+   Lasers & Feelings is by John Harper. Roll for Shoes is from
+   rollforshoes.com. PocketRPG implements their mechanics from the
+   authors' published rules and includes no rulebook text beyond short
+   labels and summaries.

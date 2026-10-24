@@ -1,0 +1,10 @@
+node_modules/
+dist/
+dev-dist/
+*.local
+.DS_Store
+.vite/
+coverage/
+
+# Packs that cannot be published (see NOTICE). Kept locally only.
+content/private/

@@ -1,0 +1,11 @@
+{
+ "id": "complications",
+ "label": "Complication",
+ "version": "0.0.0",
+ "provenance": {
+  "author": "PocketRPG",
+  "license": "original entries"
+ },
+ "modifiers": {},
+ "entries": []
+}
