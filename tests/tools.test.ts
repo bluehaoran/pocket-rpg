@@ -5,7 +5,7 @@ import { lists, packs, registry } from '../src/lib/content/index.ts';
 import type { ToolList } from '../src/lib/content/types.ts';
 import { mulberry32 } from '../src/lib/engine/rng.ts';
 import {
-  drawFollowUp, effectiveOpts, findTool, formatData, historyText, isEmptyList, missingRequired, packTools,
+  drawFollowUp, effectiveOpts, findTool, glyphRows, formatData, historyText, isEmptyList, missingRequired, packTools,
   plainText, rollTool, segments, toolSub, type ToolCtx, type ToolOpts
 } from '../src/lib/tools.ts';
 
@@ -253,5 +253,17 @@ describe('private tool lists', () => {
     const privateTilts = existsSync(join(import.meta.dirname, '..', 'content/private/tools/tilts.json'));
     if (privateTilts) expect(lists.tilts!.entries.length).toBeGreaterThan(0);
     else expect(lists.tilts!.entries).toEqual([]);
+  });
+});
+
+describe('glyphRows (emoji layout)', () => {
+  it('centred rows: 3 across, 4 as 2+2, otherwise rows of 3 or 2', () => {
+    expect([1, 2, 3, 4, 5, 6].map(glyphRows)).toEqual([[1], [2], [3], [2, 2], [3, 2], [3, 3]]);
+    expect(glyphRows(0)).toEqual([]);
+    for (let n = 1; n <= 12; n++) {
+      const rows = glyphRows(n);
+      expect(rows.reduce((a, b) => a + b, 0)).toBe(n);
+      if (n > 3) expect(rows.every(r => r === 2 || r === 3)).toBe(true);
+    }
   });
 });

@@ -7,7 +7,7 @@
   import { buzz } from '../lib/device.ts';
   import { availableLetters } from '../lib/engine/table.ts';
   import {
-    countOpt, diceOpts, drawFollowUp, effectiveOpts, entriesOf, findTool, followOn, historyText, isEmptyList,
+    countOpt, diceOpts, glyphRows, drawFollowUp, effectiveOpts, entriesOf, findTool, followOn, historyText, isEmptyList,
     modDefs, partOn, partOrderOn, rollTool, segments, valueLabel, type ToolOpts, type ToolResult
   } from '../lib/tools.ts';
   import Sheet from '../components/Sheet.svelte';
@@ -140,9 +140,19 @@
           </div>
           <div class="rfoot">{result.note}</div>
         {:else}
-          <div class="tbig" class:glyph={result.kind === 'list' && result.glyph}>
+          {#if result.kind === 'list' && result.glyph}
+            {@const rows = glyphRows(result.base.length)}
+            <div class="glyphs" role="img" aria-label={result.text}>
+              {#each rows as count, r (r)}
+                {@const start = rows.slice(0, r).reduce((a, b) => a + b, 0)}
+                <div class="grow">{#each result.base.slice(start, start + count) as g, i (i)}<span>{g}</span>{/each}</div>
+              {/each}
+            </div>
+          {:else}
+          <div class="tbig">
             {#each segments(tool, result, opts) as seg, i (i)}<span class:ul={seg.underline}>{seg.text}</span>{/each}{#if followUp && tool.kind === 'list' && tool.followUp}<span class="xtra">{tool.followUp.join ?? ' — '}{followUp}</span>{/if}
           </div>
+          {/if}
           {#if result.kind === 'gen' && result.sub}<p class="rsub">{result.sub}</p>{/if}
           {#if result.relaxed}<div class="rfoot"><span class="relax">No exact match: some filters relaxed</span></div>{/if}
         {/if}

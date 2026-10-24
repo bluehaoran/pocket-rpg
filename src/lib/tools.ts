@@ -144,6 +144,24 @@ export function segments(t: AnyTool, r: ToolResult, opts: ToolOpts): Segment[] {
   return out;
 }
 
+/**
+ * How to lay out `n` glyphs (emoji) in centred rows: three fit across, four make 2 + 2,
+ * and everything else is rows of 3 or 2 (5 = 3 + 2, 6 = 3 + 3).
+ */
+export function glyphRows(n: number): number[] {
+  if (n <= 3) return n > 0 ? [n] : [];
+  if (n === 4) return [2, 2];
+  const rows: number[] = [];
+  let left = n;
+  while (left > 0) {
+    // Prefer 3 per row, but never leave a lone glyph on the last row.
+    const take = left === 4 ? 2 : Math.min(3, left);
+    rows.push(take);
+    left -= take;
+  }
+  return rows;
+}
+
 export const plainText = (t: AnyTool, r: ToolResult, opts: ToolOpts): string => segments(t, r, opts).map(s => s.text).join('');
 
 /** Full text as logged: result plus follow-up, if any. */

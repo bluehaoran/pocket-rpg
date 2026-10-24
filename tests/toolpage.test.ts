@@ -112,3 +112,16 @@ describe('tool page', () => {
     expect(document.body.textContent).toContain('No tool with id');
   });
 });
+
+describe('emoji layout', () => {
+  it('renders centred rows for every count', async () => {
+    const expected: Record<number, number[]> = { 1: [1], 2: [2], 3: [3], 4: [2, 2], 5: [3, 2], 6: [3, 3] };
+    for (const [n, rows] of Object.entries(expected)) {
+      app.session!.toolModifiers.emoji = { count: Number(n) };
+      const { unmount } = render(ToolPage, { toolId: 'emoji' });
+      const got = [...document.querySelectorAll('.glyphs .grow')].map(r => r.children.length);
+      expect(got, `count ${n}`).toEqual(rows);
+      unmount();
+    }
+  });
+});

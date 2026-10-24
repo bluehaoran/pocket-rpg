@@ -330,3 +330,7 @@ main{overscroll-behavior:contain}
 /* Breadcrumb headings (Tools > Names): the parent is an orange link in the heading style. */
 h2 .crumb{color:var(--accent);text-decoration:none;display:inline-block;padding:8px 0;margin:-8px 0}
 h2 .sep{color:var(--muted);margin-inline:.25em}
+
+/* Emoji ("story cubes"): centred rows, three fit across, four make 2 + 2 */
+.glyphs{display:flex;flex-direction:column;align-items:center;gap:.12em;font-size:clamp(44px,16vw,72px);line-height:1.15}
+.glyphs .grow{display:flex;justify-content:center;gap:.3em}

@@ -48,7 +48,7 @@ Defines which tools appear on the hub and in what order.
 | `followUp` | Optional Off / On toggle (remembered, `default` off). When on, one entry from another tool's list is appended with `join` on every roll, and a smaller "↻ New {label}" button rerolls only that part. Turning it on or off doesn't reroll the main result. One History entry. |
 | `count` | Optional. Draw N distinct entries per roll, with a stepper. |
 | `join` | Separator when `count` > 1. Default `", "`. |
-| `display` | `text` (default) or `glyph` (very large, for emoji). |
+| `display` | `text` (default) or `glyph` (very large, for emoji). Glyph results are centred in rows: 3 fit across, 4 are 2 + 2, otherwise rows of 3 or 2 (5 = 3 + 2, 6 = 3 + 3). |
 | `description` | Optional one line shown under the page title (Emoji: "Use this like Story Cubes to inspire your story."). |
 
 ## 2. List file: `content/tools/{id}.json`
