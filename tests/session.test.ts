@@ -1,7 +1,7 @@
 import 'fake-indexeddb/auto';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { db, currentSession } from '../src/lib/db.ts';
-import { app, chipText, flush, initSession, mutate, SAVE_DELAY_MS, startNewSession } from '../src/lib/session.svelte.ts';
+import { app, chipText, flush, initSession, MAX_WAIT_MS, mutate, SAVE_DELAY_MS, startNewSession } from '../src/lib/session.svelte.ts';
 
 beforeEach(async () => {
   await db.sessions.clear();
@@ -37,6 +37,22 @@ describe('session store', () => {
     expect((await currentSession())?.players).toBe(1);
     await wait(SAVE_DELAY_MS + 150);
     expect((await currentSession())?.players).toBe(3);
+  });
+
+  it('saves under constant activity, at most MAX_WAIT_MS after the first change', async () => {
+    await initSession();
+    const t0 = Date.now();
+    let n = 2;
+    // A change every 100ms never leaves a 400ms gap, so only the max wait can trigger the save.
+    while (Date.now() - t0 < MAX_WAIT_MS + 300) {
+      mutate(s => (s.players = n));
+      n = n === 4 ? 2 : n + 1;
+      await wait(100);
+      if ((await currentSession())?.players !== 1) break;
+    }
+    expect((await currentSession())?.players).not.toBe(1);
+    expect(Date.now() - t0).toBeLessThan(MAX_WAIT_MS + 600);
+    await flush();
   });
 
   it('flush saves immediately and cancels the pending save', async () => {

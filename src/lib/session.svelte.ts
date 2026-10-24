@@ -7,7 +7,10 @@ import { RULES, type RulesId } from './content/types.ts';
 export const app = $state<{ session: Session | undefined; ready: boolean }>({ session: undefined, ready: false });
 
 export const SAVE_DELAY_MS = 400;
+/** Under constant activity the debounce would never fire, so a pending change is saved after at most this long. */
+export const MAX_WAIT_MS = 2000;
 let timer: ReturnType<typeof setTimeout> | undefined;
+let pendingSince = 0;
 
 /** A fresh unstarted session on the first pack in setup order. M4's wizard edits it in place. */
 export function defaultSession(): Session {
@@ -33,8 +36,10 @@ export async function initSession(): Promise<void> {
 export function mutate(fn: (s: Session) => void): void {
   if (!app.session) return;
   fn(app.session);
+  const now = Date.now();
+  if (timer === undefined) pendingSince = now;
   clearTimeout(timer);
-  timer = setTimeout(() => void flush(), SAVE_DELAY_MS);
+  timer = setTimeout(() => void flush(), Math.max(0, Math.min(SAVE_DELAY_MS, pendingSince + MAX_WAIT_MS - now)));
 }
 
 /** Save now, cancelling any pending debounced save. */

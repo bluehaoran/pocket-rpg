@@ -94,11 +94,13 @@ Each ends with green CI and a deploy.
 - Track History.
 - **Built:** `rules/lasers-feelings.ts`, `rules/roll-for-shoes.ts` (pure, seeded-RNG tests in `tests/rules.test.ts`), `play.svelte.ts` (the roll on screen, bonus/status toggles, actions that log to `trackHistory`), components `RollResult`, `RollSheet`, `NewSkillSheet`, `LfControls`, `RfsControls`, `PartyCard`, `StoryCard`, `GmControl`; routes `track/Play`, `track/CharPage` (`#/track/char/<i>`), Track History (`#/track/history`). Roll result placement is `play.mode` (sheet default); the dev-only toggle appears in `import.meta.env.DEV` builds only. `Session.gmDice` remembers Opposed by GM. Characters are not editable in play (per spec); only story-card edits are logged. Gotcha found by tests: on Svelte state, `(x.list ??= []).push(...)` pushes to the raw array, not the stored proxy; assign first, then push.
 
-### M6 — Polish and device testing
+### M6 — Polish and device testing (code half done; device half is yours)
 - Accessibility pass (focus, labels, contrast, 44px targets), reduced motion.
 - Performance: result under 2 s on a mid-range phone (target: instant).
 - Pick the roll result placement; remove the toggle.
 - Content review session: complications, tilts, emoji, names balance.
+- **Done without a device (2026-10-24):** the built app was driven in headless Chromium at 390×844 (setup → story → players → play → rolls → Tools → offline reload), light and dark. That found and fixed real layout bugs (missing `main>*{flex:none}` squashed cards, missing `.stats`, scroll position kept across screens), a save-starvation bug (debounce now has a 2 s max wait), and tap targets under 44 px (inline sentence parts now have a 44 px hit area; compact-card chips are 44 px). Light-mode accent darkened to `#9A4E00` so accent text passes 4.5:1 on the page background. Sheets trap focus and restore it. iOS standalone meta tags, `overscroll-behavior`. Offline reload and console cleanliness verified in the headless run.
+- **Still open (needs you or a phone):** pick the roll result placement and delete `play.mode` and its dev toggle; content review session; run the device checklist; decide whether `autoUpdate` is acceptable in practice. The proprietary tilt table sits in `content/private/tools/tilts.json` in a `d66` shape that the tool schema does not know; supporting it (and the public `tilts.json` staying empty) is a content decision.
 
 ## Test plan
 - **Unit (Vitest):** content validation (positive and negative), engine rules with a seeded RNG, both rules engines, template rendering, session store.
@@ -131,4 +133,14 @@ Run on one Android phone (Chrome) and one iPhone (Safari) against the deployed b
 - [ ] Wake lock with a started session (M4+): same check on the deployed app; off again after New session.
 - [ ] Haptics (M3+): Android vibrates on a result; iOS does nothing and nothing breaks.
 
-**Later milestones add** one-handed reach on Tools and Track, performance under 2 s per result, reduced motion, and screen-reader labels (M6).
+**Tools and Track (M3–M5)**
+- [ ] Tools hub: every tool opens, hub summaries read sensibly, History lists kept results.
+- [ ] Names: gender, setting (defaults to the genre's), A–Z sheet greys out empty letters, last name on/off and the family-name-order checkbox re-orders without rerolling, description follow-up and "↻ New description".
+- [ ] Reroll never shows the same result twice in a row; ✓ and Back each log exactly one history entry.
+- [ ] Setup: switch rule system, pick a genre/setting in the picker, players 1–4, starting skills (RfS), story seed (tap a part, Advanced tab, Roll all), players (edit sheets for each field kind, Roll all, ← →), Start play.
+- [ ] Track in play: roll L&F checks (bonus dice, exact-number effect, critical picks, resources), RfS rolls (GM dice, statuses, fail XP, spend XP, all sixes → name a skill), History.
+- [ ] Roll result placement: try all three on the phone (dev server, "Dev: roll result placement") and pick one.
+- [ ] One-handed reach: every frequent action (Reroll, ✓, check buttons, skill chips, Done) is reachable with the thumb.
+- [ ] Reduced motion (OS setting on): no pop or rise animations.
+- [ ] Screen reader (TalkBack/VoiceOver): dice read as "d6 showing 4", sheets announce their title, steppers announce their value.
+- [ ] Performance: a result appears with no visible delay.

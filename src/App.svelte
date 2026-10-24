@@ -15,6 +15,13 @@
   let confirmNew = $state(false);
   let confirmTimer: ReturnType<typeof setTimeout> | undefined;
   const route = $derived(router.route);
+  let mainEl: HTMLElement | undefined = $state();
+
+  // A new screen starts at the top, as in the mockup.
+  $effect(() => {
+    void [route.tab, route.page, route.rest.join('/')];
+    mainEl?.scrollTo(0, 0);
+  });
 
   // Screen stays on while a session is in play. Dev builds can force it, since `started` needs the M4 wizard.
   const wake = createWakeLock();
@@ -56,7 +63,7 @@
     </div>
   </header>
 
-  <main class="gutter">
+  <main class="gutter" bind:this={mainEl}>
     {#if !app.ready}
       <p class="hint">Loading…</p>
     {:else if route.page === 'packs'}
