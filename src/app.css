@@ -87,3 +87,27 @@ body{margin:0}
 .tabs a{min-height:64px;border-top:3px solid transparent;color:var(--muted);font:700 12px/1 var(--f-body);text-transform:uppercase;letter-spacing:.1em;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-decoration:none}
 .tabs a .n{font:700 20px/1 var(--f-mono)}
 .tabs a[aria-current="page"]{color:var(--ink);border-top-color:var(--accent)}
+
+/* Shared components (M1) */
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
+.tog{min-height:46px;padding:0 14px;border-radius:999px;border:2px solid var(--line);background:var(--surface);font:700 15px var(--f-body);display:inline-flex;align-items:center}
+.tog[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.tog.static{min-height:36px;font-weight:400}
+.die{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);width:40px;height:40px;padding:6px;gap:2px;border-radius:9px;background:var(--sunk);border:1px solid var(--line);flex:none}
+.die i{border-radius:50%}
+.die i.on{background:var(--ink)}
+.die.sm{width:30px;height:30px;padding:5px;border-radius:7px}
+.die.lg{width:50px;height:50px;padding:8px;border-radius:11px}
+.die.ok{background:var(--accent-soft);border:2px solid var(--accent)}
+.die.ok i.on{background:var(--accent)}
+.die.ex{border:3px solid var(--pin)}
+.die.ex i.on{background:var(--pin)}
+.die.no{opacity:.4}
+.dock{position:sticky;bottom:-28px;margin:auto -16px -28px;padding:10px 16px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;border-top:1px solid var(--line);background:var(--bg)}
+.dock.one{grid-template-columns:2fr 1fr}
+.dock:empty{display:none}
+.dock button{min-height:56px;border-radius:14px;border:2px solid var(--ink);background:var(--surface);font:700 21px/1 var(--f-mono);display:flex;align-items:center;justify-content:center;gap:8px}
+.dock button:active{transform:scale(.97)}
+.dock .die{width:26px;height:26px;padding:4px;border-radius:6px}
+.dock .btn{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font:800 23px/1 var(--f-display)}
+.dock .btn.keep{background:var(--surface);color:var(--accent)}

@@ -8,8 +8,11 @@ Read first: `06-build-plan.md`, then `01-product-spec.md`, `05-tools-library.md`
   - Content in `content/`, validated by `npm run validate`.
   - Empty installable shell: Track and Tools tabs, Pack details from the menu.
 
+- **Phase 4, M1 Shell and session:** code complete, CI green. Session store, header chip, menu with two-tap New session, shared components, wake lock and haptics helpers. **Not yet checked on a phone**: run the "Manual device checklist" in `06-build-plan.md` and record failures here.
+
 ## Next
-- **M1 — Shell and session** (see `06-build-plan.md`).
+- Run the M1 device checklist (install on Android and iOS, offline reopen, safe areas).
+- **M2 — Table engine** (see `06-build-plan.md`).
 
 ## Decisions made at build start
 See `01-product-spec.md` "Decisions at build start". Summary: Svelte 5 + Vite, GitHub Pages, repo is source of truth, no-repeat window 3, picker sheet, implement `filterBy`, gender `x` explicit only, Moon & Blood castle/scenarios dropped, RfS ties shown as "Tie", roll result placement deferred.

@@ -46,13 +46,19 @@ Each ends with green CI and a deploy.
 - Content imported from the Project; `nameSetting` on packs; `groupFields` at pack root everywhere; Moon & Blood `castle`/`scenarios` dropped.
 - Schemas, validator, CI, Pages deploy, installable empty shell with Track/Tools tabs and Pack details.
 
-### M1 — Shell and session
+### M1 — Shell and session ✅ code complete; device checklist below still to run
 - Session store (`src/lib/session.svelte.ts`): load latest on start, create on first run, debounced save.
 - Header chip (genre · rules · players), menu sheet: Pack details, New session (two-tap confirm).
 - Shared components: `Sheet`, `Stepper`, `Seg`, `Chips`, `Die`, bottom dock.
 - Screen Wake Lock while `started`; haptics helper (`navigator.vibrate`, guarded).
 - Update prompt when a new service worker is waiting (or keep autoUpdate; decide when testing on a phone).
 - **Done when:** app installs on Android and iOS, reopens offline, session survives a reload.
+- **Decisions (2026-10-24):**
+  - First run creates an unstarted session on the first pack in `PACK_ORDER`; M4's wizard edits it in place.
+  - New session replaces the current one; the old one stays in IndexedDB (only the latest is used).
+  - Keep `autoUpdate`; revisit after phone testing.
+  - Wake lock follows `session.started`. Until M4 can set it, a dev-only menu toggle ("Keep awake (dev)") forces it, so it can be tried through the dev server on a phone but not on the deployed app.
+- **Built:** `session.svelte.ts` (use `mutate()` for changes so they save; `flush()` on hide/pagehide), `device.ts` (`buzz`, `createWakeLock`), components `Sheet`, `Stepper`, `Seg`, `Chips`, `Die`, `Dock`. `Stepper`, `Seg`, `Chips`, `Die` and `Dock` have no screen using them until M3/M4.
 
 ### M2 — Table engine
 - `rng.ts`: seeded RNG interface (`mulberry32`), `Math.random` default.
@@ -93,10 +99,32 @@ Each ends with green CI and a deploy.
 ## Test plan
 - **Unit (Vitest):** content validation (positive and negative), engine rules with a seeded RNG, both rules engines, template rendering, session store.
 - **Component:** add `@testing-library/svelte` + jsdom at M3 for tool page behaviour (reroll never repeats, leaving logs once).
-- **Manual on device:** install, airplane mode, wake lock, haptics, one-handed reach. Checklist added at M1.
+- **Manual on device:** install, airplane mode, wake lock, haptics, one-handed reach. Checklist below.
 
 ## Content workflow
 1. Edit JSON in `content/`.
 2. `npm run validate` (also runs in CI).
 3. Push; the app redeploys.
 Empty lists are valid; the tool page says which file to edit.
+
+## Manual device checklist
+Run on one Android phone (Chrome) and one iPhone (Safari) against the deployed build. Tick per device.
+
+**Install and offline (M1)**
+- [ ] Android: Chrome offers install; the app opens standalone with the right icon and theme colour.
+- [ ] iOS: Share → Add to Home Screen; opens standalone with the apple-touch icon.
+- [ ] Airplane mode, force-close, reopen from the home screen: the app loads, Track and Tools both work, Pack details lists all packs.
+- [ ] Header chip shows genre · rules · players (first run: Starfarers · L&F · 1 player).
+- [ ] Menu: Pack details opens; Close and tapping outside both close the menu; Escape closes it with a keyboard.
+- [ ] New session: first tap changes the label to "Tap again to confirm" and reverts after about 4 s; the second tap within 4 s starts a new session (chip updates, lands on Track).
+- [ ] Session survives: change nothing visible yet, so check via New session then force-close and reopen; the new session is the one loaded. (Richer persistence checks arrive with M4.)
+- [ ] After a deploy, the next launch picks up the new version (autoUpdate) without a stale shell; note whether a reload mid-use is disruptive.
+- [ ] Safe areas: header, tab bar and menu sheet clear the notch and home indicator in portrait.
+- [ ] Every control is reachable with one thumb and at least 44 px (header menu button, tabs, menu buttons).
+
+**Wake lock and haptics (re-run in M4/M5 once `started` and results exist)**
+- [ ] Wake lock (dev server on the phone, "Keep awake (dev)" on): screen doesn't dim for longer than the system timeout; switch away and back, it re-engages.
+- [ ] Wake lock with a started session (M4+): same check on the deployed app; off again after New session.
+- [ ] Haptics (M3+): Android vibrates on a result; iOS does nothing and nothing breaks.
+
+**Later milestones add** one-handed reach on Tools and Track, performance under 2 s per result, reduced motion, and screen-reader labels (M6).
