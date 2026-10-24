@@ -96,6 +96,7 @@
         "count": { "type": "integer", "minimum": 1 },
         "range": { "type": "array", "items": { "type": "integer" }, "minItems": 2, "maxItems": 2 },
         "randomise": { "type": "string" },
+        "filterBy": { "type": "array", "items": { "type": "string" } },
         "skill": { "type": "object", "required": ["level"], "properties": { "level": { "type": "integer", "minimum": 1 } } },
         "status": {
           "type": "object", "required": ["level"],

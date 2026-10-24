@@ -59,6 +59,10 @@ export function validatePack(p: Pack): Report {
       ref(x.table, `${name}.${x.id}`);
       ref(x.examples, `${name}.${x.id}.examples`);
       refGen(x.generator, `${name}.${x.id}`);
+      for (const k of x.filterBy ?? []) {
+        if (!list.some(o => o.id === k)) errs.push(`${name}.${x.id}.filterBy references unknown field ${k}`);
+        if (!p.modifiers?.[k]) errs.push(`${name}.${x.id}.filterBy ${k} is not a declared modifier`);
+      }
     }
   };
   checkFields(p.groupFields ?? [], 'groupFields');

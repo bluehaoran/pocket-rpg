@@ -77,12 +77,13 @@ Each ends with green CI and a deploy.
 - Tools History.
 - **Built:** `src/lib/tools.ts` (pure: roll, modifiers, parts, follow-up, hub summaries), `toolctx.svelte.ts`, routes `Tools`, `ToolPage`, `History` (`#/tools/history`), component tests in `tests/toolpage.test.ts` (jsdom + @testing-library/svelte; per-file `// @vitest-environment jsdom`). Pack generators use tool id `pack:<generatorId>` and the same `toolModifiers` store. No shipped generator has a required modifier yet; the gate is tested with a fabricated one. A tool page logs on unmount (Back, tab switch, ✓), at most once per visit.
 
-### M4 — Setup wizard
+### M4 — Setup wizard ✅
 - Step indicator; Setup (rule system, native packs via picker sheet, starting skills stepper for RfS, players 1–4).
 - Story: seed Text/Advanced with per-part reroll and Roll all; RfS intro questions; group fields; premise; scene outline.
 - Players: sentence with tappable fields, number bar, derived stats, resource chips, edit sheet per field kind, Roll all, ← Player n of N →.
 - Specify and implement `filterBy` on fields (Blade and Spirit pack animal).
 - Start play.
+- **Built:** `characters.ts` (fields, random values, derived stats via a small safe formula evaluator, RfS skill tree and statuses, fallbacks), `setup.ts` (rules/pack/players/starter skills, seed rolls, start of play), `fields.ts` (read/write the value a sheet edits), components `FieldSheet`, `Sentence`, `ScaleBar`, `DRow`, `CharacterCard` (editable in setup, read-only with no `onedit`), routes `track/{Wizard,Setup,Story,Players}` at `#/track/setup|story|players`. `filterBy` on fields: see `02-data-model.md` §1.6; Blade and Spirit's `gear` field now has `filterBy: ["role"]` (private pack, edited locally only). Header chip adds "· setup" until play starts. Field-level `lastModifiers` is unused: generator-filled fields use the modifiers last chosen on that generator's tool page (`toolModifiers['pack:<id>']`).
 
 ### M5 — Track in play
 - Story card with tappable seed/fields (edits logged) and generator chips.

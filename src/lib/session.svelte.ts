@@ -66,10 +66,10 @@ export function bindLifecycle(): void {
 
 const RULES_SHORT: Record<string, string> = { 'lasers-feelings': 'L&F', 'roll-for-shoes': 'RfS' };
 
-/** Header chip: genre · rules · players. */
+/** Header chip: genre · rules · players, plus "setup" until play starts. */
 export function chipText(s: Session | undefined): string {
   if (!s) return 'no session';
   const pack = packs[s.packIds[0] ?? ''];
   const genre = pack?.genre ?? pack?.name ?? '?';
-  return `${genre} · ${RULES_SHORT[s.rulesId] ?? s.rulesId} · ${s.players} ${s.players === 1 ? 'player' : 'players'}`;
+  return `${genre} · ${RULES_SHORT[s.rulesId] ?? s.rulesId} · ${s.players} ${s.players === 1 ? 'player' : 'players'}${s.started ? '' : ' · setup'}`;
 }

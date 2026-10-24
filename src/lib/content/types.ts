@@ -46,6 +46,10 @@ export interface Field {
   count?: number;
   range?: [number, number];
   randomise?: string;
+  /** Field ids whose current values filter this field's table entries (modifier key = field id). */
+  filterBy?: string[];
+  /** Inline pick list. Only used by the built-in fallback flavours, never by pack JSON. */
+  values?: string[];
   skill?: { level: number };
   status?: { level: number; format?: string; optional?: boolean };
 }

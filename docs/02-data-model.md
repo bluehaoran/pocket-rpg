@@ -161,6 +161,7 @@ If a pack has no flavour block for the chosen rules module, the app falls back:
   - `\n` is a line break. A field named `name` is shown larger.
   - Fields not in the template are listed as rows under the sentence. In L&F the `number` field is always shown as the number bar.
   - If absent: L&F uses `{name}\nis {a} {style|lower} {role|lower} who wants to\n{goal|lower}`, dropping parts whose fields don't exist. Roll for Shoes uses `{name}\nis {a} {concept|lower}`.
+- `fields[].filterBy` (v5): array of field ids. When the field's `table` is drawn or listed, entries are filtered by each named field's current value, as a modifier with the same key (so the pack must declare that modifier, and the source field must be a single value). Blade and Spirit: the pack animal in `gear.extra` is tagged `role: Farmer`, and the gear field has `"filterBy": ["role"]`. A source field that is empty applies no filter. Changing the source field never rewrites the dependent value.
 - `fields[].generator`: fill the field from a pack generator (e.g. Starfarers' name = `{name.given} {name.family?}`).
 - `fields[]` with `kind: "text"` and a `table` (or `generator`, or `examples`): free text that can also be randomised. `table: null` with no generator or examples means free text only, with no randomise button.
 
@@ -408,3 +409,6 @@ Build start, 2026-10-24.
 ## Open questions (carried)
 1. Blade and Spirit seed tables are unnumbered in the source. Entry order is a guess.
 2. Roll for Shoes fallback concept list is every style × role pair (36 entries for Starfarers-sized tables). A: keep; B: cap or sample; C: require packs to supply `rfs.concept`. Fallbacks are not offered in Setup, so low priority.
+
+## Changes from v5 (2026-10-24)
+1. **`fields[].filterBy`** added (§1.6). Schema, types and validation updated.
