@@ -35,6 +35,8 @@ export interface Session {
   rulesId: string;
   players: number;
   starterSkills?: number;
+  /** Roll for Shoes: GM dice for opposed rolls (0 = off). Remembered across rolls. */
+  gmDice?: number;
   answers: Record<string, string>;
   characters: Character[];
   seed?: { columns: string[]; text: string };

@@ -294,6 +294,7 @@ interface Session {
   rulesId: string;                       // "lasers-feelings" | "roll-for-shoes"
   players: number;                       // 1–4
   starterSkills?: number;                // Roll for Shoes only; unset = pack default
+  gmDice?: number;                       // Roll for Shoes: GM dice for opposed rolls, 0 = off; remembered
   answers: Record<string, string>;       // story.questions id -> answer (optional)
   characters: Character[];               // 1–4
   seed?: { columns: string[]; text: string };   // the current seed; saved automatically
@@ -412,3 +413,4 @@ Build start, 2026-10-24.
 
 ## Changes from v5 (2026-10-24)
 1. **`fields[].filterBy`** added (§1.6). Schema, types and validation updated.
+2. **Session gains `gmDice`** (Roll for Shoes opposed-by-GM setting, remembered across rolls).

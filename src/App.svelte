@@ -3,6 +3,7 @@
   import { router, href, go } from './lib/router.svelte.ts';
   import { app, chipText, startNewSession } from './lib/session.svelte.ts';
   import { createWakeLock } from './lib/device.ts';
+  import { resetPlay } from './lib/play.svelte.ts';
   import Sheet from './components/Sheet.svelte';
   import Track from './routes/Track.svelte';
   import Tools from './routes/Tools.svelte';
@@ -40,6 +41,7 @@
       return;
     }
     await startNewSession();
+    resetPlay();
     closeMenu();
     go('/track');
   }

@@ -85,13 +85,14 @@ Each ends with green CI and a deploy.
 - Start play.
 - **Built:** `characters.ts` (fields, random values, derived stats via a small safe formula evaluator, RfS skill tree and statuses, fallbacks), `setup.ts` (rules/pack/players/starter skills, seed rolls, start of play), `fields.ts` (read/write the value a sheet edits), components `FieldSheet`, `Sentence`, `ScaleBar`, `DRow`, `CharacterCard` (editable in setup, read-only with no `onedit`), routes `track/{Wizard,Setup,Story,Players}` at `#/track/setup|story|players`. `filterBy` on fields: see `02-data-model.md` §1.6; Blade and Spirit's `gear` field now has `filterBy: ["role"]` (private pack, edited locally only). Header chip adds "· setup" until play starts. Field-level `lastModifiers` is unused: generator-filled fields use the modifiers last chosen on that generator's tool page (`toolModifiers['pack:<id>']`).
 
-### M5 — Track in play
+### M5 — Track in play ✅
 - Story card with tappable seed/fields (edits logged) and generator chips.
 - Compact party cards and read-only character page.
 - L&F engine (`rules/lasers-feelings.ts`): pool, under/over, exact effect (options, questions list or table draw), outcomes, critical picks, resource counters with states.
 - Roll for Shoes engine (`rules/roll-for-shoes.ts`): skill tree derivation, opposed by GM (0–4d6), statuses for next roll, fail XP, spend XP (lowest non-6, not XP from this roll), all-sixes new skill, ties shown as "Tie".
 - Roll result component with three presentations (sheet default, inline, page); dev-only toggle.
 - Track History.
+- **Built:** `rules/lasers-feelings.ts`, `rules/roll-for-shoes.ts` (pure, seeded-RNG tests in `tests/rules.test.ts`), `play.svelte.ts` (the roll on screen, bonus/status toggles, actions that log to `trackHistory`), components `RollResult`, `RollSheet`, `NewSkillSheet`, `LfControls`, `RfsControls`, `PartyCard`, `StoryCard`, `GmControl`; routes `track/Play`, `track/CharPage` (`#/track/char/<i>`), Track History (`#/track/history`). Roll result placement is `play.mode` (sheet default); the dev-only toggle appears in `import.meta.env.DEV` builds only. `Session.gmDice` remembers Opposed by GM. Characters are not editable in play (per spec); only story-card edits are logged. Gotcha found by tests: on Svelte state, `(x.list ??= []).push(...)` pushes to the raw array, not the stored proxy; assign first, then push.
 
 ### M6 — Polish and device testing
 - Accessibility pass (focus, labels, contrast, 44px targets), reduced motion.
