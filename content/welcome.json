@@ -1,0 +1,15 @@
+{
+  "title": "PocketRPG",
+  "intro": "A pocket assistant for running conversational, story-first RPGs. Everything works offline.",
+  "track": {
+    "title": "Track",
+    "body": "Run a game. Set up a story and characters, then roll checks, keep XP and resources, and look back at what happened.",
+    "start": "Start a story",
+    "resume": "Continue your story"
+  },
+  "tools": {
+    "title": "Tools",
+    "body": "Dice, names, descriptions, items, emotions and emoji. Handy on their own, no story needed.",
+    "open": "Open Tools"
+  }
+}

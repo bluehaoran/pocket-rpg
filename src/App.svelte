@@ -9,6 +9,7 @@
   import Tools from './routes/Tools.svelte';
   import ToolPage from './routes/ToolPage.svelte';
   import PackDetails from './routes/PackDetails.svelte';
+  import Welcome from './routes/Welcome.svelte';
   import History from './routes/History.svelte';
 
   let menuOpen = $state(false);
@@ -20,7 +21,7 @@
   // A new screen starts at the top, as in the mockup.
   $effect(() => {
     void [route.tab, route.page, route.rest.join('/')];
-    mainEl?.scrollTo(0, 0);
+    mainEl?.scrollTo?.(0, 0);
   });
 
   // Screen stays on while a session is in play. Dev builds can force it, since `started` needs the M4 wizard.
@@ -58,7 +59,11 @@
   <header class="top gutter">
     <div class="brand">Pocket<b>RPG</b></div>
     <div class="hdr">
-      <div class="chip">{chipText(app.session)}</div>
+      {#if app.ready && chipText(app.session)}
+        <div class="chip">{chipText(app.session)}</div>
+      {:else if app.ready}
+        <a class="chip cta" href={href('/track/setup')}>No story in progress. Click to start</a>
+      {/if}
       <button class="menubtn" aria-label="Menu" onclick={() => (menuOpen = true)}><i></i><i></i><i></i></button>
     </div>
   </header>
@@ -66,6 +71,8 @@
   <main class="gutter" bind:this={mainEl}>
     {#if !app.ready}
       <p class="hint">Loading…</p>
+    {:else if route.page === 'welcome'}
+      <Welcome />
     {:else if route.page === 'packs'}
       <PackDetails packId={route.rest[0]} />
     {:else if route.tab === 'tools'}
@@ -89,6 +96,7 @@
 
 {#if menuOpen}
   <Sheet title="Session" onclose={closeMenu}>
+    <button class="btn ghost" onclick={() => openPage('/welcome')}>Welcome</button>
     <button class="btn ghost" onclick={() => openPage('/packs')}>Pack details</button>
     <button class="btn ghost" aria-pressed={confirmNew} onclick={newSession}>
       {confirmNew ? 'Tap again to confirm' : 'New session'}

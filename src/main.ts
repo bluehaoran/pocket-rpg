@@ -9,10 +9,11 @@ import '@fontsource/jetbrains-mono/latin-700';
 import './app.css';
 import App from './App.svelte';
 import { bindLifecycle, initSession } from './lib/session.svelte.ts';
+import { maybeShowWelcome } from './lib/startup.ts';
 
 registerSW({ immediate: true });
 
 bindLifecycle();
-void initSession();
+void initSession().then(maybeShowWelcome);
 
 export default mount(App, { target: document.getElementById('app')! });

@@ -12,6 +12,7 @@ Read first: `06-build-plan.md`, then `01-product-spec.md`, `05-tools-library.md`
 - **M6:** the part that doesn't need a device is done (headless-browser pass, tap targets, contrast, focus trap, offline). **Checked on a phone (2026-10-25): works.** The per-item checklist in `06-build-plan.md` isn't ticked; record any failures found later here.
 
 ## Next
+- **Welcome copy:** `content/welcome.json` holds placeholder text; replace it with your blurb.
 - Pick the roll result placement (`play.mode`), then remove the dev toggle.
 - Content review session (below).
 - **Custom table import (new):** an improved interface to upload custom tables, e.g. for custom or copyrighted content that can't live in the repo. Replaces the gitignored `content/private/` workflow; this is the Phase 2 "admin mode" in `05-tools-library.md` §8, widened to packs. Needs a design pass first: where uploads are stored (IndexedDB, device only), validation against the schemas with readable errors, export/backup, and how a private tilt `d66` table fits.
