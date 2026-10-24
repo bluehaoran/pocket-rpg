@@ -60,12 +60,13 @@ Each ends with green CI and a deploy.
   - Wake lock follows `session.started`. Until M4 can set it, a dev-only menu toggle ("Keep awake (dev)") forces it, so it can be tried through the dev server on a phone but not on the deployed app.
 - **Built:** `session.svelte.ts` (use `mutate()` for changes so they save; `flush()` on hide/pagehide), `device.ts` (`buzz`, `createWakeLock`), components `Sheet`, `Stepper`, `Seg`, `Chips`, `Die`, `Dock`. `Stepper`, `Seg`, `Chips`, `Die` and `Dock` have no screen using them until M3/M4.
 
-### M2 — Table engine
+### M2 — Table engine ✅
 - `rng.ts`: seeded RNG interface (`mulberry32`), `Math.random` default.
 - `table.ts`: `matches` (§1.2, explicit gender `x`), `draw` with no-repeat window (3) and `avoid`, relaxation of optional modifiers in declaration order with a `relaxed` flag.
 - `template.ts`: `{table}`, `{table?}`, `{table|lower}`, seed `{0}` templates with `case: lower`, `{a}`/`{a|cap}` articles, sentence rendering (§1.6).
 - Letter modifier (ignore leading "The ").
 - **Done when:** unit tests cover every rule above against the real content.
+- **Built:** `src/lib/engine/{rng,table,template}.ts`, tests in `tests/engine.test.ts`. `draw` with `strict` returns null rather than repeating (used for distinct multi-picks); without it, the last resort is the whole pool. The `letter` modifier is handled inside `matches`.
 
 ### M3 — Tools tab
 - Hub: registry tools in order, then pack generators under the pack's genre.
