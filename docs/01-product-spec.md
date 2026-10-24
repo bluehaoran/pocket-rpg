@@ -117,6 +117,7 @@ Rules rolls have no reroll, so they are logged when made. Done dismisses the res
 **History** (button on Track)
 - Records rules rolls, progression (XP gained and spent, new skills), resource changes, and edits to the story card.
 - Newest first, with time and character.
+- A **Clear history** button (two taps to confirm) empties it.
 
 ### Tools tab
 **Hub**
@@ -149,6 +150,7 @@ Rules rolls have no reroll, so they are logged when made. Done dismisses the res
 **Names: setting default:** the session genre's mapped name setting if one exists (`nameSetting` on the pack), otherwise the last setting used, otherwise Any.
 
 **History** (button on Tools): accepted results, newest first, with time and tool.
+A **Clear history** button (two taps to confirm) empties it.
 
 ### Pack details
 From the header menu: installed packs, validation results, licence, raw JSON. Import and export are later.
