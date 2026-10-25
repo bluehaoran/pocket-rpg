@@ -8,7 +8,7 @@
 </script>
 
 <section class="group">
-  <h2>{welcome.title}</h2>
+  <h2 class="brandline">Pocket<b>RPG</b></h2>
   <p class="hint">{welcome.intro}</p>
 </section>
 
