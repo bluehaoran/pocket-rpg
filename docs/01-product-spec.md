@@ -32,7 +32,7 @@ Example: "You meet a friendly elf named…" → Tools → Names (female, fantasy
 | Story seed | Saved to the session automatically |
 | History | Two per session: Track History (rolls and state changes) and Tools History (accepted results). Current session only. |
 | Pins | Dropped |
-| Tool result logging | A tool result is logged when the GM leaves the tool page. Rerolling discards the result on screen. |
+| Tool result logging | A tool result is logged only when the GM taps ✓. Reroll and Back discard the result on screen without saving it. |
 | Tool memory | Modifier settings persist per tool. Results do not. |
 | Library editing | JSON files only in Phase 1. In-app admin mode (add, hide, categorise entries) is Phase 2. |
 
@@ -129,7 +129,7 @@ Rules rolls have no reroll, so they are logged when made. Done dismisses the res
 - Opens with a fresh result already rolled.
 - Large result in the centre. Modifier controls under the result, remembered per tool.
 - Bottom dock: **Reroll** (⅔ width) and a **✓** button (⅓ width).
-- ✓ or Back returns to the hub and logs the result on screen to Tools History.
+- ✓ logs the result on screen to Tools History and returns to the hub. Back (or switching tab) returns without logging; Reroll discards the result and rolls again.
 - Rerolling discards the result on screen. It is not logged.
 - No-repeat window per list within a session (mockup uses 3).
 - If no entries match the modifiers, optional modifiers are relaxed in order and the result shows a "relaxed" note.

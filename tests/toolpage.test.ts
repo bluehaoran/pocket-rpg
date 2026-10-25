@@ -31,23 +31,24 @@ describe('tool page', () => {
     expect(history()).toHaveLength(0);
   });
 
-  it('leaving logs the result on screen once; rerolls are not logged', async () => {
+  it('rerolls and leaving with Back discard the result without logging it', async () => {
     const { unmount } = render(ToolPage, { toolId: 'items' });
     await fireEvent.click(screen.getByRole('button', { name: 'Reroll' }));
     await fireEvent.click(screen.getByRole('button', { name: 'Reroll' }));
+    unmount();
+    expect(history()).toHaveLength(0);
+  });
+
+  it('the check button keeps the result on screen, logs it once and goes back to the hub', async () => {
+    const { unmount } = render(ToolPage, { toolId: 'items' });
+    await fireEvent.click(screen.getByRole('button', { name: 'Reroll' }));
     const last = shown();
+    const keep = screen.getByRole('button', { name: 'Keep result' });
+    await fireEvent.click(keep);
+    await fireEvent.click(keep);
     unmount();
     expect(history()).toHaveLength(1);
     expect(history()[0]).toMatchObject({ tool: 'items', label: 'Items', text: last });
-  });
-
-  it('the check button logs once, even though leaving also unmounts', async () => {
-    const { unmount } = render(ToolPage, { toolId: 'items' });
-    const last = shown();
-    await fireEvent.click(screen.getByRole('button', { name: 'Keep result' }));
-    unmount();
-    expect(history()).toHaveLength(1);
-    expect(history()[0]!.text).toBe(last);
     expect(location.hash).toBe('#/tools');
   });
 
@@ -132,7 +133,7 @@ describe('tool page', () => {
     render(ToolPage, { toolId: 'emotions' });
     const dock = document.querySelector('.dock')!;
     const note = dock.querySelector('.dock-note')!;
-    expect(note.textContent).toContain('keeps this result in History');
+    expect(note.textContent).toContain('✓ keeps this result in History. Reroll or Back discards it.');
     expect(dock.lastElementChild).toBe(note);
   });
 

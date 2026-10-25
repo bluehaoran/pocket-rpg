@@ -120,7 +120,8 @@ A pack's `generators` are shown as a second group on the hub and as chips on Tra
 ## 5. Runtime behaviour
 - **On open:** roll once with the remembered modifiers.
 - **Reroll:** discard the result on screen and roll again. Never returns the result on screen. No-repeat window per list (mockup: 3).
-- **Leave (Back or tab switch):** log the result on screen to Tools History.
+- **✓:** log the result on screen to Tools History and return to the hub.
+- **Leave (Back or tab switch):** discard the result on screen; nothing is logged.
 - **Relaxation:** if nothing matches, drop optional modifiers in declaration order and mark the result "relaxed".
 - **Persistence:** modifier selections per tool id. Nothing else.
 

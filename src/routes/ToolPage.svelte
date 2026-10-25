@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onDestroy, onMount } from 'svelte';
+  import { onMount } from 'svelte';
   import { registry } from '../lib/content/index.ts';
   import { href, go } from '../lib/router.svelte.ts';
   import { app, mutate } from '../lib/session.svelte.ts';
@@ -99,7 +99,6 @@
   onMount(() => {
     if (tool && !empty) roll();
   });
-  onDestroy(keep);
 
   const letterSel = $derived.by(() => {
     const sel: Record<string, string> = {};
@@ -249,7 +248,7 @@
     <button class="btn keep" aria-label="Keep result" onclick={done} disabled={!result}>
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5" /></svg>
     </button>
-    <p class="dock-note">✓ or Back keeps this result in History. Reroll discards it.</p>
+    <p class="dock-note">✓ keeps this result in History. Reroll or Back discards it.</p>
   </Dock>
 {/if}
 
