@@ -3,6 +3,7 @@ import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { lists, packs, registry } from '../src/lib/content/index.ts';
 import type { ToolList } from '../src/lib/content/types.ts';
+import { availableLetters } from '../src/lib/engine/table.ts';
 import { mulberry32 } from '../src/lib/engine/rng.ts';
 import {
   drawFollowUp, effectiveOpts, findTool, glyphRows, formatData, historyText, isEmptyList, missingRequired, packTools,
@@ -73,11 +74,21 @@ describe('names', () => {
   });
   it('relaxes optional modifiers in order and flags it', () => {
     const ctx = ctxFor(6);
-    const r = rollTool(tool('names', ctx), { gender: 'f', setting: 'fantasy', letter: 'Q' }, ctx)!;
+    const entries = lists.names!.entries;
+    // A letter with no fantasy names; whether it exists elsewhere depends on the list, so derive what to expect.
+    const missing = [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'].find(L => !availableLetters(entries, { setting: 'fantasy' }).has(L))!;
+    expect(missing).toBeTruthy();
+    const r = rollTool(tool('names', ctx), { gender: 'f', setting: 'fantasy', letter: missing }, ctx)!;
     expect(r.kind === 'list' && r.relaxed).toBe(true);
-    expect(r.kind === 'list' && r.mods).toEqual({});
-    const none = rollTool(tool('names', ctx), { letter: 'Q' }, ctx);
-    expect(none?.kind === 'list' && none.relaxed).toBe(true);
+    // gender, then setting, are dropped in order; the letter is kept if some name has it, else dropped too.
+    const elsewhere = availableLetters(entries, {}).has(missing);
+    expect(r.kind === 'list' && r.mods).toEqual(elsewhere ? { letter: missing } : {});
+    // A letter that matches nothing at all drops every optional modifier.
+    const nowhere = [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'].find(L => !availableLetters(entries, {}).has(L));
+    if (nowhere) {
+      const none = rollTool(tool('names', ctx), { letter: nowhere }, ctx);
+      expect(none?.kind === 'list' && none.relaxed).toBe(true);
+    }
   });
   it('genre default for setting, unless the user chose (including Any)', () => {
     const ctx = ctxFor(7, 'swords-and-sorcery');

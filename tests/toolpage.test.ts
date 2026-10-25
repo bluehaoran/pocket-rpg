@@ -99,6 +99,8 @@ describe('tool page', () => {
 
   it('letter sheet disables letters with no matching entries', async () => {
     render(ToolPage, { toolId: 'names' });
+    // Samurai names don't cover every initial, so some letters must be greyed out.
+    await fireEvent.click(screen.getByRole('button', { name: 'Samurai' }));
     await fireEvent.click(screen.getByRole('button', { name: /Starting letter/ }));
     const dialog = screen.getByRole('dialog');
     const letters = [...dialog.querySelectorAll<HTMLButtonElement>('.letters button:not(.any)')];

@@ -1,7 +1,7 @@
 {
  "id": "surnames",
  "label": "Last names",
- "version": "0.1.0",
+ "version": "0.2.0",
  "provenance": {
   "author": "PocketRPG",
   "license": "original entries"
@@ -580,6 +580,2481 @@
    },
    "src": "curated",
    "position": "before"
+  },
+  {
+   "v": "Thornwick",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Ironvale",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Duskmantle",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Brightwater",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Greenhollow",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Ravenmoor",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Silverbrook",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Fairwind",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Highcastle",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Larkspur",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Mistral",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Northwood",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Redfern",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Stonehelm",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Wyndham",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Amberfield",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Blackthorn",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Coldspring",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Emberly",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Frostmere",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Goldenlea",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Hartwell",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Ironbark",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Kingsmere",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Oakhaven",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Pinegrove",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Quickwater",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Rimewood",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Stagmoor",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Thistledown",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Valewind",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Willowmere",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Yewbrook",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Ashbourne",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Birchwood",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Crowfoot",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Elmsworth",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Foxglove",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Greywater",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Heatherstone",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Ironwood",
+   "tags": {
+    "setting": "fantasy"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Orlov",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Varga",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Vasquez",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Kowalczyk",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Adebayo",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Lindholm",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Nakashima",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Moreno",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Castellan",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Ferreira",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Halvorsen",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Ibarra",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Jansen",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Kessler",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Lund",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Novak",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Okoye",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Petrov",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Rao",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Sato",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Tran",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Voss",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Wexler",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Yadav",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Zhou",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Reyes",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Mbeki-Cole",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Daro",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Kessing",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Thule",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Maru",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Hollis",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Calloway-Ng",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Iwasaki",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Abara",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Delacroix",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Quinteros",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Rahimi",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Strand",
+   "tags": {
+    "setting": "sci-fi"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Takeda",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Hattori",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Kuroda",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Yamamoto",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Kobayashi",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Sasaki",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Inoue",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Kimura",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Saito",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Ogawa",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Fukuda",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Okada",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Aoki",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Hirano",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Miyamoto",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Nagai",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Sakamoto",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Yoshida",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Endo",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Mizuno",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Kondo",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Ueda",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Noguchi",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Arai",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Hasegawa",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Kato",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Ono",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Maeda",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Iwasaki",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Tsuchiya",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Kawabata",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Morita",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Oda",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Shibata",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Takagi",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Wada",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Sugiyama",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Ichikawa",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Nomura",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Kitano",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Mochizuki",
+   "tags": {
+    "setting": "samurai"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Alderidge",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Belmont",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Carrow",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Dunmore",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Everhart",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Fairweather",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Gresham",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Holloway",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Ironside",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Kingsley",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Lockwood",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Marchbanks",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Netherby",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Oakhurst",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Pennington",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Quarles",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Rookwood",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Stanhope",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Tremaine",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Underhill",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Vaughn",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Wolverton",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Yarrow",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Zeller",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Hessel",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Dragomir",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Novak",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Kessler",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Lorentz",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Aldous",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Ferncliffe",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Grimshaw",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Harrowgate",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Thackeray",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Whitcombe",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Ravensdale",
+   "tags": {
+    "setting": "gothic"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Dawson",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Eastman",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Fenton",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Gallagher",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Harlan",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Ingram",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Jessup",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Kilpatrick",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Lawson",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "McAllister",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Nolan",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "O'Brien",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Pruitt",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Quinlan",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Ramsey",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Sullivan",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Tucker",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Underwood",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Vance",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Whitaker",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Yates",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Zimmerman",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Abernathy",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Baxter",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Coburn",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Delgado",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Espinoza",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Fischer",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Garza",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Hendricks",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Ibarra",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Jefferson",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Kowalczyk",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Lindgren",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Morales",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Wong",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Chin",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Washington",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Freeman",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Redding",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Sandoval",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Trujillo",
+   "tags": {
+    "setting": "western"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Sato",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Suzuki",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Takahashi",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Watanabe",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Ito",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Yamada",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Nakajima",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Kojima",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Fujita",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Murakami",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Kim",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Lee",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Park",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Choi",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Jung",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Kang",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Cho",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Yoon",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Jang",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Lim",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Han",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Shin",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Seo",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Nguyen",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Tran",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Le",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Pham",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Hoang",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Vo",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Dang",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Bui",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Do",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Ngo",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai",
+   "position": "before"
+  },
+  {
+   "v": "Sharma",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Singh",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Khan",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Gupta",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Reddy",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Iyer",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Kapoor",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Chaudhry",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Rahman",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Hussain",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Banerjee",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Malik",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Das",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Joshi",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Mehta",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Bhatt",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Siddiqui",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Gill",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Haddad",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Nasser",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Khalil",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Aziz",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Mansour",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Farouk",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Saleh",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Barakat",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Hakim",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Karimi",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Rahimi",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Yilmaz",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Demir",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Kaya",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Mizrahi",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Al-Sayed",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Adeyemi",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Mensah",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Nkosi",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Diallo",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Kamau",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Abebe",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Oyelaran",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Banda",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Mwangi",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Traore",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Ndlovu",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Osei",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Eze",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Balogun",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Tesfaye",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Njoroge",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Bello",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Gonzalez",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Rodriguez",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Martinez",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Herrera",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Castillo",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Mendoza",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Ortega",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Vargas",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Reyes",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Torres",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Fernandes",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Oliveira",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Santos",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Quispe",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Salazar",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Navarro",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Paredes",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Rossi",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Müller",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Schmidt",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Novak",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Jansen",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Papadopoulos",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Ivanov",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Dubois",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Costa",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Larsen",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Nowak",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Horvat",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Popescu",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Andersson",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Svoboda",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Bianchi",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Varga",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Kovacs",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Olsen",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "O'Connor",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "MacLeod",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Walsh",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Murphy",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Washington",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Jefferson",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Banks",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Brooks",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Robinson",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Jackson",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Coleman",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Henry",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Baptiste",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Thomas",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Campbell",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Kealoha",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Kahale",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Tupou",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Ngata",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Wihongi",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Taufa",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Kanoa",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Alapai",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "Hohepa",
+   "tags": {
+    "setting": "modern"
+   },
+   "src": "ai"
   }
  ],
  "notes": "Entry field 'position': 'before' puts the family name before the given name when the user honours traditional order. Default is 'after'."
