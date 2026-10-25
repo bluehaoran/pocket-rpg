@@ -95,6 +95,7 @@
    "label": "Tilt",
    "kind": "list",
    "list": "tilts",
+   "modifiersFirst": true,
    "modifiers": [
     {
      "key": "group",

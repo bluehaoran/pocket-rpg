@@ -25,6 +25,7 @@
   const eff = $derived(tool ? effectiveOpts(tool, opts, toolCtx()) : {});
   const defs = $derived(tool ? modDefs(tool, toolCtx()) : []);
   const empty = $derived(tool ? isEmptyList(tool, toolCtx()) : false);
+  const modsFirst = $derived(tool?.kind === 'list' && tool.modifiersFirst === true);
 
   let result = $state<ToolResult | null>(null);
   let followUp = $state<string | null>(null);
@@ -122,6 +123,29 @@
     <p class="hint">{tool.description}</p>
   {/if}
 
+{#snippet modifierGroups()}
+  {#each defs as d (d.key)}
+    {#if d.key === 'letter'}
+      <div class="group">
+        <div class="eyebrow">Starting letter</div>
+        <button class="letterbtn" aria-label="Starting letter: {eff.letter || 'Any'}" onclick={() => (lettersOpen = true)}>
+          <span class="v">{eff.letter || 'Any'}</span><span class="chev" aria-hidden="true">›</span>
+        </button>
+      </div>
+    {:else}
+      <div class="group">
+        <div class="eyebrow">{d.label}{d.required ? ' · required' : ''}</div>
+        <Chips label={d.label}
+          items={[...(d.required ? [] : [{ id: '', label: 'Any' }]), ...d.values.map(v => ({ id: v, label: valueLabel(d, v) }))]
+            .map(c => ({ ...c, pressed: (String(eff[d.key] ?? '')) === c.id }))}
+          onpick={v => setOpt(d.key, v)} />
+      </div>
+    {/if}
+  {/each}
+{/snippet}
+
+  {#if modsFirst}{@render modifierGroups()}{/if}
+
   {#if empty}
     <div class="empty-card">No entries yet. Add them to <code>content/tools/{tool.kind === 'list' ? tool.list : ''}.json</code>.</div>
   {:else if !result && tool.kind === 'gen' && missing.length}
@@ -175,24 +199,7 @@
         bind:value={() => dice.type, v => setOpt('type', v)} />
     </div>
   {:else}
-    {#each defs as d (d.key)}
-      {#if d.key === 'letter'}
-        <div class="group">
-          <div class="eyebrow">Starting letter</div>
-          <button class="letterbtn" aria-label="Starting letter: {eff.letter || 'Any'}" onclick={() => (lettersOpen = true)}>
-            <span class="v">{eff.letter || 'Any'}</span><span class="chev" aria-hidden="true">›</span>
-          </button>
-        </div>
-      {:else}
-        <div class="group">
-          <div class="eyebrow">{d.label}{d.required ? ' · required' : ''}</div>
-          <Chips label={d.label}
-            items={[...(d.required ? [] : [{ id: '', label: 'Any' }]), ...d.values.map(v => ({ id: v, label: valueLabel(d, v) }))]
-              .map(c => ({ ...c, pressed: (String(eff[d.key] ?? '')) === c.id }))}
-            onpick={v => setOpt(d.key, v)} />
-        </div>
-      {/if}
-    {/each}
+    {#if !modsFirst}{@render modifierGroups()}{/if}
 
     {#if tool.kind === 'list'}
       {#each tool.parts ?? [] as part (part.key)}
@@ -228,13 +235,12 @@
     {/if}
   {/if}
 
-  <p class="hint">✓ or Back keeps this result in History. Reroll discards it.</p>
-
   <Dock one>
     <button class="btn" onclick={roll} disabled={empty || (tool.kind === 'gen' && missing.length > 0)}>Reroll</button>
     <button class="btn keep" aria-label="Keep result" onclick={done} disabled={!result}>
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5" /></svg>
     </button>
+    <p class="dock-note">✓ or Back keeps this result in History. Reroll discards it.</p>
   </Dock>
 {/if}
 

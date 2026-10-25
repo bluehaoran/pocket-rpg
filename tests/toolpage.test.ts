@@ -109,6 +109,25 @@ describe('tool page', () => {
     expect(letters.some(b => !b.disabled)).toBe(true);
   });
 
+  it('Tilt shows its Group picker above the result; other tools show it below', () => {
+    const before = (a: Element, b: Element) => !!(a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING);
+    const result = () => document.querySelector('.tres, .empty-card')!;
+    const eyebrow = () => [...document.querySelectorAll('.eyebrow')].find(e => e.textContent?.startsWith('Group') || e.textContent?.startsWith('Gender'))!;
+    render(ToolPage, { toolId: 'tilt' });
+    expect(before(eyebrow(), result())).toBe(true);
+    cleanup();
+    render(ToolPage, { toolId: 'names' });
+    expect(before(result(), eyebrow())).toBe(true);
+  });
+
+  it('puts the help text under the Reroll and keep buttons', () => {
+    render(ToolPage, { toolId: 'emotions' });
+    const dock = document.querySelector('.dock')!;
+    const note = dock.querySelector('.dock-note')!;
+    expect(note.textContent).toContain('keeps this result in History');
+    expect(dock.lastElementChild).toBe(note);
+  });
+
   it('unknown tools say so', () => {
     render(ToolPage, { toolId: 'nope' });
     expect(document.body.textContent).toContain('No tool with id');

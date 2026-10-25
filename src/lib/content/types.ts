@@ -178,6 +178,8 @@ export interface ToolDef {
   display?: 'text' | 'glyph';
   /** One line shown under the title on the tool page. */
   description?: string;
+  /** Show the modifier pickers above the result instead of below it. */
+  modifiersFirst?: boolean;
 }
 
 export interface Registry {
