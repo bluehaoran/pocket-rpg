@@ -120,6 +120,14 @@ describe('tool page', () => {
     expect(before(result(), eyebrow())).toBe(true);
   });
 
+  it('Names puts Last name and Description toggles above the result, in two columns', () => {
+    render(ToolPage, { toolId: 'names' });
+    const toggles = document.querySelector('.toggles')!;
+    expect(toggles.querySelectorAll('.group').length).toBe(2);
+    expect([...toggles.querySelectorAll('.eyebrow')].map(e => e.textContent)).toEqual(['Last name', 'Description']);
+    expect(toggles.compareDocumentPosition(document.querySelector('.tres')!) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+  });
+
   it('puts the help text under the Reroll and keep buttons', () => {
     render(ToolPage, { toolId: 'emotions' });
     const dock = document.querySelector('.dock')!;

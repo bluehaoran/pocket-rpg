@@ -25,6 +25,7 @@
   const eff = $derived(tool ? effectiveOpts(tool, opts, toolCtx()) : {});
   const defs = $derived(tool ? modDefs(tool, toolCtx()) : []);
   const empty = $derived(tool ? isEmptyList(tool, toolCtx()) : false);
+  const hasToggles = $derived(tool?.kind === 'list' && (!!tool.parts?.length || !!tool.followUp));
   const modsFirst = $derived(tool?.kind === 'list' && tool.modifiersFirst === true);
 
   let result = $state<ToolResult | null>(null);
@@ -123,6 +124,36 @@
     <p class="hint">{tool.description}</p>
   {/if}
 
+{#snippet toggleGroups()}
+{#if tool?.kind === 'list'}
+  <div class="toggles">
+    {#each tool.parts ?? [] as part (part.key)}
+      <div class="group">
+        <div class="eyebrow">{part.label}</div>
+        <Chips label={part.label}
+          items={[{ id: 'off', label: 'Off', pressed: !partOn(part, opts) }, { id: 'on', label: 'On', pressed: partOn(part, opts) }]}
+          onpick={v => setOpt(part.key, v === 'on')} />
+        {#if part.order && partOn(part, opts)}
+          <label class="checkrow">
+            <input type="checkbox" checked={partOrderOn(part, opts)}
+              onchange={e => { setOpt(part.key + ':order', e.currentTarget.checked, false); rolls++; }} />
+            {part.order.label}?
+          </label>
+        {/if}
+      </div>
+    {/each}
+    {#if tool.followUp}
+      <div class="group">
+        <div class="eyebrow">{tool.followUp.label}</div>
+        <Chips label={tool.followUp.label}
+          items={[{ id: 'off', label: 'Off', pressed: !followOn(tool, opts) }, { id: 'on', label: 'On', pressed: followOn(tool, opts) }]}
+          onpick={v => setFollow(v === 'on')} />
+      </div>
+    {/if}
+  </div>
+{/if}
+{/snippet}
+
 {#snippet modifierGroups()}
   {#each defs as d (d.key)}
     {#if d.key === 'letter'}
@@ -144,6 +175,7 @@
   {/each}
 {/snippet}
 
+  {#if hasToggles}{@render toggleGroups()}{/if}
   {#if modsFirst}{@render modifierGroups()}{/if}
 
   {#if empty}
@@ -202,29 +234,6 @@
     {#if !modsFirst}{@render modifierGroups()}{/if}
 
     {#if tool.kind === 'list'}
-      {#each tool.parts ?? [] as part (part.key)}
-        <div class="group">
-          <div class="eyebrow">{part.label}</div>
-          <Chips label={part.label}
-            items={[{ id: 'off', label: 'Off', pressed: !partOn(part, opts) }, { id: 'on', label: 'On', pressed: partOn(part, opts) }]}
-            onpick={v => setOpt(part.key, v === 'on')} />
-          {#if part.order && partOn(part, opts)}
-            <label class="checkrow">
-              <input type="checkbox" checked={partOrderOn(part, opts)}
-                onchange={e => { setOpt(part.key + ':order', e.currentTarget.checked, false); rolls++; }} />
-              {part.order.label}?
-            </label>
-          {/if}
-        </div>
-      {/each}
-      {#if tool.followUp}
-        <div class="group">
-          <div class="eyebrow">{tool.followUp.label}</div>
-          <Chips label={tool.followUp.label}
-            items={[{ id: 'off', label: 'Off', pressed: !followOn(tool, opts) }, { id: 'on', label: 'On', pressed: followOn(tool, opts) }]}
-            onpick={v => setFollow(v === 'on')} />
-        </div>
-      {/if}
       {#if tool.count}
         <div class="group">
           <div class="eyebrow">How many</div>
