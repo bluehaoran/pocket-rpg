@@ -42,21 +42,21 @@ describe('header chip', () => {
 });
 
 describe('welcome screen', () => {
-  it('explains Track and Tools and offers both', async () => {
+  it('explains Track and Tools in two columns with arrows instead of buttons', () => {
     render(Welcome);
     expect(screen.getByRole('heading', { level: 2 }).textContent).toBe('PocketRPG');
-    expect(document.body.textContent).toContain('Track');
-    expect(document.body.textContent).toContain('Tools');
-    await fireEvent.click(screen.getByRole('button', { name: 'Open Tools' }));
-    expect(location.hash).toBe('#/tools');
-    await fireEvent.click(screen.getByRole('button', { name: 'Start a story' }));
-    expect(location.hash).toBe('#/track');
+    const cols = document.querySelectorAll('.welcome-col');
+    expect(cols.length).toBe(2);
+    expect(cols[0]!.textContent).toContain('Track');
+    expect(cols[1]!.textContent).toContain('Tools');
+    expect(document.querySelectorAll('.welcome-col svg[aria-hidden="true"]').length).toBe(2);
+    expect(screen.queryAllByRole('button').length).toBe(0);
   });
 
   it('offers to continue when a story is in progress', async () => {
     app.session!.started = true;
     render(Welcome);
-    expect(screen.getByRole('button', { name: 'Continue your story' })).toBeTruthy();
+    expect(document.body.textContent).toContain('Continue your story');
   });
 
   it('the checkbox is off by default and saves the choice', async () => {

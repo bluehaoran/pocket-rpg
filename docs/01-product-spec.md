@@ -40,7 +40,7 @@ Example: "You meet a friendly elf named…" → Tools → Names (female, fantasy
 
 ### Shell
 - Header: app name, session chip (genre · rules · players), menu (Welcome, Pack details, New session). Until **Start play**, the chip is a link reading "No story in progress. Click to start" that opens setup.
-- **Welcome screen** (`#/welcome`, copy in `content/welcome.json`): shown on launch with no specific screen requested and no story in progress, explains Track and Tools, and has a "Don't show this screen on startup" checkbox (stored per device in localStorage). Also reachable from the menu. Tools works without a story: before Start play it ignores the session's genre.
+- **Welcome screen** (`#/welcome`, copy in `content/welcome.json`): shown on launch with no specific screen requested and no story in progress, explains Track and Tools in two columns (even on narrow screens) lined up above the two tab-bar buttons, with hand-drawn arrows pointing down at them instead of buttons of its own, and has a "Don't show this screen on startup" checkbox (stored per device in localStorage). Also reachable from the menu. Tools works without a story: before Start play it ignores the session's genre.
 - Bottom bar: **Track** | **Tools**.
 
 ### Track tab, before play: setup wizard

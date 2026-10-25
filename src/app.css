@@ -337,6 +337,10 @@ h2 .sep{color:var(--muted);margin-inline:.25em}
 
 /* Header call to action and welcome screen */
 .chip.cta{color:var(--accent);text-decoration:none;font:700 13px/1.25 var(--f-body);display:flex;align-items:center;min-height:44px;max-width:13em}
-.welcome-card{gap:12px;padding-block:16px}
-.welcome-card p{margin:0}
-.welcome-cards{gap:14px}
+/* Two columns even on narrow screens, each lined up above its tab-bar button, with a hand-drawn arrow pointing down at it. */
+.welcome-cols{flex:1 0 auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 16px}
+.welcome-col{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px}
+.welcome-col p{margin:0;font-size:15px;line-height:1.4}
+.welcome-col .hand{margin-top:auto;font:700 20px/1.1 "Segoe Print","Bradley Hand","Comic Sans MS","Chalkboard SE",cursive;color:var(--accent);transform:rotate(-3deg)}
+.welcome-col:last-child .hand{transform:rotate(2deg)}
+.doodle{width:44px;height:88px;flex:none;fill:none;stroke:var(--accent);stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round}
