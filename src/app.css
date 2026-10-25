@@ -130,7 +130,8 @@ body{margin:0}
 .rfoot .relax{color:var(--accent)}
 .dicerow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .mini-btn{min-height:44px;border-radius:12px;border:2px solid var(--line);background:var(--surface);font:700 15px var(--f-body);padding:0 14px;align-self:flex-start}
-.subroll{align-self:flex-end;margin-top:-12px}
+.underres{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 12px;margin-top:-12px}
+.underres .mini-btn{margin-left:auto}
 .gen.req small{color:var(--accent)}
 .letterbtn{all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;border:2px solid var(--line);border-radius:14px;background:var(--surface);padding:0 16px;min-height:58px;font:400 17px/1.3 var(--f-body)}
 .letterbtn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}

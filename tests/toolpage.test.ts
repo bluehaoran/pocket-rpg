@@ -129,6 +129,17 @@ describe('tool page', () => {
     expect(toggles.compareDocumentPosition(document.querySelector('.tres')!) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   });
 
+  it('the family name order checkbox sits under the name, only while Last name is on', async () => {
+    render(ToolPage, { toolId: 'names' });
+    await fireEvent.click(screen.getByRole('button', { name: 'Samurai' }));
+    expect(screen.queryByRole('checkbox')).toBeNull();
+    await fireEvent.click(screen.getByRole('list', { name: 'Last name' }).querySelectorAll('button')[1]!);
+    const box = screen.getByRole('checkbox');
+    expect(document.querySelector('.toggles')!.contains(box)).toBe(false);
+    expect(document.querySelector('.tres')!.compareDocumentPosition(box) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(box.closest('.underres')).not.toBeNull();
+  });
+
   it('puts the help text under the Reroll and keep buttons', () => {
     render(ToolPage, { toolId: 'emotions' });
     const dock = document.querySelector('.dock')!;

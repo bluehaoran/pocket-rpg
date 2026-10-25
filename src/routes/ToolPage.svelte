@@ -132,13 +132,6 @@
         <Chips label={part.label}
           items={[{ id: 'off', label: 'Off', pressed: !partOn(part, opts) }, { id: 'on', label: 'On', pressed: partOn(part, opts) }]}
           onpick={v => setOpt(part.key, v === 'on')} />
-        {#if part.order && partOn(part, opts)}
-          <label class="checkrow">
-            <input type="checkbox" checked={partOrderOn(part, opts)}
-              onchange={e => { setOpt(part.key + ':order', e.currentTarget.checked, false); rolls++; }} />
-            {part.order.label}?
-          </label>
-        {/if}
       </div>
     {/each}
     {#if tool.followUp}
@@ -213,8 +206,22 @@
         {/if}
       </div>
     {/key}
-    {#if tool.kind === 'list' && tool.followUp && followUp}
-      <button class="mini-btn subroll" onclick={rerollFollow}>↻ New {tool.followUp.label.toLowerCase()}</button>
+    {#if tool.kind === 'list'}
+      {@const orderPart = (tool.parts ?? []).find(p => p.order && partOn(p, opts))}
+      {#if orderPart?.order || (tool.followUp && followUp)}
+        <div class="underres">
+          {#if orderPart?.order}
+            <label class="checkrow">
+              <input type="checkbox" checked={partOrderOn(orderPart, opts)}
+                onchange={e => { setOpt(orderPart.key + ':order', e.currentTarget.checked, false); rolls++; }} />
+              {orderPart.order.label}?
+            </label>
+          {/if}
+          {#if tool.followUp && followUp}
+            <button class="mini-btn" onclick={rerollFollow}>↻ New {tool.followUp.label.toLowerCase()}</button>
+          {/if}
+        </div>
+      {/if}
     {/if}
   {/if}
 
