@@ -164,6 +164,17 @@ describe('simple lists and emoji', () => {
       expect(lists[id === 'description' ? 'descriptions' : id]!.entries.map(e => e.v)).toContain(r.text);
     }
   });
+  it('description draws only from the chosen group, and every entry has a declared group', () => {
+    const ctx = ctxFor(15);
+    const list = lists.descriptions!;
+    const groups = list.modifiers.group!.values;
+    expect(list.entries.every(e => groups.includes(e.tags?.group as string))).toBe(true);
+    for (const g of groups) {
+      const inGroup = list.entries.filter(e => e.tags?.group === g).map(e => e.v);
+      expect(inGroup.length).toBeGreaterThan(10);
+      for (let i = 0; i < 20; i++) expect(inGroup).toContain(rollTool(tool('description', ctx), { group: g }, ctx)!.text);
+    }
+  });
   it('emoji draws distinct glyphs, count 1..6', () => {
     const ctx = ctxFor(14);
     for (const n of [1, 3, 6]) {

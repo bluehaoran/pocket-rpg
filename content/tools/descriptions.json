@@ -1,132 +1,1880 @@
 {
  "id": "descriptions",
  "label": "Description",
- "version": "0.1.0",
+ "version": "0.2.0",
  "provenance": {
   "author": "PocketRPG",
   "license": "original entries"
  },
- "modifiers": {},
+ "modifiers": {
+  "group": {
+   "label": "Group",
+   "values": [
+    "Physical",
+    "Hair",
+    "Notable features",
+    "Clothing",
+    "Temperament"
+   ]
+  }
+ },
  "entries": [
   {
-   "v": "tall"
+   "v": "tall",
+   "tags": {
+    "group": "Physical"
+   }
   },
   {
-   "v": "short"
+   "v": "short",
+   "tags": {
+    "group": "Physical"
+   }
   },
   {
-   "v": "lanky"
+   "v": "lanky",
+   "tags": {
+    "group": "Physical"
+   }
   },
   {
-   "v": "stocky"
+   "v": "stocky",
+   "tags": {
+    "group": "Physical"
+   }
   },
   {
-   "v": "rotund"
+   "v": "rotund",
+   "tags": {
+    "group": "Physical"
+   }
   },
   {
-   "v": "wiry"
+   "v": "wiry",
+   "tags": {
+    "group": "Physical"
+   }
   },
   {
-   "v": "swarthy"
+   "v": "swarthy",
+   "tags": {
+    "group": "Physical"
+   }
   },
   {
-   "v": "pale"
+   "v": "pale",
+   "tags": {
+    "group": "Physical"
+   }
   },
   {
-   "v": "freckled"
+   "v": "freckled",
+   "tags": {
+    "group": "Physical"
+   }
   },
   {
-   "v": "scarred"
+   "v": "sunburned",
+   "tags": {
+    "group": "Physical"
+   }
   },
   {
-   "v": "bearded"
+   "v": "ruddy",
+   "tags": {
+    "group": "Physical"
+   }
   },
   {
-   "v": "bald"
+   "v": "sallow",
+   "tags": {
+    "group": "Physical"
+   }
   },
   {
-   "v": "hunched"
+   "v": "gaunt",
+   "tags": {
+    "group": "Physical"
+   }
   },
   {
-   "v": "broad-shouldered"
+   "v": "plump",
+   "tags": {
+    "group": "Physical"
+   }
   },
   {
-   "v": "gaunt"
+   "v": "muscular",
+   "tags": {
+    "group": "Physical"
+   }
   },
   {
-   "v": "plump"
+   "v": "willowy",
+   "tags": {
+    "group": "Physical"
+   }
   },
   {
-   "v": "muscular"
+   "v": "towering",
+   "tags": {
+    "group": "Physical"
+   }
   },
   {
-   "v": "willowy"
+   "v": "tiny",
+   "tags": {
+    "group": "Physical"
+   }
   },
   {
-   "v": "weathered"
+   "v": "pot-bellied",
+   "tags": {
+    "group": "Physical"
+   }
   },
   {
-   "v": "sunburned"
+   "v": "bony",
+   "tags": {
+    "group": "Physical"
+   }
   },
   {
-   "v": "tattooed"
+   "v": "broad-shouldered",
+   "tags": {
+    "group": "Physical"
+   }
   },
   {
-   "v": "one-eyed"
+   "v": "sharp-featured",
+   "tags": {
+    "group": "Physical"
+   }
   },
   {
-   "v": "limping"
+   "v": "round-faced",
+   "tags": {
+    "group": "Physical"
+   }
   },
   {
-   "v": "elderly"
+   "v": "heavy-browed",
+   "tags": {
+    "group": "Physical"
+   }
   },
   {
-   "v": "youthful"
+   "v": "gap-toothed",
+   "tags": {
+    "group": "Physical"
+   }
   },
   {
-   "v": "towering"
+   "v": "weathered",
+   "tags": {
+    "group": "Physical"
+   }
   },
   {
-   "v": "tiny"
+   "v": "grizzled",
+   "tags": {
+    "group": "Physical"
+   }
   },
   {
-   "v": "pot-bellied"
+   "v": "squat",
+   "tags": {
+    "group": "Physical"
+   },
+   "src": "ai"
   },
   {
-   "v": "bony"
+   "v": "burly",
+   "tags": {
+    "group": "Physical"
+   },
+   "src": "ai"
   },
   {
-   "v": "grizzled"
+   "v": "slight",
+   "tags": {
+    "group": "Physical"
+   },
+   "src": "ai"
   },
   {
-   "v": "sharp-featured"
+   "v": "statuesque",
+   "tags": {
+    "group": "Physical"
+   },
+   "src": "ai"
   },
   {
-   "v": "round-faced"
+   "v": "barrel-chested",
+   "tags": {
+    "group": "Physical"
+   },
+   "src": "ai"
   },
   {
-   "v": "ruddy"
+   "v": "slender",
+   "tags": {
+    "group": "Physical"
+   },
+   "src": "ai"
   },
   {
-   "v": "sallow"
+   "v": "spindly",
+   "tags": {
+    "group": "Physical"
+   },
+   "src": "ai"
   },
   {
-   "v": "heavy-browed"
+   "v": "hulking",
+   "tags": {
+    "group": "Physical"
+   },
+   "src": "ai"
   },
   {
-   "v": "gap-toothed"
+   "v": "petite",
+   "tags": {
+    "group": "Physical"
+   },
+   "src": "ai"
   },
   {
-   "v": "long-haired"
+   "v": "thickset",
+   "tags": {
+    "group": "Physical"
+   },
+   "src": "ai"
   },
   {
-   "v": "shaven-headed"
+   "v": "knobbly",
+   "tags": {
+    "group": "Physical"
+   },
+   "src": "ai"
   },
   {
-   "v": "elegant"
+   "v": "long-limbed",
+   "tags": {
+    "group": "Physical"
+   },
+   "src": "ai"
   },
   {
-   "v": "scruffy"
+   "v": "narrow-shouldered",
+   "tags": {
+    "group": "Physical"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "olive-skinned",
+   "tags": {
+    "group": "Physical"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "dark-skinned",
+   "tags": {
+    "group": "Physical"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "fair-skinned",
+   "tags": {
+    "group": "Physical"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "bronzed",
+   "tags": {
+    "group": "Physical"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "ashen",
+   "tags": {
+    "group": "Physical"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "rosy-cheeked",
+   "tags": {
+    "group": "Physical"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "wrinkled",
+   "tags": {
+    "group": "Physical"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "hollow-cheeked",
+   "tags": {
+    "group": "Physical"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "hawk-nosed",
+   "tags": {
+    "group": "Physical"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "button-nosed",
+   "tags": {
+    "group": "Physical"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "square-jawed",
+   "tags": {
+    "group": "Physical"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "weak-chinned",
+   "tags": {
+    "group": "Physical"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "jug-eared",
+   "tags": {
+    "group": "Physical"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "thin-lipped",
+   "tags": {
+    "group": "Physical"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "full-lipped",
+   "tags": {
+    "group": "Physical"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "big-nosed",
+   "tags": {
+    "group": "Physical"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "bushy-browed",
+   "tags": {
+    "group": "Physical"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "sunken-eyed",
+   "tags": {
+    "group": "Physical"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "wide-eyed",
+   "tags": {
+    "group": "Physical"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "green-eyed",
+   "tags": {
+    "group": "Physical"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "grey-eyed",
+   "tags": {
+    "group": "Physical"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "dark-eyed",
+   "tags": {
+    "group": "Physical"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "pale-eyed",
+   "tags": {
+    "group": "Physical"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "mismatched-eyed",
+   "tags": {
+    "group": "Physical"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "beady-eyed",
+   "tags": {
+    "group": "Physical"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "doe-eyed",
+   "tags": {
+    "group": "Physical"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "crooked-nosed",
+   "tags": {
+    "group": "Physical"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "dimpled",
+   "tags": {
+    "group": "Physical"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "long-necked",
+   "tags": {
+    "group": "Physical"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "bald",
+   "tags": {
+    "group": "Hair"
+   }
+  },
+  {
+   "v": "long-haired",
+   "tags": {
+    "group": "Hair"
+   }
+  },
+  {
+   "v": "shaven-headed",
+   "tags": {
+    "group": "Hair"
+   }
+  },
+  {
+   "v": "blonde",
+   "tags": {
+    "group": "Hair"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "brunette",
+   "tags": {
+    "group": "Hair"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "dark-haired",
+   "tags": {
+    "group": "Hair"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "raven-haired",
+   "tags": {
+    "group": "Hair"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "red-headed",
+   "tags": {
+    "group": "Hair"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "auburn",
+   "tags": {
+    "group": "Hair"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "flaxen",
+   "tags": {
+    "group": "Hair"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "sandy-haired",
+   "tags": {
+    "group": "Hair"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "fair-haired",
+   "tags": {
+    "group": "Hair"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "white-haired",
+   "tags": {
+    "group": "Hair"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "greying",
+   "tags": {
+    "group": "Hair"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "silver-haired",
+   "tags": {
+    "group": "Hair"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "black-haired",
+   "tags": {
+    "group": "Hair"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "chestnut-haired",
+   "tags": {
+    "group": "Hair"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "copper-haired",
+   "tags": {
+    "group": "Hair"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "curly-haired",
+   "tags": {
+    "group": "Hair"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "straight-haired",
+   "tags": {
+    "group": "Hair"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "wavy-haired",
+   "tags": {
+    "group": "Hair"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "wild-haired",
+   "tags": {
+    "group": "Hair"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "shaggy",
+   "tags": {
+    "group": "Hair"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "braided",
+   "tags": {
+    "group": "Hair"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "dreadlocked",
+   "tags": {
+    "group": "Hair"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "close-cropped",
+   "tags": {
+    "group": "Hair"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "crew-cut",
+   "tags": {
+    "group": "Hair"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "balding",
+   "tags": {
+    "group": "Hair"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "thinning",
+   "tags": {
+    "group": "Hair"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "bewigged",
+   "tags": {
+    "group": "Hair"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "topknotted",
+   "tags": {
+    "group": "Hair"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "ponytailed",
+   "tags": {
+    "group": "Hair"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "pigtailed",
+   "tags": {
+    "group": "Hair"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "tonsured",
+   "tags": {
+    "group": "Hair"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "mop-headed",
+   "tags": {
+    "group": "Hair"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "sleek-haired",
+   "tags": {
+    "group": "Hair"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "greasy-haired",
+   "tags": {
+    "group": "Hair"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "immaculately",
+   "tags": {
+    "group": "Hair"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "coiffed",
+   "tags": {
+    "group": "Hair"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "scarred",
+   "tags": {
+    "group": "Notable features"
+   }
+  },
+  {
+   "v": "tattooed",
+   "tags": {
+    "group": "Notable features"
+   }
+  },
+  {
+   "v": "one-eyed",
+   "tags": {
+    "group": "Notable features"
+   }
+  },
+  {
+   "v": "limping",
+   "tags": {
+    "group": "Notable features"
+   }
+  },
+  {
+   "v": "hunched",
+   "tags": {
+    "group": "Notable features"
+   }
+  },
+  {
+   "v": "elderly",
+   "tags": {
+    "group": "Notable features"
+   }
+  },
+  {
+   "v": "youthful",
+   "tags": {
+    "group": "Notable features"
+   }
+  },
+  {
+   "v": "bearded",
+   "tags": {
+    "group": "Notable features"
+   }
+  },
+  {
+   "v": "clean-shaven",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "moustachioed",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "mutton-chopped",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "goateed",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "stubbled",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "pierced",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "branded",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "burn-scarred",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "pockmarked",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "birthmarked",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "missing a finger",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "missing an ear",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "eye-patched",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "peg-legged",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "one-armed",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "lame",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "stooped",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "middle-aged",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "ageless",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "ancient",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "wizened",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "old before their time",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "baby-faced",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "adolescent",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "haughty",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "regal",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "shifty",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "swaggering",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "stately",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "cringing",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "proud",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "meek",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "imposing",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "dignified",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "furtive",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "slouching",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "rigid",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "graceful",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "clumsy",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "bow-legged",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "pigeon-toed",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "jangling with jewellery",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "ink-stained",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "soot-stained",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "calloused",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "scaly-skinned",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "glittering-eyed",
+   "tags": {
+    "group": "Notable features"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "scruffy",
+   "tags": {
+    "group": "Clothing"
+   }
+  },
+  {
+   "v": "elegant",
+   "tags": {
+    "group": "Clothing"
+   }
+  },
+  {
+   "v": "threadbare",
+   "tags": {
+    "group": "Clothing"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "immaculate",
+   "tags": {
+    "group": "Clothing"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "mud-spattered",
+   "tags": {
+    "group": "Clothing"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "mismatched",
+   "tags": {
+    "group": "Clothing"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "ostentatious",
+   "tags": {
+    "group": "Clothing"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "ragged",
+   "tags": {
+    "group": "Clothing"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "patched",
+   "tags": {
+    "group": "Clothing"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "tattered",
+   "tags": {
+    "group": "Clothing"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "well-tailored",
+   "tags": {
+    "group": "Clothing"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "dapper",
+   "tags": {
+    "group": "Clothing"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "dishevelled",
+   "tags": {
+    "group": "Clothing"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "shabby",
+   "tags": {
+    "group": "Clothing"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "frayed",
+   "tags": {
+    "group": "Clothing"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "rumpled",
+   "tags": {
+    "group": "Clothing"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "starched",
+   "tags": {
+    "group": "Clothing"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "travel-stained",
+   "tags": {
+    "group": "Clothing"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "flamboyant",
+   "tags": {
+    "group": "Clothing"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "drab",
+   "tags": {
+    "group": "Clothing"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "sober",
+   "tags": {
+    "group": "Clothing"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "gaudy",
+   "tags": {
+    "group": "Clothing"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "bejewelled",
+   "tags": {
+    "group": "Clothing"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "fur-clad",
+   "tags": {
+    "group": "Clothing"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "leather-clad",
+   "tags": {
+    "group": "Clothing"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "cloaked",
+   "tags": {
+    "group": "Clothing"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "hooded",
+   "tags": {
+    "group": "Clothing"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "barefoot",
+   "tags": {
+    "group": "Clothing"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "booted",
+   "tags": {
+    "group": "Clothing"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "ill-fitting",
+   "tags": {
+    "group": "Clothing"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "oversized",
+   "tags": {
+    "group": "Clothing"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "hand-me-down",
+   "tags": {
+    "group": "Clothing"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "uniformed",
+   "tags": {
+    "group": "Clothing"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "armoured",
+   "tags": {
+    "group": "Clothing"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "silk-clad",
+   "tags": {
+    "group": "Clothing"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "rain-soaked",
+   "tags": {
+    "group": "Clothing"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "dust-covered",
+   "tags": {
+    "group": "Clothing"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "perfumed",
+   "tags": {
+    "group": "Clothing"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "nervous",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "cheerful",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "sullen",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "gloomy",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "jovial",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "anxious",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "sarcastic",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "irritable",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "placid",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "cheeky",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "stoic",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "excitable",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "suspicious",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "gullible",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "aloof",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "warm",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "cold-eyed",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "earnest",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "weary",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "restless",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "dreamy",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "brash",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "bashful",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "cocky",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "timid",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "brooding",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "giggly",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "grumpy",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "melancholy",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "sunny",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "pompous",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "scornful",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "curious",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "jittery",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "smug",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "kind-hearted",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "bitter",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "hot-headed",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "unflappable",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "gravelly",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "soft-spoken",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "loud",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "booming",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "reedy",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "lisping",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "stuttering",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "nasal",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "husky",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "sing-song",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "monotone",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "mumbling",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "fast-talking",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "drawling",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "whispering",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "shrill",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "hoarse",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "fidgeting",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "pacing",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "tapping",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "nail-biting",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "knuckle-cracking",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "foot-tapping",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "staring",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "avoids eye contact",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "laughs too loud",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "hums tunelessly",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "talks with their hands",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "clears their throat",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "winks constantly",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
+  },
+  {
+   "v": "never blinks",
+   "tags": {
+    "group": "Temperament"
+   },
+   "src": "ai"
   }
  ]
 }

@@ -70,7 +70,14 @@
    "id": "description",
    "label": "Description",
    "kind": "list",
-   "list": "descriptions"
+   "list": "descriptions",
+   "modifiersFirst": true,
+   "modifiers": [
+    {
+     "key": "group",
+     "required": false
+    }
+   ]
   },
   {
    "id": "items",

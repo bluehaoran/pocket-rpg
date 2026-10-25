@@ -89,6 +89,9 @@ Until **Start play**, the Tools tab ignores the session's pack: no pack generato
 ### Tilt groups
 The six Tilt groups are a `group` modifier on `tilts.json` (entries tagged `{ "group": "Mayhem" }`), not a d66 table. Any = uniform draw over all entries.
 
+### Description groups
+`descriptions.json` has the same `group` modifier (and `modifiersFirst`) with five groups: Physical (build, complexion, face), Hair, Notable features (marks, age, bearing), Clothing and Temperament (mood, voice, mannerisms). Any = uniform draw over all entries, so bigger groups come up more often. As a Names follow-up the draw ignores the group.
+
 ## 3. Genre default: `nameSetting`
 A pack may declare which library setting it matches:
 
@@ -133,7 +136,7 @@ Merged into `02-data-model.md` §3 (`toolModifiers`, `toolHistory`, `trackHistor
 |---|---|
 | `names.json` | 0.2.0: six settings (about 80 to 400 names each; `modern` spans Chinese, Japanese, Korean, Vietnamese, South Asian, Middle Eastern, African, Latin American, European, Anglo, Black American/Caribbean and Pacific), gender-tagged, original entries; new ones `src: "ai"` pending review |
 | `surnames.json` | 0.2.0: 46 to 170 per setting (`modern` covers the same cultures as names; East Asian entries lead). Samurai, Chinese, Japanese, Korean and Vietnamese entries have `"position": "before"` (family name first). |
-| `descriptions.json` | Draft: one-word physical descriptors |
+| `descriptions.json` | 0.2.0: about 270 short descriptors in five groups; new ones `src: "ai"` pending review |
 | `emotions.json` | Draft |
 | `items.json` | Draft: mixed loot, tools and quest objects |
 | `emoji.json` | Placeholder set; user to curate |
