@@ -12,9 +12,9 @@
   <p class="hint">{welcome.intro}</p>
 </section>
 
-<label class="checkrow">
-  <input type="checkbox" bind:checked={hide} onchange={() => setHideWelcome(hide)} />
-  Don't show this screen on startup
+<label class="switchrow" title="Don't show this screen on startup">
+  <span>Got it</span>
+  <input type="checkbox" role="switch" bind:checked={hide} onchange={() => setHideWelcome(hide)} />
 </label>
 
 {#snippet arrow()}

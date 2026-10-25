@@ -61,15 +61,15 @@ describe('welcome screen', () => {
 
   it('the checkbox is off by default and saves the choice', async () => {
     render(Welcome);
-    const box = screen.getByRole('checkbox', { name: "Don't show this screen on startup" }) as HTMLInputElement;
+    const box = screen.getByRole('switch', { name: 'Got it' }) as HTMLInputElement;
     expect(box.checked).toBe(false);
     expect(hideWelcome()).toBe(false);
     await fireEvent.click(box);
     expect(hideWelcome()).toBe(true);
     cleanup();
     render(Welcome);
-    expect((screen.getByRole('checkbox') as HTMLInputElement).checked).toBe(true);
-    await fireEvent.click(screen.getByRole('checkbox'));
+    expect((screen.getByRole('switch') as HTMLInputElement).checked).toBe(true);
+    await fireEvent.click(screen.getByRole('switch'));
     expect(hideWelcome()).toBe(false);
   });
 
