@@ -130,7 +130,7 @@ Merged into `02-data-model.md` §3 (`toolModifiers`, `toolHistory`, `trackHistor
 | File | Status |
 |---|---|
 | `names.json` | 0.2.0: six settings (about 80 to 400 names each; `modern` spans Chinese, Japanese, Korean, Vietnamese, South Asian, Middle Eastern, African, Latin American, European, Anglo, Black American/Caribbean and Pacific), gender-tagged, original entries; new ones `src: "ai"` pending review |
-| `surnames.json` | 0.2.0: 46 to 170 per setting (`modern` covers the same cultures as names; East Asian entries lead). Samurai and Chinese entries have `"position": "before"` (family name first). |
+| `surnames.json` | 0.2.0: 46 to 170 per setting (`modern` covers the same cultures as names; East Asian entries lead). Samurai, Chinese, Japanese, Korean and Vietnamese entries have `"position": "before"` (family name first). |
 | `descriptions.json` | Draft: one-word physical descriptors |
 | `emotions.json` | Draft |
 | `items.json` | Draft: mixed loot, tools and quest objects |

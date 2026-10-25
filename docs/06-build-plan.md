@@ -105,6 +105,8 @@ Each ends with green CI and a deploy.
 ### Backlog (after M6)
 - **Custom table import.** Improved interface to upload custom tables (packs and tool lists), e.g. for custom or copyrighted content. Stored on the device, validated with readable errors, exportable. Generalises Phase 2 admin mode (`05-tools-library.md` §8). Design first.
 - **Names and Descriptions at scale.** Massively increase entries across all genres/settings in `names.json`, `surnames.json`, `descriptions.json`. Pure content, no code change; run `npm run validate`.
+  - Names and Surnames done (2026-10-25: about 1000 and 420 entries, `src: "ai"` pending review). Descriptions still to do.
+- **Culture-aware name pairing.** The `modern` setting spans 12 cultures, but first names and surnames pair by setting only, so a Chinese surname can draw a Latin American first name. Add a `culture` tag and modifier (and a `filterBy` on the surname part) so a pair stays within one culture. Native American names were left out pending a reviewer.
 
 ## Test plan
 - **Unit (Vitest):** content validation (positive and negative), engine rules with a seeded RNG, both rules engines, template rendering, session store.
