@@ -344,6 +344,8 @@ h2 .sep{color:var(--muted);margin-inline:.25em}
 /* Two columns even on narrow screens, each lined up above its tab-bar button, with a hand-drawn arrow pointing down at it. */
 .welcome-cols{flex:1 0 auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 16px}
 .welcome-col{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px}
+.welcome-intro{color:var(--ink)}
+.welcome-col .eyebrow{font:800 22px/1 var(--f-display);letter-spacing:.06em;color:var(--ink)}
 .brandline b{color:var(--accent);font-weight:inherit}
 .welcome-col p{margin:0;font-size:15px;line-height:1.4}
 .welcome-col .hand{margin-top:auto;font:700 20px/1.1 "Segoe Print","Bradley Hand","Comic Sans MS","Chalkboard SE",cursive;color:var(--accent);transform:rotate(-3deg)}

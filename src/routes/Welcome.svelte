@@ -3,26 +3,27 @@
   import { app } from '../lib/session.svelte.ts';
   import { hideWelcome, setHideWelcome } from '../lib/prefs.ts';
 
-  let hide = $state(hideWelcome());
+  let showAtStart = $state(!hideWelcome());
   const inPlay = $derived(app.session?.started === true);
 </script>
 
 <section class="group">
   <h2 class="brandline">Pocket<b>RPG</b></h2>
-  <p class="hint">{welcome.intro}</p>
+  <p class="hint welcome-intro">{welcome.intro}</p>
 </section>
 
-<label class="switchrow" title="Don't show this screen on startup">
-  <span>Got it</span>
-  <input type="checkbox" role="switch" bind:checked={hide} onchange={() => setHideWelcome(hide)} />
-</label>
-
+<!-- A hand-drawn arrow -->
 {#snippet arrow()}
   <svg class="doodle" viewBox="0 0 60 120" aria-hidden="true" focusable="false">
     <path d="M31 4 C22 24 38 38 28 58 C20 74 36 86 30 108" />
     <path d="M14 90 C20 98 26 104 30 110 C36 102 42 96 48 88" />
   </svg>
 {/snippet}
+
+<label class="switchrow">
+  <span>Show me this when I start</span>
+  <input type="checkbox" role="switch" bind:checked={showAtStart} onchange={() => setHideWelcome(!showAtStart)} />
+</label>
 
 <div class="welcome-cols">
   <section class="welcome-col" aria-labelledby="w-track">
