@@ -89,8 +89,8 @@
   </main>
 
   <nav class="tabs gutter" aria-label="Main">
-    <a href={href('/track')} aria-current={route.tab === 'track' && !route.page ? 'page' : undefined}><span class="n">≡</span>Track</a>
-    <a href={href('/tools')} aria-current={route.tab === 'tools' ? 'page' : undefined}><span class="n">⚄</span>Tools</a>
+    <a href={href('/track')} aria-current={route.tab === 'track' && !route.page ? 'page' : undefined}><span class="n" aria-hidden="true">📝</span>Track</a>
+    <a href={href('/tools')} aria-current={route.tab === 'tools' ? 'page' : undefined}><span class="n" aria-hidden="true">🎲</span>Tools</a>
   </nav>
 </div>
 
