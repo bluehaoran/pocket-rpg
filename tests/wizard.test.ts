@@ -6,6 +6,7 @@ import { packs } from '../src/lib/content/index.ts';
 import { db } from '../src/lib/db.ts';
 import { app, initSession } from '../src/lib/session.svelte.ts';
 import Setup from '../src/routes/track/Setup.svelte';
+import Setting from '../src/routes/track/Setting.svelte';
 import Story from '../src/routes/track/Story.svelte';
 import Players from '../src/routes/track/Players.svelte';
 
@@ -19,14 +20,12 @@ afterEach(cleanup);
 const s = () => app.session!;
 const click = (el: HTMLElement) => fireEvent.click(el);
 
-describe('step 1: setup', () => {
+describe('step 1: system', () => {
   it('switching rule system moves to that system\'s first pack', async () => {
     render(Setup);
     await click(screen.getByRole('button', { name: /^Roll for Shoes/ }));
     expect(s().rulesId).toBe('roll-for-shoes');
     expect(s().packIds[0]).toBe('the-heist');
-    expect(screen.getByText('Starting skills per character')).toBeTruthy();
-    expect(document.body.textContent).toContain('Based on');
   });
 
   it('the ? beside each rule system opens its official blurb with credit, without selecting it', async () => {
@@ -42,17 +41,6 @@ describe('step 1: setup', () => {
     expect(within(screen.getByRole('dialog')).getByRole('link', { name: /John Harper/ })).toBeTruthy();
   });
 
-  it('the picker sheet changes the pack and resets story state', async () => {
-    render(Setup);
-    s().answers = { x: 'y' };
-    await click(screen.getByRole('button', { name: /tap to change/ }));
-    const dialog = screen.getByRole('dialog');
-    await click(within(dialog).getByRole('button', { name: /Fantasy/ }));
-    expect(s().packIds).toEqual(['swords-and-sorcery']);
-    expect(s().answers).toEqual({});
-    expect(screen.queryByRole('dialog')).toBeNull();
-  });
-
   it('players stepper stays within 1 to 4', async () => {
     render(Setup);
     const more = screen.getByRole('button', { name: 'Increase players' }) as HTMLButtonElement;
@@ -65,9 +53,29 @@ describe('step 1: setup', () => {
     expect(less.disabled).toBe(true);
   });
 
-  it('starting skills stepper (Roll for Shoes) is stored', async () => {
+  it('Setting → goes to the setting step', async () => {
     render(Setup);
-    await click(screen.getByRole('button', { name: /^Roll for Shoes/ }));
+    await click(screen.getByRole('button', { name: /^Setting →/ }));
+    expect(location.hash).toBe('#/track/setting');
+  });
+});
+
+describe('step 2: setting', () => {
+  it('lists the genres open by default, and picking one changes the pack and resets story state', async () => {
+    render(Setting);
+    s().answers = { x: 'y' };
+    expect(screen.queryByRole('dialog')).toBeNull();
+    expect(document.body.textContent).toContain('Based on');
+    await click(screen.getByRole('button', { name: /Fantasy/ }));
+    expect(s().packIds).toEqual(['swords-and-sorcery']);
+    expect(s().answers).toEqual({});
+  });
+
+  it('Roll for Shoes shows settings and the starting skills stepper, which is stored', async () => {
+    s().rulesId = 'roll-for-shoes';
+    s().packIds = ['the-heist'];
+    render(Setting);
+    expect(screen.getByText('Starting skills per character')).toBeTruthy();
     await click(screen.getByRole('button', { name: 'Increase starting skills' }));
     await click(screen.getByRole('button', { name: 'Increase starting skills' }));
     expect(s().starterSkills).toBe(2);
@@ -75,13 +83,13 @@ describe('step 1: setup', () => {
   });
 
   it('Story → goes to the story step', async () => {
-    render(Setup);
+    render(Setting);
     await click(screen.getByRole('button', { name: /Story/ }));
     expect(location.hash).toBe('#/track/story');
   });
 });
 
-describe('step 2: story', () => {
+describe('step 3: story', () => {
   it('rolls the seed on open; tapping a part rerolls only that part', async () => {
     render(Story);
     const seed = s().seed!;
@@ -135,7 +143,7 @@ function mutateToHeist() {
   s().packIds = ['the-heist'];
 }
 
-describe('step 3: players', () => {
+describe('step 4: players', () => {
   it('creates a character per player and starts play', async () => {
     s().players = 3;
     render(Players);

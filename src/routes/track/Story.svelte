@@ -49,7 +49,7 @@
 </script>
 
 <section class="group">
-  <div class="eyebrow">Step 2 of 3 · {pack.genre ?? pack.name}</div>
+  <div class="eyebrow">Step 3 of 4 · {pack.genre ?? pack.name}</div>
   <h2>Story</h2>
 </section>
 

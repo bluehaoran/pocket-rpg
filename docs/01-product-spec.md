@@ -28,7 +28,7 @@ Example: "You meet a friendly elf named…" → Tools → Names (female, fantasy
 | Rules | Lasers & Feelings (one data-driven engine covering its hacks) and Roll for Shoes |
 | Packs vs rules | Setup lists only packs native to the chosen rule system |
 | Characters | 1–4, default 1 |
-| Setup flow | One-off wizard inside Track: Setup → Story → Players → Start. New session from the Track menu. |
+| Setup flow | One-off wizard inside Track: System → Setting → Story → Players → Start. New session from the Track menu. |
 | Story seed | Saved to the session automatically |
 | History | Two per session: Track History (rolls and state changes) and Tools History (accepted results). Current session only. |
 | Pins | Dropped |
@@ -44,21 +44,23 @@ Example: "You meet a friendly elf named…" → Tools → Names (female, fantasy
 - Bottom bar: **Track** | **Tools**.
 
 ### Track tab, before play: setup wizard
-Steps 1–3 as built in mockup Phases 1–2. A step indicator replaces the old step tabs. The last step ends in **Start play**, which switches Track to its play state. After that, setup values are edited on Track itself.
+Steps 1–4 as built in mockup Phases 1–2. A step indicator replaces the old step tabs. The last step ends in **Start play**, which switches Track to its play state. After that, setup values are edited on Track itself.
 
-#### 1. Setup
-- **Rule system** first: Lasers & Feelings or Roll for Shoes. A round "?" at the right of each option opens a sheet with a short description of that game, with a "by" line crediting its author (John Harper; Ben Wray) linked to the source. Tapping it doesn't select the option.
-- **Genre / Setting:** one row per pack native to that rule system. The title is the pack's `genre`. Underneath: "Based on {pack name} v{version}". Library packs are not listed.
-- **Starting skills** (Roll for Shoes only): stepper, 0 to `starterSkills.max`. House rule; 0 is the original rules.
+#### 1. System
+- **Rule system:** Lasers & Feelings or Roll for Shoes. Each card has a title, a one-line mechanic summary and a slightly longer description. A round "?" at the right of each card opens a sheet with a short description of that game, with a "by" line crediting its author (John Harper; Ben Wray) linked to the source. Tapping it doesn't select the card.
 - **Players:** stepper, 1–4.
 
-#### 2. Story
+#### 2. Setting
+- **Genre / Setting:** one row per pack native to that rule system, listed open (no picker sheet). The title is the pack's `genre`. Underneath: "Based on {pack name} v{version}". Library packs are not listed. Picking one resets the story state.
+- **Starting skills** (Roll for Shoes only): stepper, 0 to `starterSkills.max`. House rule; 0 is the original rules.
+
+#### 3. Story
 - L&F packs with a seed: **Text** / **Advanced** tabs, then **Roll all**. Tap an underlined part to reroll only that part.
 - Roll for Shoes settings: introduction questions (optional typed answers) and the scene outline.
 - **Shared by the party:** the pack's `groupFields`.
 - **Premise:** the pack's `setting.premise`.
 
-#### 3. Players
+#### 4. Players
 - `← Player 2 of 4 →` when there is more than one player.
 - The character is shown as a sentence built from the pack's `sentence` template. Each field is underlined and tappable. The name is larger and on its own line.
 - L&F: number bar `[over-check ▮▯▯▯ under-check] N`, derived stats and resources as chips.

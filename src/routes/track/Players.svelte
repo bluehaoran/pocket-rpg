@@ -34,7 +34,7 @@
 </script>
 
 <section class="group">
-  <div class="eyebrow">Step 3 of 3 · {pack.genre ?? pack.name}{isRfs(s.rulesId) ? ' · Roll for Shoes' : ''}</div>
+  <div class="eyebrow">Step 4 of 4 · {pack.genre ?? pack.name}{isRfs(s.rulesId) ? ' · Roll for Shoes' : ''}</div>
   <h2>Players</h2>
 </section>
 

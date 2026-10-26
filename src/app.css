@@ -237,6 +237,9 @@ button.skill:focus-visible{outline:3px solid var(--accent);outline-offset:2px;bo
 .outline .rolls{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font:700 11px/1 var(--f-body);text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-top:4px}
 .outline .rolls i{font:500 12px/1 var(--f-mono);font-style:normal;text-transform:none;letter-spacing:0;color:var(--ink);background:var(--sunk);padding:5px 8px;border-radius:999px}
 .vtabs.three{grid-template-columns:repeat(3,1fr)}
+.vtabs.four{grid-template-columns:repeat(4,1fr)}
+.vtabs.four a.steplink{font-size:13px;letter-spacing:.03em;padding:0 2px}
+.opt .m.more{grid-column:2;font:400 14px/1.35 var(--f-body);color:var(--ink)}
 .sheet .stack{display:flex;flex-direction:column;gap:8px;min-width:0}
 .sheet .free{min-height:52px;width:100%;border-radius:12px;border:2px dashed var(--line);background:var(--bg);color:var(--ink);font:700 17px var(--f-body);padding:0 14px}
 .sheet .row{display:grid;grid-template-columns:minmax(0,1fr) 58px;gap:8px;align-items:start}
