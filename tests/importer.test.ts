@@ -39,8 +39,8 @@ describe('parseImport json', () => {
     const p = parseImport(tilts, none, text, 'json');
     expect(p.fresh.map(e => e.v)).toEqual(['Good', 'Array ok']);
     expect(p.invalid).toHaveLength(3);
-    expect(p.invalid[0].reason).toMatch(/colour/);
-    expect(p.invalid[1].reason).toMatch(/Nope/);
+    expect(p.invalid[0]!.reason).toMatch(/colour/);
+    expect(p.invalid[1]!.reason).toMatch(/Nope/);
   });
   it('marks entries already in stock or already added as duplicates, so a second import adds nothing', () => {
     const text = JSON.stringify([{ v: 'Rope snaps', tags: { group: 'Mayhem' } }, { v: 'New one' }]);
@@ -63,7 +63,7 @@ describe('parseImport text', () => {
     expect(p.fresh.map(e => [e.v, e.tags])).toEqual([['A bell tolls', { group: 'Doom' }], ['Fog rolls in', { group: 'Doom' }]]);
   });
   it('leaves entries untagged with no tags, and rejects empty text', () => {
-    expect(parseImport(plain, emptyEdits('items'), 'Rope', 'text').fresh[0].tags).toBeUndefined();
+    expect(parseImport(plain, emptyEdits('items'), 'Rope', 'text').fresh[0]!.tags).toBeUndefined();
     expect(() => parseImport(plain, emptyEdits('items'), ' \n ', 'text')).toThrow(ImportError);
   });
 });

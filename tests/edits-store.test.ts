@@ -6,7 +6,7 @@ import { hideText } from '../src/lib/edits.ts';
 import { toolCtx } from '../src/lib/toolctx.svelte.ts';
 import { lists } from '../src/lib/content/index.ts';
 
-const firstEmotion = lists.emotions.entries[0]!.v;
+const firstEmotion = lists.emotions!.entries[0]!.v;
 
 beforeEach(async () => {
   vi.restoreAllMocks();
@@ -27,7 +27,7 @@ describe('edits store', () => {
     await updateEdits('items', e => ({ ...e, added: [{ v: 'Lantern', src: 'user' }] }));
     editsState.map = {};
     await initEdits();
-    expect(editsState.map.items.added).toEqual([{ v: 'Lantern', src: 'user' }]);
+    expect(editsState.map.items!.added).toEqual([{ v: 'Lantern', src: 'user' }]);
   });
 
   it('resets everything', async () => {
@@ -40,7 +40,7 @@ describe('edits store', () => {
 
   it('replaceAllEdits saves every list', async () => {
     await replaceAllEdits({ items: { listId: 'items', added: [], hidden: ['Rope'] } });
-    expect((await loadEdits()).items.hidden).toEqual(['Rope']);
+    expect((await loadEdits()).items!.hidden).toEqual(['Rope']);
   });
 
   it('loads as stock when the saved edits cannot be read', async () => {
@@ -48,7 +48,7 @@ describe('edits store', () => {
     await initEdits();
     expect(editsState.ready).toBe(true);
     expect(editsState.map).toEqual({});
-    expect(toolCtx().lists.items.entries).toEqual(lists.items.entries);
+    expect(toolCtx().lists.items!.entries).toEqual(lists.items!.entries);
   });
 
   it('ignores malformed saved records', async () => {
@@ -60,10 +60,10 @@ describe('edits store', () => {
   it('feeds added and hidden entries to the tool context', async () => {
     await initEdits();
     await updateEdits('items', e => ({ ...e, added: [{ v: 'Zzz unique', src: 'user' }] }));
-    expect(toolCtx().lists.items.entries.at(-1)?.v).toBe('Zzz unique');
+    expect(toolCtx().lists.items!.entries.at(-1)?.v).toBe('Zzz unique');
     await updateEdits('emotions', e => hideText(e, firstEmotion));
-    expect(toolCtx().lists.emotions.entries.some(x => x.v === firstEmotion)).toBe(false);
-    expect(lists.items.entries.some(x => x.v === 'Zzz unique')).toBe(false);
+    expect(toolCtx().lists.emotions!.entries.some(x => x.v === firstEmotion)).toBe(false);
+    expect(lists.items!.entries.some(x => x.v === 'Zzz unique')).toBe(false);
   });
 
   it('is untouched when sessions are deleted', async () => {
@@ -71,6 +71,6 @@ describe('edits store', () => {
     await updateEdits('items', e => hideText(e, 'Rope'));
     await saveSession(newSession('starfarers', 'lasers-feelings'));
     await db.sessions.clear();
-    expect((await loadEdits()).items.hidden).toEqual(['Rope']);
+    expect((await loadEdits()).items!.hidden).toEqual(['Rope']);
   });
 });

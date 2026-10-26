@@ -48,7 +48,7 @@ describe('effectiveLists', () => {
   it('applies edits per list id and passes untouched lists through', () => {
     const other: ToolList = { ...list, id: 'items', entries: [{ v: 'Rope' }] };
     const out = effectiveLists({ names: list, items: other }, { names: { listId: 'names', added: [], hidden: ['Liria'] } });
-    expect(vs(out.names)).toEqual(['Rowan', 'Rowan']);
+    expect(vs(out.names!)).toEqual(['Rowan', 'Rowan']);
     expect(out.items).toBe(other);
   });
 });

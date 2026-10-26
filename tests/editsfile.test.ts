@@ -31,15 +31,15 @@ describe('previewEditsFile and applyEditsFile', () => {
   it('round-trips onto an empty device', () => {
     const p = previewEditsFile(stock, {}, text);
     expect(p.unknownLists).toEqual([]);
-    expect(p.perList.tilts.fresh).toHaveLength(1);
-    expect(p.perList.tilts.hide).toEqual(['Rope snaps']);
+    expect(p.perList.tilts!.fresh).toHaveLength(1);
+    expect(p.perList.tilts!.hide).toEqual(['Rope snaps']);
     expect(applyEditsFile(stock, {}, p)).toEqual(edits);
   });
   it('is idempotent when applied twice', () => {
     const once = applyEditsFile(stock, {}, previewEditsFile(stock, {}, text));
     const twice = applyEditsFile(stock, once, previewEditsFile(stock, once, text));
     expect(twice).toEqual(once);
-    expect(previewEditsFile(stock, once, text).perList.tilts.fresh).toEqual([]);
+    expect(previewEditsFile(stock, once, text).perList.tilts!.fresh).toEqual([]);
   });
   it('reports list ids this build does not have and does not apply them', () => {
     const file = { version: 1, lists: { nope: { added: [{ v: 'X' }], hidden: ['Y'] }, items: { added: [], hidden: [] } } };
@@ -50,8 +50,8 @@ describe('previewEditsFile and applyEditsFile', () => {
   it('treats a stale tag value as invalid, not an error', () => {
     const file = { version: 1, lists: { tilts: { added: [{ v: 'Old', tags: { group: 'Retired' } }, { v: 'Fine' }], hidden: [] } } };
     const p = previewEditsFile(stock, {}, JSON.stringify(file));
-    expect(p.perList.tilts.invalid).toHaveLength(1);
-    expect(p.perList.tilts.fresh.map(e => e.v)).toEqual(['Fine']);
+    expect(p.perList.tilts!.invalid).toHaveLength(1);
+    expect(p.perList.tilts!.fresh.map(e => e.v)).toEqual(['Fine']);
   });
   it.each(['', '{', '[]', '{"version":2,"lists":{}}', '{"version":1}'])('rejects %j', t => {
     expect(() => previewEditsFile(stock, {}, t)).toThrow(ImportError);
