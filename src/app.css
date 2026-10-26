@@ -58,6 +58,9 @@ h2{font:800 34px/1 var(--f-display);text-transform:uppercase;letter-spacing:.01e
 
 .stepper{display:grid;grid-template-columns:64px minmax(0,1fr) 64px;align-items:stretch;min-height:64px;border:2px solid var(--line);border-radius:14px;background:var(--surface);overflow:hidden}
 .stepper button{border:0;background:var(--sunk);font:700 28px/1 var(--f-mono)}
+.stepper.compact{grid-template-columns:48px 52px 48px;min-height:48px;width:max-content;border-radius:12px}
+.stepper.compact button{font-size:24px}
+.stepper.compact output{font-size:24px}
 .stepper button:disabled{opacity:.35;cursor:not-allowed}
 .stepper output{display:grid;place-items:center;font:700 30px/1 var(--f-mono);font-variant-numeric:tabular-nums}
 .btn{min-height:62px;width:100%;border-radius:14px;border:2px solid var(--accent);background:var(--accent);color:var(--accent-ink);font:800 23px/1 var(--f-display);text-transform:uppercase;letter-spacing:.05em;display:flex;align-items:center;justify-content:center;gap:10px}
