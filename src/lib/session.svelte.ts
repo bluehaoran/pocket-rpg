@@ -3,6 +3,7 @@
 import { currentSession, newSession, saveSession, type Session } from './db.ts';
 import { orderedPacks, packs } from './content/index.ts';
 import { RULES, type RulesId } from './content/types.ts';
+import { initEdits } from './edits.svelte.ts';
 
 export const app = $state<{ session: Session | undefined; ready: boolean }>({ session: undefined, ready: false });
 
@@ -23,6 +24,7 @@ export function defaultSession(): Session {
 
 /** Load the latest session, or create and save one on first run. */
 export async function initSession(): Promise<void> {
+  await initEdits();
   let s = await currentSession();
   if (!s) {
     s = defaultSession();
