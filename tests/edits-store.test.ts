@@ -6,7 +6,7 @@ import { hideText } from '../src/lib/edits.ts';
 import { toolCtx } from '../src/lib/toolctx.svelte.ts';
 import { lists } from '../src/lib/content/index.ts';
 
-const firstTilt = lists.tilts.entries[0]?.v;
+const firstEmotion = lists.emotions.entries[0]!.v;
 
 beforeEach(async () => {
   vi.restoreAllMocks();
@@ -61,10 +61,8 @@ describe('edits store', () => {
     await initEdits();
     await updateEdits('items', e => ({ ...e, added: [{ v: 'Zzz unique', src: 'user' }] }));
     expect(toolCtx().lists.items.entries.at(-1)?.v).toBe('Zzz unique');
-    if (firstTilt) {
-      await updateEdits('tilts', e => hideText(e, firstTilt));
-      expect(toolCtx().lists.tilts.entries.some(x => x.v === firstTilt)).toBe(false);
-    }
+    await updateEdits('emotions', e => hideText(e, firstEmotion));
+    expect(toolCtx().lists.emotions.entries.some(x => x.v === firstEmotion)).toBe(false);
     expect(lists.items.entries.some(x => x.v === 'Zzz unique')).toBe(false);
   });
 
