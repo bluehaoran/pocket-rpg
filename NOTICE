@@ -50,8 +50,9 @@ Game systems
    labels and summaries, apart from the short "about" blurbs below.
 
    The "?" on the New session page quotes (src/lib/rulesInfo.ts):
-     the itch.io description of Lasers & Feelings by John Harper
-       (johnharper.itch.io/lasers-feelings), and
+     the opening line from lasersandfeelings.com (original game by John
+       Harper, web app by Jake Hamilton; the site states no licence), plus
+       a short PocketRPG summary of the mechanic, and
      the introduction and six rules from rollforshoes.com by Ben Wray
        (CC0 1.0).
    Each is shown with a credit link to its source.

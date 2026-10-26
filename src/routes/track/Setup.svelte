@@ -100,6 +100,7 @@
       {#if info.rules}
         <ol>{#each info.rules as r (r)}<li>{r}</li>{/each}</ol>
       {/if}
+      {#if info.summary}<p class="hint">{info.summary}</p>{/if}
       <p class="hint"><a href={info.url} target="_blank" rel="noopener noreferrer">{info.credit}</a></p>
     </div>
     <button class="btn ghost" onclick={() => (about = null)}>Close</button>
