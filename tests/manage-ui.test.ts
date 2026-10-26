@@ -10,6 +10,7 @@ import { exportEdits } from '../src/lib/editsfile.ts';
 import { router } from '../src/lib/router.svelte.ts';
 import { app, initSession } from '../src/lib/session.svelte.ts';
 import App from '../src/App.svelte';
+import ManageList from '../src/routes/ManageList.svelte';
 import ManageTools from '../src/routes/ManageTools.svelte';
 
 const tock = () => new Promise(r => setTimeout(r, 20));
@@ -105,5 +106,89 @@ describe('export and import of the edits file', () => {
     await chooseFile('{ nope');
     expect(screen.getByRole('alert').textContent).toMatch(/not valid JSON/);
     expect(screen.queryByRole('button', { name: 'Apply' })).toBeNull();
+  });
+});
+
+describe('list screen', () => {
+  const emotions = () => lists.emotions.entries.map(e => e.v);
+  const first = () => emotions()[0]!;
+  const rows = () => [...document.querySelectorAll('li.mrow')];
+
+  it('shows my entries first with a badge and delete, then stock entries with Hide', async () => {
+    await updateEdits('emotions', e => ({ ...e, added: [{ v: 'Zzzest', src: 'user' }] }));
+    render(ManageList, { listId: 'emotions' });
+    expect(rows()[0]!.textContent).toContain('Zzzest');
+    expect(rows()[0]!.textContent).toContain('mine');
+    expect(screen.getByRole('button', { name: 'Delete Zzzest' })).toBeTruthy();
+    expect(screen.getByRole('button', { name: `Hide ${first()}` })).toBeTruthy();
+    expect(rows().length).toBe(1 + new Set(emotions()).size);
+  });
+
+  it('Hide persists and turns into Unhide; Unhide restores', async () => {
+    render(ManageList, { listId: 'emotions' });
+    await fireEvent.click(screen.getByRole('button', { name: `Hide ${first()}` }));
+    await tock();
+    expect(editsState.map.emotions.hidden).toEqual([first()]);
+    expect((await loadEdits()).emotions.hidden).toEqual([first()]);
+    await fireEvent.click(screen.getByRole('button', { name: `Unhide ${first()}` }));
+    await tock();
+    expect(editsState.map.emotions.hidden).toEqual([]);
+  });
+
+  it('deleting my entry removes it', async () => {
+    await updateEdits('emotions', e => ({ ...e, added: [{ v: 'Zzzest', src: 'user' }] }));
+    render(ManageList, { listId: 'emotions' });
+    await fireEvent.click(screen.getByRole('button', { name: 'Delete Zzzest' }));
+    await tock();
+    expect(editsState.map.emotions.added).toEqual([]);
+    expect(screen.queryByText('Zzzest')).toBeNull();
+  });
+
+  it('filters All / Mine / Hidden', async () => {
+    await updateEdits('emotions', e => ({ ...hideText(e, first()), added: [{ v: 'Zzzest', src: 'user' }] }));
+    render(ManageList, { listId: 'emotions' });
+    await fireEvent.click(screen.getByRole('button', { name: 'Mine' }));
+    expect(rows().map(r => r.textContent)).toEqual([expect.stringContaining('Zzzest')]);
+    await fireEvent.click(screen.getByRole('button', { name: 'Hidden' }));
+    expect(rows().length).toBe(1);
+    expect(rows()[0]!.textContent).toContain(first());
+    await fireEvent.click(screen.getByRole('button', { name: 'All' }));
+    expect(rows().length).toBeGreaterThan(2);
+  });
+
+  it('searches case-insensitively on the text', async () => {
+    render(ManageList, { listId: 'emotions' });
+    const term = first().toUpperCase().slice(0, 3);
+    await fireEvent.input(screen.getByRole('searchbox', { name: 'Search' }), { target: { value: term } });
+    expect(rows().length).toBeGreaterThan(0);
+    expect(rows().every(r => r.textContent!.toLowerCase().includes(term.toLowerCase()))).toBe(true);
+    await fireEvent.input(screen.getByRole('searchbox', { name: 'Search' }), { target: { value: 'qqqqqqqq' } });
+    expect(rows().length).toBe(0);
+    expect(document.body.textContent).toContain('Nothing matches');
+  });
+
+  it('caps a long list at 100 rows until Show more', async () => {
+    render(ManageList, { listId: 'names' });
+    expect(rows().length).toBe(100);
+    await fireEvent.click(screen.getByRole('button', { name: /Show more/ }));
+    expect(rows().length).toBeGreaterThan(100);
+  });
+
+  it('says so for an unknown list, with a way back', () => {
+    render(ManageList, { listId: 'nope' });
+    expect(document.body.textContent).toContain('No such list');
+    expect(screen.getByRole('link', { name: /Manage/ }).getAttribute('href')).toBe('#/manage');
+  });
+
+  it('Export this list downloads only this list', async () => {
+    await updateEdits('emotions', e => hideText(e, first()));
+    await updateEdits('items', e => hideText(e, lists.items.entries[0]!.v));
+    const blobs: Blob[] = [];
+    URL.createObjectURL = vi.fn((b: Blob) => (blobs.push(b), 'blob:x'));
+    URL.revokeObjectURL = vi.fn();
+    vi.spyOn(HTMLAnchorElement.prototype, 'click').mockImplementation(() => {});
+    render(ManageList, { listId: 'emotions' });
+    await fireEvent.click(screen.getByRole('button', { name: 'Export this list' }));
+    expect(Object.keys(JSON.parse(await blobs[0]!.text()).lists)).toEqual(['emotions']);
   });
 });
