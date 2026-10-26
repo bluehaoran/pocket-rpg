@@ -8,3 +8,6 @@ coverage/
 
 # Packs that cannot be published (see NOTICE). Kept locally only.
 content/private/
+
+# Hide Superpowers artifacts
+.superpowers/
