@@ -7,7 +7,7 @@
   import { buzz } from '../lib/device.ts';
   import { availableLetters } from '../lib/engine/table.ts';
   import {
-    countOpt, diceOpts, glyphRows, drawFollowUp, effectiveOpts, entriesOf, findTool, followOn, historyText, isEmptyList,
+    allHidden, countOpt, diceOpts, glyphRows, drawFollowUp, effectiveOpts, entriesOf, findTool, followOn, historyText, isEmptyList,
     modDefs, partOn, partOrderOn, rollTool, segments, valueLabel, type ToolOpts, type ToolResult
   } from '../lib/tools.ts';
   import Sheet from '../components/Sheet.svelte';
@@ -25,6 +25,7 @@
   const eff = $derived(tool ? effectiveOpts(tool, opts, toolCtx()) : {});
   const defs = $derived(tool ? modDefs(tool, toolCtx()) : []);
   const empty = $derived(tool ? isEmptyList(tool, toolCtx()) : false);
+  const hidden = $derived(tool ? allHidden(tool, toolCtx()) : false);
   const hasToggles = $derived(tool?.kind === 'list' && (!!tool.parts?.length || !!tool.followUp));
   const countFirst = $derived(tool?.kind === 'list' && tool.countFirst === true);
   const modsFirst = $derived(tool?.kind === 'list' && tool.modifiersFirst === true);
@@ -183,7 +184,11 @@
   {#if modsFirst}{@render modifierGroups()}{/if}
 
   {#if empty}
-    <div class="empty-card">No entries yet. Add them to <code>content/tools/{tool.kind === 'list' ? tool.list : ''}.json</code>.</div>
+    {#if hidden}
+      <div class="empty-card">All entries are hidden. Unhide some in <a href={href(`/manage/${tool.kind === 'list' ? tool.list : ''}`)}>Manage Tools</a>.</div>
+    {:else}
+      <div class="empty-card">No entries yet. Add them to <code>content/tools/{tool.kind === 'list' ? tool.list : ''}.json</code>.</div>
+    {/if}
   {:else if !result && tool.kind === 'gen' && missing.length}
     <div class="empty-card">Choose {missing.map(d => d.label.toLowerCase()).join(', ')} below to roll.</div>
   {:else if !result}

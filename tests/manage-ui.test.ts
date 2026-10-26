@@ -5,11 +5,14 @@ import { cleanup, fireEvent, render, screen } from '@testing-library/svelte';
 import { db, loadEdits } from '../src/lib/db.ts';
 import { lists } from '../src/lib/content/index.ts';
 import { editsState, updateEdits } from '../src/lib/edits.svelte.ts';
+import { downloadJson } from '../src/lib/device.ts';
 import { hideText } from '../src/lib/edits.ts';
 import { exportEdits } from '../src/lib/editsfile.ts';
 import { router } from '../src/lib/router.svelte.ts';
 import { app, initSession } from '../src/lib/session.svelte.ts';
 import App from '../src/App.svelte';
+import ToolPage from '../src/routes/ToolPage.svelte';
+import Tools from '../src/routes/Tools.svelte';
 import AddEntrySheet from '../src/components/AddEntrySheet.svelte';
 import ImportSheet from '../src/components/ImportSheet.svelte';
 import { exampleJson, exampleText } from '../src/lib/importer.ts';
@@ -193,6 +196,47 @@ describe('list screen', () => {
     render(ManageList, { listId: 'emotions' });
     await fireEvent.click(screen.getByRole('button', { name: 'Export this list' }));
     expect(Object.keys(JSON.parse(await blobs[0]!.text()).lists)).toEqual(['emotions']);
+  });
+});
+
+describe('a list with every stock entry hidden', () => {
+  const hideAll = () => updateEdits('emotions', e => lists.emotions!.entries.reduce((acc, x) => hideText(acc, x.v), e));
+
+  it('the tool page says the entries are hidden and links to Manage Tools, not to the JSON file', async () => {
+    await hideAll();
+    render(ToolPage, { toolId: 'emotions' });
+    expect(document.body.textContent).toMatch(/All entries are hidden/);
+    expect(document.body.textContent).not.toMatch(/content\/tools/);
+    expect(screen.getByRole('link', { name: /Manage Tools/ }).getAttribute('href')).toBe('#/manage/emotions');
+  });
+
+  it('the hub tile says All hidden', async () => {
+    await hideAll();
+    render(Tools);
+    expect(screen.getByRole('link', { name: /Emotions/ }).textContent).toContain('All hidden');
+  });
+
+  it('a list that is empty in the bundled JSON keeps the developer message', () => {
+    render(ToolPage, { toolId: 'tilt' });
+    expect(document.body.textContent).toMatch(/content\/tools\/tilts\.json/);
+    expect(document.body.textContent).not.toMatch(/All entries are hidden/);
+  });
+});
+
+describe('export', () => {
+  it('keeps the blob URL alive until the download has started', async () => {
+    vi.useFakeTimers();
+    try {
+      URL.createObjectURL = vi.fn(() => 'blob:x');
+      const revoke = (URL.revokeObjectURL = vi.fn());
+      vi.spyOn(HTMLAnchorElement.prototype, 'click').mockImplementation(() => {});
+      downloadJson('x.json', {});
+      expect(revoke).not.toHaveBeenCalled();
+      vi.advanceTimersByTime(1500);
+      expect(revoke).toHaveBeenCalledWith('blob:x');
+    } finally {
+      vi.useRealTimers();
+    }
   });
 });
 

@@ -18,7 +18,7 @@
 <section class="gens">
   {#each registry.tools as t (t.id)}
     {@const s = sub(t)}
-    <a class="gen" class:req={/^(Choose|Empty)/.test(s)} href={href(`/tools/${t.id}`)} style="color:inherit;text-decoration:none">
+    <a class="gen" class:req={/^(Choose|Empty|All hidden)/.test(s)} href={href(`/tools/${t.id}`)} style="color:inherit;text-decoration:none">
       <b>{t.label}</b><small>{s}</small>
     </a>
   {/each}

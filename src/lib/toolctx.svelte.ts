@@ -1,5 +1,5 @@
 // Bridges the session to the pure tools module.
-import { packs, registry } from './content/index.ts';
+import { lists as stock, packs, registry } from './content/index.ts';
 import { effective } from './edits.svelte.ts';
 import type { Pack } from './content/types.ts';
 import type { ToolCtx } from './tools.ts';
@@ -16,5 +16,5 @@ export const toolPack = (): Pack | undefined => (app.session?.started ? sessionP
 
 /** Context for rolling tools. `recent` is the session's live no-repeat memory, so call inside `mutate`. */
 export function toolCtx(rng: Rng = mathRng): ToolCtx {
-  return { rng, recent: app.session?.recent ?? {}, registry, lists: effective(), pack: toolPack() };
+  return { rng, recent: app.session?.recent ?? {}, registry, lists: effective(), stock, pack: toolPack() };
 }

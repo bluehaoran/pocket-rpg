@@ -79,5 +79,6 @@ export function downloadJson(name: string, data: unknown): void {
   document.body.appendChild(a);
   a.click();
   a.remove();
-  URL.revokeObjectURL(url);
+  // Some browsers start the download after click() returns, so keep the URL alive for a moment.
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
 }

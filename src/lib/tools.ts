@@ -22,6 +22,8 @@ export interface ToolCtx {
   recent: Recent;
   registry: Registry;
   lists: Record<string, ToolList>;
+  /** The bundled lists before the device's edits. Only used to tell "all hidden" from "empty". */
+  stock?: Record<string, ToolList>;
   pack?: Pack;
 }
 
@@ -36,6 +38,9 @@ const isGen = (t: AnyTool): t is PackTool => t.kind === 'gen';
 const listOf = (t: ToolDef, ctx: ToolCtx): ToolList | undefined => (t.list ? ctx.lists[t.list] : undefined);
 export const entriesOf = (t: ToolDef, ctx: ToolCtx): Entry[] => listOf(t, ctx)?.entries ?? [];
 export const isEmptyList = (t: AnyTool, ctx: ToolCtx): boolean => t.kind === 'list' && entriesOf(t, ctx).length === 0;
+/** The list is empty only because the person hid every stock entry (Manage Tools). */
+export const allHidden = (t: AnyTool, ctx: ToolCtx): boolean =>
+  t.kind === 'list' && isEmptyList(t, ctx) && (ctx.stock?.[t.list ?? '']?.entries.length ?? 0) > 0;
 
 export interface ModDef {
   key: string;
@@ -273,6 +278,7 @@ export function toolSub(t: AnyTool, opts: ToolOpts, ctx: ToolCtx): string {
     const m = diceOpts(t, opts);
     return `${m.count}d${m.type}`;
   }
+  if (allHidden(t, ctx)) return 'All hidden';
   if (isEmptyList(t, ctx)) return 'Empty list';
   const defs = modDefs(t, ctx);
   const eff = effectiveOpts(t, opts, ctx);
