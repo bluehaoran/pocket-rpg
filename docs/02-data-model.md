@@ -338,6 +338,9 @@ interface Character {
 - Statuses are derived from fields with `status` (§1.8a). Which statuses apply to the next roll is UI state, not stored.
 - Tool results are not persisted except as `toolHistory`. Modifier selections persist per tool.
 
+## 3.1 Tool list edits (IndexedDB, device-wide)
+Separate from sessions: table `listEdits` (Dexie schema v2, key `listId`) holds `{ listId, added: Entry[], hidden: string[] }`. It survives New session and session deletion. Rules and screens: `05-tools-library.md` §8.
+
 ## 4. AI content pipeline (offline)
 1. For each table and tag combination, prompt an LLM for N entries in pack JSON format.
 2. Merge duplicates across tag combinations into one entry with array tags (e.g. "Leilani" generated for elven and human becomes `culture: ["elven", "human"]`).

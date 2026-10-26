@@ -146,5 +146,23 @@ Merged into `02-data-model.md` §3 (`toolModifiers`, `toolHistory`, `trackHistor
 | `complications.json` | Empty; to draft together |
 | `tilts.json` | Empty; user to supply |
 
-## 8. Phase 2: admin mode
-In-app add, hide and categorise entries. Edits stored on the device as an overlay on the JSON files, exportable as JSON. Not in Phase 1.
+## 8. Manage Tools (device edits)
+Menu → **Manage Tools** (`#/manage`, `#/manage/<listId>`). Design: `docs/superpowers/specs/2026-10-26-manage-tools-design.md`.
+
+The stock JSON is never modified. Edits are an overlay stored on the device (IndexedDB table `listEdits`, one record per list id), shared by every session:
+```ts
+interface ListEdits { listId: string; added: Entry[]; hidden: string[] }
+```
+- `added`: entries the person added or imported, stamped `src: "user"`.
+- `hidden`: stock texts (`v`) to omit. Matches every stock entry in that list with exactly that text, whatever its tags. Hiding a stock entry is reversible; deleting is only for entries the person added.
+- The Tools engine rolls from the **effective** list: stock minus hidden, plus added (`src/lib/edits.ts`, `toolCtx()` in `toolctx.svelte.ts`). Overlay is loaded in `initSession()` before first render; if it can't be read the app runs on stock.
+- Duplicates (same trimmed text and identical tags) are skipped on add and import. An untagged entry is valid and matches any value (`02-data-model.md` §1.2).
+- A saved edit that no longer fits a changed stock list (hidden text gone, tag value dropped) is harmless: ignored at read time, never re-validated.
+
+**Screens:** overview (every list with `+added · N hidden`, Export all, Import edits file, Reset all edits), list screen (search, All/Mine/Hidden, Hide/Unhide, Delete, Add entry, Import file or text, Export this list), Add sheet (a picker per modifier the list declares), Import sheet (file or paste, preview before saving, and a "Format for this list" section with a copyable example generated from the list's own modifiers).
+
+**Import formats** (`src/lib/importer.ts`): JSON in list-file shape (`{ "entries": [...] }`), a bare array of entries, a bare array of strings, or plain text with one entry per line (tags from the pickers apply to every plain line). Entries with undeclared tag keys or values are reported and skipped; malformed input writes nothing.
+
+**Edits file** (`src/lib/editsfile.ts`): `{ "version": 1, "lists": { "<listId>": { "added": [...], "hidden": [...] } } }`. Import previews per list, skips list ids this build lacks, and merges (union of hidden, deduplicated added).
+
+**Next (v2):** long-press (right-click on desktop) on a result or entry opens a menu with "Hide this", writing to the same `hidden` list. Packs are not covered; see the custom pack import item in the brief.
