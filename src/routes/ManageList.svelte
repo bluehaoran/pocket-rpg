@@ -8,6 +8,7 @@
   import { href } from '../lib/router.svelte.ts';
   import AddEntrySheet from '../components/AddEntrySheet.svelte';
   import Chips from '../components/Chips.svelte';
+  import ImportSheet from '../components/ImportSheet.svelte';
 
   let { listId }: { listId: string } = $props();
 
@@ -19,6 +20,7 @@
   let query = $state('');
   let limit = $state(PAGE);
   let adding = $state(false);
+  let importing = $state(false);
 
   // The tag values an entry carries, for the small line under its text.
   const tagLine = (entries: Entry[]): string =>
@@ -81,7 +83,9 @@
 
   <div class="btn-row">
     <button class="btn" onclick={() => (adding = true)}>Add entry</button>
+    <button class="btn ghost" onclick={() => (importing = true)}>Import file or text</button>
     <button class="btn ghost" onclick={() => downloadJson(`pocketrpg-${listId}.json`, exportEdits($state.snapshot(editsState.map), [listId]))}>Export this list</button>
   </div>
   {#if adding}<AddEntrySheet {list} onclose={() => (adding = false)} />{/if}
+  {#if importing}<ImportSheet {list} onclose={() => (importing = false)} />{/if}
 {/if}

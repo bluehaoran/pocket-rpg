@@ -166,6 +166,10 @@ body{margin:0}
 .hrow time{font:500 12px/1.6 var(--f-mono);color:var(--muted)}
 .hrow .lt{font-weight:700;font-size:16px;line-height:1.35;overflow-wrap:anywhere}
 .msearch{width:100%;min-height:50px;border-radius:12px;border:2px solid var(--line);background:var(--surface);color:var(--ink);font:700 17px var(--f-body);padding:0 14px}
+.mtext{width:100%;min-height:96px;border-radius:12px;border:2px solid var(--line);background:var(--surface);color:var(--ink);font:500 15px var(--f-mono);padding:10px 14px;resize:vertical}
+.fmtbox{display:flex;flex-direction:column;gap:8px}
+.fmtbox summary{min-height:44px;display:flex;align-items:center}
+.fmt{margin:0;padding:10px 12px;border-radius:12px;border:2px solid var(--line);background:var(--surface);font:500 12px/1.4 var(--f-mono);overflow-x:auto;user-select:all}
 .mlist{list-style:none;margin:0}
 .mrow{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 0;border-top:1px solid var(--line)}
 .mrow:first-child{border-top:0}

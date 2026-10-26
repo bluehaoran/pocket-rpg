@@ -11,6 +11,8 @@ import { router } from '../src/lib/router.svelte.ts';
 import { app, initSession } from '../src/lib/session.svelte.ts';
 import App from '../src/App.svelte';
 import AddEntrySheet from '../src/components/AddEntrySheet.svelte';
+import ImportSheet from '../src/components/ImportSheet.svelte';
+import { exampleJson, exampleText } from '../src/lib/importer.ts';
 import ManageList from '../src/routes/ManageList.svelte';
 import ManageTools from '../src/routes/ManageTools.svelte';
 
@@ -261,5 +263,94 @@ describe('add entry sheet', () => {
     await fireEvent.click(screen.getByRole('button', { name: 'Add entry' }));
     expect(screen.getByRole('dialog')).toBeTruthy();
     expect(screen.getByRole('textbox', { name: 'Text' })).toBeTruthy();
+  });
+});
+
+describe('import sheet', () => {
+  const groups = lists.tilts!.modifiers.group!.values;
+  const paste = (text: string) => fireEvent.input(screen.getByRole('textbox', { name: 'Paste text' }), { target: { value: text } });
+  const status = () => screen.getByRole('status').textContent ?? '';
+  const importBtn = (n: number) => screen.getByRole('button', { name: `Import ${n}` }) as HTMLButtonElement;
+
+  it('previews pasted JSON and saves nothing until Import is tapped', async () => {
+    const onclose = vi.fn();
+    render(ImportSheet, { list: lists.tilts!, onclose });
+    await paste(JSON.stringify([{ v: 'A bell tolls', tags: { group: groups[1] } }, { v: 'Fog' }]));
+    expect(status()).toMatch(/2 new/);
+    expect(editsState.map.tilts).toBeUndefined();
+    await fireEvent.click(importBtn(2));
+    await tock();
+    expect(editsState.map.tilts!.added.map(e => e.v)).toEqual(['A bell tolls', 'Fog']);
+    expect(editsState.map.tilts!.added[0]!.src).toBe('user');
+    expect(onclose).toHaveBeenCalled();
+  });
+
+  it('applies the chosen tag to every line of plain text', async () => {
+    render(ImportSheet, { list: lists.tilts!, onclose: vi.fn() });
+    await fireEvent.click(screen.getByRole('button', { name: groups[0]! }));
+    await paste('One\n\n  Two  \n');
+    await fireEvent.click(importBtn(2));
+    await tock();
+    expect(editsState.map.tilts!.added.map(e => [e.v, e.tags])).toEqual([['One', { group: groups[0] }], ['Two', { group: groups[0] }]]);
+  });
+
+  it('counts entries already there and cannot import them again', async () => {
+    await updateEdits('tilts', e => ({ ...e, added: [{ v: 'Fog', src: 'user' }] }));
+    render(ImportSheet, { list: lists.tilts!, onclose: vi.fn() });
+    await paste('Fog');
+    expect(status()).toMatch(/0 new, 1 already there/);
+    expect(screen.getByRole('button', { name: 'Import 0' })).toHaveProperty('disabled', true);
+  });
+
+  it('lists invalid entries with the reason and still imports the valid ones', async () => {
+    render(ImportSheet, { list: lists.tilts!, onclose: vi.fn() });
+    await paste(JSON.stringify([{ v: 'Good' }, { v: 'Bad', tags: { group: 'Nope' } }]));
+    expect(status()).toMatch(/1 new/);
+    expect(status()).toMatch(/Nope/);
+    await fireEvent.click(importBtn(1));
+    await tock();
+    expect(editsState.map.tilts!.added.map(e => e.v)).toEqual(['Good']);
+  });
+
+  it('shows the message for malformed JSON and offers no import', async () => {
+    render(ImportSheet, { list: lists.tilts!, onclose: vi.fn() });
+    await paste('{ nope');
+    expect(screen.getByRole('alert').textContent).toMatch(/not valid JSON/);
+    expect(screen.queryByRole('button', { name: /^Import \d/ })).toBeNull();
+  });
+
+  it('fills the text box from a chosen file', async () => {
+    render(ImportSheet, { list: lists.tilts!, onclose: vi.fn() });
+    await fireEvent.change(fileInput(), { target: { files: [new File(['Alpha\nBeta'], 'x.txt', { type: 'text/plain' })] } });
+    await tock();
+    expect((screen.getByRole('textbox', { name: 'Paste text' }) as HTMLTextAreaElement).value).toBe('Alpha\nBeta');
+    expect(status()).toMatch(/2 new/);
+  });
+
+  it('shows this list\'s JSON and text formats, and copies them', async () => {
+    const writeText = vi.fn().mockResolvedValue(undefined);
+    Object.defineProperty(navigator, 'clipboard', { value: { writeText }, configurable: true });
+    render(ImportSheet, { list: lists.tilts!, onclose: vi.fn() });
+    const pre = document.querySelector('pre.fmt')!;
+    expect(pre.textContent).toBe(exampleJson(lists.tilts!));
+    expect(pre.textContent).toContain(groups[0]!);
+    await fireEvent.click(screen.getByRole('button', { name: 'Copy JSON example' }));
+    expect(writeText).toHaveBeenCalledWith(exampleJson(lists.tilts!));
+    await fireEvent.click(screen.getByRole('button', { name: 'Copy text example' }));
+    expect(writeText).toHaveBeenLastCalledWith(exampleText(lists.tilts!));
+  });
+
+  it('does not throw when the clipboard is unavailable', async () => {
+    Object.defineProperty(navigator, 'clipboard', { value: undefined, configurable: true });
+    render(ImportSheet, { list: lists.tilts!, onclose: vi.fn() });
+    await fireEvent.click(screen.getByRole('button', { name: 'Copy JSON example' }));
+    await tock();
+    expect(document.body.textContent).toMatch(/copy it yourself/i);
+  });
+
+  it('opens from the list screen', async () => {
+    render(ManageList, { listId: 'tilts' });
+    await fireEvent.click(screen.getByRole('button', { name: 'Import file or text' }));
+    expect(screen.getByRole('textbox', { name: 'Paste text' })).toBeTruthy();
   });
 });
