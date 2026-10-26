@@ -47,12 +47,9 @@ Game systems
    Lasers & Feelings is by John Harper. Roll for Shoes is from
    rollforshoes.com. PocketRPG implements their mechanics from the
    authors' published rules and includes no rulebook text beyond short
-   labels and summaries, apart from the short "about" blurbs below.
+   labels and summaries, apart from the short descriptions below.
 
-   The "?" on the New session page quotes (src/lib/rulesInfo.ts):
-     the opening line from lasersandfeelings.com (original game by John
-       Harper, web app by Jake Hamilton; the site states no licence), plus
-       a short PocketRPG summary of the mechanic, and
-     the introduction and six rules from rollforshoes.com by Ben Wray
-       (CC0 1.0).
-   Each is shown with a credit link to its source.
+   The "?" on the New session page shows a short description of each
+   game (src/lib/rulesInfo.ts), credited "by John Harper" and "by Ben
+   Wray" and linked to lasersandfeelings.com and rollforshoes.com
+   (Roll for Shoes is CC0 1.0).

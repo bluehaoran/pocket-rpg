@@ -6,7 +6,7 @@
   import { isRfs, rfsConfig, rootSkill, rfsFlavour } from '../../lib/characters.ts';
   import { MAX_PLAYERS, charCtx, nativeFor, setPack, setPlayers, setRules, setStarter, starterOf } from '../../lib/setup.ts';
   import { mathRng } from '../../lib/engine/rng.ts';
-  import { RULES_INFO } from '../../lib/rulesInfo.ts';
+  import { RULES_INFO, runs } from '../../lib/rulesInfo.ts';
   import Sheet from '../../components/Sheet.svelte';
   import Stepper from '../../components/Stepper.svelte';
 
@@ -96,12 +96,10 @@
   {@const info = RULES_INFO[about]}
   <Sheet title={RULES[about]} onclose={() => (about = null)}>
     <div class="about">
-      {#each info.paragraphs as para (para)}<p>{para}</p>{/each}
-      {#if info.rules}
-        <ol>{#each info.rules as r (r)}<li>{r}</li>{/each}</ol>
-      {/if}
-      {#if info.summary}<p class="hint">{info.summary}</p>{/if}
-      <p class="hint"><a href={info.url} target="_blank" rel="noopener noreferrer">{info.credit}</a></p>
+      <p class="hint">by <a href={info.url} target="_blank" rel="noopener noreferrer">{info.by}</a></p>
+      {#each info.paragraphs as para (para)}
+        <p>{#each runs(para) as r}{#if r.em}<em>{r.t}</em>{:else}{r.t}{/if}{/each}</p>
+      {/each}
     </div>
     <button class="btn ghost" onclick={() => (about = null)}>Close</button>
   </Sheet>

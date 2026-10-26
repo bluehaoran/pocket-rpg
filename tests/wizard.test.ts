@@ -33,7 +33,7 @@ describe('step 1: setup', () => {
     render(Setup);
     await click(screen.getByRole('button', { name: 'About Roll for Shoes' }));
     const dialog = screen.getByRole('dialog');
-    expect(within(dialog).getByText(/created by Ben Wray/)).toBeTruthy();
+    expect(within(dialog).getByText(/evolving skill tree/)).toBeTruthy();
     expect(within(dialog).getByRole('link', { name: /Ben Wray/ })).toBeTruthy();
     expect(s().rulesId).toBe('lasers-feelings');
     await click(within(dialog).getByRole('button', { name: 'Close' }));
