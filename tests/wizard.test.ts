@@ -22,11 +22,24 @@ const click = (el: HTMLElement) => fireEvent.click(el);
 describe('step 1: setup', () => {
   it('switching rule system moves to that system\'s first pack', async () => {
     render(Setup);
-    await click(screen.getByRole('button', { name: /Roll for Shoes/ }));
+    await click(screen.getByRole('button', { name: /^Roll for Shoes/ }));
     expect(s().rulesId).toBe('roll-for-shoes');
     expect(s().packIds[0]).toBe('the-heist');
     expect(screen.getByText('Starting skills per character')).toBeTruthy();
     expect(document.body.textContent).toContain('Based on');
+  });
+
+  it('the ? beside each rule system opens its official blurb with credit, without selecting it', async () => {
+    render(Setup);
+    await click(screen.getByRole('button', { name: 'About Roll for Shoes' }));
+    const dialog = screen.getByRole('dialog');
+    expect(within(dialog).getByText(/created by Ben Wray/)).toBeTruthy();
+    expect(within(dialog).getByRole('link', { name: /Ben Wray/ })).toBeTruthy();
+    expect(s().rulesId).toBe('lasers-feelings');
+    await click(within(dialog).getByRole('button', { name: 'Close' }));
+    expect(screen.queryByRole('dialog')).toBeNull();
+    await click(screen.getByRole('button', { name: 'About Lasers & Feelings' }));
+    expect(within(screen.getByRole('dialog')).getByRole('link', { name: /John Harper/ })).toBeTruthy();
   });
 
   it('the picker sheet changes the pack and resets story state', async () => {
@@ -54,7 +67,7 @@ describe('step 1: setup', () => {
 
   it('starting skills stepper (Roll for Shoes) is stored', async () => {
     render(Setup);
-    await click(screen.getByRole('button', { name: /Roll for Shoes/ }));
+    await click(screen.getByRole('button', { name: /^Roll for Shoes/ }));
     await click(screen.getByRole('button', { name: 'Increase starting skills' }));
     await click(screen.getByRole('button', { name: 'Increase starting skills' }));
     expect(s().starterSkills).toBe(2);

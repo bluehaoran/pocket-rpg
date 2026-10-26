@@ -6,6 +6,7 @@
   import { isRfs, rfsConfig, rootSkill, rfsFlavour } from '../../lib/characters.ts';
   import { MAX_PLAYERS, charCtx, nativeFor, setPack, setPlayers, setRules, setStarter, starterOf } from '../../lib/setup.ts';
   import { mathRng } from '../../lib/engine/rng.ts';
+  import { RULES_INFO } from '../../lib/rulesInfo.ts';
   import Sheet from '../../components/Sheet.svelte';
   import Stepper from '../../components/Stepper.svelte';
 
@@ -18,6 +19,7 @@
   const hasSetting = $derived(rfsFlavour(pack).fields.some(f => f.skill));
 
   let picking = $state(false);
+  let about = $state<RulesId | null>(null);
   const basis = (p: { name: string; version: string }) => `Based on ${p.name} v${p.version}`;
 
   const RULE_META: Record<RulesId, string> = {
@@ -34,9 +36,12 @@
 <section class="group">
   <div class="eyebrow">Rule system</div>
   {#each Object.entries(RULES) as [id, label] (id)}
-    <button class="opt" aria-pressed={s.rulesId === id} onclick={() => mutate(x => setRules(x, id as RulesId, orderedPacks()))}>
-      <span class="radio"></span><span class="t">{label}</span><span class="m">{RULE_META[id as RulesId]}</span>
-    </button>
+    <div class="opt-wrap">
+      <button class="opt" aria-pressed={s.rulesId === id} onclick={() => mutate(x => setRules(x, id as RulesId, orderedPacks()))}>
+        <span class="radio"></span><span class="t">{label}</span><span class="m">{RULE_META[id as RulesId]}</span>
+      </button>
+      <button class="help" aria-label="About {label}" aria-haspopup="dialog" onclick={() => (about = id as RulesId)}>?</button>
+    </div>
   {/each}
 </section>
 
@@ -84,5 +89,19 @@
         </button>
       {/each}
     </div>
+  </Sheet>
+{/if}
+
+{#if about}
+  {@const info = RULES_INFO[about]}
+  <Sheet title={RULES[about]} onclose={() => (about = null)}>
+    <div class="about">
+      {#each info.paragraphs as para (para)}<p>{para}</p>{/each}
+      {#if info.rules}
+        <ol>{#each info.rules as r (r)}<li>{r}</li>{/each}</ol>
+      {/if}
+      <p class="hint"><a href={info.url} target="_blank" rel="noopener noreferrer">{info.credit}</a></p>
+    </div>
+    <button class="btn ghost" onclick={() => (about = null)}>Close</button>
   </Sheet>
 {/if}
