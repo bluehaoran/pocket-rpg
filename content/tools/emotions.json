@@ -1,7 +1,7 @@
 {
  "id": "emotions",
  "label": "Emotions",
- "version": "0.1.0",
+ "version": "0.2.0",
  "provenance": {
   "author": "PocketRPG",
   "license": "original entries"
@@ -127,6 +127,166 @@
   },
   {
    "v": "sheepish"
+  },
+  {
+   "v": "irritated",
+   "src": "ai"
+  },
+  {
+   "v": "joyful",
+   "src": "ai"
+  },
+  {
+   "v": "melancholy",
+   "src": "ai"
+  },
+  {
+   "v": "envious",
+   "src": "ai"
+  },
+  {
+   "v": "eager",
+   "src": "ai"
+  },
+  {
+   "v": "apprehensive",
+   "src": "ai"
+  },
+  {
+   "v": "disgusted",
+   "src": "ai"
+  },
+  {
+   "v": "lovesick",
+   "src": "ai"
+  },
+  {
+   "v": "restless",
+   "src": "ai"
+  },
+  {
+   "v": "smitten",
+   "src": "ai"
+  },
+  {
+   "v": "flustered",
+   "src": "ai"
+  },
+  {
+   "v": "indignant",
+   "src": "ai"
+  },
+  {
+   "v": "mournful",
+   "src": "ai"
+  },
+  {
+   "v": "serene",
+   "src": "ai"
+  },
+  {
+   "v": "skeptical",
+   "src": "ai"
+  },
+  {
+   "v": "thrilled",
+   "src": "ai"
+  },
+  {
+   "v": "uneasy",
+   "src": "ai"
+  },
+  {
+   "v": "vengeful",
+   "src": "ai"
+  },
+  {
+   "v": "wary",
+   "src": "ai"
+  },
+  {
+   "v": "zealous",
+   "src": "ai"
+  },
+  {
+   "v": "awestruck",
+   "src": "ai"
+  },
+  {
+   "v": "bewildered",
+   "src": "ai"
+  },
+  {
+   "v": "cheerful",
+   "src": "ai"
+  },
+  {
+   "v": "dejected",
+   "src": "ai"
+  },
+  {
+   "v": "elated",
+   "src": "ai"
+  },
+  {
+   "v": "exasperated",
+   "src": "ai"
+  },
+  {
+   "v": "forlorn",
+   "src": "ai"
+  },
+  {
+   "v": "grumpy",
+   "src": "ai"
+  },
+  {
+   "v": "hesitant",
+   "src": "ai"
+  },
+  {
+   "v": "insecure",
+   "src": "ai"
+  },
+  {
+   "v": "nostalgic",
+   "src": "ai"
+  },
+  {
+   "v": "overwhelmed",
+   "src": "ai"
+  },
+  {
+   "v": "pensive",
+   "src": "ai"
+  },
+  {
+   "v": "regretful",
+   "src": "ai"
+  },
+  {
+   "v": "tender",
+   "src": "ai"
+  },
+  {
+   "v": "tormented",
+   "src": "ai"
+  },
+  {
+   "v": "triumphant",
+   "src": "ai"
+  },
+  {
+   "v": "apathetic",
+   "src": "ai"
+  },
+  {
+   "v": "enraged",
+   "src": "ai"
+  },
+  {
+   "v": "determined",
+   "src": "ai"
   }
  ]
 }

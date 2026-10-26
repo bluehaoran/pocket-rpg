@@ -76,14 +76,8 @@
     "max": 3,
     "default": 1
    },
-   "distinctBy": "group",
-   "modifiersFirst": true,
-   "modifiers": [
-    {
-     "key": "group",
-     "required": false
-    }
-   ]
+   "countFirst": true,
+   "distinctBy": "group"
   },
   {
    "id": "items",

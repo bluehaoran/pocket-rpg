@@ -26,6 +26,7 @@
   const defs = $derived(tool ? modDefs(tool, toolCtx()) : []);
   const empty = $derived(tool ? isEmptyList(tool, toolCtx()) : false);
   const hasToggles = $derived(tool?.kind === 'list' && (!!tool.parts?.length || !!tool.followUp));
+  const countFirst = $derived(tool?.kind === 'list' && tool.countFirst === true);
   const modsFirst = $derived(tool?.kind === 'list' && tool.modifiersFirst === true);
 
   let result = $state<ToolResult | null>(null);
@@ -146,6 +147,16 @@
 {/if}
 {/snippet}
 
+{#snippet countPicker()}
+  {#if tool?.kind === 'list' && tool.count}
+    <div class="group">
+      <div class="eyebrow">How many</div>
+      <Stepper compact label="how many" min={tool.count.min} max={tool.count.max}
+        bind:value={() => countOpt(tool, opts), v => setOpt('count', v)} />
+    </div>
+  {/if}
+{/snippet}
+
 {#snippet modifierGroups()}
   {#each defs as d (d.key)}
     {#if d.key === 'letter'}
@@ -168,6 +179,7 @@
 {/snippet}
 
   {#if hasToggles}{@render toggleGroups()}{/if}
+  {#if countFirst}{@render countPicker()}{/if}
   {#if modsFirst}{@render modifierGroups()}{/if}
 
   {#if empty}
@@ -240,15 +252,7 @@
   {:else}
     {#if !modsFirst}{@render modifierGroups()}{/if}
 
-    {#if tool.kind === 'list'}
-      {#if tool.count}
-        <div class="group">
-          <div class="eyebrow">How many</div>
-          <Stepper compact label="how many" min={tool.count.min} max={tool.count.max}
-            bind:value={() => countOpt(tool, opts), v => setOpt('count', v)} />
-        </div>
-      {/if}
-    {/if}
+    {#if tool.kind === 'list' && !countFirst}{@render countPicker()}{/if}
   {/if}
 
   <Dock one>

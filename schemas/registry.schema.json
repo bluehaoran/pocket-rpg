@@ -61,7 +61,8 @@
         "captionTag": { "type": "string" },
         "display": { "enum": ["text", "glyph"] },
         "description": { "type": "string" },
-        "modifiersFirst": { "type": "boolean" }
+        "modifiersFirst": { "type": "boolean" },
+        "countFirst": { "type": "boolean" }
       },
       "allOf": [
         { "if": { "properties": { "kind": { "const": "dice" } } }, "then": { "required": ["dice"] } },

@@ -164,16 +164,13 @@ describe('simple lists and emoji', () => {
       expect(lists[id === 'description' ? 'descriptions' : id]!.entries.map(e => e.v)).toContain(r.text);
     }
   });
-  it('description draws only from the chosen group, and every entry has a declared group', () => {
-    const ctx = ctxFor(15);
+  it('every description has a declared group, and the tool shows no Group picker', () => {
     const list = lists.descriptions!;
     const groups = list.modifiers.group!.values;
     expect(list.entries.every(e => groups.includes(e.tags?.group as string))).toBe(true);
-    for (const g of groups) {
-      const inGroup = list.entries.filter(e => e.tags?.group === g).map(e => e.v);
-      expect(inGroup.length).toBeGreaterThan(10);
-      for (let i = 0; i < 20; i++) expect(inGroup).toContain(rollTool(tool('description', ctx), { group: g }, ctx)!.text);
-    }
+    for (const g of groups) expect(list.entries.filter(e => e.tags?.group === g).length).toBeGreaterThan(10);
+    const t = tool('description', ctxFor(15));
+    expect(t.kind === 'list' && (t.modifiers ?? [])).toEqual([]);
   });
   it('description count 1..3: words come from different groups, comma-separated', () => {
     const ctx = ctxFor(16);
@@ -190,17 +187,6 @@ describe('simple lists and emoji', () => {
         expect(new Set(r.base.map(groupOf)).size).toBe(n);
         expect(r.text).toBe(r.base.join(', '));
       }
-    }
-  });
-  it('description with a chosen group and count > 1 starts with that group', () => {
-    const ctx = ctxFor(17);
-    const t = tool('description', ctx);
-    for (let i = 0; i < 20; i++) {
-      const r = rollTool(t, { count: 3, group: 'Hair' }, ctx)!;
-      if (r.kind !== 'list') throw new Error('list expected');
-      const groups = r.base.map(v => lists.descriptions!.entries.find(e => e.v === v)!.tags!.group);
-      expect(groups[0]).toBe('Hair');
-      expect(new Set(groups).size).toBe(3);
     }
   });
   it('tilt results carry their group as a caption', () => {

@@ -48,8 +48,9 @@ Defines which tools appear on the hub and in what order.
 | `followUp` | Optional Off / On toggle (remembered, `default` off). When on, one entry from another tool's list is appended with `join` on every roll, and a smaller "↻ New {label}" button rerolls only that part. Turning it on or off doesn't reroll the main result. One History entry. |
 | `count` | Optional. Draw N distinct entries per roll, with a stepper. |
 | `join` | Separator when `count` > 1. Default `", "`. |
+| `countFirst` | Optional. `true` shows the How many stepper above the result instead of below it (Description). |
 | `captionTag` | Optional tag key. A single result shows that tag's value as a small header inside the result box (Tilt: the group, e.g. Mayhem). |
-| `distinctBy` | Optional tag key. With `count` > 1, every entry has a different value of that tag (Description: `group`). A Group chosen in the picker is used for the first entry only. |
+| `distinctBy` | Optional tag key. With `count` > 1, every entry has a different value of that tag (Description: `group`). |
 | `display` | `text` (default) or `glyph` (very large, for emoji). Glyph results are centred in rows: 3 fit across, 4 are 2 + 2, otherwise rows of 3 or 2 (5 = 3 + 2, 6 = 3 + 3). |
 | `modifiersFirst` | Optional. `true` shows the modifier pickers above the result instead of below it (Tilt: the Group sits above the text). |
 | `description` | Optional one line shown under the page title (Emoji: "Use this like Story Cubes to inspire your story."). |
@@ -92,7 +93,7 @@ Until **Start play**, the Tools tab ignores the session's pack: no pack generato
 The six Tilt groups are a `group` modifier on `tilts.json` (entries tagged `{ "group": "Mayhem" }`), not a d66 table. Any = uniform draw over all entries.
 
 ### Description groups
-`descriptions.json` has the same `group` modifier (and `modifiersFirst`) with five groups: Physical (build, complexion, face), Hair, Notable features (marks, age, bearing), Clothing and Temperament (mood, voice, mannerisms). Any = uniform draw over all entries, so bigger groups come up more often. As a Names follow-up the draw ignores the group. The tool has a `count` stepper (1 to 3, default 1) with `distinctBy: "group"`: with 2 or 3, each word comes from a different group, comma-separated; a Group chosen in the picker supplies the first word.
+`descriptions.json` has a `group` modifier with five groups, but the Description tool doesn't show a Group picker (too fiddly); the groups only drive `distinctBy`: Physical (build, complexion, face), Hair, Notable features (marks, age, bearing), Clothing and Temperament (mood, voice, mannerisms). A draw is uniform over all entries, so bigger groups come up more often. As a Names follow-up the draw ignores the group. The tool has a `count` stepper (1 to 3, default 1) with `distinctBy: "group"`: with 2 or 3, each word comes from a different group, comma-separated. The stepper sits above the result (`countFirst`).
 
 ## 3. Genre default: `nameSetting`
 A pack may declare which library setting it matches:
@@ -139,7 +140,7 @@ Merged into `02-data-model.md` §3 (`toolModifiers`, `toolHistory`, `trackHistor
 | `names.json` | 0.2.0: six settings (about 80 to 400 names each; `modern` spans Chinese, Japanese, Korean, Vietnamese, South Asian, Middle Eastern, African, Latin American, European, Anglo, Black American/Caribbean and Pacific), gender-tagged, original entries; new ones `src: "ai"` pending review |
 | `surnames.json` | 0.2.0: 46 to 170 per setting (`modern` covers the same cultures as names; East Asian entries lead). Samurai, Chinese, Japanese, Korean and Vietnamese entries have `"position": "before"` (family name first). |
 | `descriptions.json` | 0.2.0: about 270 short descriptors in five groups; new ones `src: "ai"` pending review |
-| `emotions.json` | Draft |
+| `emotions.json` | 0.2.0: 80 single-word emotions; new ones `src: "ai"` pending review |
 | `items.json` | Draft: mixed loot, tools and quest objects |
 | `emoji.json` | Placeholder set; user to curate |
 | `complications.json` | Empty; to draft together |
