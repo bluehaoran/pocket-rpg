@@ -177,6 +177,8 @@ export interface ToolDef {
   join?: string;
   /** With count > 1, each entry must have a different value of this tag (Description: group). */
   distinctBy?: string;
+  /** Tag whose value is shown as a small header above a single result (Tilt: group). */
+  captionTag?: string;
   display?: 'text' | 'glyph';
   /** One line shown under the title on the tool page. */
   description?: string;

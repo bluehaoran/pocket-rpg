@@ -112,7 +112,7 @@ export interface DrawnPart {
 
 export type ToolResult =
   | { kind: 'dice'; text: string; dice: number[]; sides: number; note: string }
-  | { kind: 'list'; text: string; base: string[]; drawn: DrawnPart[]; relaxed: boolean; mods: Selection; glyph: boolean }
+  | { kind: 'list'; text: string; base: string[]; drawn: DrawnPart[]; relaxed: boolean; mods: Selection; glyph: boolean; caption?: string }
   | { kind: 'gen'; text: string; sub: string; relaxed: boolean; mods: Selection };
 
 /** "level 2 · text" style line for a result's `data` payload. */
@@ -228,6 +228,7 @@ export function rollTool(t: AnyTool, opts: ToolOpts, ctx: ToolCtx, prev: ToolRes
   const n = t.count ? countOpt(t, opts) : 1;
   const prevBase = prev?.kind === 'list' ? prev.base[0] : undefined;
   const got: string[] = [];
+  let caption: string | undefined;
   // distinctBy: each extra entry comes from a different value of that tag. A chosen value for the same
   // modifier is honoured by the first draw only.
   const by = n > 1 ? t.distinctBy : undefined;
@@ -243,6 +244,7 @@ export function rollTool(t: AnyTool, opts: ToolOpts, ctx: ToolCtx, prev: ToolRes
     const e = draw(from, dsel, { rng, recent, key, avoid, strict: n > 1 });
     if (e) {
       got.push(e.v);
+      if (t.captionTag && n === 1) caption = e.tags?.[t.captionTag] != null ? String(e.tags[t.captionTag]) : undefined;
       if (by) used.add(String(e.tags?.[by] ?? ''));
     }
   }
@@ -260,7 +262,7 @@ export function rollTool(t: AnyTool, opts: ToolOpts, ctx: ToolCtx, prev: ToolRes
       if (e) drawn.push({ key: part.key, v: e.v, before: e.position === 'before', join: part.join ?? ' ' });
     }
   }
-  const r: ToolResult = { kind: 'list', text: '', base: got, drawn, relaxed, mods: sel, glyph: t.display === 'glyph' };
+  const r: ToolResult = { kind: 'list', text: '', base: got, drawn, relaxed, mods: sel, glyph: t.display === 'glyph', caption };
   r.text = plainText(t, r, opts);
   return r;
 }

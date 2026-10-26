@@ -188,6 +188,7 @@
           </div>
           <div class="rfoot">{result.note}</div>
         {:else}
+          {#if result.kind === 'list' && result.caption}<div class="eyebrow">{result.caption}</div>{/if}
           {#if result.kind === 'list' && result.glyph}
             {@const rows = glyphRows(result.base.length)}
             <div class="glyphs" role="img" aria-label={result.text}>

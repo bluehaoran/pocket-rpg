@@ -108,6 +108,7 @@
    "label": "Tilt",
    "kind": "list",
    "list": "tilts",
+   "captionTag": "group",
    "modifiersFirst": true,
    "modifiers": [
     {

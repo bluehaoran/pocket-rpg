@@ -203,6 +203,17 @@ describe('simple lists and emoji', () => {
       expect(new Set(groups).size).toBe(3);
     }
   });
+  it('tilt results carry their group as a caption', () => {
+    const entries = [{ v: 'A frantic chase', tags: { group: 'Mayhem' } }, { v: 'A funeral', tags: { group: 'Tragedy' } }];
+    const ctx = ctxFor(18, undefined, { lists: { ...lists, tilts: { ...lists.tilts!, entries } } });
+    for (let i = 0; i < 10; i++) {
+      const r = rollTool(tool('tilt', ctx), {}, ctx)!;
+      if (r.kind !== 'list') throw new Error('list expected');
+      expect(r.caption).toBe(r.text === 'A funeral' ? 'Tragedy' : 'Mayhem');
+    }
+    const plain = rollTool(tool('description', ctx), {}, ctx)!;
+    expect(plain.kind === 'list' && plain.caption).toBeUndefined();
+  });
   it('emoji draws distinct glyphs, count 1..6', () => {
     const ctx = ctxFor(14);
     for (const n of [1, 3, 6]) {
