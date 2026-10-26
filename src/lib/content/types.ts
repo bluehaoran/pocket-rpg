@@ -175,6 +175,8 @@ export interface ToolDef {
   followUp?: { label: string; tool: string; join?: string; default?: boolean };
   count?: { min: number; max: number; default: number };
   join?: string;
+  /** With count > 1, each entry must have a different value of this tag (Description: group). */
+  distinctBy?: string;
   display?: 'text' | 'glyph';
   /** One line shown under the title on the tool page. */
   description?: string;

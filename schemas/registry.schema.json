@@ -57,6 +57,7 @@
         },
         "count": { "$ref": "#/$defs/range" },
         "join": { "type": "string" },
+        "distinctBy": { "type": "string" },
         "display": { "enum": ["text", "glyph"] },
         "description": { "type": "string" },
         "modifiersFirst": { "type": "boolean" }

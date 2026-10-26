@@ -228,10 +228,23 @@ export function rollTool(t: AnyTool, opts: ToolOpts, ctx: ToolCtx, prev: ToolRes
   const n = t.count ? countOpt(t, opts) : 1;
   const prevBase = prev?.kind === 'list' ? prev.base[0] : undefined;
   const got: string[] = [];
+  // distinctBy: each extra entry comes from a different value of that tag. A chosen value for the same
+  // modifier is honoured by the first draw only.
+  const by = n > 1 ? t.distinctBy : undefined;
+  const used = new Set<string>();
   for (let i = 0; i < n; i++) {
     const avoid = n === 1 && prevBase ? [prevBase, ...got] : got;
-    const e = draw(entries, sel, { rng, recent, key, avoid, strict: n > 1 });
-    if (e) got.push(e.v);
+    let from = entries;
+    let dsel = sel;
+    if (by) {
+      from = entries.filter(x => !used.has(String(x.tags?.[by] ?? '')));
+      if (i > 0) dsel = { ...sel, [by]: null };
+    }
+    const e = draw(from, dsel, { rng, recent, key, avoid, strict: n > 1 });
+    if (e) {
+      got.push(e.v);
+      if (by) used.add(String(e.tags?.[by] ?? ''));
+    }
   }
   if (!got.length) return null;
 

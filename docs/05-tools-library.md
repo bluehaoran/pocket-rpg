@@ -48,6 +48,7 @@ Defines which tools appear on the hub and in what order.
 | `followUp` | Optional Off / On toggle (remembered, `default` off). When on, one entry from another tool's list is appended with `join` on every roll, and a smaller "↻ New {label}" button rerolls only that part. Turning it on or off doesn't reroll the main result. One History entry. |
 | `count` | Optional. Draw N distinct entries per roll, with a stepper. |
 | `join` | Separator when `count` > 1. Default `", "`. |
+| `distinctBy` | Optional tag key. With `count` > 1, every entry has a different value of that tag (Description: `group`). A Group chosen in the picker is used for the first entry only. |
 | `display` | `text` (default) or `glyph` (very large, for emoji). Glyph results are centred in rows: 3 fit across, 4 are 2 + 2, otherwise rows of 3 or 2 (5 = 3 + 2, 6 = 3 + 3). |
 | `modifiersFirst` | Optional. `true` shows the modifier pickers above the result instead of below it (Tilt: the Group sits above the text). |
 | `description` | Optional one line shown under the page title (Emoji: "Use this like Story Cubes to inspire your story."). |
@@ -90,7 +91,7 @@ Until **Start play**, the Tools tab ignores the session's pack: no pack generato
 The six Tilt groups are a `group` modifier on `tilts.json` (entries tagged `{ "group": "Mayhem" }`), not a d66 table. Any = uniform draw over all entries.
 
 ### Description groups
-`descriptions.json` has the same `group` modifier (and `modifiersFirst`) with five groups: Physical (build, complexion, face), Hair, Notable features (marks, age, bearing), Clothing and Temperament (mood, voice, mannerisms). Any = uniform draw over all entries, so bigger groups come up more often. As a Names follow-up the draw ignores the group.
+`descriptions.json` has the same `group` modifier (and `modifiersFirst`) with five groups: Physical (build, complexion, face), Hair, Notable features (marks, age, bearing), Clothing and Temperament (mood, voice, mannerisms). Any = uniform draw over all entries, so bigger groups come up more often. As a Names follow-up the draw ignores the group. The tool has a `count` stepper (1 to 3, default 1) with `distinctBy: "group"`: with 2 or 3, each word comes from a different group, comma-separated; a Group chosen in the picker supplies the first word.
 
 ## 3. Genre default: `nameSetting`
 A pack may declare which library setting it matches:
