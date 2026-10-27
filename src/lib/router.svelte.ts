@@ -1,18 +1,19 @@
 // Minimal hash router. Hash routing works on GitHub Pages and offline without server rewrites.
-// Routes: #/welcome, #/track, #/tools, #/tools/<toolId>, #/packs, #/packs/<packId>
+// Routes: #/welcome, #/track, #/tools, #/tools/<toolId>, #/packs, #/packs/<packId>, #/manage, #/manage/<listId>
 
 export interface Route {
   tab: 'track' | 'tools';
   /** Path segments after the tab, e.g. ['names'] for #/tools/names. */
   rest: string[];
   /** Overlay pages reached from the header menu. */
-  page?: 'packs' | 'welcome';
+  page?: 'packs' | 'welcome' | 'manage';
 }
 
 function parse(hash: string): Route {
   const parts = hash.replace(/^#\/?/, '').split('/').filter(Boolean).map(decodeURIComponent);
   const [head, ...rest] = parts;
   if (head === 'packs') return { tab: 'track', rest, page: 'packs' };
+  if (head === 'manage') return { tab: 'tools', rest, page: 'manage' };
   if (head === 'welcome') return { tab: 'track', rest: [], page: 'welcome' };
   if (head === 'tools') return { tab: 'tools', rest };
   return { tab: 'track', rest: head === 'track' ? rest : [] };

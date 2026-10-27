@@ -11,6 +11,8 @@
   import PackDetails from './routes/PackDetails.svelte';
   import Welcome from './routes/Welcome.svelte';
   import History from './routes/History.svelte';
+  import ManageList from './routes/ManageList.svelte';
+  import ManageTools from './routes/ManageTools.svelte';
 
   let menuOpen = $state(false);
   let confirmNew = $state(false);
@@ -75,6 +77,12 @@
       <Welcome />
     {:else if route.page === 'packs'}
       <PackDetails packId={route.rest[0]} />
+    {:else if route.page === 'manage'}
+      {#if route.rest[0]}
+        {#key route.rest[0]}<ManageList listId={route.rest[0]} />{/key}
+      {:else}
+        <ManageTools />
+      {/if}
     {:else if route.tab === 'tools'}
       {#if route.rest[0] === 'history'}
         <History which="tools" />
@@ -98,6 +106,7 @@
   <Sheet title="Session" onclose={closeMenu}>
     <button class="btn ghost" onclick={() => openPage('/welcome')}>Welcome</button>
     <button class="btn ghost" onclick={() => openPage('/packs')}>Pack details</button>
+    <button class="btn ghost" onclick={() => openPage('/manage')}>Manage Tools</button>
     <button class="btn ghost" aria-pressed={confirmNew} onclick={newSession}>
       {confirmNew ? 'Tap again to confirm' : 'New session'}
     </button>

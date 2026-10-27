@@ -1,5 +1,6 @@
 // Session storage. Schema: docs/02-data-model.md §3. One active session at a time in Phase 1.
 import Dexie, { type EntityTable } from 'dexie';
+import type { EditsMap, ListEdits } from './edits.ts';
 
 export interface ToolHistoryEntry {
   t: string;
@@ -54,10 +55,16 @@ export interface Session {
 
 export const db = new Dexie('pocketrpg') as Dexie & {
   sessions: EntityTable<Session, 'id'>;
+  listEdits: EntityTable<ListEdits, 'listId'>;
 };
 
 db.version(1).stores({
   sessions: 'id, createdAt'
+});
+// v2: device-level edits to the Tools lists (docs/superpowers/specs/2026-10-26-manage-tools-design.md).
+db.version(2).stores({
+  sessions: 'id, createdAt',
+  listEdits: 'listId'
 });
 
 export function newSession(packId: string, rulesId: string): Session {
@@ -90,4 +97,21 @@ export async function currentSession(): Promise<Session | undefined> {
  */
 export async function saveSession(s: Session): Promise<void> {
   await db.sessions.put(s);
+}
+
+/** Saved Tools-list edits by list id. Records with a bad shape are skipped, so the app falls back to stock for them. */
+export async function loadEdits(): Promise<EditsMap> {
+  const rows = await db.listEdits.toArray();
+  return Object.fromEntries(
+    rows.filter(r => Array.isArray(r.added) && Array.isArray(r.hidden)).map(r => [r.listId, r])
+  );
+}
+
+/** Persist one list's edits. Pass a plain object, not a reactive proxy. */
+export async function saveListEdits(e: ListEdits): Promise<void> {
+  await db.listEdits.put(e);
+}
+
+export async function clearEdits(): Promise<void> {
+  await db.listEdits.clear();
 }

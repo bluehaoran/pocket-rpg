@@ -69,3 +69,16 @@ export function createWakeLock(nav: WakeNav = navigator, doc: WakeDoc = document
     }
   };
 }
+
+/** Offers `data` as a downloaded JSON file. Works offline: a Blob URL and a click on a temporary link. */
+export function downloadJson(name: string, data: unknown): void {
+  const url = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }));
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = name;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  // Some browsers start the download after click() returns, so keep the URL alive for a moment.
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
