@@ -12,6 +12,7 @@
   import Die from '../../components/Die.svelte';
   import DRow from '../../components/DRow.svelte';
   import FieldSheet from '../../components/FieldSheet.svelte';
+  import RerollIcon from '../../components/RerollIcon.svelte';
 
   const s = $derived(app.session!);
   const pack = $derived(packs[s.packIds[0] ?? '']!);
@@ -69,7 +70,7 @@
           <button class="col" onclick={() => reroll(i)}>
             <Die value={seedFace(pack, i, s.seed.columns[i] ?? '')} />
             <span><span class="eyebrow">{c.label}</span><br /><span class="val">{s.seed.columns[i]}</span></span>
-            <span class="re" aria-hidden="true">↻</span>
+            <span class="re" aria-hidden="true"><RerollIcon /></span>
           </button>
         {/each}
       </div>
@@ -86,7 +87,7 @@
       </div>
       <p class="hint">Tap an underlined part to reroll only that part.</p>
     {/if}
-    <button class="btn ghost" onclick={rollAll}>Roll all</button>
+    <button class="btn ghost" onclick={rollAll}>Reroll all <RerollIcon /></button>
   </section>
 {:else if !seed && !questions.length}
   <div class="empty-card">{pack.name} has no story seed table.</div>

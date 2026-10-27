@@ -10,6 +10,7 @@
   import { buzz } from '../../lib/device.ts';
   import CharacterCard from '../../components/CharacterCard.svelte';
   import FieldSheet from '../../components/FieldSheet.svelte';
+  import RerollIcon from '../../components/RerollIcon.svelte';
 
   const s = $derived(app.session!);
   const pack = $derived(packs[s.packIds[0] ?? '']!);
@@ -50,7 +51,7 @@
   <CharacterCard index={active} onedit={ref => (editing = ref)} />
 {/key}
 
-<button class="btn ghost" onclick={rollAll}>Roll all</button>
+<button class="btn ghost" onclick={rollAll}>Reroll all <RerollIcon /></button>
 <button class="btn" onclick={start}>Start play</button>
 
 {#if editing}

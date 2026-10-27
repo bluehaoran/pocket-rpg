@@ -55,7 +55,7 @@ Steps 1–4 as built in mockup Phases 1–2. A step indicator replaces the old s
 - **Starting skills** (Roll for Shoes only): stepper, 0 to `starterSkills.max`. House rule; 0 is the original rules.
 
 #### 3. Story
-- L&F packs with a seed: **Text** / **Advanced** tabs, then **Roll all**. Tap an underlined part to reroll only that part.
+- L&F packs with a seed: **Text** / **Advanced** tabs, then **Reroll all**. Tap an underlined part to reroll only that part.
 - Roll for Shoes settings: introduction questions (optional typed answers) and the scene outline.
 - **Shared by the party:** the pack's `groupFields`.
 - **Premise:** the pack's `setting.premise`.
@@ -66,7 +66,7 @@ Steps 1–4 as built in mockup Phases 1–2. A step indicator replaces the old s
 - L&F: number bar `[over-check ▮▯▯▯ under-check] N`, derived stats and resources as chips.
 - Roll for Shoes: XP, skill tree, statuses.
 - Fields not in the sentence are listed as tappable rows.
-- **Roll all** rerolls the current character's randomisable fields.
+- **Reroll all** rerolls the current character's randomisable fields.
 - **Edit sheet** per field kind: `pick`, `pick-or-text`, `multi`, `number`, `text`.
 
 ### Track tab, in play

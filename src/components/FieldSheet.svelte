@@ -9,7 +9,7 @@
   import { shortLabel } from '../lib/engine/template.ts';
   import { buzz } from '../lib/device.ts';
   import Sheet from './Sheet.svelte';
-  import Die from './Die.svelte';
+  import RerollIcon from './RerollIcon.svelte';
 
   /** `onclose` gets the value the field had when the sheet opened, so callers can log an edit. */
   let { fieldRef, onclose }: { fieldRef: FieldRef; onclose: (before: FieldValue) => void } = $props();
@@ -89,7 +89,7 @@
           oninput={e => set(e.currentTarget.value)} />
       {/if}
       {#if randomisable}
-        <button class="dice" aria-label="Random {shortLabel(f.label).toLowerCase()}" onclick={randomise}><Die value={5} size="sm" /></button>
+        <button class="dice" aria-label="Random {shortLabel(f.label).toLowerCase()}" onclick={randomise}><RerollIcon size="28px" /></button>
       {:else}<span></span>{/if}
     </div>
     {#if f.kind === 'number' && typeof value === 'number' && under && over}

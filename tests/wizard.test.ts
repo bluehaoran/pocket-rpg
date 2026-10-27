@@ -103,13 +103,13 @@ describe('step 3: story', () => {
     expect(after.filter((_, i) => i !== 1)).toEqual(before.filter((_, i) => i !== 1));
   });
 
-  it('Advanced shows a row per column and Roll all rerolls', async () => {
+  it('Advanced shows a row per column and Reroll all rerolls', async () => {
     render(Story);
     await click(screen.getByRole('tab', { name: 'Advanced' }));
     const rows = document.querySelectorAll('.col');
     expect(rows.length).toBe(4);
     const before = JSON.stringify(s().seed);
-    await click(screen.getByRole('button', { name: 'Roll all' }));
+    await click(screen.getByRole('button', { name: 'Reroll all' }));
     expect(JSON.stringify(s().seed)).not.toBe(before);
   });
 
@@ -157,7 +157,7 @@ describe('step 4: players', () => {
     expect(location.hash).toBe('#/track');
   });
 
-  it('editing a field in the sheet changes the character; Roll all rerolls the current one', async () => {
+  it('editing a field in the sheet changes the character; Reroll all rerolls the current one', async () => {
     render(Players);
     const name = s().characters[0]!.fields.name as string;
     await click(screen.getByRole('button', { name }));
@@ -166,7 +166,7 @@ describe('step 4: players', () => {
     expect(s().characters[0]!.fields.name).toBe('Zed');
     await click(screen.getByRole('button', { name: 'Done' }));
     const before = JSON.stringify(s().characters[0]!.fields);
-    await click(screen.getByRole('button', { name: 'Roll all' }));
+    await click(screen.getByRole('button', { name: 'Reroll all' }));
     expect(JSON.stringify(s().characters[0]!.fields)).not.toBe(before);
   });
 
