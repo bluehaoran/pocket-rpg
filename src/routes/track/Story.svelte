@@ -12,7 +12,7 @@
   import Die from '../../components/Die.svelte';
   import DRow from '../../components/DRow.svelte';
   import FieldSheet from '../../components/FieldSheet.svelte';
-  import RerollIcon from '../../components/RerollIcon.svelte';
+  import Icon from '../../components/Icon.svelte';
 
   const s = $derived(app.session!);
   const pack = $derived(packs[s.packIds[0] ?? '']!);
@@ -70,7 +70,7 @@
           <button class="col" onclick={() => reroll(i)}>
             <Die value={seedFace(pack, i, s.seed.columns[i] ?? '')} />
             <span><span class="eyebrow">{c.label}</span><br /><span class="val">{s.seed.columns[i]}</span></span>
-            <span class="re" aria-hidden="true"><RerollIcon /></span>
+            <span class="re" aria-hidden="true"><Icon name="reroll" /></span>
           </button>
         {/each}
       </div>
@@ -87,7 +87,7 @@
       </div>
       <p class="hint">Tap an underlined part to reroll only that part.</p>
     {/if}
-    <button class="btn ghost" onclick={rollAll}>Reroll all <RerollIcon /></button>
+    <button class="btn ghost" onclick={rollAll}>Reroll all <Icon name="reroll" /></button>
   </section>
 {:else if !seed && !questions.length}
   <div class="empty-card">{pack.name} has no story seed table.</div>
@@ -139,7 +139,7 @@
   <section class="group"><div class="eyebrow">Premise</div><p class="premise">{pack.setting.premise}</p></section>
 {/if}
 
-<button class="btn" onclick={() => go('/track/players')}>Players →</button>
+<button class="btn" onclick={() => go('/track/players')}>Players <Icon name="arrow-right" stroke={4} /></button>
 
 {#if editing}
   <FieldSheet fieldRef={editing} onclose={() => (editing = null)} />

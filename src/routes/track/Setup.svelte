@@ -7,6 +7,7 @@
   import { RULES_INFO, runs } from '../../lib/rulesInfo.ts';
   import Sheet from '../../components/Sheet.svelte';
   import Stepper from '../../components/Stepper.svelte';
+  import Icon from '../../components/Icon.svelte';
 
   const s = $derived(app.session!);
 
@@ -44,7 +45,7 @@
         <span class="m">{RULE_META[id as RulesId].short}</span>
         <span class="m more">{RULE_META[id as RulesId].more}</span>
       </button>
-      <button class="help" aria-label="About {label}" aria-haspopup="dialog" onclick={() => (about = id as RulesId)}>?</button>
+      <button class="help" aria-label="About {label}" aria-haspopup="dialog" onclick={() => (about = id as RulesId)}><Icon name="question" size="24px" /></button>
     </div>
   {/each}
 </section>
@@ -55,7 +56,7 @@
   <p class="hint">One character per player. Up to {MAX_PLAYERS}.</p>
 </section>
 
-<button class="btn" onclick={() => go('/track/setting')}>Setting →</button>
+<button class="btn" onclick={() => go('/track/setting')}>Setting <Icon name="arrow-right" stroke={4} /></button>
 
 {#if about}
   {@const info = RULES_INFO[about]}

@@ -10,7 +10,7 @@
   import { buzz } from '../../lib/device.ts';
   import CharacterCard from '../../components/CharacterCard.svelte';
   import FieldSheet from '../../components/FieldSheet.svelte';
-  import RerollIcon from '../../components/RerollIcon.svelte';
+  import Icon from '../../components/Icon.svelte';
 
   const s = $derived(app.session!);
   const pack = $derived(packs[s.packIds[0] ?? '']!);
@@ -41,9 +41,9 @@
 
 {#if s.players > 1}
   <div class="pnav">
-    <button aria-label="Previous player" disabled={active === 0} onclick={() => active--}>←</button>
+    <button aria-label="Previous player" disabled={active === 0} onclick={() => active--}><Icon name="arrow-left" size="28px" /></button>
     <span><span class="eyebrow">Player</span> <b>{active + 1}</b> <span class="of">of {s.players}</span></span>
-    <button aria-label="Next player" disabled={active >= s.players - 1} onclick={() => active++}>→</button>
+    <button aria-label="Next player" disabled={active >= s.players - 1} onclick={() => active++}><Icon name="arrow-right" size="28px" /></button>
   </div>
 {/if}
 
@@ -51,7 +51,7 @@
   <CharacterCard index={active} onedit={ref => (editing = ref)} />
 {/key}
 
-<button class="btn ghost" onclick={rollAll}>Reroll all <RerollIcon /></button>
+<button class="btn ghost" onclick={rollAll}>Reroll all <Icon name="reroll" /></button>
 <button class="btn" onclick={start}>Start play</button>
 
 {#if editing}

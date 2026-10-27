@@ -5,6 +5,7 @@
   import { createWakeLock } from './lib/device.ts';
   import { resetPlay } from './lib/play.svelte.ts';
   import Sheet from './components/Sheet.svelte';
+  import Icon from './components/Icon.svelte';
   import Track from './routes/Track.svelte';
   import Tools from './routes/Tools.svelte';
   import ToolPage from './routes/ToolPage.svelte';
@@ -97,8 +98,8 @@
   </main>
 
   <nav class="tabs gutter" aria-label="Main">
-    <a href={href('/track')} aria-current={route.tab === 'track' && !route.page ? 'page' : undefined}><span class="n" aria-hidden="true">📝</span>Track</a>
-    <a href={href('/tools')} aria-current={route.tab === 'tools' ? 'page' : undefined}><span class="n" aria-hidden="true">🎲</span>Tools</a>
+    <a href={href('/track')} aria-current={route.tab === 'track' && !route.page ? 'page' : undefined}><span class="n" aria-hidden="true"><Icon name="notes" size="26px" /></span>Track</a>
+    <a href={href('/tools')} aria-current={route.tab === 'tools' ? 'page' : undefined}><span class="n" aria-hidden="true"><Icon name="d20" size="26px" /></span>Tools</a>
   </nav>
 </div>
 

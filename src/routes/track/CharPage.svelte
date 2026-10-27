@@ -10,6 +10,7 @@
   import KinControls from '../../components/KinControls.svelte';
   import KinGmControl from '../../components/KinGmControl.svelte';
   import RollResult from '../../components/RollResult.svelte';
+  import Icon from '../../components/Icon.svelte';
 
   let { idx }: { idx: number } = $props();
   const s = $derived(app.session!);
@@ -22,9 +23,9 @@
 
 {#if s.players > 1}
   <div class="pnav">
-    <button aria-label="Previous player" disabled={idx === 0} onclick={() => go(`/track/char/${idx - 1}`)}>←</button>
+    <button aria-label="Previous player" disabled={idx === 0} onclick={() => go(`/track/char/${idx - 1}`)}><Icon name="arrow-left" size="28px" /></button>
     <span><span class="eyebrow">Player</span> <b>{idx + 1}</b> <span class="of">of {s.players}</span></span>
-    <button aria-label="Next player" disabled={idx >= s.players - 1} onclick={() => go(`/track/char/${idx + 1}`)}>→</button>
+    <button aria-label="Next player" disabled={idx >= s.players - 1} onclick={() => go(`/track/char/${idx + 1}`)}><Icon name="arrow-right" size="28px" /></button>
   </div>
 {/if}
 

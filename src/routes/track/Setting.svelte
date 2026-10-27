@@ -6,6 +6,7 @@
   import { charCtx, nativeFor, setPack, setStarter, starterOf } from '../../lib/setup.ts';
   import { mathRng } from '../../lib/engine/rng.ts';
   import Stepper from '../../components/Stepper.svelte';
+  import Icon from '../../components/Icon.svelte';
 
   const s = $derived(app.session!);
   const pack = $derived(packs[s.packIds[0] ?? '']!);
@@ -53,4 +54,4 @@
   </section>
 {/if}
 
-<button class="btn" onclick={() => go('/track/story')}>Story →</button>
+<button class="btn" onclick={() => go('/track/story')}>Story <Icon name="arrow-right" stroke={4} /></button>

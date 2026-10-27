@@ -15,7 +15,7 @@
   import Seg from '../components/Seg.svelte';
   import Stepper from '../components/Stepper.svelte';
   import Die from '../components/Die.svelte';
-  import RerollIcon from '../components/RerollIcon.svelte';
+  import Icon from '../components/Icon.svelte';
   import Dock from '../components/Dock.svelte';
 
   let { toolId }: { toolId: string } = $props();
@@ -237,7 +237,7 @@
             </label>
           {/if}
           {#if tool.followUp && followUp}
-            <button class="mini-btn" onclick={rerollFollow}>New {tool.followUp.label.toLowerCase()} <RerollIcon /></button>
+            <button class="mini-btn" onclick={rerollFollow}>New {tool.followUp.label.toLowerCase()} <Icon name="reroll" /></button>
           {/if}
         </div>
       {/if}
@@ -262,9 +262,9 @@
   {/if}
 
   <Dock one>
-    <button class="btn reroll" onclick={roll} disabled={empty || (tool.kind === 'gen' && missing.length > 0)}>Reroll <RerollIcon /></button>
+    <button class="btn reroll" onclick={roll} disabled={empty || (tool.kind === 'gen' && missing.length > 0)}>Reroll <Icon name="reroll" /></button>
     <button class="btn keep" aria-label="Keep result" onclick={done} disabled={!result}>
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5" /></svg>
+      <Icon name="check" size="30px" stroke={4} />
     </button>
     <p class="dock-note">✓ keeps this result in History. Reroll or Back discards it.</p>
   </Dock>

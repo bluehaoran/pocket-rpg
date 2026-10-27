@@ -55,7 +55,7 @@ describe('step 1: system', () => {
 
   it('Setting → goes to the setting step', async () => {
     render(Setup);
-    await click(screen.getByRole('button', { name: /^Setting →/ }));
+    await click(screen.getByRole('button', { name: /^Setting/ }));
     expect(location.hash).toBe('#/track/setting');
   });
 });

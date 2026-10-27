@@ -40,7 +40,7 @@ h1,h2{font:800 34px/1 var(--f-display);text-transform:uppercase;letter-spacing:.
 .opt[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
 .opt-wrap{position:relative}
 .opt-wrap .opt{padding-right:68px}
-.help{position:absolute;top:50%;right:10px;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:2px solid var(--line);background:var(--surface);color:var(--muted);font:800 20px/1 var(--f-display)}
+.help{position:absolute;top:50%;right:10px;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:2px solid var(--line);background:var(--surface);color:var(--muted);display:grid;place-items:center}
 .about{display:flex;flex-direction:column;gap:10px;max-height:55vh;overflow-y:auto}
 .about p,.about ol{margin:0}
 .about ol{padding-left:22px;display:flex;flex-direction:column;gap:6px}
@@ -181,7 +181,6 @@ body{margin:0}
 .badge{font:700 10px/1 var(--f-body);text-transform:uppercase;letter-spacing:.08em;border:1px solid var(--accent);color:var(--accent);border-radius:6px;padding:2px 5px}
 .empty-note{margin:0;color:var(--muted);font-size:15px;padding:14px 0}
 @media (prefers-reduced-motion: reduce){.fresh{animation:none}}
-.dock .btn.keep svg{width:30px;height:30px;fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
 
 /* Setup wizard and character screens (M4), ported from the mockup */
 /* Story seed */
@@ -200,8 +199,8 @@ body{margin:0}
 .col:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}
 .col .val{font-weight:700;font-size:18px;line-height:1.25}
 .col .re{font:700 20px/1 var(--f-mono);color:var(--muted)}
-.reroll-icon{vertical-align:-.2em;flex:none}
-.col .re .reroll-icon{width:26px;height:26px;vertical-align:middle}
+.icon{vertical-align:-.2em;flex:none}
+.col .re .icon{width:26px;height:26px;vertical-align:middle}
 /* Crew */
 .pnav{display:grid;grid-template-columns:64px minmax(0,1fr) 64px;align-items:stretch;min-height:60px;border:2px solid var(--line);border-radius:14px;background:var(--surface);overflow:hidden}
 .pnav button{border:0;background:var(--sunk);font:700 26px/1 var(--f-mono)}
