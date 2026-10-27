@@ -7,7 +7,7 @@
   import { rerollSeedColumn } from '../lib/setup.ts';
   import { log } from '../lib/play.svelte.ts';
   import { mathRng } from '../lib/engine/rng.ts';
-  import { shortLabel } from '../lib/engine/template.ts';
+  import { seedParts, shortLabel } from '../lib/engine/template.ts';
   import { buzz } from '../lib/device.ts';
   import DRow from './DRow.svelte';
   import FieldSheet from './FieldSheet.svelte';
@@ -24,7 +24,7 @@
     log('edit', null, `Story: ${app.session?.seed?.text ?? ''}`);
     buzz();
   };
-  const parts = $derived(seed ? seed.template.split(/(\{\d+\})/).filter(Boolean) : []);
+  const parts = $derived(seed ? seedParts(seed.template) : []);
   const colValue = (i: number) => {
     const v = s.seed?.columns[i] ?? '';
     return seed?.columns[i]?.case === 'lower' ? v.charAt(0).toLowerCase() + v.slice(1) : v;
@@ -49,8 +49,7 @@
     {#if seed && s.seed}
       <p class="seedline">
         {#each parts as part, j (j)}
-          {@const m = part.match(/^\{(\d+)\}$/)}
-          {#if m}<button class="part" aria-label="Reroll {seed.columns[Number(m[1])]?.label}" onclick={() => reroll(Number(m[1]))}>{colValue(Number(m[1]))}</button>{:else}{part}{/if}
+          {#if 'col' in part}<span class="nw"><button class="part" aria-label="Reroll {seed.columns[part.col]?.label}" onclick={() => reroll(part.col)}>{colValue(part.col)}</button>{part.trail}</span>{:else}{part.text}{/if}
         {/each}
       </p>
     {/if}

@@ -131,3 +131,27 @@ export function renderSentence(
   }
   return { tokens, used };
 }
+
+export type SeedPart = { col: number; trail: string } | { text: string };
+
+/**
+ * Split a story-seed template ("{0} wants to {1}, which…") into text and column slots. Punctuation
+ * right after a slot becomes that slot's `trail`, so it can be rendered unbreakably beside the
+ * button and never wrap onto a line of its own.
+ */
+export function seedParts(tpl: string): SeedPart[] {
+  const out: SeedPart[] = [];
+  for (const piece of tpl.split(/(\{\d+\})/).filter(Boolean)) {
+    const m = piece.match(/^\{(\d+)\}$/);
+    if (m) {
+      out.push({ col: Number(m[1]), trail: '' });
+      continue;
+    }
+    const prev = out[out.length - 1];
+    const punct = prev && 'col' in prev ? (piece.match(/^[,.;:!?)"'’”…]+/)?.[0] ?? '') : '';
+    if (prev && 'col' in prev) prev.trail = punct;
+    const rest = piece.slice(punct.length);
+    if (rest) out.push({ text: rest });
+  }
+  return out;
+}

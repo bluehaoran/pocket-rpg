@@ -7,7 +7,7 @@
   import { charCtx, ensureSetup, rerollSeedColumn, rollSeed, seedFace } from '../../lib/setup.ts';
   import { display, type FieldRef } from '../../lib/fields.ts';
   import { mathRng } from '../../lib/engine/rng.ts';
-  import { shortLabel } from '../../lib/engine/template.ts';
+  import { seedParts, shortLabel } from '../../lib/engine/template.ts';
   import { buzz } from '../../lib/device.ts';
   import Die from '../../components/Die.svelte';
   import DRow from '../../components/DRow.svelte';
@@ -41,7 +41,7 @@
   const genLabel = (id: string) => pack.generators?.find(g => g.id === id)?.label ?? id;
 
   /** Seed template split into text and column slots. */
-  const parts = $derived(seed ? seed.template.split(/(\{\d+\})/).filter(Boolean) : []);
+  const parts = $derived(seed ? seedParts(seed.template) : []);
   const colValue = (i: number) => {
     const v = s.seed?.columns[i] ?? '';
     return seed?.columns[i]?.case === 'lower' ? v.charAt(0).toLowerCase() + v.slice(1) : v;
@@ -78,16 +78,15 @@
       <div class="sentence">
         <p>
           {#each parts as part, j (j)}
-            {@const m = part.match(/^\{(\d+)\}$/)}
-            {#if m}
-              <button class="part" aria-label="Reroll {seed.columns[Number(m[1])]?.label}" onclick={() => reroll(Number(m[1]))}>{colValue(Number(m[1]))}</button>
-            {:else}{part}{/if}
+            {#if 'col' in part}
+              <span class="nw"><button class="part" aria-label="Reroll {seed.columns[part.col]?.label}" onclick={() => reroll(part.col)}>{colValue(part.col)}</button>{part.trail}</span>
+            {:else}{part.text}{/if}
           {/each}
         </p>
       </div>
       <p class="hint">Tap an underlined part to reroll only that part.</p>
     {/if}
-    <button class="btn" onclick={rollAll}>Roll all</button>
+    <button class="btn ghost" onclick={rollAll}>Roll all</button>
   </section>
 {:else if !seed && !questions.length}
   <div class="empty-card">{pack.name} has no story seed table.</div>
@@ -139,7 +138,7 @@
   <section class="group"><div class="eyebrow">Premise</div><p class="premise">{pack.setting.premise}</p></section>
 {/if}
 
-<button class="btn ghost" onclick={() => go('/track/players')}>Players →</button>
+<button class="btn" onclick={() => go('/track/players')}>Players →</button>
 
 {#if editing}
   <FieldSheet fieldRef={editing} onclose={() => (editing = null)} />

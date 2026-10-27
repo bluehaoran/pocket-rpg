@@ -29,11 +29,13 @@
 </script>
 
 <section class="group">
-  <div class="eyebrow">Step 1 of 4</div>
-  <h2>New session</h2>
+  <h1>New session</h1>
+  <p class="hint">A quick walkthrough to set up a game.</p>
 </section>
 
 <section class="group">
+  <div class="eyebrow">Step 1 of 4</div>
+  <h2>System</h2>
   <div class="eyebrow">Rule system</div>
   {#each Object.entries(RULES) as [id, label] (id)}
     <div class="opt-wrap">
