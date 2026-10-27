@@ -121,7 +121,7 @@ body{margin:0}
 .dock button:active{transform:scale(.97)}
 .dock .die{width:26px;height:26px;padding:4px;border-radius:6px}
 .dock .btn{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font:800 23px/1 var(--f-display)}
-.dock .btn.keep{background:var(--surface);color:var(--accent)}
+.dock .btn.reroll{background:var(--surface);color:var(--accent)}
 
 /* Tools (M3) */
 .seg.dtype{grid-template-columns:repeat(4,1fr);grid-auto-flow:row}
