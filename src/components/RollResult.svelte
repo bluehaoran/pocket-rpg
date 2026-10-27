@@ -6,6 +6,7 @@
   import { canSpend, xpAvailable } from '../lib/rules/roll-for-shoes.ts';
   import { chooseExact, drawQuestion, failXp, play, spend, type Roll } from '../lib/play.svelte.ts';
   import Die from './Die.svelte';
+  import KinResult from './KinResult.svelte';
 
   let { roll }: { roll: Roll } = $props();
 
@@ -43,6 +44,8 @@
           {/if}
         </div>
       {/if}
+    {:else if roll.kind === 'kin'}
+      <KinResult {roll} />
     {:else}
       <div class="eyebrow">{roll.who} · {roll.skillName} · {roll.level}d6{roll.gm ? ` vs GM ${roll.gm.length}d6` : ''}</div>
       <div class="dicerow">

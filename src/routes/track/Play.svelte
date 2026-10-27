@@ -1,11 +1,12 @@
 <script lang="ts">
   import { href, router } from '../../lib/router.svelte.ts';
   import { app } from '../../lib/session.svelte.ts';
-  import { isRfs } from '../../lib/characters.ts';
+  import { isKin, isRfs } from '../../lib/characters.ts';
   import { closeRoll, play } from '../../lib/play.svelte.ts';
   import StoryCard from '../../components/StoryCard.svelte';
   import PartyCard from '../../components/PartyCard.svelte';
   import GmControl from '../../components/GmControl.svelte';
+  import KinGmControl from '../../components/KinGmControl.svelte';
   import RollSheet from '../../components/RollSheet.svelte';
   import RollResult from '../../components/RollResult.svelte';
   import NewSkillSheet from '../../components/NewSkillSheet.svelte';
@@ -43,7 +44,7 @@
     <StoryCard />
     <section class="group">
       <div class="eyebrow">Party</div>
-      {#if isRfs(s.rulesId)}<GmControl />{/if}
+      {#if isKin(s.rulesId)}<KinGmControl />{:else if isRfs(s.rulesId)}<GmControl />{/if}
       {#each s.characters.slice(0, s.players) as _, i (i)}<PartyCard ci={i} />{/each}
     </section>
     <a class="btn ghost" href={href('/track/history')} style="text-decoration:none">History · {s.trackHistory.length}</a>

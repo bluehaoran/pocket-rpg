@@ -291,10 +291,11 @@ interface Session {
   createdAt: string;
   started: boolean;                      // false = setup wizard, true = in play
   packIds: string[];
-  rulesId: string;                       // "lasers-feelings" | "roll-for-shoes"
+  rulesId: string;                       // "lasers-feelings" | "roll-for-shoes" | "kintsugi"
   players: number;                       // 1–4
   starterSkills?: number;                // Roll for Shoes only; unset = pack default
   gmDice?: number;                       // Roll for Shoes: GM dice for opposed rolls, 0 = off; remembered
+  gmSkill?: number;                      // Kintsugi: GM skill for opposed rolls, 0 = off; remembered
   answers: Record<string, string>;       // story.questions id -> answer (optional)
   characters: Character[];               // 1–4
   seed?: { columns: string[]; text: string };   // the current seed; saved automatically
@@ -414,3 +415,8 @@ Build start, 2026-10-24.
 ## Changes from v5 (2026-10-24)
 1. **`fields[].filterBy`** added (§1.6). Schema, types and validation updated.
 2. **Session gains `gmDice`** (Roll for Shoes opposed-by-GM setting, remembered across rolls).
+
+## Changes: Kintsugi (2026-10-26)
+1. **`kintsugi` flavour block** on packs: `fields`, `sentence`, `rootSkill`, `rootLevel`, `maxSkills`, `newSkillLevel` (schema `kintsugi`; type `KintsugiFlavour`). `RULES` gains `kintsugi`.
+2. **Character gains `skills`** (`{ name, level, out? }[]`): Kintsugi's learned skills. **Session gains `gmSkill`.**
+3. New pack `content/packs/kintsugi.json` (CC BY 4.0), with a four-column `seed`. Rules: `03-rules-reference.md` "Kintsugi".

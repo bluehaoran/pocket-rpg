@@ -369,3 +369,11 @@ h2 .sep{color:var(--muted);margin-inline:.25em}
 .welcome-col .hand{margin-top:auto;font:700 20px/1.1 "Segoe Print","Bradley Hand","Comic Sans MS","Chalkboard SE",cursive;color:var(--accent);transform:rotate(-3deg)}
 .welcome-col:last-child .hand{transform:rotate(2deg)}
 .doodle{width:44px;height:88px;flex:none;fill:none;stroke:var(--accent);stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round}
+
+/* Kintsugi */
+.gmrow{display:grid;grid-template-columns:minmax(0,1fr) 58px;gap:8px;align-items:center}
+.skill.out .sn,.skchip.out{text-decoration:line-through;color:var(--muted)}
+.skill.out .sn small{text-decoration:none}
+.skchip.out{opacity:.6}
+.learn{display:grid;gap:8px;margin-top:8px}
+.learn .gmrow input{min-height:44px}

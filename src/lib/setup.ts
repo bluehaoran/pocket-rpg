@@ -7,7 +7,7 @@ import { draw } from './engine/table.ts';
 import { seedText } from './engine/template.ts';
 import type { Rng } from './engine/rng.ts';
 import {
-  type CharCtx, canRandom, groupFieldsOf, isRfs, newCharacter, randomValue, setStarterCount, starterCount
+  type CharCtx, canRandom, groupFieldsOf, isKin, isRfs, newCharacter, randomValue, setStarterCount, starterCount
 } from './characters.ts';
 
 export const MAX_PLAYERS = 4;
@@ -80,7 +80,9 @@ export function rollAllFields(s: Session, ctx: CharCtx, index: number): void {
 }
 
 function fieldRandomisable(ctx: CharCtx, id: string): boolean {
-  const flavour = isRfs(ctx.rulesId) ? ctx.pack.flavour?.['roll-for-shoes'] : ctx.pack.flavour?.['lasers-feelings'];
+  const flavour = isKin(ctx.rulesId)
+    ? ctx.pack.flavour?.kintsugi
+    : isRfs(ctx.rulesId) ? ctx.pack.flavour?.['roll-for-shoes'] : ctx.pack.flavour?.['lasers-feelings'];
   const f = flavour?.fields.find(x => x.id === id);
   return !f || canRandom(ctx.pack, f);
 }

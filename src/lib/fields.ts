@@ -6,7 +6,7 @@ import {
   type CharCtx, type FieldValue, canRandom, fieldsOf, groupFieldsOf, isEmptyValue, listOf, pickSkill,
   randomValue, rfsConfig, rootSkill, skillList, syncResources
 } from './characters.ts';
-import { isRfs } from './characters.ts';
+import { isKin, isRfs } from './characters.ts';
 
 export type Scope = 'char' | 'group' | 'q' | 'skill';
 
@@ -69,7 +69,7 @@ export function setVal(s: Session, pack: Pack, ref: FieldRef, value: FieldValue)
     case 'char':
       if (!c) return;
       c.fields[ref.id] = value;
-      if (!isRfs(s.rulesId)) syncResources(pack, c);
+      if (!isRfs(s.rulesId) && !isKin(s.rulesId)) syncResources(pack, c);
   }
 }
 

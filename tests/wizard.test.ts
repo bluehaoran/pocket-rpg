@@ -198,3 +198,30 @@ describe('step 4: players', () => {
     expect(document.body.textContent).toMatch(/Weak to/);
   });
 });
+
+describe('Kintsugi setup', () => {
+  it('choosing it selects the Kintsugi pack, and the ? credits the author', async () => {
+    render(Setup);
+    await click(screen.getByRole('button', { name: /^Kintsugi/ }));
+    expect(s().rulesId).toBe('kintsugi');
+    expect(s().packIds[0]).toBe('kintsugi');
+    await click(screen.getByRole('button', { name: 'About Kintsugi' }));
+    expect(within(screen.getByRole('dialog')).getByRole('link', { name: /David Schirduan/ })).toBeTruthy();
+  });
+
+  it('the story is four parts, each rerollable, and players start with no learned skills', async () => {
+    s().rulesId = 'kintsugi';
+    s().packIds = ['kintsugi'];
+    render(Story);
+    const parts = document.querySelectorAll('.part');
+    expect(parts).toHaveLength(4);
+    expect(document.querySelector('.sentence')?.textContent).toMatch(/^You are a newly awakened group of (Magical Golems|Mutants|Robots)\. Your goal is to /);
+    expect(screen.getByRole('button', { name: 'Reroll But you cannot' })).toBeTruthy();
+    cleanup();
+    s().players = 2;
+    render(Players);
+    expect(s().characters.map(c => c.skills)).toEqual([[], []]);
+    expect(document.body.textContent).toContain('Do Anything');
+    expect(document.body.textContent).toContain('Kintsugi');
+  });
+});

@@ -1,0 +1,148 @@
+{
+ "id": "kintsugi",
+ "name": "Kintsugi",
+ "genre": "Newly Awakened",
+ "version": "0.1.0",
+ "nameSetting": "sci-fi",
+ "extends": [
+  "rfs-base"
+ ],
+ "provenance": {
+  "author": "David Schirduan (Technical Grimoire)",
+  "basedOn": "Kintsugi, technicalgrimoire.com/kintsugi. Inspired by Game of Clones (Marshall Miller) and Roll for Shoes.",
+  "license": "CC BY 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+  "entries": "Story seed lists verbatim from the Kintsugi pamphlet, minus each entry's final full stop. Name and description tables are shared with the Roll for Shoes tools."
+ },
+ "setting": {
+  "premise": "You pretend to be someone who can't die and quickly learns new skills: a robot, magical golem, or mutant."
+ },
+ "modifiers": {},
+ "tables": {
+  "kin.group": [
+   {
+    "v": "Magical Golems"
+   },
+   {
+    "v": "Mutants"
+   },
+   {
+    "v": "Robots"
+   }
+  ],
+  "kin.goal": [
+   {
+    "v": "Learn 7 wildly differing skills. E.g. History, Archery, Lockpicking, VCR Repair, etc"
+   },
+   {
+    "v": "Escape your pursuers. They know your appearance, your skills, and your general location"
+   },
+   {
+    "v": "Find your creator and convince them to release you from bondage. You may need to be...persuasive"
+   },
+   {
+    "v": "Start a new life. Gather supplies for a long journey, cut all ties, and establish yourself in a distant land"
+   },
+   {
+    "v": "Make breakfast. One vegan omelette, two strips of bacon, hash browns, sausage gravy biscuits, and a glass of orange juice"
+   },
+   {
+    "v": "Become a hero of the people, known across the land, beloved by all"
+   }
+  ],
+  "kin.cannot": [
+   {
+    "v": "Harm anyone or any living thing. Not even a fly"
+   },
+   {
+    "v": "Be seen in public. Word of you will spread"
+   },
+   {
+    "v": "Remember anything. You have no memories of your past, your purpose, or your creation"
+   },
+   {
+    "v": "Learn more than 3 skills (excluding \"Do Anything\"). Any new skills you learn replace your old skills"
+   },
+   {
+    "v": "Enter certain environments (sunlight, rivers, freshly planted gardens, morning mists, smoggy cities, etc)"
+   },
+   {
+    "v": "Reach your potential. Cross out your skills when they reach 5 instead of 6"
+   }
+  ],
+  "kin.unfortunately": [
+   {
+    "v": "Trapped in a secure building/lair/prison"
+   },
+   {
+    "v": "Low on energy, food, or supplies"
+   },
+   {
+    "v": "In immediate danger"
+   },
+   {
+    "v": "Far away from where you want to be"
+   },
+   {
+    "v": "Badly damaged. (\"Do Anything\" set at 1)"
+   },
+   {
+    "v": "Fragile and weak. (After you cross out 3 skills then 3+ skills max out, you perish)"
+   }
+  ]
+ },
+ "generators": [
+  {
+   "id": "look",
+   "label": "Description",
+   "output": "{npc.description|lower}, {npc.personality|lower}"
+  }
+ ],
+ "seed": {
+  "columns": [
+   {
+    "label": "A newly awakened group of",
+    "table": "kin.group"
+   },
+   {
+    "label": "Your goal is to",
+    "table": "kin.goal",
+    "case": "lower"
+   },
+   {
+    "label": "But you cannot",
+    "table": "kin.cannot",
+    "case": "lower"
+   },
+   {
+    "label": "Unfortunately, you are",
+    "table": "kin.unfortunately",
+    "case": "lower"
+   }
+  ],
+  "template": "You are a newly awakened group of {0}. Your goal is to {1}. But you cannot {2}. Unfortunately, you are {3}."
+ },
+ "flavour": {
+  "kintsugi": {
+   "rootSkill": "Do Anything",
+   "rootLevel": 2,
+   "maxSkills": 3,
+   "newSkillLevel": 3,
+   "fields": [
+    {
+     "id": "name",
+     "label": "Name",
+     "kind": "text",
+     "table": "name.modern"
+    },
+    {
+     "id": "look",
+     "label": "Description",
+     "kind": "text",
+     "generator": "look"
+    }
+   ],
+   "sentence": "{name}, {look}"
+  }
+ }
+}

@@ -68,6 +68,7 @@ export const shortLabel = (l: string): string => l.replace(/\s*\(.*\)\s*$/, '');
 /** Default character sentence when a flavour has none. */
 export function defaultSentence(rulesId: string, fieldIds: readonly string[]): string {
   const name = fieldIds.includes('name') ? '{name}\n' : '';
+  if (rulesId === 'kintsugi') return `${name}{look}`;
   if (rulesId === 'roll-for-shoes') return `${name}is {a} {concept|lower}`;
   const goal = fieldIds.includes('goal') ? ' who wants to\n{goal|lower}' : '';
   return `${name}is {a} {style|lower} {role|lower}${goal}`;

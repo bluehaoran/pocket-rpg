@@ -72,5 +72,30 @@ Statuses: a named modifier with a negative level (e.g. "-2 Weak to Fire"), defin
 - On failure, the app increments XP.
 - The roll screen offers to spend XP after the dice are shown.
 
+## Kintsugi
+By David Schirduan, technicalgrimoire.com/kintsugi (CC BY 4.0). A Roll for Shoes hack: no XP, no skill tree, and one d6 rolled **at or under** a skill.
+
+### Character
+- Everyone starts with one skill, **Do Anything (2)**. Learned skills are a flat list kept in `Character.skills` (`{ name, level, out? }`); Do Anything is implicit.
+- Learn at most **3** skills besides Do Anything. A new skill replaces an old one when the character holds three (the player picks which; a crossed-out skill still counts).
+- Pack `flavour.kintsugi`: `fields`, `sentence`, `rootSkill` (Do Anything), `rootLevel` (2), `maxSkills` (3), `newSkillLevel` (3).
+
+### Roll
+- Roll 1d6 and compare it to the skill that fits. At or under: success. Over: failure.
+- **Opposed** (a skilled foe): each side rolls 1d6 and adds its skill; higher total wins. Ties go to the higher skill, then the higher die; if both match the app shows "Tie" and the GM decides. The GM's skill is a session setting (`gmSkill`, 0 = off, 1 to 6); the die button beside it picks one at random.
+
+### Failing
+- **Fail Do Anything:** describe how you changed; gain a new skill at level 3.
+- **Fail another skill:** that skill goes up by 1. At 6 it is crossed out and can't be rolled.
+- Applies to a failed opposed roll too. A tie changes nothing. Applied once per roll, on the roll itself.
+
+### Story seed
+Four parts, each a table (`kin.group` 3 entries; `kin.goal`, `kin.cannot`, `kin.unfortunately` 6 each): "You are a newly awakened group of …", "Your goal is to …", "But you cannot …", "Unfortunately, you are …".
+
+### Not implemented (v1)
+- Optional rules **Head Start** and **Critical Overload**.
+- The "you perish" ending. Crossed-out skills stay visible.
+- Effects of individual story entries: "Badly damaged" sets Do Anything to 1, "Reach your potential" crosses skills out at 5. The GM applies them.
+
 ## Generic dice
 Always available, independent of the rules module: d6, 2d6, d20. Results are logged as `kind: "roll"`, `source: "dice"`.

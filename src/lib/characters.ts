@@ -1,7 +1,7 @@
 // Character logic for both rule systems: field values, random generation, derived stats, skill trees.
 // Pure TypeScript with an injectable Rng. Rules: docs/02-data-model.md §1.3, §1.6, §1.8, §2.
 import type { Character } from './db.ts';
-import type { Entry, Field, LasersFeelingsFlavour, Pack, RollForShoesFlavour } from './content/types.ts';
+import type { Entry, Field, KintsugiFlavour, LasersFeelingsFlavour, Pack, RollForShoesFlavour } from './content/types.ts';
 import { draw, pool, type Recent, type Selection } from './engine/table.ts';
 import { pick, randInt, type Rng } from './engine/rng.ts';
 import { expand, shortLabel } from './engine/template.ts';
@@ -67,7 +67,13 @@ export function rfsFlavour(pack: Pack): RfsFlavour {
 }
 
 export const isRfs = (rulesId: string): boolean => rulesId === 'roll-for-shoes';
-export const fieldsOf = (pack: Pack, rulesId: string): Field[] => (isRfs(rulesId) ? rfsFlavour(pack).fields : lfFlavour(pack).fields);
+export const isKin = (rulesId: string): boolean => rulesId === 'kintsugi';
+
+const GENERIC_KINTSUGI: KintsugiFlavour = { fields: [{ id: 'name', label: 'Name', kind: 'text', table: null }], sentence: '{name}' };
+export const kinFlavour = (pack: Pack): KintsugiFlavour => pack.flavour?.kintsugi ?? GENERIC_KINTSUGI;
+
+export const fieldsOf = (pack: Pack, rulesId: string): Field[] =>
+  isKin(rulesId) ? kinFlavour(pack).fields : isRfs(rulesId) ? rfsFlavour(pack).fields : lfFlavour(pack).fields;
 export const groupFieldsOf = (pack: Pack): Field[] => pack.groupFields ?? pack.flavour?.['lasers-feelings']?.groupFields ?? [];
 
 export const isEmptyValue = (v: unknown): boolean => (Array.isArray(v) ? !v.filter(Boolean).length : v == null || v === '');
@@ -271,7 +277,8 @@ export function newCharacter(ctx: CharCtx, id: string = crypto.randomUUID()): Ch
     c.xp = 0;
     c.extra = [];
     for (let i = 0; i < starterCount(ctx.pack, ctx.starterSkills); i++) c.extra.push(pickSkill(ctx, c));
-  } else syncResources(ctx.pack, c);
+  } else if (isKin(ctx.rulesId)) c.skills = [];
+  else syncResources(ctx.pack, c);
   return c;
 }
 

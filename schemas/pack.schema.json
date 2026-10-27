@@ -65,7 +65,8 @@
       "additionalProperties": false,
       "properties": {
         "lasers-feelings": { "$ref": "#/$defs/lasersFeelings" },
-        "roll-for-shoes": { "$ref": "#/$defs/rollForShoes" }
+        "roll-for-shoes": { "$ref": "#/$defs/rollForShoes" },
+        "kintsugi": { "$ref": "#/$defs/kintsugi" }
       }
     }
   },
@@ -147,6 +148,19 @@
           "type": "array",
           "items": { "type": "object", "required": ["id", "label", "formula"] }
         },
+        "sentence": { "type": "string" }
+      }
+    },
+    "kintsugi": {
+      "type": "object",
+      "required": ["fields"],
+      "additionalProperties": false,
+      "properties": {
+        "rootSkill": { "type": "string" },
+        "rootLevel": { "type": "integer", "minimum": 1, "maximum": 6 },
+        "maxSkills": { "type": "integer", "minimum": 1 },
+        "newSkillLevel": { "type": "integer", "minimum": 1, "maximum": 6 },
+        "fields": { "type": "array", "items": { "$ref": "#/$defs/field" } },
         "sentence": { "type": "string" }
       }
     },

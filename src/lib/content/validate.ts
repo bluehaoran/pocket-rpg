@@ -71,7 +71,7 @@ export function validatePack(p: Pack): Report {
 
   if (!p.library) {
     if (!p.genre) errs.push('pack has no genre');
-    if (!p.flavour?.['lasers-feelings'] && !p.flavour?.['roll-for-shoes']) errs.push('pack has no rules flavour');
+    if (!p.flavour?.['lasers-feelings'] && !p.flavour?.['roll-for-shoes'] && !p.flavour?.kintsugi) errs.push('pack has no rules flavour');
   }
 
   const r = p.flavour?.['roll-for-shoes'];
@@ -79,6 +79,7 @@ export function validatePack(p: Pack): Report {
     checkFields(r.fields ?? [], 'roll-for-shoes.fields');
     ref(r.starterSkills?.table, 'roll-for-shoes.starterSkills');
   }
+  if (p.flavour?.kintsugi) checkFields(p.flavour.kintsugi.fields ?? [], 'kintsugi.fields');
   const f = p.flavour?.['lasers-feelings'];
   if (f) {
     if (!Array.isArray(f.checks) || f.checks.length !== 2) errs.push('lasers-feelings.checks must have exactly two checks');

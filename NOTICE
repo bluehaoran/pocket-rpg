@@ -29,6 +29,15 @@ This repository uses different licences for different parts.
      Changes: tables and rules extracted and restructured as JSON; text
      summarised; castle and scenario sections omitted.
 
+   content/packs/kintsugi.json
+     "Kintsugi" by David Schirduan (Technical Grimoire,
+     technicalgrimoire.com/kintsugi), inspired by Game of Clones by
+     Marshall Miller and Roll for Shoes.
+     Licence: CC BY 4.0 — https://creativecommons.org/licenses/by/4.0/
+     Changes: the story lists (group, goal, "you cannot", "unfortunately")
+     are taken from the pamphlet without each entry's final full stop.
+     Name and description tables are shared with the Roll for Shoes tools.
+
    content/packs/rfs-base.json, the-heist.json, kitchen-khaos.json,
    minimon.json, outbreak-hotel.json, redshirt-recon.json, the-stranger.json
      Roll for Shoes settings and tools, rollforshoes.com.
@@ -45,7 +54,7 @@ This repository uses different licences for different parts.
 
 Game systems
    Lasers & Feelings is by John Harper. Roll for Shoes is from
-   rollforshoes.com. PocketRPG implements their mechanics from the
+   rollforshoes.com. Kintsugi is by David Schirduan (CC BY 4.0). PocketRPG implements their mechanics from the
    authors' published rules and includes no rulebook text beyond short
    labels and summaries, apart from the short descriptions below.
 

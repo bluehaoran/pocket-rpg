@@ -69,7 +69,7 @@ export function bindLifecycle(): void {
   });
 }
 
-const RULES_SHORT: Record<string, string> = { 'lasers-feelings': 'L&F', 'roll-for-shoes': 'RfS' };
+const RULES_SHORT: Record<string, string> = { 'lasers-feelings': 'L&F', 'roll-for-shoes': 'RfS', kintsugi: 'Kintsugi' };
 
 /** Header chip: genre · rules · players. Blank until play has started. */
 export function chipText(s: Session | undefined): string {

@@ -25,6 +25,8 @@ export interface Character {
   xp?: number;
   extra?: string[];
   earned?: { name: string; level: number; parent: string }[];
+  /** Kintsugi: learned skills besides the root skill. `out` skills have reached 6 and are crossed out. */
+  skills?: { name: string; level: number; out?: boolean }[];
 }
 
 export interface Session {
@@ -37,6 +39,8 @@ export interface Session {
   starterSkills?: number;
   /** Roll for Shoes: GM dice for opposed rolls (0 = off). Remembered across rolls. */
   gmDice?: number;
+  /** Kintsugi: the GM's skill for opposed rolls (0 = off). */
+  gmSkill?: number;
   answers: Record<string, string>;
   characters: Character[];
   seed?: { columns: string[]; text: string };

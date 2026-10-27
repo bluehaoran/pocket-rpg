@@ -3,18 +3,19 @@
 import { packs } from './content/index.ts';
 import type { Pack } from './content/types.ts';
 import { app, mutate } from './session.svelte.ts';
-import { GENERIC_SKILLS, charName, isRfs, lfFlavour } from './characters.ts';
+import { GENERIC_SKILLS, charName, isKin, isRfs, kinFlavour, lfFlavour } from './characters.ts';
 import { mathRng, type Rng } from './engine/rng.ts';
 import { buzz } from './device.ts';
 import type { TrackHistoryEntry } from './db.ts';
 import {
   adjustResource, drawExactQuestion, lfLogText, rollLf, type LfRoll
 } from './rules/lasers-feelings.ts';
+import { applyFail, kinLogText, learnSkill, rollSkill as rollKin, type KinRoll } from './rules/kintsugi.ts';
 import {
   addEarnedSkill, giveFailXp, rfsLogText, rollSkill, spendXp, type RfsRoll
 } from './rules/roll-for-shoes.ts';
 
-export type Roll = LfRoll | RfsRoll;
+export type Roll = LfRoll | RfsRoll | KinRoll;
 export type ResultMode = 'sheet' | 'inline' | 'page';
 
 export const play = $state<{
@@ -85,6 +86,44 @@ export function rollRfsSkill(ci: number, key: string): void {
   log('roll', ci, rfsLogText(e), $state.snapshot(e));
   if (e.result === 'lose') failXp(e);
   show(e);
+}
+
+export function rollKinSkill(ci: number, key: string): void {
+  const s = app.session;
+  const c = s?.characters[ci];
+  if (!s || !c) return;
+  const e = rollKin(kinFlavour(pack()), c, { ci, name: charName(c, ci) }, key, s.gmSkill ?? 0, rng);
+  if (!e) return;
+  log('roll', ci, kinLogText(e), $state.snapshot(e));
+  let line: string | null = null;
+  mutate(x => {
+    const ch = x.characters[ci];
+    if (ch) line = applyFail(ch, e);
+  });
+  if (line) log('progress', ci, line);
+  show(e);
+}
+
+/** Name the skill learned from failing the root skill; `replace` is needed when the character holds the maximum. */
+export function learnKinSkill(name: string, replace?: number): boolean {
+  const e = play.roll;
+  if (e?.kind !== 'kin') return false;
+  let line: string | null = null;
+  mutate(s => {
+    const c = s.characters[e.ci];
+    if (c) line = learnSkill(kinFlavour(pack()), c, e, name, replace);
+  });
+  if (line) log('progress', e.ci, line);
+  return !!line;
+}
+
+/** Suggest a skill name not already on the character. */
+export function suggestKinSkill(cur: string): string {
+  const e = play.roll;
+  const c = e?.kind === 'kin' ? app.session?.characters[e.ci] : undefined;
+  const taken = new Set((c?.skills ?? []).map(x => x.name));
+  const pool = GENERIC_SKILLS.filter(v => !taken.has(v) && v !== cur);
+  return pool.length ? pool[Math.floor(rng.next() * pool.length)]! : cur;
 }
 
 /** "Failed: +1 XP" for a roll that wasn't opposed, or an opposed tie the GM called a fail. */
@@ -172,6 +211,18 @@ export function setGm(n: number): void {
   });
 }
 
+export function setGmSkill(n: number): void {
+  mutate(s => {
+    s.gmSkill = n;
+  });
+}
+
+/** The GM's skill, picked at random from 1 to 6. */
+export function randomGmSkill(): void {
+  setGmSkill(1 + Math.floor(rng.next() * 6));
+  buzz();
+}
+
 export function toggle(map: 'bonuses' | 'apply', ci: number, id: string): void {
   play[map][ci] ??= {};
   const m = play[map][ci]!;
@@ -184,3 +235,4 @@ export function closeRoll(): void {
 }
 
 export const rulesRfs = (): boolean => isRfs(app.session?.rulesId ?? '');
+export const rulesKin = (): boolean => isKin(app.session?.rulesId ?? '');

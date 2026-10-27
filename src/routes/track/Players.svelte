@@ -4,7 +4,7 @@
   import { go } from '../../lib/router.svelte.ts';
   import { app, mutate } from '../../lib/session.svelte.ts';
   import { charCtx, ensureSetup, rollAllFields, startPlay } from '../../lib/setup.ts';
-  import { isRfs } from '../../lib/characters.ts';
+  import { isKin, isRfs } from '../../lib/characters.ts';
   import type { FieldRef } from '../../lib/fields.ts';
   import { mathRng } from '../../lib/engine/rng.ts';
   import { buzz } from '../../lib/device.ts';
@@ -34,7 +34,7 @@
 </script>
 
 <section class="group">
-  <div class="eyebrow">Step 4 of 4 · {pack.genre ?? pack.name}{isRfs(s.rulesId) ? ' · Roll for Shoes' : ''}</div>
+  <div class="eyebrow">Step 4 of 4 · {pack.genre ?? pack.name}{isRfs(s.rulesId) ? ' · Roll for Shoes' : isKin(s.rulesId) ? ' · Kintsugi' : ''}</div>
   <h2>Players</h2>
 </section>
 

@@ -33,7 +33,8 @@ export const lists: Record<string, ToolList> = Object.fromEntries(
 /** Setup order for packs. Unlisted packs follow in file order. */
 export const PACK_ORDER = [
   'starfarers', 'swords-and-sorcery', 'blade-and-spirit', 'moon-and-blood', 'other-tales',
-  'the-heist', 'kitchen-khaos', 'minimon', 'outbreak-hotel', 'redshirt-recon', 'the-stranger'
+  'the-heist', 'kitchen-khaos', 'minimon', 'outbreak-hotel', 'redshirt-recon', 'the-stranger',
+  'kintsugi'
 ];
 
 export function orderedPacks(): Pack[] {

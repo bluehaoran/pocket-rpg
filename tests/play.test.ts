@@ -18,7 +18,7 @@ const dice = (...faces: number[]): Rng => {
   return { next: () => ((faces[i++ % faces.length]! - 1) + 0.5) / 6 };
 };
 
-async function begin(packId: string, rulesId: 'lasers-feelings' | 'roll-for-shoes', players = 1, starter?: number) {
+async function begin(packId: string, rulesId: 'lasers-feelings' | 'roll-for-shoes' | 'kintsugi', players = 1, starter?: number) {
   await db.sessions.clear();
   app.session = undefined;
   await initSession();
@@ -237,3 +237,76 @@ describe('result placement', () => {
 
 // Keep the import used even if tests above change.
 void newCharacter;
+
+describe('Kintsugi in play', () => {
+  const skillButton = (name: RegExp | string) => screen.getAllByRole('button', { name }).find(b => /Roll|\d/.test(b.textContent ?? ''))!;
+
+  it('failing Do Anything teaches a new skill at level 3, named from the roll', async () => {
+    await begin('kintsugi', 'kintsugi');
+    const c = s().characters[0]!;
+    setPlayRng(dice(5));
+    render(Play);
+    await click(skillButton(/Do Anything/));
+    const dialog = screen.getByRole('dialog');
+    expect(dialog.textContent).toContain('Failed');
+    expect(log().map(l => l.kind)).toEqual(['roll', 'progress']);
+    const add = within(dialog).getByRole('button', { name: 'Add skill' }) as HTMLButtonElement;
+    expect(add.disabled).toBe(true);
+    await fireEvent.input(dialog.querySelector('input')!, { target: { value: 'Kicking' } });
+    await click(add);
+    expect(JSON.parse(JSON.stringify(c.skills))).toEqual([{ name: 'Kicking', level: 3 }]);
+    expect(log().at(-1)).toMatchObject({ kind: 'progress', text: 'New skill: Kicking 3' });
+    expect(dialog.textContent).toContain('Learned: Kicking 3');
+  });
+
+  it('failing a learned skill raises it; a success changes nothing', async () => {
+    await begin('kintsugi', 'kintsugi');
+    const c = s().characters[0]!;
+    c.skills = [{ name: 'Kicking', level: 3 }];
+    setPlayRng(dice(2, 5));
+    render(Play);
+    await click(skillButton(/Kicking/));
+    expect(screen.getByRole('dialog').textContent).toContain('Success');
+    expect(c.skills[0]!.level).toBe(3);
+    await click(within(screen.getByRole('dialog')).getByRole('button', { name: 'Done' }));
+    await click(skillButton(/Kicking/));
+    expect(c.skills[0]!.level).toBe(4);
+    expect(log().at(-1)!.text).toBe('Kicking 3 → 4 (failed Kicking)');
+  });
+
+  it('crossed-out skills cannot be rolled', async () => {
+    await begin('kintsugi', 'kintsugi');
+    s().characters[0]!.skills = [{ name: 'Kicking', level: 6, out: true }];
+    render(Play);
+    expect((screen.getAllByRole('button', { name: /Kicking/ })[0] as HTMLButtonElement).disabled).toBe(true);
+  });
+
+  it('a full character picks the skill to replace', async () => {
+    await begin('kintsugi', 'kintsugi');
+    const c = s().characters[0]!;
+    c.skills = [{ name: 'A', level: 3 }, { name: 'B', level: 4 }, { name: 'C', level: 5 }];
+    setPlayRng(dice(6));
+    render(Play);
+    await click(skillButton(/Do Anything/));
+    const dialog = screen.getByRole('dialog');
+    await fireEvent.input(dialog.querySelector('input')!, { target: { value: 'Tracking' } });
+    const add = within(dialog).getByRole('button', { name: 'Add skill' }) as HTMLButtonElement;
+    expect(add.disabled).toBe(true);
+    await click(within(dialog).getByRole('button', { name: 'B 4' }));
+    await click(add);
+    expect(JSON.parse(JSON.stringify(c.skills.map(k => k.name)))).toEqual(['A', 'Tracking', 'C']);
+  });
+
+  it('opposed by the GM: skill is remembered, the die button picks one at random', async () => {
+    await begin('kintsugi', 'kintsugi');
+    setPlayRng(dice(4, 2, 5, 1));
+    render(Play);
+    await click(screen.getByRole('button', { name: '3' }));
+    expect(s().gmSkill).toBe(3);
+    await click(screen.getByRole('button', { name: 'Random GM skill' }));
+    expect(s().gmSkill).toBe(4);
+    await click(skillButton(/Do Anything/));
+    // The random pick used the first value (4); the roll then took the player die (2) and the GM die (5).
+    expect(screen.getByRole('dialog').textContent).toContain('GM 4');
+  });
+});

@@ -11,6 +11,8 @@ Read first: `06-build-plan.md`, then `01-product-spec.md`, `05-tools-library.md`
 - **Phase 4, M1–M5:** code complete, CI green (unit, component and content tests; 164 tests). Session store and shell; table engine; Tools tab; setup wizard; Track in play with both rules engines. See `06-build-plan.md` for what was built in each.
 - **M6:** the part that doesn't need a device is done (headless-browser pass, tap targets, contrast, focus trap, offline). **Checked on a phone (2026-10-25): works.** The per-item checklist in `06-build-plan.md` isn't ticked; record any failures found later here.
 
+- **Kintsugi (2026-10-26):** third rule system, a Roll for Shoes hack by David Schirduan (CC BY 4.0). Engine `src/lib/rules/kintsugi.ts`, pack `content/packs/kintsugi.json`, rules in `03-rules-reference.md`. Not yet done: Head Start and Critical Overload (optional rules), the "you perish" ending, and rules effects of individual story entries. Not yet checked on a phone.
+
 ## Next
 - **Welcome copy:** `content/welcome.json` holds placeholder text; replace it with your blurb.
 - Pick the roll result placement (`play.mode`), then remove the dev toggle.

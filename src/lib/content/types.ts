@@ -110,6 +110,18 @@ export interface RollForShoesFlavour {
   starterSkills?: { table?: string; count?: number; max?: number; level?: number };
 }
 
+export interface KintsugiFlavour {
+  /** Name of the skill everyone starts with. */
+  rootSkill?: string;
+  rootLevel?: number;
+  /** Skills a character can hold besides the root skill. */
+  maxSkills?: number;
+  /** Level of a skill learned by failing the root skill. */
+  newSkillLevel?: number;
+  fields: Field[];
+  sentence?: string;
+}
+
 export interface Story {
   questions?: { id: string; text: string; table?: string | null }[];
   segments?: { name: string; text: string; tables?: string[] }[];
@@ -141,6 +153,7 @@ export interface Pack {
   flavour?: {
     'lasers-feelings'?: LasersFeelingsFlavour;
     'roll-for-shoes'?: RollForShoesFlavour;
+    kintsugi?: KintsugiFlavour;
   };
 }
 
@@ -195,6 +208,7 @@ export interface Registry {
 
 export const RULES = {
   'lasers-feelings': 'Lasers & Feelings',
-  'roll-for-shoes': 'Roll for Shoes'
+  'roll-for-shoes': 'Roll for Shoes',
+  kintsugi: 'Kintsugi'
 } as const;
 export type RulesId = keyof typeof RULES;

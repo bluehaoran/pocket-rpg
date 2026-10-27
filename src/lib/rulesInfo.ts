@@ -26,6 +26,14 @@ export const RULES_INFO: Record<RulesId, RulesInfo> = {
       'Roll for Shoes is a tabletop RPG "micro system" with a unique, evolving skill tree.',
       'Opposed rolls against the DM, and XP for failure.'
     ]
+  },
+  kintsugi: {
+    by: 'David Schirduan',
+    url: 'https://technicalgrimoire.com/kintsugi',
+    paragraphs: [
+      '_Kintsugi_ is a Roll for Shoes hack where you play a robot, magical golem or mutant who can\'t die and quickly learns new skills.',
+      'Roll one d6 at or under a skill. Failing grows you stronger. Licensed CC BY 4.0.'
+    ]
   }
 };
 
