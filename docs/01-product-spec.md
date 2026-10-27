@@ -47,11 +47,11 @@ Example: "You meet a friendly elf named…" → Tools → Names (female, fantasy
 Steps 1–4 as built in mockup Phases 1–2. A step indicator replaces the old step tabs. The last step ends in **Start play**, which switches Track to its play state. After that, setup values are edited on Track itself.
 
 #### 1. System
-- **Rule system:** Lasers & Feelings or Roll for Shoes. Each card has a title, a one-line mechanic summary and a slightly longer description. A round "?" at the right of each card opens a sheet with a short description of that game, with a "by" line crediting its author (John Harper; Ben Wray) linked to the source. Tapping it doesn't select the card.
+- **Rule system:** Lasers & Feelings or Roll for Shoes. Each card has a title, a one-line mechanic summary and a slightly longer description. A "Learn more?" link at the bottom of each card opens a sheet with the summary, the longer description and a short blurb about that game, with a "by" line crediting its author (John Harper; Ben Wray; David Schirduan) linked to the source. Tapping it doesn't select the card.
 - **Players:** stepper, 1–4.
 
 #### 2. Setting
-- **Genre / Setting:** one row per pack native to that rule system, listed open (no picker sheet). The title is the pack's `genre`. Underneath: "Based on {pack name} v{version}". Library packs are not listed. Picking one resets the story state.
+- **Genre / Setting:** one row per pack native to that rule system, listed open (no picker sheet). The title is the pack's `genre`. Underneath: "Based on {pack name} v{version}". Library packs are not listed. Picking one resets the story state. A "Pick for me" link under the list selects a different pack at random.
 - **Starting skills** (Roll for Shoes only): stepper, 0 to `starterSkills.max`. House rule; 0 is the original rules.
 
 #### 3. Story

@@ -3,8 +3,9 @@
   import { go } from '../../lib/router.svelte.ts';
   import { app, mutate } from '../../lib/session.svelte.ts';
   import { isRfs, rfsConfig, rootSkill, rfsFlavour } from '../../lib/characters.ts';
-  import { charCtx, nativeFor, setPack, setStarter, starterOf } from '../../lib/setup.ts';
+  import { charCtx, nativeFor, randomPackId, setPack, setStarter, starterOf } from '../../lib/setup.ts';
   import { mathRng } from '../../lib/engine/rng.ts';
+  import { buzz } from '../../lib/device.ts';
   import Stepper from '../../components/Stepper.svelte';
   import Icon from '../../components/Icon.svelte';
 
@@ -15,6 +16,12 @@
   const k = $derived(rfsConfig(pack));
   const starter = $derived(starterOf(s, pack));
   const hasSetting = $derived(rfsFlavour(pack).fields.some(f => f.skill));
+
+  const pickForMe = () => {
+    const id = randomPackId(own, pack.id, mathRng);
+    if (id) mutate(x => setPack(x, id));
+    buzz();
+  };
 
   const basis = (p: { name: string; version: string }) => `Based on ${p.name} v${p.version}`;
 </script>
@@ -34,6 +41,9 @@
         </button>
       {/each}
     </div>
+    {#if own.length > 1}
+      <button class="link" onclick={pickForMe}>Pick for me</button>
+    {/if}
   {:else}
     <p class="hint">No packs written for this rule system yet.</p>
   {/if}

@@ -45,7 +45,7 @@
         <span class="m">{RULE_META[id as RulesId].short}</span>
         <span class="m more">{RULE_META[id as RulesId].more}</span>
       </button>
-      <button class="help" aria-label="About {label}" aria-haspopup="dialog" onclick={() => (about = id as RulesId)}><Icon name="question" size="24px" /></button>
+      <button class="learn" aria-label="Learn more about {label}" aria-haspopup="dialog" onclick={() => (about = id as RulesId)}>Learn more?</button>
     </div>
   {/each}
 </section>
@@ -62,7 +62,8 @@
   {@const info = RULES_INFO[about]}
   <Sheet title={RULES[about]} onclose={() => (about = null)}>
     <div class="about">
-      <p class="hint">by <a href={info.url} target="_blank" rel="noopener noreferrer">{info.by}</a></p>
+      <p class="hint">by <a href={info.url} target="_blank" rel="noopener noreferrer">{info.by}</a> · {RULE_META[about].short}</p>
+      <p>{RULE_META[about].more}</p>
       {#each info.paragraphs as para (para)}
         <p>{#each runs(para) as r}{#if r.em}<em>{r.t}</em>{:else}{r.t}{/if}{/each}</p>
       {/each}

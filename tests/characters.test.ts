@@ -8,7 +8,7 @@ import {
   rfsFlavour, skillTree, statuses, syncResources, canRandom, randomValue, type CharCtx
 } from '../src/lib/characters.ts';
 import {
-  charCtx, ensureSetup, nativeFor, rerollSeedColumn, rollAllFields, rollSeed, seedFace, setPack, setPlayers,
+  charCtx, ensureSetup, nativeFor, randomPackId, rerollSeedColumn, rollAllFields, rollSeed, seedFace, setPack, setPlayers,
   setRules, setStarter, startPlay, starterOf
 } from '../src/lib/setup.ts';
 
@@ -323,4 +323,20 @@ describe('story seed', () => {
     expect(s.seed).toBeUndefined();
   });
   it('isRfs', () => expect([isRfs('roll-for-shoes'), isRfs('lasers-feelings')]).toEqual([true, false]));
+});
+
+describe('randomPackId', () => {
+  const ps = [{ id: 'a' }, { id: 'b' }, { id: 'c' }] as Pack[];
+  it('never returns the current pack when there is another', () => {
+    const rng = mulberry32(5);
+    for (let i = 0; i < 50; i++) expect(randomPackId(ps, 'b', rng)).not.toBe('b');
+  });
+  it('can reach every other pack', () => {
+    const rng = mulberry32(6);
+    const seen = new Set(Array.from({ length: 50 }, () => randomPackId(ps, 'a', rng)));
+    expect([...seen].sort()).toEqual(['b', 'c']);
+  });
+  it('falls back to the only pack', () => {
+    expect(randomPackId([ps[0]!], 'a', mulberry32(1))).toBe('a');
+  });
 });

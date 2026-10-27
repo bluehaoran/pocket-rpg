@@ -28,16 +28,16 @@ describe('step 1: system', () => {
     expect(s().packIds[0]).toBe('the-heist');
   });
 
-  it('the ? beside each rule system opens its official blurb with credit, without selecting it', async () => {
+  it('Learn more? on each rule system opens its official blurb with credit, without selecting it', async () => {
     render(Setup);
-    await click(screen.getByRole('button', { name: 'About Roll for Shoes' }));
+    await click(screen.getByRole('button', { name: 'Learn more about Roll for Shoes' }));
     const dialog = screen.getByRole('dialog');
     expect(within(dialog).getByText(/evolving skill tree/)).toBeTruthy();
     expect(within(dialog).getByRole('link', { name: /Ben Wray/ })).toBeTruthy();
     expect(s().rulesId).toBe('lasers-feelings');
     await click(within(dialog).getByRole('button', { name: 'Close' }));
     expect(screen.queryByRole('dialog')).toBeNull();
-    await click(screen.getByRole('button', { name: 'About Lasers & Feelings' }));
+    await click(screen.getByRole('button', { name: 'Learn more about Lasers & Feelings' }));
     expect(within(screen.getByRole('dialog')).getByRole('link', { name: /John Harper/ })).toBeTruthy();
   });
 
@@ -61,6 +61,14 @@ describe('step 1: system', () => {
 });
 
 describe('step 2: setting', () => {
+  it('Pick for me selects a different genre', async () => {
+    render(Setting);
+    const before = s().packIds[0];
+    await click(screen.getByRole('button', { name: 'Pick for me' }));
+    expect(s().packIds[0]).not.toBe(before);
+    expect(packs[s().packIds[0]!]).toBeTruthy();
+  });
+
   it('lists the genres open by default, and picking one changes the pack and resets story state', async () => {
     render(Setting);
     s().answers = { x: 'y' };
@@ -200,12 +208,12 @@ describe('step 4: players', () => {
 });
 
 describe('Kintsugi setup', () => {
-  it('choosing it selects the Kintsugi pack, and the ? credits the author', async () => {
+  it('choosing it selects the Kintsugi pack, and Learn more? credits the author', async () => {
     render(Setup);
     await click(screen.getByRole('button', { name: /^Kintsugi/ }));
     expect(s().rulesId).toBe('kintsugi');
     expect(s().packIds[0]).toBe('kintsugi');
-    await click(screen.getByRole('button', { name: 'About Kintsugi' }));
+    await click(screen.getByRole('button', { name: 'Learn more about Kintsugi' }));
     expect(within(screen.getByRole('dialog')).getByRole('link', { name: /David Schirduan/ })).toBeTruthy();
   });
 

@@ -1,4 +1,4 @@
-// About text for the rule systems, shown from the "?" on the New session page.
+// About text for the rule systems, shown from "Learn more?" on the New session page.
 import type { RulesId } from './content/types.ts';
 
 export interface RulesInfo {

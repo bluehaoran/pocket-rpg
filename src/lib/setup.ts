@@ -5,7 +5,7 @@ import type { Pack, RulesId } from './content/types.ts';
 import { RULES } from './content/types.ts';
 import { draw } from './engine/table.ts';
 import { seedText } from './engine/template.ts';
-import type { Rng } from './engine/rng.ts';
+import { randInt, type Rng } from './engine/rng.ts';
 import {
   type CharCtx, canRandom, groupFieldsOf, isKin, isRfs, newCharacter, randomValue, setStarterCount, starterCount
 } from './characters.ts';
@@ -44,6 +44,13 @@ export function setPack(s: Session, packId: string): void {
   if (s.packIds[0] === packId) return;
   s.packIds = [packId];
   resetStory(s);
+}
+
+/** A random pack id other than the current one (the only one if there is no other). */
+export function randomPackId(candidates: Pack[], currentId: string, rng: Rng): string | undefined {
+  const others = candidates.filter(p => p.id !== currentId);
+  const pool = others.length ? others : candidates;
+  return pool[randInt(rng, pool.length)]?.id;
 }
 
 export const setPlayers = (s: Session, n: number): void => {

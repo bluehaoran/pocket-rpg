@@ -148,6 +148,286 @@
      "origin": "core"
     },
     "src": "curated"
+   },
+   {
+    "v": "Zyx'il",
+    "tags": {
+     "gender": "x"
+    },
+    "src": "ai"
+   },
+   {
+    "v": "Quorrath",
+    "tags": {
+     "gender": "x"
+    },
+    "src": "ai"
+   },
+   {
+    "v": "Ssilvane",
+    "tags": {
+     "gender": "x"
+    },
+    "src": "ai"
+   },
+   {
+    "v": "Thrennik",
+    "tags": {
+     "gender": "x"
+    },
+    "src": "ai"
+   },
+   {
+    "v": "Ouloo",
+    "tags": {
+     "gender": "x"
+    },
+    "src": "ai"
+   },
+   {
+    "v": "Vael'ka",
+    "tags": {
+     "gender": "x"
+    },
+    "src": "ai"
+   },
+   {
+    "v": "Mnemora",
+    "tags": {
+     "gender": "x"
+    },
+    "src": "ai"
+   },
+   {
+    "v": "Krrixet",
+    "tags": {
+     "gender": "x"
+    },
+    "src": "ai"
+   },
+   {
+    "v": "Illuun",
+    "tags": {
+     "gender": "x"
+    },
+    "src": "ai"
+   },
+   {
+    "v": "Praxxa",
+    "tags": {
+     "gender": "x"
+    },
+    "src": "ai"
+   },
+   {
+    "v": "Zhaleth",
+    "tags": {
+     "gender": "x"
+    },
+    "src": "ai"
+   },
+   {
+    "v": "Ombrel",
+    "tags": {
+     "gender": "x"
+    },
+    "src": "ai"
+   },
+   {
+    "v": "Tkeela",
+    "tags": {
+     "gender": "x"
+    },
+    "src": "ai"
+   },
+   {
+    "v": "Yvvon",
+    "tags": {
+     "gender": "x"
+    },
+    "src": "ai"
+   },
+   {
+    "v": "Draskul",
+    "tags": {
+     "gender": "x"
+    },
+    "src": "ai"
+   },
+   {
+    "v": "Hesh'ara",
+    "tags": {
+     "gender": "x"
+    },
+    "src": "ai"
+   },
+   {
+    "v": "Nuuvi",
+    "tags": {
+     "gender": "x"
+    },
+    "src": "ai"
+   },
+   {
+    "v": "Sorrokai",
+    "tags": {
+     "gender": "x"
+    },
+    "src": "ai"
+   },
+   {
+    "v": "Blimmet",
+    "tags": {
+     "gender": "x"
+    },
+    "src": "ai"
+   },
+   {
+    "v": "Xanthe-Ro",
+    "tags": {
+     "gender": "x"
+    },
+    "src": "ai"
+   },
+   {
+    "v": "Unit 7",
+    "tags": {
+     "gender": "x"
+    },
+    "src": "ai"
+   },
+   {
+    "v": "Calliope-9",
+    "tags": {
+     "gender": "x"
+    },
+    "src": "ai"
+   },
+   {
+    "v": "Bolt",
+    "tags": {
+     "gender": "x"
+    },
+    "src": "ai"
+   },
+   {
+    "v": "Tin Dara",
+    "tags": {
+     "gender": "x"
+    },
+    "src": "ai"
+   },
+   {
+    "v": "Gantry",
+    "tags": {
+     "gender": "x"
+    },
+    "src": "ai"
+   },
+   {
+    "v": "Echo-3",
+    "tags": {
+     "gender": "x"
+    },
+    "src": "ai"
+   },
+   {
+    "v": "Pip",
+    "tags": {
+     "gender": "x"
+    },
+    "src": "ai"
+   },
+   {
+    "v": "Mnemo",
+    "tags": {
+     "gender": "x"
+    },
+    "src": "ai"
+   },
+   {
+    "v": "Sprocket",
+    "tags": {
+     "gender": "x"
+    },
+    "src": "ai"
+   },
+   {
+    "v": "Halcyon",
+    "tags": {
+     "gender": "x"
+    },
+    "src": "ai"
+   },
+   {
+    "v": "Rivet",
+    "tags": {
+     "gender": "x"
+    },
+    "src": "ai"
+   },
+   {
+    "v": "Vigil",
+    "tags": {
+     "gender": "x"
+    },
+    "src": "ai"
+   },
+   {
+    "v": "Cog",
+    "tags": {
+     "gender": "x"
+    },
+    "src": "ai"
+   },
+   {
+    "v": "K-4",
+    "tags": {
+     "gender": "x"
+    },
+    "src": "ai"
+   },
+   {
+    "v": "Ferrous",
+    "tags": {
+     "gender": "x"
+    },
+    "src": "ai"
+   },
+   {
+    "v": "Lumen",
+    "tags": {
+     "gender": "x"
+    },
+    "src": "ai"
+   },
+   {
+    "v": "Dot",
+    "tags": {
+     "gender": "x"
+    },
+    "src": "ai"
+   },
+   {
+    "v": "Warden",
+    "tags": {
+     "gender": "x"
+    },
+    "src": "ai"
+   },
+   {
+    "v": "Tally",
+    "tags": {
+     "gender": "x"
+    },
+    "src": "ai"
+   },
+   {
+    "v": "Axiom",
+    "tags": {
+     "gender": "x"
+    },
+    "src": "ai"
    }
   ],
   "name.family": [
