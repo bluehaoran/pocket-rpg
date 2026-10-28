@@ -24,7 +24,7 @@ div > section.group > h2.brandline > div.logo
   align-items: center
   box-sizing: border-box
   display: flex
-  font: 800 24px/1 var(--f-display)
+  font: 800 var(--logo-size)/1 var(--f-display)
   letter-spacing: .02em
   text-transform: uppercase
 section.group > h2.brandline > div.logo > svg.mark

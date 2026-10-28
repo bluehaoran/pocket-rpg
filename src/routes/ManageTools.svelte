@@ -82,7 +82,7 @@
 {/if}
 {#if preview}
   <div class="card" role="status">
-    {#each summary as line}<div class="lt">{line}</div>{:else}<div class="lt">Nothing in this file.</div>{/each}
+    {#each summary as line, i (i)}<div class="lt">{line}</div>{:else}<div class="lt">Nothing in this file.</div>{/each}
   </div>
   <button class="btn" disabled={nothingToApply} onclick={apply}>Apply</button>
 {/if}

@@ -13,21 +13,6 @@
   const s = $derived(app.session!);
 
   let about = $state<RulesId | null>(null);
-
-  const RULE_META: Record<RulesId, { short: string; more: string }> = {
-    'lasers-feelings': {
-      short: 'One number, two checks · 1–3d6',
-      more: 'Roll under your number for Lasers (logic, tech), over it for Feelings (people, instinct). Quick to learn; one-shot friendly. Genre hacks included.'
-    },
-    kintsugi: {
-      short: 'One d6 at or under a skill · fail to grow',
-      more: 'Play a robot, golem or mutant who can\'t die. Roll a d6 at or under a skill to succeed; failing teaches you new skills and strengthens old ones, until they wear out.'
-    },
-    'roll-for-shoes': {
-      short: 'Skill tree · level = d6 vs GM · XP on fail',
-      more: 'Roll as many d6 as your skill level against the GM. All sixes earns a new skill; a miss earns XP. Settings are short, ready-made scenarios.'
-    }
-  };
 </script>
 
 <section class="group">
@@ -41,7 +26,7 @@
   <div class="eyebrow">Rule system</div>
   {#each Object.entries(RULES) as [id, label] (id)}
     <div class="opt-wrap">
-      <OptCard title={label} meta={RULE_META[id as RulesId].short} more={RULE_META[id as RulesId].more}
+      <OptCard title={label} meta={RULES_INFO[id as RulesId].short} more={RULES_INFO[id as RulesId].more}
         pressed={s.rulesId === id} onclick={() => mutate(x => setRules(x, id as RulesId, orderedPacks()))} />
       <button class="learn" aria-label="Learn more about {label}" aria-haspopup="dialog" onclick={() => (about = id as RulesId)}>Learn more?</button>
     </div>
@@ -60,10 +45,10 @@
   {@const info = RULES_INFO[about]}
   <Sheet title={RULES[about]} onclose={() => (about = null)}>
     <div class="rules-about">
-      <p class="hint">by <a href={info.url} target="_blank" rel="noopener noreferrer">{info.by}</a> · {RULE_META[about].short}</p>
-      <p>{RULE_META[about].more}</p>
+      <p class="hint">by <a href={info.url} target="_blank" rel="noopener noreferrer">{info.by}</a> · {info.short}</p>
+      <p>{info.more}</p>
       {#each info.paragraphs as para (para)}
-        <p>{#each runs(para) as r}{#if r.em}<em>{r.t}</em>{:else}{r.t}{/if}{/each}</p>
+        <p>{#each runs(para) as r, i (i)}{#if r.em}<em>{r.t}</em>{:else}{r.t}{/if}{/each}</p>
       {/each}
     </div>
     <button class="btn ghost" onclick={() => (about = null)}>Close</button>

@@ -6,13 +6,9 @@
   const pips = $derived(PIPS[value]);
 </script>
 
-{#if pips}
-  <span class="die {size} {state}" role="img" aria-label="d6 showing {value}">
-    {#each { length: 9 } as _, i (i)}<i class:on={pips.includes(i)}></i>{/each}
-  </span>
-{:else}
-  <span class="die {size} {state}" role="img" aria-label={String(value)}></span>
-{/if}
+<span class="die {size} {state}" role="img" aria-label={pips ? `d6 showing ${value}` : String(value)}>
+  {#if pips}{#each { length: 9 } as _, i (i)}<i class:on={pips.includes(i)}></i>{/each}{/if}
+</span>
 
 <style>
   .die{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);width:40px;height:40px;padding:6px;gap:2px;border-radius:9px;background:var(--sunk);border:1px solid var(--line);flex:none}

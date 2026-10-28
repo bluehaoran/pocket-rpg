@@ -75,7 +75,7 @@
     {#if result.preview}
       <div class="card" role="status">
         <div class="lt">{fresh.length} new, {result.preview.duplicates.length} already there (skipped){result.preview.invalid.length ? `, ${result.preview.invalid.length} invalid` : ''}</div>
-        {#each result.preview.invalid.slice(0, SHOWN_INVALID) as bad}
+        {#each result.preview.invalid.slice(0, SHOWN_INVALID) as bad, i (i)}
           <small>{bad.raw} — {bad.reason}</small>
         {/each}
         {#if result.preview.invalid.length > SHOWN_INVALID}<small>…and {result.preview.invalid.length - SHOWN_INVALID} more</small>{/if}
