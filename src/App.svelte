@@ -64,7 +64,7 @@
 
 <div class="app">
   <header class="top gutter">
-    <div class="brand"><Logo /></div>
+    <Logo />
     <div class="hdr">
       {#if app.ready && chipText(app.session)}
         <div class="chip">{chipText(app.session)}</div>
