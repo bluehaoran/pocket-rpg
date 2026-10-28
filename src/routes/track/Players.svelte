@@ -1,19 +1,19 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { packs } from '../../lib/content/index.ts';
   import { go } from '../../lib/router.svelte.ts';
-  import { app, mutate } from '../../lib/session.svelte.ts';
+  import { app, mutate, currentPack } from '../../lib/session.svelte.ts';
   import { charCtx, ensureSetup, rollAllFields, startPlay } from '../../lib/setup.ts';
   import { isKin, isRfs } from '../../lib/characters.ts';
   import type { FieldRef } from '../../lib/fields.ts';
   import { mathRng } from '../../lib/engine/rng.ts';
   import { buzz } from '../../lib/device.ts';
   import CharacterCard from '../../components/CharacterCard.svelte';
+  import PlayerNav from '../../components/PlayerNav.svelte';
   import FieldSheet from '../../components/FieldSheet.svelte';
   import Icon from '../../components/Icon.svelte';
 
   const s = $derived(app.session!);
-  const pack = $derived(packs[s.packIds[0] ?? '']!);
+  const pack = $derived(currentPack());
   let active = $state(0);
   let editing = $state<FieldRef | null>(null);
 
@@ -39,13 +39,7 @@
   <h2>Players</h2>
 </section>
 
-{#if s.players > 1}
-  <div class="pnav">
-    <button aria-label="Previous player" disabled={active === 0} onclick={() => active--}><Icon name="arrow-left" size="28px" /></button>
-    <span><span class="eyebrow">Player</span> <b>{active + 1}</b> <span class="of">of {s.players}</span></span>
-    <button aria-label="Next player" disabled={active >= s.players - 1} onclick={() => active++}><Icon name="arrow-right" size="28px" /></button>
-  </div>
-{/if}
+<PlayerNav index={active} count={s.players} onchange={i => (active = i)} />
 
 {#key active}
   <CharacterCard index={active} onedit={ref => (editing = ref)} />

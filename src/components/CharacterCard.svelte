@@ -1,8 +1,7 @@
 <script lang="ts">
   // One character: sentence, number bar, stats and fields for Lasers & Feelings; sentence, XP,
   // fields and skill tree for Roll for Shoes. `onedit` makes parts tappable; without it the card is read-only.
-  import { packs } from '../lib/content/index.ts';
-  import { app } from '../lib/session.svelte.ts';
+  import { app, currentPack } from '../lib/session.svelte.ts';
   import {
     derive, fieldsOf, isKin, isRfs, kinFlavour, lfFlavour, rfsFlavour, skillTree, statuses
   } from '../lib/characters.ts';
@@ -16,7 +15,7 @@
   let { index, onedit }: { index: number; onedit?: (ref: FieldRef) => void } = $props();
 
   const s = $derived(app.session!);
-  const pack = $derived(packs[s.packIds[0] ?? '']!);
+  const pack = $derived(currentPack());
   const c = $derived(s.characters[index]);
   const rfs = $derived(isRfs(s.rulesId));
   const lf = $derived(lfFlavour(pack));

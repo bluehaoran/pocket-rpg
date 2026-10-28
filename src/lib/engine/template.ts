@@ -155,3 +155,9 @@ export function seedParts(tpl: string): SeedPart[] {
   }
   return out;
 }
+
+/** A seed column's value as it reads in the sentence: lower-cased at the start when the column asks for it. */
+export function seedColumnText(seed: { columns: { case?: 'lower' }[] }, values: string[] | undefined, i: number): string {
+  const v = values?.[i] ?? '';
+  return seed.columns[i]?.case === 'lower' ? v.charAt(0).toLowerCase() + v.slice(1) : v;
+}

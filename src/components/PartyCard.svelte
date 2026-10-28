@@ -1,18 +1,15 @@
 <script lang="ts">
-  import { packs } from '../lib/content/index.ts';
   import { href } from '../lib/router.svelte.ts';
-  import { app } from '../lib/session.svelte.ts';
+  import { app, currentPack } from '../lib/session.svelte.ts';
   import { charName, fieldsOf, isEmptyValue, isKin, isRfs, lfFlavour, showValue, skillTree } from '../lib/characters.ts';
   import { closeRoll, play } from '../lib/play.svelte.ts';
-  import LfControls from './LfControls.svelte';
-  import RfsControls from './RfsControls.svelte';
-  import KinControls from './KinControls.svelte';
+  import RulesControls from './RulesControls.svelte';
   import RollResult from './RollResult.svelte';
 
   let { ci }: { ci: number } = $props();
 
   const s = $derived(app.session!);
-  const pack = $derived(packs[s.packIds[0] ?? '']!);
+  const pack = $derived(currentPack());
   const c = $derived(s.characters[ci]!);
   const rfs = $derived(isRfs(s.rulesId));
   const kin = $derived(isKin(s.rulesId));
@@ -42,7 +39,7 @@
     </span>
     <span class="chev" aria-hidden="true">›</span>
   </a>
-  {#if kin}<KinControls {ci} compact />{:else if rfs}<RfsControls {ci} compact />{:else}<LfControls {ci} compact />{/if}
+  <RulesControls {ci} compact />
   {#if play.mode === 'inline' && play.roll?.ci === ci}
     <div class="result"><RollResult roll={play.roll} /><button class="btn ghost" onclick={closeRoll}>Done</button></div>
   {/if}

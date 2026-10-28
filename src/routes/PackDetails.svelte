@@ -10,7 +10,7 @@
 </script>
 
 {#if pack && report}
-  <div class="toolhead"><a class="back" href={href('/packs')} style="text-decoration:none">‹ Packs</a></div>
+  <div class="toolhead"><a class="back" href={href('/packs')}>‹ Packs</a></div>
   <section class="group">
     <div class="eyebrow">{pack.library ? 'Library pack' : (pack.genre ?? '')}</div>
     <h2>{pack.name}</h2>
@@ -30,7 +30,7 @@
     <pre class="card" style="overflow:auto;max-height:55vh;font:500 12px/1.5 var(--f-mono);padding:12px">{JSON.stringify(rawPacks[pack.id], null, 2)}</pre>
   </section>
 {:else}
-  <div class="toolhead"><a class="back" href={href('/track')} style="text-decoration:none">‹ Back</a></div>
+  <div class="toolhead"><a class="back" href={href('/track')}>‹ Back</a></div>
   <section class="group">
     <div class="eyebrow">Installed</div>
     <h2>Packs</h2>
@@ -38,7 +38,7 @@
   <section class="group">
     {#each all as p (p.id)}
       {@const r = validatePack(p)}
-      <a class="opt" href={href(`/packs/${p.id}`)} style="color:inherit;text-decoration:none">
+      <a class="opt" href={href(`/packs/${p.id}`)}>
         <span class="radio"></span>
         <span class="t">{p.genre ?? p.name}</span>
         <span class="m" class:err={r.errors.length > 0}>

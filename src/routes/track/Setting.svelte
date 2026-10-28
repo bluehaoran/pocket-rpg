@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { orderedPacks, packs } from '../../lib/content/index.ts';
+  import { orderedPacks } from '../../lib/content/index.ts';
   import { go } from '../../lib/router.svelte.ts';
-  import { app, mutate } from '../../lib/session.svelte.ts';
+  import { app, mutate, currentPack } from '../../lib/session.svelte.ts';
   import { isRfs, rfsConfig, rootSkill, rfsFlavour } from '../../lib/characters.ts';
   import { charCtx, nativeFor, randomPackId, setPack, setStarter, starterOf } from '../../lib/setup.ts';
   import { mathRng } from '../../lib/engine/rng.ts';
@@ -10,7 +10,7 @@
   import Icon from '../../components/Icon.svelte';
 
   const s = $derived(app.session!);
-  const pack = $derived(packs[s.packIds[0] ?? '']!);
+  const pack = $derived(currentPack());
   const own = $derived(nativeFor(orderedPacks(), s.rulesId));
   const rfs = $derived(isRfs(s.rulesId));
   const k = $derived(rfsConfig(pack));

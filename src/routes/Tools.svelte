@@ -18,7 +18,7 @@
 <section class="gens">
   {#each registry.tools as t (t.id)}
     {@const s = sub(t)}
-    <a class="gen" class:req={/^(Choose|Empty|All hidden)/.test(s)} href={href(`/tools/${t.id}`)} style="color:inherit;text-decoration:none">
+    <a class="gen" class:req={/^(Choose|Empty|All hidden)/.test(s)} href={href(`/tools/${t.id}`)}>
       <b>{t.label}</b><small>{s}</small>
     </a>
   {/each}
@@ -30,7 +30,7 @@
     <div class="gens">
       {#each gens as t (t.id)}
         {@const s = sub(t)}
-        <a class="gen" class:req={/^Choose/.test(s)} href={href(`/tools/${encodeURIComponent(t.id)}`)} style="color:inherit;text-decoration:none">
+        <a class="gen" class:req={/^Choose/.test(s)} href={href(`/tools/${encodeURIComponent(t.id)}`)}>
           <b>{t.label}</b><small>{s}</small>
         </a>
       {/each}
@@ -38,4 +38,4 @@
   </section>
 {/if}
 
-<a class="btn ghost" href={href('/tools/history')} style="text-decoration:none">History · {app.session?.toolHistory.length ?? 0}</a>
+<a class="btn ghost" href={href('/tools/history')}>History · {app.session?.toolHistory.length ?? 0}</a>

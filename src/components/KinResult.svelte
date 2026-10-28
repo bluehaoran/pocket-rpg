@@ -1,7 +1,6 @@
 <script lang="ts">
   // Body of a Kintsugi roll: the dice, the result, what the failure did, and the new-skill prompt.
-  import { packs } from '../lib/content/index.ts';
-  import { app } from '../lib/session.svelte.ts';
+  import { app, currentPack } from '../lib/session.svelte.ts';
   import { kinFlavour } from '../lib/characters.ts';
   import { learnKinSkill, suggestKinSkill } from '../lib/play.svelte.ts';
   import { isFull, type KinRoll } from '../lib/rules/kintsugi.ts';
@@ -10,7 +9,7 @@
   let { roll }: { roll: KinRoll } = $props();
 
   const s = $derived(app.session!);
-  const pack = $derived(packs[s.packIds[0] ?? '']!);
+  const pack = $derived(currentPack());
   const c = $derived(s.characters[roll.ci]);
   const flavour = $derived(kinFlavour(pack));
   const full = $derived(!!c && isFull(flavour, c));

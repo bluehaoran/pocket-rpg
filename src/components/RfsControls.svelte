@@ -1,13 +1,12 @@
 <script lang="ts">
-  import { packs } from '../lib/content/index.ts';
-  import { app } from '../lib/session.svelte.ts';
+  import { app, currentPack } from '../lib/session.svelte.ts';
   import { skillTree, statuses } from '../lib/characters.ts';
   import { play, rollRfsSkill, toggle } from '../lib/play.svelte.ts';
 
   let { ci, compact = false }: { ci: number; compact?: boolean } = $props();
 
   const s = $derived(app.session!);
-  const pack = $derived(packs[s.packIds[0] ?? '']!);
+  const pack = $derived(currentPack());
   const c = $derived(s.characters[ci]);
   const tree = $derived(c ? skillTree(pack, c) : []);
   const sts = $derived(c ? statuses(pack, c) : []);

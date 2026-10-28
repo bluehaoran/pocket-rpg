@@ -1,21 +1,21 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { packs } from '../../lib/content/index.ts';
   import { go } from '../../lib/router.svelte.ts';
-  import { app, mutate } from '../../lib/session.svelte.ts';
+  import { app, mutate, currentPack } from '../../lib/session.svelte.ts';
   import { groupFieldsOf } from '../../lib/characters.ts';
   import { charCtx, ensureSetup, rerollSeedColumn, rollSeed, seedFace } from '../../lib/setup.ts';
   import { display, type FieldRef } from '../../lib/fields.ts';
   import { mathRng } from '../../lib/engine/rng.ts';
-  import { seedParts, shortLabel } from '../../lib/engine/template.ts';
+  import { shortLabel } from '../../lib/engine/template.ts';
   import { buzz } from '../../lib/device.ts';
+  import SeedLine from '../../components/SeedLine.svelte';
   import Die from '../../components/Die.svelte';
   import DRow from '../../components/DRow.svelte';
   import FieldSheet from '../../components/FieldSheet.svelte';
   import Icon from '../../components/Icon.svelte';
 
   const s = $derived(app.session!);
-  const pack = $derived(packs[s.packIds[0] ?? '']!);
+  const pack = $derived(currentPack());
   const seed = $derived(pack.seed);
   const questions = $derived(pack.story?.questions ?? []);
   const outline = $derived(pack.story?.segments ?? []);
@@ -40,13 +40,6 @@
     buzz();
   };
   const genLabel = (id: string) => pack.generators?.find(g => g.id === id)?.label ?? id;
-
-  /** Seed template split into text and column slots. */
-  const parts = $derived(seed ? seedParts(seed.template) : []);
-  const colValue = (i: number) => {
-    const v = s.seed?.columns[i] ?? '';
-    return seed?.columns[i]?.case === 'lower' ? v.charAt(0).toLowerCase() + v.slice(1) : v;
-  };
 </script>
 
 <section class="group">
@@ -77,13 +70,7 @@
       <p class="hint">Each part is a d6 table. Tap a row to reroll only that part.</p>
     {:else}
       <div class="sentence">
-        <p>
-          {#each parts as part, j (j)}
-            {#if 'col' in part}
-              <span class="nw"><button class="part" aria-label="Reroll {seed.columns[part.col]?.label}" onclick={() => reroll(part.col)}>{colValue(part.col)}</button>{part.trail}</span>
-            {:else}{part.text}{/if}
-          {/each}
-        </p>
+        <SeedLine {seed} values={s.seed.columns} onreroll={reroll} />
       </div>
       <p class="hint">Tap an underlined part to reroll only that part.</p>
     {/if}

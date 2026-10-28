@@ -1,6 +1,6 @@
 <script lang="ts">
   import { href } from '../lib/router.svelte.ts';
-  import { onDestroy } from 'svelte';
+  import { createConfirm } from '../lib/confirm.svelte.ts';
   import { app, mutate } from '../lib/session.svelte.ts';
   import { hhmm } from '../lib/format.ts';
 
@@ -16,23 +16,14 @@
       : s.toolHistory.map(h => ({ t: h.t, head: h.label, text: h.text }));
     return items.slice().reverse();
   });
-  // Two taps, like New session: the first arms the button for 4 seconds, the second clears.
-  let confirm = $state(false);
-  let timer: ReturnType<typeof setTimeout> | undefined;
-  onDestroy(() => clearTimeout(timer));
-  function clear() {
-    if (!confirm) {
-      confirm = true;
-      timer = setTimeout(() => (confirm = false), 4000);
-      return;
-    }
-    clearTimeout(timer);
-    confirm = false;
-    mutate(s => {
-      if (which === 'track') s.trackHistory = [];
-      else s.toolHistory = [];
-    });
-  }
+  const confirm = createConfirm();
+  const clear = () =>
+    confirm.trigger(() =>
+      mutate(s => {
+        if (which === 'track') s.trackHistory = [];
+        else s.toolHistory = [];
+      })
+    );
   const empty = $derived(
     which === 'track'
       ? 'Rolls, XP, new skills, resource changes and edits appear here.'
@@ -57,6 +48,6 @@
   {/each}
 </div>
 
-<button class="btn ghost" disabled={!rows.length} aria-pressed={confirm} onclick={clear}>
-  {confirm ? 'Tap again to clear' : 'Clear history'}
+<button class="btn ghost" disabled={!rows.length} aria-pressed={confirm.armed} onclick={clear}>
+  {confirm.armed ? 'Tap again to clear' : 'Clear history'}
 </button>

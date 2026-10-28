@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { packs } from '../lib/content/index.ts';
-  import { app } from '../lib/session.svelte.ts';
+  import { app, currentPack } from '../lib/session.svelte.ts';
   import { kinFlavour } from '../lib/characters.ts';
   import { rollKinSkill } from '../lib/play.svelte.ts';
   import { kinSkills } from '../lib/rules/kintsugi.ts';
@@ -8,7 +7,7 @@
   let { ci, compact = false }: { ci: number; compact?: boolean } = $props();
 
   const s = $derived(app.session!);
-  const pack = $derived(packs[s.packIds[0] ?? '']!);
+  const pack = $derived(currentPack());
   const c = $derived(s.characters[ci]);
   const skills = $derived(c ? kinSkills(kinFlavour(pack), c) : []);
 </script>

@@ -1,19 +1,19 @@
 <script lang="ts">
-  import { packs } from '../lib/content/index.ts';
   import { href } from '../lib/router.svelte.ts';
-  import { app, mutate } from '../lib/session.svelte.ts';
+  import { app, mutate, currentPack } from '../lib/session.svelte.ts';
   import { groupFieldsOf, isEmptyValue, showValue, type FieldValue } from '../lib/characters.ts';
   import { display, fieldDef, type FieldRef } from '../lib/fields.ts';
   import { rerollSeedColumn } from '../lib/setup.ts';
   import { log } from '../lib/play.svelte.ts';
   import { mathRng } from '../lib/engine/rng.ts';
-  import { seedParts, shortLabel } from '../lib/engine/template.ts';
+  import { shortLabel } from '../lib/engine/template.ts';
   import { buzz } from '../lib/device.ts';
+  import SeedLine from './SeedLine.svelte';
   import DRow from './DRow.svelte';
   import FieldSheet from './FieldSheet.svelte';
 
   const s = $derived(app.session!);
-  const pack = $derived(packs[s.packIds[0] ?? '']!);
+  const pack = $derived(currentPack());
   const seed = $derived(pack.seed);
   const qs = $derived(pack.story?.questions ?? []);
   const gf = $derived(groupFieldsOf(pack));
@@ -23,11 +23,6 @@
     mutate(x => rerollSeedColumn(x, pack, i, mathRng));
     log('edit', null, `Story: ${app.session?.seed?.text ?? ''}`);
     buzz();
-  };
-  const parts = $derived(seed ? seedParts(seed.template) : []);
-  const colValue = (i: number) => {
-    const v = s.seed?.columns[i] ?? '';
-    return seed?.columns[i]?.case === 'lower' ? v.charAt(0).toLowerCase() + v.slice(1) : v;
   };
 
   /** Editing the story card is logged once, when the sheet closes. */
@@ -47,11 +42,7 @@
   <div class="eyebrow">Story · {pack.genre ?? pack.name}</div>
   <div class="card story">
     {#if seed && s.seed}
-      <p class="seedline">
-        {#each parts as part, j (j)}
-          {#if 'col' in part}<span class="nw"><button class="part" aria-label="Reroll {seed.columns[part.col]?.label}" onclick={() => reroll(part.col)}>{colValue(part.col)}</button>{part.trail}</span>{:else}{part.text}{/if}
-        {/each}
-      </p>
+      <div class="seedline"><SeedLine {seed} values={s.seed.columns} onreroll={reroll} /></div>
     {/if}
     {#if qs.length || gf.length}
       <div class="drows" style={seed && s.seed ? '' : 'border-top:0'}>
@@ -70,7 +61,7 @@
   {#if pack.generators?.length}
     <ul class="chips gchips" aria-label="Generators">
       {#each pack.generators as g (g.id)}
-        <li><a class="tog" href={href(`/tools/${encodeURIComponent('pack:' + g.id)}`)} style="text-decoration:none;color:inherit">{g.label} ›</a></li>
+        <li><a class="tog" href={href(`/tools/${encodeURIComponent('pack:' + g.id)}`)}>{g.label} ›</a></li>
       {/each}
     </ul>
   {/if}

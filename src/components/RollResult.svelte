@@ -1,7 +1,6 @@
 <script lang="ts">
   // The body of a rules roll result. Where it appears (sheet, inline, page) is up to the caller.
-  import { packs } from '../lib/content/index.ts';
-  import { app } from '../lib/session.svelte.ts';
+  import { app, currentPack } from '../lib/session.svelte.ts';
   import { lfFlavour } from '../lib/characters.ts';
   import { canSpend, xpAvailable } from '../lib/rules/roll-for-shoes.ts';
   import { chooseExact, drawQuestion, failXp, play, spend, type Roll } from '../lib/play.svelte.ts';
@@ -11,7 +10,7 @@
   let { roll }: { roll: Roll } = $props();
 
   const s = $derived(app.session!);
-  const pack = $derived(packs[s.packIds[0] ?? '']!);
+  const pack = $derived(currentPack());
   const ex = $derived(lfFlavour(pack).exact ?? {});
   const c = $derived(roll.kind === 'rfs' ? s.characters[roll.ci] : undefined);
   const avail = $derived(c && roll.kind === 'rfs' ? xpAvailable(c, roll) : 0);

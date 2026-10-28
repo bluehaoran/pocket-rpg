@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onDestroy } from 'svelte';
+  import { createConfirm } from '../lib/confirm.svelte.ts';
   import { lists, registry } from '../lib/content/index.ts';
   import { downloadJson } from '../lib/device.ts';
   import { editsState, replaceAllEdits, resetEdits } from '../lib/edits.svelte.ts';
@@ -17,20 +17,8 @@
     return parts.length ? parts.join(' · ') : 'Stock';
   };
 
-  // Two taps, like New session: the first arms the button for 4 seconds, the second resets.
-  let confirm = $state(false);
-  let timer: ReturnType<typeof setTimeout> | undefined;
-  onDestroy(() => clearTimeout(timer));
-  async function reset() {
-    if (!confirm) {
-      confirm = true;
-      timer = setTimeout(() => (confirm = false), 4000);
-      return;
-    }
-    clearTimeout(timer);
-    confirm = false;
-    await resetEdits();
-  }
+  const confirm = createConfirm();
+  const reset = () => confirm.trigger(resetEdits);
 
   let preview = $state<FilePreview | undefined>();
   let error = $state('');
@@ -74,7 +62,7 @@
 
 <section class="gens">
   {#each ids as id (id)}
-    <a class="gen" href={href(`/manage/${id}`)} style="color:inherit;text-decoration:none">
+    <a class="gen" href={href(`/manage/${id}`)}>
       <b>{lists[id]!.label}</b><small>{sub(id)}</small>
     </a>
   {/each}
@@ -86,7 +74,7 @@
     Import edits file
     <input type="file" accept=".json,application/json" hidden onchange={pick} />
   </label>
-  <button class="btn ghost" aria-pressed={confirm} onclick={reset}>{confirm ? 'Tap again to reset' : 'Reset all edits'}</button>
+  <button class="btn ghost" aria-pressed={confirm.armed} onclick={reset}>{confirm.armed ? 'Tap again to reset' : 'Reset all edits'}</button>
 </div>
 
 {#if error}

@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { packs } from '../lib/content/index.ts';
-  import { app } from '../lib/session.svelte.ts';
+  import { app, currentPack } from '../lib/session.svelte.ts';
   import { lfFlavour } from '../lib/characters.ts';
   import { poolSize, resourceState } from '../lib/rules/lasers-feelings.ts';
   import { adjust, play, rollCheck, toggle } from '../lib/play.svelte.ts';
@@ -8,7 +7,7 @@
   let { ci, compact = false }: { ci: number; compact?: boolean } = $props();
 
   const s = $derived(app.session!);
-  const pack = $derived(packs[s.packIds[0] ?? '']!);
+  const pack = $derived(currentPack());
   const f = $derived(lfFlavour(pack));
   const c = $derived(s.characters[ci]);
   const N = $derived(Number(c?.fields[f.fields.find(x => x.kind === 'number')?.id ?? 'number']));

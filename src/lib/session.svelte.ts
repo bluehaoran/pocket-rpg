@@ -2,10 +2,13 @@
 // which schedules a debounced save to IndexedDB (docs/02-data-model.md §3).
 import { currentSession, newSession, saveSession, type Session } from './db.ts';
 import { orderedPacks, packs } from './content/index.ts';
-import { RULES, type RulesId } from './content/types.ts';
+import { RULES, type Pack, type RulesId } from './content/types.ts';
 import { initEdits } from './edits.svelte.ts';
 
 export const app = $state<{ session: Session | undefined; ready: boolean }>({ session: undefined, ready: false });
+
+/** The session's first pack. Only call once a session is loaded (everything past the loading screen). */
+export const currentPack = (): Pack => packs[app.session?.packIds[0] ?? '']!;
 
 export const SAVE_DELAY_MS = 400;
 /** Under constant activity the debounce would never fire, so a pending change is saved after at most this long. */

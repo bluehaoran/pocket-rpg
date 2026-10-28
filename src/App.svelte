@@ -3,6 +3,7 @@
   import { router, href, go } from './lib/router.svelte.ts';
   import { app, chipText, startNewSession } from './lib/session.svelte.ts';
   import { createWakeLock } from './lib/device.ts';
+  import { createConfirm } from './lib/confirm.svelte.ts';
   import { resetPlay } from './lib/play.svelte.ts';
   import Sheet from './components/Sheet.svelte';
   import Icon from './components/Icon.svelte';
@@ -19,8 +20,7 @@
 
   let menuOpen = $state(false);
   let menuView = $state<'root' | 'data'>('root');
-  let confirmNew = $state(false);
-  let confirmTimer: ReturnType<typeof setTimeout> | undefined;
+  const confirmNew = createConfirm();
   const route = $derived(router.route);
   let mainEl: HTMLElement | undefined = $state();
 
@@ -39,8 +39,7 @@
   function closeMenu() {
     menuOpen = false;
     menuView = 'root';
-    confirmNew = false;
-    clearTimeout(confirmTimer);
+    confirmNew.reset();
   }
 
   function openPage(path: string) {
@@ -48,18 +47,13 @@
     go(path);
   }
 
-  // Two taps: the first arms the button for 4 seconds, the second replaces the session.
-  async function newSession() {
-    if (!confirmNew) {
-      confirmNew = true;
-      confirmTimer = setTimeout(() => (confirmNew = false), 4000);
-      return;
-    }
-    await startNewSession();
-    resetPlay();
-    closeMenu();
-    go('/track');
-  }
+  const newSession = () =>
+    confirmNew.trigger(async () => {
+      await startNewSession();
+      resetPlay();
+      closeMenu();
+      go('/track');
+    });
 </script>
 
 <div class="app">
@@ -117,8 +111,8 @@
       <button class="btn ghost" onclick={() => (menuView = 'root')}>‹ Back</button>
     {:else}
       <button class="btn secondary" onclick={() => openPage('/welcome')}>Welcome</button>
-      <button class="btn secondary" aria-pressed={confirmNew} onclick={newSession}>
-        {confirmNew ? 'Tap again to confirm' : 'New session'}
+      <button class="btn secondary" aria-pressed={confirmNew.armed} onclick={newSession}>
+        {confirmNew.armed ? 'Tap again to confirm' : 'New session'}
       </button>
       <button class="btn secondary more" onclick={() => (menuView = 'data')}>Data <span aria-hidden="true">›</span></button>
       {#if import.meta.env.DEV}
