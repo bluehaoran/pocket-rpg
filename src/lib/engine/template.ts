@@ -132,6 +132,9 @@ export function renderSentence(
   return { tokens, used };
 }
 
+/** The ids of the fields a sentence template mentions. Depends on the template and field list only, not the values. */
+export const usedFieldIds = (tpl: string, fields: readonly SentenceField[]): Set<string> => renderSentence(tpl, fields, {}).used;
+
 export type SeedPart = { col: number; trail: string } | { text: string };
 
 /**

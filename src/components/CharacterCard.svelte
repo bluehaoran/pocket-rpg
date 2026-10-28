@@ -8,7 +8,7 @@
   } from '../lib/characters.ts';
   import { kinSkills } from '../lib/rules/kintsugi.ts';
   import { display, type FieldRef } from '../lib/fields.ts';
-  import { shortLabel } from '../lib/engine/template.ts';
+  import { shortLabel, usedFieldIds } from '../lib/engine/template.ts';
   import Sentence from './Sentence.svelte';
   import ScaleBar from './ScaleBar.svelte';
   import DRow from './DRow.svelte';
@@ -24,7 +24,8 @@
   const lf = $derived(lfFlavour(pack));
   const fields = $derived(fieldsOf(pack, s.rulesId));
   const template = $derived(sentenceFor(pack, s.rulesId));
-  let used = $state(new Set<string>());
+  // The sentence shows these fields; the rest are listed as rows below it.
+  const used = $derived(usedFieldIds(template, fields));
   const numF = $derived(numberField(fields));
   const { under, over } = $derived(lfChecks(lf));
 
@@ -47,7 +48,7 @@
 {#if c}
   <section class="group">
     <div class="sentence crew">
-      <Sentence template={template} {fields} values={c.fields} onpick={onedit ? edit : undefined} plain={!onedit} bind:used />
+      <Sentence template={template} {fields} values={c.fields} onpick={onedit ? edit : undefined} plain={!onedit} />
       {#if kind === 'lf' && numF && typeof c.fields[numF.id] === 'number' && under && over}
         <ScaleBar n={c.fields[numF.id] as number} range={numberRange(lf, numF)}
           over={over.label} under={under.label} onclick={onedit ? () => edit(numF.id) : undefined} />

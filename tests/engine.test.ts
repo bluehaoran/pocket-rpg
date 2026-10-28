@@ -4,7 +4,7 @@ import type { Entry } from '../src/lib/content/types.ts';
 import { mulberry32, pick, randInt, rollDie } from '../src/lib/engine/rng.ts';
 import { availableLetters, draw, initial, matches, NO_REPEAT, pool, relax, remember, type Recent } from '../src/lib/engine/table.ts';
 import {
-  articleFor, defaultSentence, expand, seedText, singleSlot, slots, renderSentence
+  articleFor, defaultSentence, expand, seedText, singleSlot, slots, renderSentence, usedFieldIds
 } from '../src/lib/engine/template.ts';
 
 const e = (v: string, tags?: Entry['tags']): Entry => ({ v, tags });
@@ -223,5 +223,23 @@ describe('sentences (§1.6)', () => {
       '{name}\nis {a} {style|lower} {role|lower} who wants to\n{goal|lower}'
     );
     expect(defaultSentence('lasers-feelings', ['style', 'role'])).toBe('is {a} {style|lower} {role|lower}');
+  });
+});
+
+describe('usedFieldIds', () => {
+  const fields = [
+    { id: 'name', label: 'Name' },
+    { id: 'role', label: 'Role' },
+    { id: 'gear', label: 'Gear' }
+  ];
+
+  it('lists the fields a template mentions, ignoring unknown ids and the article token', () => {
+    expect([...usedFieldIds('{name} is {a} {role|lower} with {nope}', fields)].sort()).toEqual(['name', 'role']);
+  });
+
+  it('matches what renderSentence reports as used, whatever the values', () => {
+    const tpl = '{name}\n{a} {role}';
+    expect(usedFieldIds(tpl, fields)).toEqual(renderSentence(tpl, fields, { name: 'Ada', role: 'Pilot' }).used);
+    expect(usedFieldIds(tpl, fields)).toEqual(renderSentence(tpl, fields, {}).used);
   });
 });

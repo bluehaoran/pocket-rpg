@@ -9,15 +9,10 @@
     /** Tappable parts when set; read-only bold values otherwise. */
     onpick?: (fieldId: string) => void;
     plain?: boolean;
-    /** Ids of fields the template used, reported to the parent so it can list the rest as rows. */
-    used?: Set<string>;
   }
-  let { template, fields, values, onpick, plain = false, used = $bindable(new Set()) }: Props = $props();
+  let { template, fields, values, onpick, plain = false }: Props = $props();
 
   const r = $derived(renderSentence(template, fields, values, { plain }));
-  $effect(() => {
-    used = r.used;
-  });
 </script>
 
 <p>

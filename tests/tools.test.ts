@@ -7,7 +7,7 @@ import { availableLetters } from '../src/lib/engine/table.ts';
 import { mulberry32 } from '../src/lib/engine/rng.ts';
 import {
   drawFollowUp, effectiveOpts, findTool, glyphRows, formatData, historyText, isEmptyList, missingRequired, packTools,
-  plainText, rollTool, segments, toolSub, type ToolCtx, type ToolOpts
+  plainText, rollTool, segments, toolStatus, toolSub, type ToolCtx, type ToolOpts
 } from '../src/lib/tools.ts';
 
 const ctxFor = (seed: number, packId?: string, over: Partial<ToolCtx> = {}): ToolCtx => ({
@@ -312,5 +312,31 @@ describe('glyphRows (emoji layout)', () => {
       expect(rows.reduce((a, b) => a + b, 0)).toBe(n);
       if (n > 3) expect(rows.every(r => r === 2 || r === 3)).toBe(true);
     }
+  });
+});
+
+describe('hub status flag', () => {
+  const empty: ToolList = { id: 'items', label: 'Items', version: '0', modifiers: {}, entries: [] };
+
+  it('flags an empty list, an all-hidden list and a missing required modifier as needing attention', () => {
+    const emptyCtx = ctxFor(30, undefined, { lists: { ...lists, items: empty }, stock: { ...lists, items: empty } });
+    expect(toolStatus(tool('items', emptyCtx), {}, emptyCtx)).toEqual({ text: 'Empty list', attention: true });
+
+    const hiddenCtx = ctxFor(31, undefined, { lists: { ...lists, items: empty }, stock: lists });
+    expect(toolStatus(tool('items', hiddenCtx), {}, hiddenCtx)).toEqual({ text: 'All hidden', attention: true });
+
+    const pack = structuredClone(packs['swords-and-sorcery']!);
+    pack.generators = [{ id: 'g', label: 'G', modifiers: [{ key: 'spellLevel', required: true }], output: '{spells}' }];
+    const ctx: ToolCtx = { ...ctxFor(32), pack };
+    const status = toolStatus(findTool('pack:g', registry, pack)!, {}, ctx);
+    expect(status.attention).toBe(true);
+    expect(status.text).toMatch(/^Choose /);
+  });
+
+  it('does not flag a tool that is ready to roll, and toolSub is just its text', () => {
+    const ctx = ctxFor(33, 'swords-and-sorcery');
+    expect(toolStatus(tool('dice', ctx), { count: 2, type: 8 }, ctx)).toEqual({ text: '2d8', attention: false });
+    expect(toolStatus(tool('names', ctx), {}, ctx).attention).toBe(false);
+    expect(toolSub(tool('names', ctx), {}, ctx)).toBe(toolStatus(tool('names', ctx), {}, ctx).text);
   });
 });

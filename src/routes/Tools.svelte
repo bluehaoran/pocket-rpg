@@ -4,11 +4,11 @@
   import { app } from '../lib/session.svelte.ts';
   import { toolPack, toolCtx } from '../lib/toolctx.svelte.ts';
   import GenTile from '../components/GenTile.svelte';
-  import { packTools, toolSub, type AnyTool } from '../lib/tools.ts';
+  import { packTools, toolStatus, type AnyTool } from '../lib/tools.ts';
 
   const pack = $derived(toolPack());
   const gens = $derived(packTools(pack));
-  const sub = (t: AnyTool) => toolSub(t, app.session?.toolModifiers[t.id] ?? {}, toolCtx());
+  const status = (t: AnyTool) => toolStatus(t, app.session?.toolModifiers[t.id] ?? {}, toolCtx());
 </script>
 
 <section class="group">
@@ -18,8 +18,8 @@
 
 <section class="gens">
   {#each registry.tools as t (t.id)}
-    {@const s = sub(t)}
-    <GenTile req={/^(Choose|Empty|All hidden)/.test(s)} href={href(`/tools/${t.id}`)} label={t.label} sub={s} />
+    {@const s = status(t)}
+    <GenTile req={s.attention} href={href(`/tools/${t.id}`)} label={t.label} sub={s.text} />
   {/each}
 </section>
 
@@ -28,8 +28,8 @@
     <div class="eyebrow">{pack?.genre ?? pack?.name} pack</div>
     <div class="gens">
       {#each gens as t (t.id)}
-        {@const s = sub(t)}
-        <GenTile req={/^Choose/.test(s)} href={href(`/tools/${encodeURIComponent(t.id)}`)} label={t.label} sub={s} />
+        {@const s = status(t)}
+        <GenTile req={s.attention} href={href(`/tools/${encodeURIComponent(t.id)}`)} label={t.label} sub={s.text} />
       {/each}
     </div>
   </section>

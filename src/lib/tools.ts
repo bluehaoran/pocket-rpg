@@ -272,18 +272,19 @@ export function rollTool(t: AnyTool, opts: ToolOpts, ctx: ToolCtx, prev: ToolRes
   return r;
 }
 
-/** One-line summary of a tool's current settings for the hub. */
-export function toolSub(t: AnyTool, opts: ToolOpts, ctx: ToolCtx): string {
+/** What the hub shows under a tool: a one-line summary of its settings, and whether the tool needs the user's attention first. */
+export function toolStatus(t: AnyTool, opts: ToolOpts, ctx: ToolCtx): { text: string; attention: boolean } {
+  const ok = (text: string) => ({ text, attention: false });
   if (t.kind === 'dice') {
     const m = diceOpts(t, opts);
-    return `${m.count}d${m.type}`;
+    return ok(`${m.count}d${m.type}`);
   }
-  if (allHidden(t, ctx)) return 'All hidden';
-  if (isEmptyList(t, ctx)) return 'Empty list';
+  if (allHidden(t, ctx)) return { text: 'All hidden', attention: true };
+  if (isEmptyList(t, ctx)) return { text: 'Empty list', attention: true };
   const defs = modDefs(t, ctx);
   const eff = effectiveOpts(t, opts, ctx);
   const missing = defs.filter(d => d.required && !eff[d.key]);
-  if (missing.length) return 'Choose ' + missing.map(d => d.label.toLowerCase()).join(', ');
+  if (missing.length) return { text: 'Choose ' + missing.map(d => d.label.toLowerCase()).join(', '), attention: true };
   const set = defs
     .filter(d => eff[d.key])
     .map(d => (d.key === 'letter' ? `Starts ${eff[d.key]}` : valueLabel(d, String(eff[d.key]))));
@@ -291,10 +292,13 @@ export function toolSub(t: AnyTool, opts: ToolOpts, ctx: ToolCtx): string {
     for (const p of t.parts ?? []) if (partOn(p, opts)) set.push('+ ' + p.label.toLowerCase());
     if (t.followUp && followOn(t, opts)) set.push('+ ' + t.followUp.label.toLowerCase());
   }
-  if (set.length) return set.join(' · ');
-  if (!isGen(t) && t.count) return `${countOpt(t, opts)} at a time`;
-  return isGen(t) ? 'Pack table' : `${entriesOf(t, ctx).length} entries`;
+  if (set.length) return ok(set.join(' · '));
+  if (!isGen(t) && t.count) return ok(`${countOpt(t, opts)} at a time`);
+  return ok(isGen(t) ? 'Pack table' : `${entriesOf(t, ctx).length} entries`);
 }
+
+/** One-line summary of a tool's current settings for the hub. */
+export const toolSub = (t: AnyTool, opts: ToolOpts, ctx: ToolCtx): string => toolStatus(t, opts, ctx).text;
 
 /** Every table id a generator mentions that the pack does not define (for the empty-state message). */
 export const missingTables = (g: Generator, pack?: Pack): string[] => allSlots(g.output).filter(id => !pack?.tables[id]);
