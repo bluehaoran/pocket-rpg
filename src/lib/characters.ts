@@ -4,7 +4,7 @@ import type { Character } from './db.ts';
 import type { Check, Entry, Field, KintsugiFlavour, LasersFeelingsFlavour, Pack, RollForShoesFlavour } from './content/types.ts';
 import { draw, pool, type Recent, type Selection } from './engine/table.ts';
 import { pick, randInt, type Rng } from './engine/rng.ts';
-import { expand, shortLabel } from './engine/template.ts';
+import { defaultSentence, expand, shortLabel } from './engine/template.ts';
 
 export type FieldValue = string | string[] | number;
 
@@ -68,12 +68,21 @@ export function rfsFlavour(pack: Pack): RfsFlavour {
 
 export const isRfs = (rulesId: string): boolean => rulesId === 'roll-for-shoes';
 export const isKin = (rulesId: string): boolean => rulesId === 'kintsugi';
+export type RulesKind = 'lf' | 'rfs' | 'kin';
+/** Which rules family a session plays by; the `lf` hacks all share Lasers & Feelings' shape. */
+export const rulesKind = (rulesId: string): RulesKind => (isKin(rulesId) ? 'kin' : isRfs(rulesId) ? 'rfs' : 'lf');
 
 const GENERIC_KINTSUGI: KintsugiFlavour = { fields: [{ id: 'name', label: 'Name', kind: 'text', table: null }], sentence: '{name}' };
 export const kinFlavour = (pack: Pack): KintsugiFlavour => pack.flavour?.kintsugi ?? GENERIC_KINTSUGI;
 
 export const fieldsOf = (pack: Pack, rulesId: string): Field[] =>
   isKin(rulesId) ? kinFlavour(pack).fields : isRfs(rulesId) ? rfsFlavour(pack).fields : lfFlavour(pack).fields;
+/** The pack's character sentence for these rules, or a plain one built from the fields. */
+export const sentenceFor = (pack: Pack, rulesId: string): string => {
+  const kind = rulesKind(rulesId);
+  const own = kind === 'kin' ? kinFlavour(pack).sentence : kind === 'rfs' ? rfsFlavour(pack).sentence : lfFlavour(pack).sentence;
+  return own ?? defaultSentence(rulesId, fieldsOf(pack, rulesId).map(f => f.id));
+};
 export const groupFieldsOf = (pack: Pack): Field[] => pack.groupFields ?? pack.flavour?.['lasers-feelings']?.groupFields ?? [];
 
 export const isEmptyValue = (v: unknown): boolean => (Array.isArray(v) ? !v.filter(Boolean).length : v == null || v === '');

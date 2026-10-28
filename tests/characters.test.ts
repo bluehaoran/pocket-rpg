@@ -4,7 +4,7 @@ import type { Field, Pack } from '../src/lib/content/types.ts';
 import { newSession } from '../src/lib/db.ts';
 import { mulberry32 } from '../src/lib/engine/rng.ts';
 import {
-  charName, derive, exactText, lfChecks, numberField, numberFieldId, numberRange, evalFormula, fieldsOf, groupFieldsOf, isRfs, lfFlavour, listOf, newCharacter, pickSkill,
+  charName, derive, exactText, rulesKind, sentenceFor, lfChecks, numberField, numberFieldId, numberRange, evalFormula, fieldsOf, groupFieldsOf, isRfs, lfFlavour, listOf, newCharacter, pickSkill,
   rfsFlavour, skillTree, statuses, syncResources, canRandom, randomValue, type CharCtx
 } from '../src/lib/characters.ts';
 import {
@@ -373,5 +373,25 @@ describe('Lasers & Feelings number helpers', () => {
     expect(exactText(bare, 3)).toBe('Exactly 3: special effect.');
     expect(exactText({ ...bare, exact: { name: 'LASER FEELINGS' } }, 4)).toBe('Exactly 4: LASER FEELINGS.');
     expect(exactText({ ...bare, exact: { name: 'Odd', countsAsSuccess: false } }, 2)).toBe('Exactly 2: Odd (not a success).');
+  });
+});
+
+describe('rulesKind and sentenceFor', () => {
+  it('maps rules ids to their family, treating every other id as Lasers & Feelings', () => {
+    expect(rulesKind('kintsugi')).toBe('kin');
+    expect(rulesKind('roll-for-shoes')).toBe('rfs');
+    expect(rulesKind('lasers-feelings')).toBe('lf');
+    expect(rulesKind('some-hack')).toBe('lf');
+  });
+
+  it('uses the flavour sentence for the rules in play', () => {
+    const pack = all.find(p => p.flavour?.['lasers-feelings']?.sentence)!;
+    expect(sentenceFor(pack, 'lasers-feelings')).toBe(lfFlavour(pack).sentence);
+  });
+
+  it('builds a default sentence when the flavour has none', () => {
+    const bare = { id: 'x', name: 'X', tables: {}, flavour: { kintsugi: { fields: [{ id: 'name', label: 'Name', kind: 'text', table: null }] } } } as unknown as Pack;
+    expect(sentenceFor(bare, 'kintsugi')).toBeTruthy();
+    expect(sentenceFor(bare, 'kintsugi')).toContain('{name}');
   });
 });
