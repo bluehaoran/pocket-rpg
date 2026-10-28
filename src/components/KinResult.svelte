@@ -43,7 +43,7 @@
       <b>Learned: {roll.newSkill} {level}</b>
     {:else}
       <span>Describe how you changed, then name the new skill (level {level}).</span>
-      <div class="learn">
+      <div class="newskill">
         <div class="gmrow">
           <input aria-label="Skill name" placeholder="e.g. Kicking: welded a sturdy leg on" autocomplete="off" bind:value={name} />
           <button class="dice" aria-label="Suggest a skill name" onclick={() => (name = suggestKinSkill(name))}><Die value={5} size="sm" /></button>

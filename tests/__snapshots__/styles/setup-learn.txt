@@ -98,10 +98,8 @@ div > section.group > div.opt-wrap > button.learn
   box-sizing: border-box
   color: var(--accent)
   cursor: pointer
-  display: grid
+  display: flex
   font: 700 15px var(--f-body)
-  gap: 8px
-  margin-top: 8px
   min-height: 44px
   position: absolute
   right: 16px
@@ -155,10 +153,8 @@ div > section.group > div.opt-wrap > button.learn
   box-sizing: border-box
   color: var(--accent)
   cursor: pointer
-  display: grid
+  display: flex
   font: 700 15px var(--f-body)
-  gap: 8px
-  margin-top: 8px
   min-height: 44px
   position: absolute
   right: 16px
@@ -212,10 +208,8 @@ div > section.group > div.opt-wrap > button.learn
   box-sizing: border-box
   color: var(--accent)
   cursor: pointer
-  display: grid
+  display: flex
   font: 700 15px var(--f-body)
-  gap: 8px
-  margin-top: 8px
   min-height: 44px
   position: absolute
   right: 16px
@@ -349,7 +343,7 @@ body > div > div.gutter.sheet > div.eyebrow
   font: 700 12px/1.2 var(--f-body)
   letter-spacing: .12em
   text-transform: uppercase
-body > div > div.gutter.sheet > div.about
+body > div > div.gutter.sheet > div.rules-about
   box-sizing: border-box
   display: flex
   flex: none
@@ -357,21 +351,21 @@ body > div > div.gutter.sheet > div.about
   gap: 10px
   max-height: 55vh
   overflow-y: auto
-div > div.gutter.sheet > div.about > p.hint
+div > div.gutter.sheet > div.rules-about > p.hint
   box-sizing: border-box
   color: var(--muted)
   font-size: 15px
   margin: 0
-div.gutter.sheet > div.about > p.hint > a
+div.gutter.sheet > div.rules-about > p.hint > a
   box-sizing: border-box
   color: inherit
-div > div.gutter.sheet > div.about > p
+div > div.gutter.sheet > div.rules-about > p
   box-sizing: border-box
   margin: 0
-div > div.gutter.sheet > div.about > p
+div > div.gutter.sheet > div.rules-about > p
   box-sizing: border-box
   margin: 0
-div > div.gutter.sheet > div.about > p
+div > div.gutter.sheet > div.rules-about > p
   box-sizing: border-box
   margin: 0
 body > div > div.gutter.sheet > button.btn.ghost

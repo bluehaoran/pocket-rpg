@@ -13,8 +13,6 @@ body > div > section.about.group
   display: flex
   flex-direction: column
   gap: 10px
-  max-height: 55vh
-  overflow-y: auto
 body > div > section.about.group > h2
   box-sizing: border-box
   font: 800 34px/1 var(--f-display)

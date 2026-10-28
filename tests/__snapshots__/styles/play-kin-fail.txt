@@ -620,29 +620,18 @@ div.rollsheet > div.fresh.rollbody > div.acc.callout > span.t
   text-transform: uppercase
 div.rollsheet > div.fresh.rollbody > div.acc.callout > span
   box-sizing: border-box
-div.rollsheet > div.fresh.rollbody > div.acc.callout > div.learn
-  align-items: center
-  all: unset
-  bottom: 4px
+div.rollsheet > div.fresh.rollbody > div.acc.callout > div.newskill
   box-sizing: border-box
-  color: var(--accent)
-  cursor: pointer
   display: grid
-  font: 700 15px var(--f-body)
   gap: 8px
   margin-top: 8px
-  min-height: 44px
-  position: absolute
-  right: 16px
-  text-decoration: underline
-  text-underline-offset: 3px
-div.fresh.rollbody > div.acc.callout > div.learn > div.gmrow
+div.fresh.rollbody > div.acc.callout > div.newskill > div.gmrow
   align-items: center
   box-sizing: border-box
   display: grid
   gap: 8px
   grid-template-columns: minmax(0,1fr) 58px
-div.acc.callout > div.learn > div.gmrow > input
+div.acc.callout > div.newskill > div.gmrow > input
   -webkit-appearance: none
   appearance: none
   background: var(--surface)
@@ -655,7 +644,7 @@ div.acc.callout > div.learn > div.gmrow > input
   padding: 0 40px 0 14px
   padding-right: 14px
   width: 100%
-div.acc.callout > div.learn > div.gmrow > button.dice
+div.acc.callout > div.newskill > div.gmrow > button.dice
   -webkit-tap-highlight-color: transparent
   background: var(--sunk)
   border: 2px solid var(--line)
@@ -668,7 +657,7 @@ div.acc.callout > div.learn > div.gmrow > button.dice
   height: 58px
   place-items: center
   width: 58px
-div.learn > div.gmrow > button.dice > span.die.sm
+div.newskill > div.gmrow > button.dice > span.die.sm
   background: var(--sunk)
   border: 1px solid var(--line)
   border-radius: 7px
@@ -713,7 +702,7 @@ div.gmrow > button.dice > span.die.sm > i.on
   background: var(--ink)
   border-radius: 50%
   box-sizing: border-box
-div.fresh.rollbody > div.acc.callout > div.learn > button.acc.mini-btn
+div.fresh.rollbody > div.acc.callout > div.newskill > button.acc.mini-btn
   -webkit-tap-highlight-color: transparent
   align-self: flex-start
   background: var(--surface)

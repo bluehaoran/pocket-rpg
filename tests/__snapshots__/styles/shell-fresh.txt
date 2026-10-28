@@ -303,10 +303,8 @@ main.gutter > section.group > div.opt-wrap > button.learn
   box-sizing: border-box
   color: var(--accent)
   cursor: pointer
-  display: grid
+  display: flex
   font: 700 15px var(--f-body)
-  gap: 8px
-  margin-top: 8px
   min-height: 44px
   position: absolute
   right: 16px
@@ -360,10 +358,8 @@ main.gutter > section.group > div.opt-wrap > button.learn
   box-sizing: border-box
   color: var(--accent)
   cursor: pointer
-  display: grid
+  display: flex
   font: 700 15px var(--f-body)
-  gap: 8px
-  margin-top: 8px
   min-height: 44px
   position: absolute
   right: 16px
@@ -417,10 +413,8 @@ main.gutter > section.group > div.opt-wrap > button.learn
   box-sizing: border-box
   color: var(--accent)
   cursor: pointer
-  display: grid
+  display: flex
   font: 700 15px var(--f-body)
-  gap: 8px
-  margin-top: 8px
   min-height: 44px
   position: absolute
   right: 16px

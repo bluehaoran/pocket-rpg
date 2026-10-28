@@ -61,7 +61,7 @@
 {#if about}
   {@const info = RULES_INFO[about]}
   <Sheet title={RULES[about]} onclose={() => (about = null)}>
-    <div class="about">
+    <div class="rules-about">
       <p class="hint">by <a href={info.url} target="_blank" rel="noopener noreferrer">{info.by}</a> · {RULE_META[about].short}</p>
       <p>{RULE_META[about].more}</p>
       {#each info.paragraphs as para (para)}

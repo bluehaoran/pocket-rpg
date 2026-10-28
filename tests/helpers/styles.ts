@@ -91,6 +91,9 @@ export function resolve(el: Element, entries: Entry[]): Record<string, string> {
   return result;
 }
 
+/** The winning declarations for one element, from the stylesheets currently in the document. */
+export const resolveFor = (el: Element): Record<string, string> => resolve(el, collect());
+
 const label = (el: Element) => {
   const cls = [...el.classList].filter(c => !/^svelte-/.test(c)).sort();
   return el.tagName.toLowerCase() + (cls.length ? '.' + cls.join('.') : '');
