@@ -48,11 +48,22 @@ describe('menu and overview', () => {
   it('the menu opens Manage Tools', async () => {
     render(App);
     await fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
+    await fireEvent.click(screen.getByRole('button', { name: /^Data/ }));
     await fireEvent.click(screen.getByRole('button', { name: 'Manage Tools' }));
     await tock();
     expect(location.hash).toBe('#/manage');
     expect(router.route.page).toBe('manage');
     expect(screen.getByRole('heading', { level: 2 }).textContent).toMatch(/Manage/);
+  });
+
+  it('the Data sub-menu has a Back button to the top level', async () => {
+    render(App);
+    await fireEvent.click(screen.getByRole('button', { name: 'Menu' }));
+    expect(screen.queryByRole('button', { name: 'Manage Tools' })).toBeNull();
+    await fireEvent.click(screen.getByRole('button', { name: /^Data/ }));
+    expect(screen.getByRole('button', { name: 'Pack details' })).toBeTruthy();
+    await fireEvent.click(screen.getByRole('button', { name: /Back/ }));
+    expect(screen.getByRole('button', { name: 'About' })).toBeTruthy();
   });
 
   it('lists every tool list with its edit counts', async () => {

@@ -39,7 +39,7 @@ Example: "You meet a friendly elf named…" → Tools → Names (female, fantasy
 ## Screens
 
 ### Shell
-- Header: app name, session chip (genre · rules · players), menu (Welcome, Pack details, New session). Until **Start play**, the chip is a link reading "No story in progress. Click to start" that opens setup.
+- Header: app name, session chip (genre · rules · players), menu (Welcome, New session, Data ›, About; a dev-only "Keep awake" row in dev builds). "Data" drills into a sub-view in the same sheet (Manage Tools, Pack details, later import/export) with a Back button where Close was. Buttons: orange primary, grey `secondary` for menu rows and choices, outlined `ghost` for dismiss/cancel; dev-only controls use dashed purple (`--dev`). Until **Start play**, the chip is a link reading "No story in progress. Click to start" that opens setup.
 - **Welcome screen** (`#/welcome`, copy in `content/welcome.json`): shown on launch with no specific screen requested and no story in progress, explains Track and Tools in two columns (even on narrow screens) lined up above the two tab-bar buttons, with hand-drawn arrows pointing down at them instead of buttons of its own, and has a "Show me this when I start" toggle on the right (on by default; off means skip this screen on startup; stored per device in localStorage). Also reachable from the menu. Tools works without a story: before Start play it ignores the session's genre.
 - Bottom bar: **Track** | **Tools**.
 
@@ -184,3 +184,5 @@ From the header menu: installed packs, validation results, licence, raw JSON. Im
 
 ## Next steps
 - See `06-build-plan.md`.
+
+- **About screen** (`#/about`, copy in `content/about.json`): why the app exists, credits for Ben Wray and John Harper, a contact line and a PayPal donate link (a plain outbound `<a>`, no PayPal script, so it respects the no-network rule; it needs a connection to open). Reached from the menu. `contactUrl` and `donateUrl` empty means the line shows as plain text / "coming soon".

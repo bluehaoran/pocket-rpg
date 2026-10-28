@@ -3,17 +3,17 @@
 
 :root{
   --bg:#E8EBEF; --surface:#FBFCFD; --sunk:#DCE1E7; --ink:#11151B; --muted:#566070;
-  --line:#CBD2DA; --accent:#9A4E00; --accent-ink:#FFFFFF; --accent-soft:#F5E2CB; --pin:#2D6AD0;
+  --line:#CBD2DA; --accent:#9A4E00; --accent-ink:#FFFFFF; --accent-soft:#F5E2CB; --pin:#2D6AD0; --dev:#8A2BB8; --dev-soft:#EFDDF7;
   --f-display:"Big Shoulders Display",Impact,"Arial Narrow",system-ui,sans-serif;
   --f-body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
   --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#0C0F14; --surface:#161A21; --sunk:#1F242D; --ink:#EDF0F4; --muted:#909AA9;
-  --line:#2A313C; --accent:#FFA53D; --accent-ink:#1A1205; --accent-soft:#3A2810; --pin:#7EA9FF; color-scheme:dark}}
+  --line:#2A313C; --accent:#FFA53D; --accent-ink:#1A1205; --accent-soft:#3A2810; --pin:#7EA9FF; --dev:#D29BFF; --dev-soft:#2E1B3A; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#0C0F14; --surface:#161A21; --sunk:#1F242D; --ink:#EDF0F4; --muted:#909AA9;
-  --line:#2A313C; --accent:#FFA53D; --accent-ink:#1A1205; --accent-soft:#3A2810; --pin:#7EA9FF; color-scheme:dark}
+  --line:#2A313C; --accent:#FFA53D; --accent-ink:#1A1205; --accent-soft:#3A2810; --pin:#7EA9FF; --dev:#D29BFF; --dev-soft:#2E1B3A; color-scheme:dark}
 
 *,*::before,*::after{box-sizing:border-box}
 html{box-sizing:border-box;height:100%}
@@ -69,6 +69,11 @@ h1,h2{font:800 34px/1 var(--f-display);text-transform:uppercase;letter-spacing:.
 .btn{min-height:62px;width:100%;border-radius:14px;border:2px solid var(--accent);background:var(--accent);color:var(--accent-ink);font:800 23px/1 var(--f-display);text-transform:uppercase;letter-spacing:.05em;display:flex;align-items:center;justify-content:center;gap:10px}
 .btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
 .btn.ghost[aria-pressed="true"]{border-color:var(--pin);color:var(--pin)}
+.btn.secondary{background:var(--sunk);color:var(--ink);border-color:var(--sunk)}
+.btn.secondary[aria-pressed="true"]{border-color:var(--pin);color:var(--pin)}
+.btn.secondary.more{justify-content:space-between;padding:0 20px}
+.btn.secondary.dev{border:2px dashed var(--dev);color:var(--dev)}
+.btn.secondary.dev[aria-pressed="true"]{background:var(--dev-soft)}
 .btn:disabled{opacity:.45;cursor:not-allowed}
 
 body{margin:0}
