@@ -1,5 +1,6 @@
 <script lang="ts">
   import { go, href } from '../../lib/router.svelte.ts';
+  import BackBar from '../../components/BackBar.svelte';
   import { app } from '../../lib/session.svelte.ts';
   import { closeRoll, play } from '../../lib/play.svelte.ts';
   import CharacterCard from '../../components/CharacterCard.svelte';
@@ -12,10 +13,7 @@
   const s = $derived(app.session!);
 </script>
 
-<div class="toolhead">
-  <a class="back" href={href('/track')}>‹ Track</a>
-  <span class="eyebrow">Character</span>
-</div>
+<BackBar href={href('/track')} label="Track" title="Character" />
 
 <PlayerNav index={idx} count={s.players} onchange={i => go(`/track/char/${i}`)} />
 

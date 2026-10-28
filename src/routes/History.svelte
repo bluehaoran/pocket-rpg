@@ -3,6 +3,7 @@
   import { createConfirm } from '../lib/confirm.svelte.ts';
   import { app, mutate } from '../lib/session.svelte.ts';
   import { hhmm } from '../lib/format.ts';
+  import Crumb from '../components/Crumb.svelte';
 
   let { which }: { which: 'tools' | 'track' } = $props();
 
@@ -32,9 +33,7 @@
 </script>
 
 <section class="group">
-  <h2>
-    <a class="crumb" href={href(which === 'track' ? '/track' : '/tools')}>{which === 'track' ? 'Track' : 'Tools'}</a><span class="sep" aria-hidden="true">›</span>History
-  </h2>
+  <Crumb parent={which === 'track' ? 'Track' : 'Tools'} href={href(which === 'track' ? '/track' : '/tools')} current="History" />
   <p class="hint">This session</p>
 </section>
 <div class="card">

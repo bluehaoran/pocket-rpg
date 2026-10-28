@@ -1,6 +1,7 @@
 <script lang="ts">
   import { href, router } from '../../lib/router.svelte.ts';
   import { app } from '../../lib/session.svelte.ts';
+  import BackBar from '../../components/BackBar.svelte';
   import { closeRoll, play } from '../../lib/play.svelte.ts';
   import StoryCard from '../../components/StoryCard.svelte';
   import PartyCard from '../../components/PartyCard.svelte';
@@ -19,7 +20,7 @@
 {#if sub === 'history'}
   <History which="track" />
 {:else if play.roll && play.mode === 'page'}
-  <div class="toolhead"><button class="back" onclick={closeRoll}>‹ Track</button><span class="eyebrow">Roll</span></div>
+  <BackBar label="Track" title="Roll" onclick={closeRoll} />
   <h2>{play.roll.kind === 'lf' ? play.roll.check : play.roll.skillName}</h2>
   <div class="result big"><RollResult roll={play.roll} /></div>
   <p class="hint">Same layout as the Dice tool. Done returns to Track.</p>

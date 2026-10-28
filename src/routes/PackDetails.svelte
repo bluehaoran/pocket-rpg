@@ -2,6 +2,7 @@
   import { packs, rawPacks } from '../lib/content/index.ts';
   import { validatePack } from '../lib/content/validate.ts';
   import { href } from '../lib/router.svelte.ts';
+  import BackBar from '../components/BackBar.svelte';
 
   let { packId }: { packId?: string } = $props();
   const pack = $derived(packId ? packs[packId] : undefined);
@@ -10,7 +11,7 @@
 </script>
 
 {#if pack && report}
-  <div class="toolhead"><a class="back" href={href('/packs')}>‹ Packs</a></div>
+  <BackBar href={href('/packs')} label="Packs" />
   <section class="group">
     <div class="eyebrow">{pack.library ? 'Library pack' : (pack.genre ?? '')}</div>
     <h2>{pack.name}</h2>
@@ -30,7 +31,7 @@
     <pre class="card" style="overflow:auto;max-height:55vh;font:500 12px/1.5 var(--f-mono);padding:12px">{JSON.stringify(rawPacks[pack.id], null, 2)}</pre>
   </section>
 {:else}
-  <div class="toolhead"><a class="back" href={href('/track')}>‹ Back</a></div>
+  <BackBar href={href('/track')} label="Back" />
   <section class="group">
     <div class="eyebrow">Installed</div>
     <h2>Packs</h2>

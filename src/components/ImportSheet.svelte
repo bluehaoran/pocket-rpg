@@ -3,8 +3,7 @@
   import { editsState, updateEdits } from '../lib/edits.svelte.ts';
   import { addEntries, emptyEdits } from '../lib/edits.ts';
   import { exampleJson, exampleText, ImportError, parseImport } from '../lib/importer.ts';
-  import { valueLabel } from '../lib/tools.ts';
-  import Chips from './Chips.svelte';
+  import TagPicker from './TagPicker.svelte';
   import Sheet from './Sheet.svelte';
 
   /** `list` is the stock list: duplicates are checked against it and the entries already added. */
@@ -41,11 +40,6 @@
     fileKind = /\.json$/i.test(file.name) ? 'json' : 'text';
   }
 
-  function pick(key: string, value: string) {
-    if (picked[key] === value) delete picked[key];
-    else picked[key] = value;
-  }
-
   async function doImport() {
     const entries = fresh;
     await updateEdits(list.id, e => addEntries(list, e, entries).edits);
@@ -72,13 +66,7 @@
 
   {#if mods.length}
     <div class="eyebrow">Apply to every plain line</div>
-    {#each mods as [key, decl] (key)}
-      <Chips
-        label={decl.label}
-        onpick={v => pick(key, v)}
-        items={decl.values.map(v => ({ id: v, label: valueLabel(decl, v), pressed: picked[key] === v }))}
-      />
-    {/each}
+    <TagPicker modifiers={list.modifiers} bind:picked titles={false} />
   {/if}
 
   {#if result.error}

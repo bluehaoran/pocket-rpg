@@ -11,6 +11,7 @@
     modDefs, partOn, partOrderOn, rollTool, segments, valueLabel, type ToolOpts, type ToolResult
   } from '../lib/tools.ts';
   import Sheet from '../components/Sheet.svelte';
+  import Crumb from '../components/Crumb.svelte';
   import Chips from '../components/Chips.svelte';
   import Seg from '../components/Seg.svelte';
   import Stepper from '../components/Stepper.svelte';
@@ -116,10 +117,10 @@
 </script>
 
 {#if !tool}
-  <h2><a class="crumb" href={href('/tools')}>Tools</a><span class="sep" aria-hidden="true">›</span>Unknown</h2>
+  <Crumb parent="Tools" href={href('/tools')} current="Unknown" />
   <div class="empty-card">No tool with id <code>{toolId}</code> in <code>content/tools/registry.json</code> or the active pack.</div>
 {:else}
-  <h2><a class="crumb" href={href('/tools')}>Tools</a><span class="sep" aria-hidden="true">›</span>{tool.label}</h2>
+  <Crumb parent="Tools" href={href('/tools')} current={tool.label} />
   {#if tool.kind === 'gen'}
     <p class="hint">{pack?.genre ?? pack?.name} pack</p>
   {:else if tool.description}

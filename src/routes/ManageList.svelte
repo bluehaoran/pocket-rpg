@@ -9,6 +9,7 @@
   import AddEntrySheet from '../components/AddEntrySheet.svelte';
   import Chips from '../components/Chips.svelte';
   import ImportSheet from '../components/ImportSheet.svelte';
+  import Crumb from '../components/Crumb.svelte';
 
   let { listId }: { listId: string } = $props();
 
@@ -46,7 +47,7 @@
 </script>
 
 <section class="group">
-  <h2><a class="crumb" href={href('/manage')}>Manage</a><span class="sep" aria-hidden="true">›</span>{list?.label ?? 'Unknown'}</h2>
+  <Crumb parent="Manage" href={href('/manage')} current={list?.label ?? 'Unknown'} />
 </section>
 
 {#if !list}

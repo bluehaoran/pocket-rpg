@@ -7,6 +7,7 @@
   import { applyEditsFile, exportEdits, previewEditsFile, type FilePreview } from '../lib/editsfile.ts';
   import { ImportError } from '../lib/importer.ts';
   import { href } from '../lib/router.svelte.ts';
+  import Crumb from '../components/Crumb.svelte';
 
   // Registry order first, then any other list (e.g. surnames, used only as a Names add-on).
   const ids = [...new Set([...registry.tools.flatMap(t => (t.list ? [t.list] : [])), ...Object.keys(lists)])].filter(id => lists[id]);
@@ -56,7 +57,7 @@
 </script>
 
 <section class="group">
-  <h2><a class="crumb" href={href('/tools')}>Tools</a><span class="sep" aria-hidden="true">›</span>Manage</h2>
+  <Crumb parent="Tools" href={href('/tools')} current="Manage" />
   <p class="hint">Add, hide or import entries. Saved on this device only.</p>
 </section>
 
