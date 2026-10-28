@@ -31,11 +31,6 @@ h1,h2{font:800 34px/1 var(--f-display);text-transform:uppercase;letter-spacing:.
 .btn{min-height:62px;width:100%;border-radius:14px;border:2px solid var(--accent);background:var(--accent);color:var(--accent-ink);font:800 23px/1 var(--f-display);text-transform:uppercase;letter-spacing:.05em;display:flex;align-items:center;justify-content:center;gap:10px}
 .btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
 .btn.ghost[aria-pressed="true"]{border-color:var(--pin);color:var(--pin)}
-.btn.secondary{background:var(--sunk);color:var(--ink);border-color:var(--sunk)}
-.btn.secondary[aria-pressed="true"]{border-color:var(--pin);color:var(--pin)}
-.btn.secondary.more{justify-content:space-between;padding:0 20px}
-.btn.secondary.dev{border:2px dashed var(--dev);color:var(--dev)}
-.btn.secondary.dev[aria-pressed="true"]{background:var(--dev-soft)}
 .btn:disabled{opacity:.45;cursor:not-allowed}
 
 #app{height:100%}

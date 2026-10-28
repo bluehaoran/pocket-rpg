@@ -1,11 +1,9 @@
 <script lang="ts">
   import { onDestroy } from 'svelte';
   import { router, href, go } from './lib/router.svelte.ts';
-  import { app, chipText, startNewSession } from './lib/session.svelte.ts';
+  import { app, chipText } from './lib/session.svelte.ts';
   import { createWakeLock } from './lib/device.ts';
-  import { createConfirm } from './lib/confirm.svelte.ts';
-  import { resetPlay } from './lib/play.svelte.ts';
-  import Sheet from './components/Sheet.svelte';
+  import MenuSheet from './components/MenuSheet.svelte';
   import Icon from './components/Icon.svelte';
   import Logo from './components/Logo.svelte';
   import Track from './routes/Track.svelte';
@@ -19,8 +17,6 @@
   import About from './routes/About.svelte';
 
   let menuOpen = $state(false);
-  let menuView = $state<'root' | 'data'>('root');
-  const confirmNew = createConfirm();
   const route = $derived(router.route);
   let mainEl: HTMLElement | undefined = $state();
 
@@ -36,24 +32,7 @@
   $effect(() => wake.set(app.session?.started === true || forceWake));
   onDestroy(() => wake.dispose());
 
-  function closeMenu() {
-    menuOpen = false;
-    menuView = 'root';
-    confirmNew.reset();
-  }
-
-  function openPage(path: string) {
-    closeMenu();
-    go(path);
-  }
-
-  const newSession = () =>
-    confirmNew.trigger(async () => {
-      await startNewSession();
-      resetPlay();
-      closeMenu();
-      go('/track');
-    });
+  const closeMenu = () => (menuOpen = false);
 </script>
 
 <div class="app">
@@ -104,26 +83,7 @@
 </div>
 
 {#if menuOpen}
-  <Sheet title={menuView === 'data' ? 'Data' : 'Session'} onclose={closeMenu}>
-    {#if menuView === 'data'}
-      <button class="btn secondary" onclick={() => openPage('/manage')}>Manage Tools</button>
-      <button class="btn secondary" onclick={() => openPage('/packs')}>Pack details</button>
-      <button class="btn ghost" onclick={() => (menuView = 'root')}>‹ Back</button>
-    {:else}
-      <button class="btn secondary" onclick={() => openPage('/welcome')}>Welcome</button>
-      <button class="btn secondary" aria-pressed={confirmNew.armed} onclick={newSession}>
-        {confirmNew.armed ? 'Tap again to confirm' : 'New session'}
-      </button>
-      <button class="btn secondary more" onclick={() => (menuView = 'data')}>Data <span aria-hidden="true">›</span></button>
-      {#if import.meta.env.DEV}
-        <button class="btn secondary dev" aria-pressed={forceWake} onclick={() => (forceWake = !forceWake)}>
-          Keep awake (dev): {forceWake ? 'on' : 'off'}
-        </button>
-      {/if}
-      <button class="btn secondary" onclick={() => openPage('/about')}>About</button>
-      <button class="btn ghost" onclick={closeMenu}>Close</button>
-    {/if}
-  </Sheet>
+  <MenuSheet onclose={closeMenu} bind:forceWake />
 {/if}
 
 <style>

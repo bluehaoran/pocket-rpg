@@ -663,14 +663,16 @@ body > div > div.gutter.sheet > button.btn.more.secondary
   flex: none
   font: 800 23px/1 var(--f-display)
   gap: 10px
-  justify-content: space-between
+  justify-content: center
   letter-spacing: .05em
   min-height: 62px
-  padding: 0 20px
+  position: relative
   text-transform: uppercase
   width: 100%
 div > div.gutter.sheet > button.btn.more.secondary > span
   box-sizing: border-box
+  position: absolute
+  right: 20px
 body > div > div.gutter.sheet > button.btn.dev.secondary
   -webkit-tap-highlight-color: transparent
   align-items: center
