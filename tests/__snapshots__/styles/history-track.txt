@@ -1,0 +1,89 @@
+body
+  background: var(--bg)
+  box-sizing: border-box
+  color: var(--ink)
+  font: 400 17px/1.4 var(--f-body)
+  height: 100%
+  margin: 0
+  overscroll-behavior: none
+body > div
+  box-sizing: border-box
+body > div > section.group
+  box-sizing: border-box
+  display: flex
+  flex-direction: column
+  gap: 10px
+body > div > section.group > h2
+  box-sizing: border-box
+  font: 800 34px/1 var(--f-display)
+  letter-spacing: .01em
+  margin: 0
+  text-transform: uppercase
+  text-wrap: balance
+div > section.group > h2 > a.crumb
+  box-sizing: border-box
+  color: var(--accent)
+  display: inline-block
+  margin: -8px 0
+  padding: 8px 0
+  text-decoration: none
+div > section.group > h2 > span.sep
+  box-sizing: border-box
+  color: var(--muted)
+  margin-inline: .25em
+body > div > section.group > p.hint
+  box-sizing: border-box
+  color: var(--muted)
+  font-size: 15px
+  margin: 0
+body > div > div.card
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 18px
+  box-sizing: border-box
+  display: flex
+  flex-direction: column
+  padding: 6px 18px
+body > div > div.card > div.hrow
+  border-top: 0
+  box-sizing: border-box
+  display: grid
+  gap: 10px
+  grid-template-columns: 48px minmax(0,1fr)
+  padding: 10px 0
+div > div.card > div.hrow > time
+  box-sizing: border-box
+  color: var(--muted)
+  font: 500 12px/1.6 var(--f-mono)
+div > div.card > div.hrow > div
+  box-sizing: border-box
+div.card > div.hrow > div > span.eyebrow
+  box-sizing: border-box
+  color: var(--muted)
+  font: 700 12px/1.2 var(--f-body)
+  letter-spacing: .12em
+  text-transform: uppercase
+div.card > div.hrow > div > div.lt
+  box-sizing: border-box
+  font-size: 16px
+  font-weight: 700
+  line-height: 1.35
+  overflow-wrap: anywhere
+body > div > button.btn.ghost
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: transparent
+  border: 2px solid var(--accent)
+  border-color: var(--line)
+  border-radius: 14px
+  box-sizing: border-box
+  color: var(--ink)
+  cursor: pointer
+  display: flex
+  font: 800 23px/1 var(--f-display)
+  gap: 10px
+  justify-content: center
+  letter-spacing: .05em
+  min-height: 62px
+  text-transform: uppercase
+  width: 100%

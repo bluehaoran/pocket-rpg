@@ -1,0 +1,229 @@
+body
+  background: var(--bg)
+  box-sizing: border-box
+  color: var(--ink)
+  font: 400 17px/1.4 var(--f-body)
+  height: 100%
+  margin: 0
+  overscroll-behavior: none
+body > div
+  box-sizing: border-box
+body > div > button.scrim
+  -webkit-tap-highlight-color: transparent
+  background: rgba(5,8,12,.45)
+  border: 0
+  box-sizing: border-box
+  color: inherit
+  cursor: pointer
+  font: inherit
+  inset: 0
+  padding: 0
+  position: fixed
+  width: 100%
+  z-index: 20
+body > div > div.gutter.sheet
+  animation: rise .2s ease-out
+  background: var(--surface)
+  border-radius: 20px 20px 0 0
+  border-top: 1px solid var(--line)
+  bottom: 0
+  box-shadow: 0 -8px 30px rgba(0,0,0,.25)
+  box-sizing: border-box
+  display: flex
+  flex-direction: column
+  gap: 14px
+  left: 0
+  margin: 0 auto
+  max-width: 460px
+  padding-bottom: calc(18px + env(safe-area-inset-bottom,0px))
+  padding-left: max(16px,env(safe-area-inset-left,0px))
+  padding-right: max(16px,env(safe-area-inset-right,0px))
+  padding-top: 18px
+  position: fixed
+  right: 0
+  z-index: 21
+body > div > div.gutter.sheet > div.eyebrow
+  box-sizing: border-box
+  color: var(--muted)
+  flex: none
+  font: 700 12px/1.2 var(--f-body)
+  letter-spacing: .12em
+  text-transform: uppercase
+body > div > div.gutter.sheet > input
+  -webkit-appearance: none
+  appearance: none
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 12px
+  box-sizing: border-box
+  color: var(--ink)
+  flex: none
+  font: 700 19px var(--f-body)
+  min-height: 58px
+  padding: 0 40px 0 14px
+  padding-right: 14px
+  width: 100%
+body > div > div.gutter.sheet > div.eyebrow
+  box-sizing: border-box
+  color: var(--muted)
+  flex: none
+  font: 700 12px/1.2 var(--f-body)
+  letter-spacing: .12em
+  text-transform: uppercase
+body > div > div.gutter.sheet > ul.chips
+  box-sizing: border-box
+  display: flex
+  flex: none
+  flex-wrap: wrap
+  gap: 6px
+  list-style: none
+  margin: 0
+  padding: 0
+div > div.gutter.sheet > ul.chips > li
+  box-sizing: border-box
+div.gutter.sheet > ul.chips > li > button.tog
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 999px
+  box-sizing: border-box
+  color: inherit
+  cursor: pointer
+  display: inline-flex
+  font: 700 15px var(--f-body)
+  min-height: 46px
+  padding: 0 14px
+div > div.gutter.sheet > ul.chips > li
+  box-sizing: border-box
+div.gutter.sheet > ul.chips > li > button.tog
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 999px
+  box-sizing: border-box
+  color: inherit
+  cursor: pointer
+  display: inline-flex
+  font: 700 15px var(--f-body)
+  min-height: 46px
+  padding: 0 14px
+div > div.gutter.sheet > ul.chips > li
+  box-sizing: border-box
+div.gutter.sheet > ul.chips > li > button.tog
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 999px
+  box-sizing: border-box
+  color: inherit
+  cursor: pointer
+  display: inline-flex
+  font: 700 15px var(--f-body)
+  min-height: 46px
+  padding: 0 14px
+div > div.gutter.sheet > ul.chips > li
+  box-sizing: border-box
+div.gutter.sheet > ul.chips > li > button.tog
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 999px
+  box-sizing: border-box
+  color: inherit
+  cursor: pointer
+  display: inline-flex
+  font: 700 15px var(--f-body)
+  min-height: 46px
+  padding: 0 14px
+div > div.gutter.sheet > ul.chips > li
+  box-sizing: border-box
+div.gutter.sheet > ul.chips > li > button.tog
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 999px
+  box-sizing: border-box
+  color: inherit
+  cursor: pointer
+  display: inline-flex
+  font: 700 15px var(--f-body)
+  min-height: 46px
+  padding: 0 14px
+div > div.gutter.sheet > ul.chips > li
+  box-sizing: border-box
+div.gutter.sheet > ul.chips > li > button.tog
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 999px
+  box-sizing: border-box
+  color: inherit
+  cursor: pointer
+  display: inline-flex
+  font: 700 15px var(--f-body)
+  min-height: 46px
+  padding: 0 14px
+body > div > div.gutter.sheet > button.btn
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: var(--accent)
+  border: 2px solid var(--accent)
+  border-radius: 14px
+  box-sizing: border-box
+  color: var(--accent-ink)
+  cursor: not-allowed
+  display: flex
+  flex: none
+  font: 800 23px/1 var(--f-display)
+  gap: 10px
+  justify-content: center
+  letter-spacing: .05em
+  min-height: 62px
+  opacity: .45
+  text-transform: uppercase
+  width: 100%
+body > div > div.gutter.sheet > button.btn.ghost
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: transparent
+  border: 2px solid var(--accent)
+  border-color: var(--line)
+  border-radius: 14px
+  box-sizing: border-box
+  color: var(--ink)
+  cursor: not-allowed
+  display: flex
+  flex: none
+  font: 800 23px/1 var(--f-display)
+  gap: 10px
+  justify-content: center
+  letter-spacing: .05em
+  min-height: 62px
+  opacity: .45
+  text-transform: uppercase
+  width: 100%
+body > div > div.gutter.sheet > button.btn.ghost
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: transparent
+  border: 2px solid var(--accent)
+  border-color: var(--line)
+  border-radius: 14px
+  box-sizing: border-box
+  color: var(--ink)
+  cursor: pointer
+  display: flex
+  flex: none
+  font: 800 23px/1 var(--f-display)
+  gap: 10px
+  justify-content: center
+  letter-spacing: .05em
+  min-height: 62px
+  text-transform: uppercase
+  width: 100%

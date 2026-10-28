@@ -1,0 +1,183 @@
+body
+  background: var(--bg)
+  box-sizing: border-box
+  color: var(--ink)
+  font: 400 17px/1.4 var(--f-body)
+  height: 100%
+  margin: 0
+  overscroll-behavior: none
+body > div
+  box-sizing: border-box
+body > div > section.group
+  box-sizing: border-box
+  display: flex
+  flex-direction: column
+  gap: 10px
+body > div > section.group > h2.brandline
+  box-sizing: border-box
+  font: 800 34px/1 var(--f-display)
+  letter-spacing: .01em
+  margin: 0
+  text-transform: uppercase
+  text-wrap: balance
+div > section.group > h2.brandline > div.logo
+  align-items: center
+  box-sizing: border-box
+  display: flex
+  font: 800 24px/1 var(--f-display)
+  letter-spacing: .02em
+  text-transform: uppercase
+section.group > h2.brandline > div.logo > svg.mark
+  box-sizing: border-box
+  flex: none
+h2.brandline > div.logo > svg.mark > defs
+  box-sizing: border-box
+div.logo > svg.mark > defs > mask
+  box-sizing: border-box
+svg.mark > defs > mask > rect
+  box-sizing: border-box
+svg.mark > defs > mask > path
+  box-sizing: border-box
+h2.brandline > div.logo > svg.mark > g
+  box-sizing: border-box
+div.logo > svg.mark > g > g
+  box-sizing: border-box
+svg.mark > g > g > rect
+  box-sizing: border-box
+svg.mark > g > g > g
+  box-sizing: border-box
+g > g > g > circle
+  box-sizing: border-box
+g > g > g > circle
+  box-sizing: border-box
+g > g > g > circle
+  box-sizing: border-box
+g > g > g > circle
+  box-sizing: border-box
+g > g > g > circle
+  box-sizing: border-box
+h2.brandline > div.logo > svg.mark > g
+  box-sizing: border-box
+div.logo > svg.mark > g > path
+  box-sizing: border-box
+div.logo > svg.mark > g > path
+  box-sizing: border-box
+section.group > h2.brandline > div.logo > span
+  box-sizing: border-box
+h2.brandline > div.logo > span > b
+  box-sizing: border-box
+  color: var(--accent)
+  font-weight: inherit
+body > div > section.group > p.hint.welcome-intro
+  box-sizing: border-box
+  color: var(--ink)
+  font-size: 15px
+  margin: 0
+body > div > label.switchrow
+  align-items: center
+  box-sizing: border-box
+  color: var(--muted)
+  cursor: pointer
+  display: flex
+  font-size: 15px
+  gap: 12px
+  justify-content: flex-end
+  min-height: 44px
+body > div > label.switchrow > span
+  box-sizing: border-box
+body > div > label.switchrow > input
+  appearance: none
+  background: var(--accent)
+  border: 2px solid var(--line)
+  border-color: var(--accent)
+  border-radius: 14px
+  box-sizing: border-box
+  cursor: pointer
+  flex: none
+  height: 28px
+  margin: 0
+  position: relative
+  transition: background .15s
+  width: 46px
+body > div > div.welcome-cols
+  box-sizing: border-box
+  display: grid
+  flex: 1 0 auto
+  gap: 0 16px
+  grid-template-columns: repeat(2,minmax(0,1fr))
+body > div > div.welcome-cols > section.welcome-col
+  align-items: center
+  box-sizing: border-box
+  display: flex
+  flex-direction: column
+  gap: 10px
+  text-align: center
+div > div.welcome-cols > section.welcome-col > div.eyebrow
+  box-sizing: border-box
+  color: var(--ink)
+  font: 800 22px/1 var(--f-display)
+  letter-spacing: .06em
+  text-transform: uppercase
+div > div.welcome-cols > section.welcome-col > p
+  box-sizing: border-box
+  font-size: 15px
+  line-height: 1.4
+  margin: 0
+div > div.welcome-cols > section.welcome-col > div.hand
+  box-sizing: border-box
+  color: var(--accent)
+  font: 700 20px/1.1 "Segoe Print","Bradley Hand","Comic Sans MS","Chalkboard SE",cursive
+  margin-top: auto
+  transform: rotate(-3deg)
+div > div.welcome-cols > section.welcome-col > svg.doodle
+  box-sizing: border-box
+  fill: none
+  flex: none
+  height: 88px
+  stroke: var(--accent)
+  stroke-linecap: round
+  stroke-linejoin: round
+  stroke-width: 3.5
+  width: 44px
+div.welcome-cols > section.welcome-col > svg.doodle > path
+  box-sizing: border-box
+div.welcome-cols > section.welcome-col > svg.doodle > path
+  box-sizing: border-box
+body > div > div.welcome-cols > section.welcome-col
+  align-items: center
+  box-sizing: border-box
+  display: flex
+  flex-direction: column
+  gap: 10px
+  text-align: center
+div > div.welcome-cols > section.welcome-col > div.eyebrow
+  box-sizing: border-box
+  color: var(--ink)
+  font: 800 22px/1 var(--f-display)
+  letter-spacing: .06em
+  text-transform: uppercase
+div > div.welcome-cols > section.welcome-col > p
+  box-sizing: border-box
+  font-size: 15px
+  line-height: 1.4
+  margin: 0
+div > div.welcome-cols > section.welcome-col > div.hand
+  box-sizing: border-box
+  color: var(--accent)
+  font: 700 20px/1.1 "Segoe Print","Bradley Hand","Comic Sans MS","Chalkboard SE",cursive
+  margin-top: auto
+  transform: rotate(2deg)
+div > div.welcome-cols > section.welcome-col > svg.doodle
+  box-sizing: border-box
+  fill: none
+  flex: none
+  height: 88px
+  stroke: var(--accent)
+  stroke-linecap: round
+  stroke-linejoin: round
+  stroke-width: 3.5
+  width: 44px
+div.welcome-cols > section.welcome-col > svg.doodle > path
+  box-sizing: border-box
+div.welcome-cols > section.welcome-col > svg.doodle > path
+  box-sizing: border-box

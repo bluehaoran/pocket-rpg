@@ -1,0 +1,41 @@
+body
+  background: var(--bg)
+  box-sizing: border-box
+  color: var(--ink)
+  font: 400 17px/1.4 var(--f-body)
+  height: 100%
+  margin: 0
+  overscroll-behavior: none
+body > div
+  box-sizing: border-box
+body > div > h2
+  box-sizing: border-box
+  font: 800 34px/1 var(--f-display)
+  letter-spacing: .01em
+  margin: 0
+  text-transform: uppercase
+  text-wrap: balance
+body > div > h2 > a.crumb
+  box-sizing: border-box
+  color: var(--accent)
+  display: inline-block
+  margin: -8px 0
+  padding: 8px 0
+  text-decoration: none
+body > div > h2 > span.sep
+  box-sizing: border-box
+  color: var(--muted)
+  margin-inline: .25em
+body > div > div.empty-card
+  background: var(--surface)
+  border: 2px dashed var(--line)
+  border-radius: 18px
+  box-sizing: border-box
+  color: var(--muted)
+  padding: 18px
+body > div > div.empty-card > code
+  box-sizing: border-box
+  font: 500 14px var(--f-mono)
+body > div > div.empty-card > code
+  box-sizing: border-box
+  font: 500 14px var(--f-mono)

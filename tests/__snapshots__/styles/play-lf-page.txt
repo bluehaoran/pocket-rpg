@@ -1,0 +1,153 @@
+body
+  background: var(--bg)
+  box-sizing: border-box
+  color: var(--ink)
+  font: 400 17px/1.4 var(--f-body)
+  height: 100%
+  margin: 0
+  overscroll-behavior: none
+body > div
+  box-sizing: border-box
+body > div > div.toolhead
+  align-items: center
+  box-sizing: border-box
+  display: flex
+  gap: 12px
+  justify-content: space-between
+  margin-bottom: -10px
+body > div > div.toolhead > button.back
+  -webkit-tap-highlight-color: transparent
+  background: none
+  border: 0
+  box-sizing: border-box
+  color: var(--accent)
+  cursor: pointer
+  font: 700 17px var(--f-body)
+  min-height: 44px
+  padding: 0 4px 0 0
+body > div > div.toolhead > span.eyebrow
+  box-sizing: border-box
+  color: var(--muted)
+  font: 700 12px/1.2 var(--f-body)
+  letter-spacing: .12em
+  text-transform: uppercase
+body > div > h2
+  box-sizing: border-box
+  font: 800 34px/1 var(--f-display)
+  letter-spacing: .01em
+  margin: 0
+  text-transform: uppercase
+  text-wrap: balance
+body > div > div.big.result
+  -webkit-touch-callout: none
+  -webkit-user-select: none
+  background: var(--surface)
+  border: 2px solid var(--ink)
+  border-radius: 18px
+  box-sizing: border-box
+  display: flex
+  flex-direction: column
+  gap: 8px
+  max-height: none
+  overflow-y: auto
+  padding: 18px
+  user-select: none
+body > div > div.big.result > div.fresh.rollbody
+  animation: pop .45s ease-out
+  box-sizing: border-box
+  display: flex
+  flex-direction: column
+  gap: 8px
+div > div.big.result > div.fresh.rollbody > div.eyebrow
+  box-sizing: border-box
+  color: var(--muted)
+  font: 700 12px/1.2 var(--f-body)
+  letter-spacing: .12em
+  text-transform: uppercase
+div > div.big.result > div.fresh.rollbody > div.dicerow
+  align-items: center
+  box-sizing: border-box
+  display: flex
+  flex-wrap: wrap
+  gap: 8px
+div.big.result > div.fresh.rollbody > div.dicerow > span.die.lg.ok
+  background: var(--accent-soft)
+  border: 2px solid var(--accent)
+  border-radius: 11px
+  box-sizing: border-box
+  display: grid
+  flex: none
+  gap: 2px
+  grid-template-columns: repeat(3,1fr)
+  grid-template-rows: repeat(3,1fr)
+  height: 50px
+  padding: 8px
+  width: 50px
+div.fresh.rollbody > div.dicerow > span.die.lg.ok > i
+  border-radius: 50%
+  box-sizing: border-box
+div.fresh.rollbody > div.dicerow > span.die.lg.ok > i
+  border-radius: 50%
+  box-sizing: border-box
+div.fresh.rollbody > div.dicerow > span.die.lg.ok > i
+  border-radius: 50%
+  box-sizing: border-box
+div.fresh.rollbody > div.dicerow > span.die.lg.ok > i
+  border-radius: 50%
+  box-sizing: border-box
+div.fresh.rollbody > div.dicerow > span.die.lg.ok > i.on
+  background: var(--accent)
+  border-radius: 50%
+  box-sizing: border-box
+div.fresh.rollbody > div.dicerow > span.die.lg.ok > i
+  border-radius: 50%
+  box-sizing: border-box
+div.fresh.rollbody > div.dicerow > span.die.lg.ok > i
+  border-radius: 50%
+  box-sizing: border-box
+div.fresh.rollbody > div.dicerow > span.die.lg.ok > i
+  border-radius: 50%
+  box-sizing: border-box
+div.fresh.rollbody > div.dicerow > span.die.lg.ok > i
+  border-radius: 50%
+  box-sizing: border-box
+div > div.big.result > div.fresh.rollbody > div.outc
+  box-sizing: border-box
+  font: 800 32px/1 var(--f-display)
+  letter-spacing: .03em
+  text-transform: uppercase
+div.big.result > div.fresh.rollbody > div.outc > small
+  box-sizing: border-box
+  color: var(--muted)
+  font: 700 15px/1 var(--f-mono)
+  letter-spacing: 0
+  margin-left: 6px
+  text-transform: none
+div > div.big.result > div.fresh.rollbody > p.rsub
+  box-sizing: border-box
+  color: var(--muted)
+  font-size: 16px
+  line-height: 1.4
+  margin: 0
+body > div > p.hint
+  box-sizing: border-box
+  color: var(--muted)
+  font-size: 15px
+  margin: 0
+body > div > button.btn
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: var(--accent)
+  border: 2px solid var(--accent)
+  border-radius: 14px
+  box-sizing: border-box
+  color: var(--accent-ink)
+  cursor: pointer
+  display: flex
+  font: 800 23px/1 var(--f-display)
+  gap: 10px
+  justify-content: center
+  letter-spacing: .05em
+  min-height: 62px
+  text-transform: uppercase
+  width: 100%

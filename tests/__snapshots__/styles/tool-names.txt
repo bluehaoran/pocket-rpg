@@ -1,0 +1,482 @@
+body
+  background: var(--bg)
+  box-sizing: border-box
+  color: var(--ink)
+  font: 400 17px/1.4 var(--f-body)
+  height: 100%
+  margin: 0
+  overscroll-behavior: none
+body > div
+  box-sizing: border-box
+body > div > h2
+  box-sizing: border-box
+  font: 800 34px/1 var(--f-display)
+  letter-spacing: .01em
+  margin: 0
+  text-transform: uppercase
+  text-wrap: balance
+body > div > h2 > a.crumb
+  box-sizing: border-box
+  color: var(--accent)
+  display: inline-block
+  margin: -8px 0
+  padding: 8px 0
+  text-decoration: none
+body > div > h2 > span.sep
+  box-sizing: border-box
+  color: var(--muted)
+  margin-inline: .25em
+body > div > div.toggles
+  align-items: start
+  box-sizing: border-box
+  display: grid
+  gap: 10px 16px
+  grid-template-columns: repeat(2,minmax(0,1fr))
+body > div > div.toggles > div.group
+  box-sizing: border-box
+  display: flex
+  flex-direction: column
+  gap: 10px
+div > div.toggles > div.group > div.eyebrow
+  box-sizing: border-box
+  color: var(--muted)
+  font: 700 12px/1.2 var(--f-body)
+  letter-spacing: .12em
+  text-transform: uppercase
+div > div.toggles > div.group > ul.chips
+  box-sizing: border-box
+  display: flex
+  flex-wrap: wrap
+  gap: 6px
+  list-style: none
+  margin: 0
+  padding: 0
+div.toggles > div.group > ul.chips > li
+  box-sizing: border-box
+div.group > ul.chips > li > button.tog
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: var(--accent)
+  border: 2px solid var(--line)
+  border-color: var(--accent)
+  border-radius: 999px
+  box-sizing: border-box
+  color: var(--accent-ink)
+  cursor: pointer
+  display: inline-flex
+  font: 700 15px var(--f-body)
+  min-height: 46px
+  padding: 0 14px
+div.toggles > div.group > ul.chips > li
+  box-sizing: border-box
+div.group > ul.chips > li > button.tog
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 999px
+  box-sizing: border-box
+  color: inherit
+  cursor: pointer
+  display: inline-flex
+  font: 700 15px var(--f-body)
+  min-height: 46px
+  padding: 0 14px
+body > div > div.toggles > div.group
+  box-sizing: border-box
+  display: flex
+  flex-direction: column
+  gap: 10px
+div > div.toggles > div.group > div.eyebrow
+  box-sizing: border-box
+  color: var(--muted)
+  font: 700 12px/1.2 var(--f-body)
+  letter-spacing: .12em
+  text-transform: uppercase
+div > div.toggles > div.group > ul.chips
+  box-sizing: border-box
+  display: flex
+  flex-wrap: wrap
+  gap: 6px
+  list-style: none
+  margin: 0
+  padding: 0
+div.toggles > div.group > ul.chips > li
+  box-sizing: border-box
+div.group > ul.chips > li > button.tog
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: var(--accent)
+  border: 2px solid var(--line)
+  border-color: var(--accent)
+  border-radius: 999px
+  box-sizing: border-box
+  color: var(--accent-ink)
+  cursor: pointer
+  display: inline-flex
+  font: 700 15px var(--f-body)
+  min-height: 46px
+  padding: 0 14px
+div.toggles > div.group > ul.chips > li
+  box-sizing: border-box
+div.group > ul.chips > li > button.tog
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 999px
+  box-sizing: border-box
+  color: inherit
+  cursor: pointer
+  display: inline-flex
+  font: 700 15px var(--f-body)
+  min-height: 46px
+  padding: 0 14px
+body > div > div.fresh.tres
+  -webkit-user-select: none
+  animation: pop .45s ease-out
+  background: var(--surface)
+  border: 2px solid var(--ink)
+  border-radius: 18px
+  box-sizing: border-box
+  display: flex
+  flex-direction: column
+  gap: 12px
+  justify-content: center
+  min-height: 150px
+  padding: 22px 18px 16px
+  user-select: none
+body > div > div.fresh.tres > div.tbig
+  box-sizing: border-box
+  font: 700 34px/1.2 var(--f-body)
+  overflow-wrap: anywhere
+  text-wrap: balance
+div > div.fresh.tres > div.tbig > span
+  box-sizing: border-box
+body > div > div.group
+  box-sizing: border-box
+  display: flex
+  flex-direction: column
+  gap: 10px
+body > div > div.group > div.eyebrow
+  box-sizing: border-box
+  color: var(--muted)
+  font: 700 12px/1.2 var(--f-body)
+  letter-spacing: .12em
+  text-transform: uppercase
+body > div > div.group > ul.chips
+  box-sizing: border-box
+  display: flex
+  flex-wrap: wrap
+  gap: 6px
+  list-style: none
+  margin: 0
+  padding: 0
+div > div.group > ul.chips > li
+  box-sizing: border-box
+div.group > ul.chips > li > button.tog
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: var(--accent)
+  border: 2px solid var(--line)
+  border-color: var(--accent)
+  border-radius: 999px
+  box-sizing: border-box
+  color: var(--accent-ink)
+  cursor: pointer
+  display: inline-flex
+  font: 700 15px var(--f-body)
+  min-height: 46px
+  padding: 0 14px
+div > div.group > ul.chips > li
+  box-sizing: border-box
+div.group > ul.chips > li > button.tog
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 999px
+  box-sizing: border-box
+  color: inherit
+  cursor: pointer
+  display: inline-flex
+  font: 700 15px var(--f-body)
+  min-height: 46px
+  padding: 0 14px
+div > div.group > ul.chips > li
+  box-sizing: border-box
+div.group > ul.chips > li > button.tog
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 999px
+  box-sizing: border-box
+  color: inherit
+  cursor: pointer
+  display: inline-flex
+  font: 700 15px var(--f-body)
+  min-height: 46px
+  padding: 0 14px
+div > div.group > ul.chips > li
+  box-sizing: border-box
+div.group > ul.chips > li > button.tog
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 999px
+  box-sizing: border-box
+  color: inherit
+  cursor: pointer
+  display: inline-flex
+  font: 700 15px var(--f-body)
+  min-height: 46px
+  padding: 0 14px
+body > div > div.group
+  box-sizing: border-box
+  display: flex
+  flex-direction: column
+  gap: 10px
+body > div > div.group > div.eyebrow
+  box-sizing: border-box
+  color: var(--muted)
+  font: 700 12px/1.2 var(--f-body)
+  letter-spacing: .12em
+  text-transform: uppercase
+body > div > div.group > ul.chips
+  box-sizing: border-box
+  display: flex
+  flex-wrap: wrap
+  gap: 6px
+  list-style: none
+  margin: 0
+  padding: 0
+div > div.group > ul.chips > li
+  box-sizing: border-box
+div.group > ul.chips > li > button.tog
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 999px
+  box-sizing: border-box
+  color: inherit
+  cursor: pointer
+  display: inline-flex
+  font: 700 15px var(--f-body)
+  min-height: 46px
+  padding: 0 14px
+div > div.group > ul.chips > li
+  box-sizing: border-box
+div.group > ul.chips > li > button.tog
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 999px
+  box-sizing: border-box
+  color: inherit
+  cursor: pointer
+  display: inline-flex
+  font: 700 15px var(--f-body)
+  min-height: 46px
+  padding: 0 14px
+div > div.group > ul.chips > li
+  box-sizing: border-box
+div.group > ul.chips > li > button.tog
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: var(--accent)
+  border: 2px solid var(--line)
+  border-color: var(--accent)
+  border-radius: 999px
+  box-sizing: border-box
+  color: var(--accent-ink)
+  cursor: pointer
+  display: inline-flex
+  font: 700 15px var(--f-body)
+  min-height: 46px
+  padding: 0 14px
+div > div.group > ul.chips > li
+  box-sizing: border-box
+div.group > ul.chips > li > button.tog
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 999px
+  box-sizing: border-box
+  color: inherit
+  cursor: pointer
+  display: inline-flex
+  font: 700 15px var(--f-body)
+  min-height: 46px
+  padding: 0 14px
+div > div.group > ul.chips > li
+  box-sizing: border-box
+div.group > ul.chips > li > button.tog
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 999px
+  box-sizing: border-box
+  color: inherit
+  cursor: pointer
+  display: inline-flex
+  font: 700 15px var(--f-body)
+  min-height: 46px
+  padding: 0 14px
+div > div.group > ul.chips > li
+  box-sizing: border-box
+div.group > ul.chips > li > button.tog
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 999px
+  box-sizing: border-box
+  color: inherit
+  cursor: pointer
+  display: inline-flex
+  font: 700 15px var(--f-body)
+  min-height: 46px
+  padding: 0 14px
+div > div.group > ul.chips > li
+  box-sizing: border-box
+div.group > ul.chips > li > button.tog
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 999px
+  box-sizing: border-box
+  color: inherit
+  cursor: pointer
+  display: inline-flex
+  font: 700 15px var(--f-body)
+  min-height: 46px
+  padding: 0 14px
+body > div > div.group
+  box-sizing: border-box
+  display: flex
+  flex-direction: column
+  gap: 10px
+body > div > div.group > div.eyebrow
+  box-sizing: border-box
+  color: var(--muted)
+  font: 700 12px/1.2 var(--f-body)
+  letter-spacing: .12em
+  text-transform: uppercase
+body > div > div.group > button.letterbtn
+  align-items: center
+  all: unset
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 14px
+  box-sizing: border-box
+  cursor: pointer
+  display: grid
+  font: 400 17px/1.3 var(--f-body)
+  grid-template-columns: minmax(0,1fr) auto
+  min-height: 58px
+  padding: 0 16px
+div > div.group > button.letterbtn > span.v
+  box-sizing: border-box
+  color: var(--accent)
+  font-size: 20px
+  font-weight: 700
+div > div.group > button.letterbtn > span.chev
+  box-sizing: border-box
+  color: var(--muted)
+  font: 700 18px/1 var(--f-mono)
+body > div > div.dock.one
+  background: var(--bg)
+  border-top: 1px solid var(--line)
+  bottom: -28px
+  box-sizing: border-box
+  display: grid
+  gap: 8px
+  grid-template-columns: 2fr 1fr
+  margin: auto -16px -28px
+  padding: 10px 16px
+  position: sticky
+body > div > div.dock.one > button.btn.reroll
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: var(--surface)
+  border: 2px solid var(--ink)
+  border-color: var(--accent)
+  border-radius: 14px
+  box-sizing: border-box
+  color: var(--accent)
+  cursor: pointer
+  display: flex
+  font: 800 23px/1 var(--f-display)
+  gap: 8px
+  justify-content: center
+  letter-spacing: .05em
+  min-height: 56px
+  text-transform: uppercase
+  width: 100%
+div > div.dock.one > button.btn.reroll > svg.icon
+  box-sizing: border-box
+  flex: none
+  vertical-align: -.2em
+div.dock.one > button.btn.reroll > svg.icon > g
+  box-sizing: border-box
+button.btn.reroll > svg.icon > g > path
+  box-sizing: border-box
+button.btn.reroll > svg.icon > g > path
+  box-sizing: border-box
+button.btn.reroll > svg.icon > g > path
+  box-sizing: border-box
+button.btn.reroll > svg.icon > g > path
+  box-sizing: border-box
+div.dock.one > button.btn.reroll > svg.icon > path
+  box-sizing: border-box
+div.dock.one > button.btn.reroll > svg.icon > g
+  box-sizing: border-box
+button.btn.reroll > svg.icon > g > circle
+  box-sizing: border-box
+button.btn.reroll > svg.icon > g > circle
+  box-sizing: border-box
+button.btn.reroll > svg.icon > g > circle
+  box-sizing: border-box
+button.btn.reroll > svg.icon > g > circle
+  box-sizing: border-box
+button.btn.reroll > svg.icon > g > circle
+  box-sizing: border-box
+body > div > div.dock.one > button.btn.keep
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: var(--accent)
+  border: 2px solid var(--ink)
+  border-color: var(--accent)
+  border-radius: 14px
+  box-sizing: border-box
+  color: var(--accent-ink)
+  cursor: pointer
+  display: flex
+  font: 800 23px/1 var(--f-display)
+  gap: 8px
+  justify-content: center
+  letter-spacing: .05em
+  min-height: 56px
+  text-transform: uppercase
+  width: 100%
+div > div.dock.one > button.btn.keep > svg.icon
+  box-sizing: border-box
+  flex: none
+  vertical-align: -.2em
+div.dock.one > button.btn.keep > svg.icon > path
+  box-sizing: border-box
+body > div > div.dock.one > p.dock-note
+  box-sizing: border-box
+  color: var(--muted)
+  font-size: 13px
+  grid-column: 1/-1
+  line-height: 1.3
+  margin: 0
+  text-align: center

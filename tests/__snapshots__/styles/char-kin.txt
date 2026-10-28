@@ -1,0 +1,411 @@
+body
+  background: var(--bg)
+  box-sizing: border-box
+  color: var(--ink)
+  font: 400 17px/1.4 var(--f-body)
+  height: 100%
+  margin: 0
+  overscroll-behavior: none
+body > div
+  box-sizing: border-box
+body > div > div.toolhead
+  align-items: center
+  box-sizing: border-box
+  display: flex
+  gap: 12px
+  justify-content: space-between
+  margin-bottom: -10px
+body > div > div.toolhead > a.back
+  background: none
+  border: 0
+  box-sizing: border-box
+  color: var(--accent)
+  font: 700 17px var(--f-body)
+  min-height: 44px
+  padding: 0 4px 0 0
+  text-decoration: none
+body > div > div.toolhead > span.eyebrow
+  box-sizing: border-box
+  color: var(--muted)
+  font: 700 12px/1.2 var(--f-body)
+  letter-spacing: .12em
+  text-transform: uppercase
+body > div > div.pnav
+  align-items: stretch
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 14px
+  box-sizing: border-box
+  display: grid
+  grid-template-columns: 64px minmax(0,1fr) 64px
+  min-height: 60px
+  overflow: hidden
+body > div > div.pnav > button
+  -webkit-tap-highlight-color: transparent
+  background: var(--sunk)
+  border: 0
+  box-sizing: border-box
+  color: inherit
+  cursor: not-allowed
+  font: 700 26px/1 var(--f-mono)
+  opacity: .35
+div > div.pnav > button > svg.icon
+  box-sizing: border-box
+  flex: none
+  vertical-align: -.2em
+div.pnav > button > svg.icon > path
+  box-sizing: border-box
+div.pnav > button > svg.icon > path
+  box-sizing: border-box
+body > div > div.pnav > span
+  align-items: center
+  box-sizing: border-box
+  display: flex
+  gap: 8px
+  justify-content: center
+div > div.pnav > span > span.eyebrow
+  box-sizing: border-box
+  color: var(--muted)
+  font: 700 12px/1.2 var(--f-body)
+  letter-spacing: .12em
+  text-transform: uppercase
+div > div.pnav > span > b
+  box-sizing: border-box
+  font: 700 19px/1 var(--f-mono)
+div > div.pnav > span > span.of
+  box-sizing: border-box
+  color: var(--muted)
+  font-size: 15px
+body > div > div.pnav > button
+  -webkit-tap-highlight-color: transparent
+  background: var(--sunk)
+  border: 0
+  box-sizing: border-box
+  color: inherit
+  cursor: pointer
+  font: 700 26px/1 var(--f-mono)
+div > div.pnav > button > svg.icon
+  box-sizing: border-box
+  flex: none
+  vertical-align: -.2em
+div.pnav > button > svg.icon > path
+  box-sizing: border-box
+div.pnav > button > svg.icon > path
+  box-sizing: border-box
+body > div > div.group
+  box-sizing: border-box
+  display: flex
+  flex-direction: column
+  gap: 10px
+body > div > div.group > div.eyebrow
+  box-sizing: border-box
+  color: var(--muted)
+  font: 700 12px/1.2 var(--f-body)
+  letter-spacing: .12em
+  text-transform: uppercase
+body > div > div.group > div.gmrow
+  align-items: center
+  box-sizing: border-box
+  display: grid
+  gap: 8px
+  grid-template-columns: minmax(0,1fr) 58px
+div > div.group > div.gmrow > div.gmseg.seg
+  box-sizing: border-box
+  display: grid
+  gap: 6px
+  grid-auto-columns: 1fr
+  grid-auto-flow: column
+div.group > div.gmrow > div.gmseg.seg > button
+  -webkit-tap-highlight-color: transparent
+  background: var(--accent)
+  border: 2px solid var(--line)
+  border-color: var(--accent)
+  border-radius: 12px
+  box-sizing: border-box
+  color: var(--accent-ink)
+  cursor: pointer
+  font: 700 22px/1 var(--f-mono)
+  font-variant-numeric: tabular-nums
+  min-height: 58px
+div.group > div.gmrow > div.gmseg.seg > button
+  -webkit-tap-highlight-color: transparent
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 12px
+  box-sizing: border-box
+  color: inherit
+  cursor: pointer
+  font: 700 22px/1 var(--f-mono)
+  font-variant-numeric: tabular-nums
+  min-height: 58px
+div.group > div.gmrow > div.gmseg.seg > button
+  -webkit-tap-highlight-color: transparent
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 12px
+  box-sizing: border-box
+  color: inherit
+  cursor: pointer
+  font: 700 22px/1 var(--f-mono)
+  font-variant-numeric: tabular-nums
+  min-height: 58px
+div.group > div.gmrow > div.gmseg.seg > button
+  -webkit-tap-highlight-color: transparent
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 12px
+  box-sizing: border-box
+  color: inherit
+  cursor: pointer
+  font: 700 22px/1 var(--f-mono)
+  font-variant-numeric: tabular-nums
+  min-height: 58px
+div.group > div.gmrow > div.gmseg.seg > button
+  -webkit-tap-highlight-color: transparent
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 12px
+  box-sizing: border-box
+  color: inherit
+  cursor: pointer
+  font: 700 22px/1 var(--f-mono)
+  font-variant-numeric: tabular-nums
+  min-height: 58px
+div.group > div.gmrow > div.gmseg.seg > button
+  -webkit-tap-highlight-color: transparent
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 12px
+  box-sizing: border-box
+  color: inherit
+  cursor: pointer
+  font: 700 22px/1 var(--f-mono)
+  font-variant-numeric: tabular-nums
+  min-height: 58px
+div.group > div.gmrow > div.gmseg.seg > button
+  -webkit-tap-highlight-color: transparent
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 12px
+  box-sizing: border-box
+  color: inherit
+  cursor: pointer
+  font: 700 22px/1 var(--f-mono)
+  font-variant-numeric: tabular-nums
+  min-height: 58px
+div > div.group > div.gmrow > button.dice
+  -webkit-tap-highlight-color: transparent
+  background: var(--sunk)
+  border: 2px solid var(--line)
+  border-radius: 12px
+  box-sizing: border-box
+  color: inherit
+  cursor: pointer
+  display: grid
+  font: inherit
+  height: 58px
+  place-items: center
+  width: 58px
+div.group > div.gmrow > button.dice > span.die.sm
+  background: var(--sunk)
+  border: 1px solid var(--line)
+  border-radius: 7px
+  box-sizing: border-box
+  display: grid
+  flex: none
+  gap: 2px
+  grid-template-columns: repeat(3,1fr)
+  grid-template-rows: repeat(3,1fr)
+  height: 30px
+  padding: 5px
+  width: 30px
+div.gmrow > button.dice > span.die.sm > i.on
+  background: var(--ink)
+  border-radius: 50%
+  box-sizing: border-box
+div.gmrow > button.dice > span.die.sm > i
+  border-radius: 50%
+  box-sizing: border-box
+div.gmrow > button.dice > span.die.sm > i.on
+  background: var(--ink)
+  border-radius: 50%
+  box-sizing: border-box
+div.gmrow > button.dice > span.die.sm > i
+  border-radius: 50%
+  box-sizing: border-box
+div.gmrow > button.dice > span.die.sm > i.on
+  background: var(--ink)
+  border-radius: 50%
+  box-sizing: border-box
+div.gmrow > button.dice > span.die.sm > i
+  border-radius: 50%
+  box-sizing: border-box
+div.gmrow > button.dice > span.die.sm > i.on
+  background: var(--ink)
+  border-radius: 50%
+  box-sizing: border-box
+div.gmrow > button.dice > span.die.sm > i
+  border-radius: 50%
+  box-sizing: border-box
+div.gmrow > button.dice > span.die.sm > i.on
+  background: var(--ink)
+  border-radius: 50%
+  box-sizing: border-box
+body > div > div.pcard
+  border-bottom: 0
+  box-sizing: border-box
+  display: flex
+  flex-direction: column
+  gap: 10px
+  padding-bottom: 18px
+body > div > div.pcard > section.group
+  box-sizing: border-box
+  display: flex
+  flex-direction: column
+  gap: 10px
+div > div.pcard > section.group > div.crew.sentence
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 18px
+  box-sizing: border-box
+  display: flex
+  flex-direction: column
+  font: 700 25px/1.4 var(--f-body)
+  gap: 12px
+  padding: 20px 18px
+  text-wrap: pretty
+div.pcard > section.group > div.crew.sentence > p
+  box-sizing: border-box
+  line-height: 1.5
+  margin: 0
+section.group > div.crew.sentence > p > span.nm
+  box-sizing: border-box
+  font-size: 32px
+  line-height: 1.3
+div.crew.sentence > p > span.nm > b.pv
+  box-sizing: border-box
+  font-weight: 700
+section.group > div.crew.sentence > p > span
+  box-sizing: border-box
+div.crew.sentence > p > span > b.pv
+  box-sizing: border-box
+  font-weight: 700
+div.pcard > section.group > div.crew.sentence > div.stats
+  box-sizing: border-box
+  display: flex
+  flex-wrap: wrap
+  gap: 6px
+section.group > div.crew.sentence > div.stats > span.stat
+  align-items: baseline
+  background: var(--sunk)
+  border-radius: 999px
+  box-sizing: border-box
+  color: var(--muted)
+  display: flex
+  font: 400 13px/1 var(--f-body)
+  gap: 6px
+  padding: 6px 10px
+div.crew.sentence > div.stats > span.stat > b
+  box-sizing: border-box
+  color: var(--ink)
+  font: 700 16px/1 var(--f-mono)
+body > div > div.pcard > section.group
+  box-sizing: border-box
+  display: flex
+  flex-direction: column
+  gap: 10px
+div > div.pcard > section.group > div.eyebrow
+  box-sizing: border-box
+  color: var(--muted)
+  font: 700 12px/1.2 var(--f-body)
+  letter-spacing: .12em
+  text-transform: uppercase
+div > div.pcard > section.group > div.card
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 18px
+  box-sizing: border-box
+  display: flex
+  flex-direction: column
+  padding: 6px 18px
+div.pcard > section.group > div.card > div.skills
+  box-sizing: border-box
+  display: flex
+  flex-direction: column
+section.group > div.card > div.skills > div.skill
+  align-items: center
+  all: unset
+  border-top: 0
+  box-sizing: border-box
+  display: grid
+  font: 700 18px/1.25 var(--f-body)
+  gap: 10px
+  grid-template-columns: auto minmax(0,1fr) auto auto
+  min-height: 58px
+  padding: 8px 0
+div.card > div.skills > div.skill > span.tw
+  box-sizing: border-box
+  color: var(--muted)
+  font: 500 18px/1 var(--f-mono)
+  padding-left: 6px
+div.card > div.skills > div.skill > span.sn
+  box-sizing: border-box
+  min-width: 0
+div.card > div.skills > div.skill > span.lv
+  align-items: baseline
+  background: var(--sunk)
+  border-radius: 9px
+  box-sizing: border-box
+  display: flex
+  font: 700 20px/1 var(--f-mono)
+  gap: 2px
+  padding: 7px 10px
+div.card > div.skills > div.skill > span
+  box-sizing: border-box
+body > div > div.pcard > div.card.skills
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 18px
+  box-sizing: border-box
+  display: flex
+  flex-direction: column
+  padding: 6px 18px
+div > div.pcard > div.card.skills > button.skill.sroll
+  align-items: center
+  all: unset
+  border-top: 0
+  box-sizing: border-box
+  cursor: pointer
+  display: grid
+  font: 700 18px/1.25 var(--f-body)
+  gap: 10px
+  grid-template-columns: auto minmax(0,1fr) auto auto
+  min-height: 58px
+  padding: 8px 0
+  padding-left: calc(var(--dep,0) * 18px)
+div.pcard > div.card.skills > button.skill.sroll > span.tw
+  box-sizing: border-box
+  color: var(--muted)
+  font: 500 18px/1 var(--f-mono)
+  padding-left: 6px
+div.pcard > div.card.skills > button.skill.sroll > span.sn
+  box-sizing: border-box
+  min-width: 0
+div.pcard > div.card.skills > button.skill.sroll > span.lv
+  align-items: baseline
+  background: var(--sunk)
+  border-radius: 9px
+  box-sizing: border-box
+  display: flex
+  font: 700 20px/1 var(--f-mono)
+  gap: 2px
+  padding: 7px 10px
+div.pcard > div.card.skills > button.skill.sroll > span.go
+  background: var(--accent)
+  border-radius: 9px
+  box-sizing: border-box
+  color: var(--accent-ink)
+  font: 800 15px/1 var(--f-display)
+  letter-spacing: .08em
+  padding: 9px 12px
+  text-transform: uppercase

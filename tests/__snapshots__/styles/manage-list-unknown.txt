@@ -1,0 +1,39 @@
+body
+  background: var(--bg)
+  box-sizing: border-box
+  color: var(--ink)
+  font: 400 17px/1.4 var(--f-body)
+  height: 100%
+  margin: 0
+  overscroll-behavior: none
+body > div
+  box-sizing: border-box
+body > div > section.group
+  box-sizing: border-box
+  display: flex
+  flex-direction: column
+  gap: 10px
+body > div > section.group > h2
+  box-sizing: border-box
+  font: 800 34px/1 var(--f-display)
+  letter-spacing: .01em
+  margin: 0
+  text-transform: uppercase
+  text-wrap: balance
+div > section.group > h2 > a.crumb
+  box-sizing: border-box
+  color: var(--accent)
+  display: inline-block
+  margin: -8px 0
+  padding: 8px 0
+  text-decoration: none
+div > section.group > h2 > span.sep
+  box-sizing: border-box
+  color: var(--muted)
+  margin-inline: .25em
+body > div > p.empty-note
+  box-sizing: border-box
+  color: var(--muted)
+  font-size: 15px
+  margin: 0
+  padding: 14px 0

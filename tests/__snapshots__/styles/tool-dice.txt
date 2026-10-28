@@ -1,0 +1,352 @@
+body
+  background: var(--bg)
+  box-sizing: border-box
+  color: var(--ink)
+  font: 400 17px/1.4 var(--f-body)
+  height: 100%
+  margin: 0
+  overscroll-behavior: none
+body > div
+  box-sizing: border-box
+body > div > h2
+  box-sizing: border-box
+  font: 800 34px/1 var(--f-display)
+  letter-spacing: .01em
+  margin: 0
+  text-transform: uppercase
+  text-wrap: balance
+body > div > h2 > a.crumb
+  box-sizing: border-box
+  color: var(--accent)
+  display: inline-block
+  margin: -8px 0
+  padding: 8px 0
+  text-decoration: none
+body > div > h2 > span.sep
+  box-sizing: border-box
+  color: var(--muted)
+  margin-inline: .25em
+body > div > div.fresh.tres
+  -webkit-user-select: none
+  animation: pop .45s ease-out
+  background: var(--surface)
+  border: 2px solid var(--ink)
+  border-radius: 18px
+  box-sizing: border-box
+  display: flex
+  flex-direction: column
+  gap: 12px
+  justify-content: center
+  min-height: 150px
+  padding: 22px 18px 16px
+  user-select: none
+body > div > div.fresh.tres > div.num.tbig
+  box-sizing: border-box
+  font: 700 72px/1 var(--f-mono)
+  font-variant-numeric: tabular-nums
+  overflow-wrap: anywhere
+  text-wrap: balance
+body > div > div.fresh.tres > div.dicerow
+  align-items: center
+  box-sizing: border-box
+  display: flex
+  flex-wrap: wrap
+  gap: 8px
+div > div.fresh.tres > div.dicerow > span.die.lg
+  background: var(--sunk)
+  border: 1px solid var(--line)
+  border-radius: 11px
+  box-sizing: border-box
+  display: grid
+  flex: none
+  gap: 2px
+  grid-template-columns: repeat(3,1fr)
+  grid-template-rows: repeat(3,1fr)
+  height: 50px
+  padding: 8px
+  width: 50px
+div.fresh.tres > div.dicerow > span.die.lg > i
+  border-radius: 50%
+  box-sizing: border-box
+div.fresh.tres > div.dicerow > span.die.lg > i
+  border-radius: 50%
+  box-sizing: border-box
+div.fresh.tres > div.dicerow > span.die.lg > i
+  border-radius: 50%
+  box-sizing: border-box
+div.fresh.tres > div.dicerow > span.die.lg > i
+  border-radius: 50%
+  box-sizing: border-box
+div.fresh.tres > div.dicerow > span.die.lg > i.on
+  background: var(--ink)
+  border-radius: 50%
+  box-sizing: border-box
+div.fresh.tres > div.dicerow > span.die.lg > i
+  border-radius: 50%
+  box-sizing: border-box
+div.fresh.tres > div.dicerow > span.die.lg > i
+  border-radius: 50%
+  box-sizing: border-box
+div.fresh.tres > div.dicerow > span.die.lg > i
+  border-radius: 50%
+  box-sizing: border-box
+div.fresh.tres > div.dicerow > span.die.lg > i
+  border-radius: 50%
+  box-sizing: border-box
+body > div > div.fresh.tres > div.rfoot
+  box-sizing: border-box
+  color: var(--muted)
+  display: flex
+  flex-wrap: wrap
+  font: 500 12px/1.3 var(--f-mono)
+  gap: 4px 12px
+body > div > div.group
+  box-sizing: border-box
+  display: flex
+  flex-direction: column
+  gap: 10px
+body > div > div.group > div.eyebrow
+  box-sizing: border-box
+  color: var(--muted)
+  font: 700 12px/1.2 var(--f-body)
+  letter-spacing: .12em
+  text-transform: uppercase
+body > div > div.group > div.stepper
+  align-items: stretch
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 14px
+  box-sizing: border-box
+  display: grid
+  grid-template-columns: 64px minmax(0,1fr) 64px
+  min-height: 64px
+  overflow: hidden
+div > div.group > div.stepper > button
+  -webkit-tap-highlight-color: transparent
+  background: var(--sunk)
+  border: 0
+  box-sizing: border-box
+  color: inherit
+  cursor: not-allowed
+  font: 700 28px/1 var(--f-mono)
+  opacity: .35
+div.group > div.stepper > button > svg.icon
+  box-sizing: border-box
+  flex: none
+  vertical-align: -.2em
+div.stepper > button > svg.icon > path
+  box-sizing: border-box
+div > div.group > div.stepper > output
+  box-sizing: border-box
+  display: grid
+  font: 700 30px/1 var(--f-mono)
+  font-variant-numeric: tabular-nums
+  place-items: center
+div > div.group > div.stepper > button
+  -webkit-tap-highlight-color: transparent
+  background: var(--sunk)
+  border: 0
+  box-sizing: border-box
+  color: inherit
+  cursor: pointer
+  font: 700 28px/1 var(--f-mono)
+div.group > div.stepper > button > svg.icon
+  box-sizing: border-box
+  flex: none
+  vertical-align: -.2em
+div.stepper > button > svg.icon > path
+  box-sizing: border-box
+div.stepper > button > svg.icon > path
+  box-sizing: border-box
+body > div > div.group
+  box-sizing: border-box
+  display: flex
+  flex-direction: column
+  gap: 10px
+body > div > div.group > div.eyebrow
+  box-sizing: border-box
+  color: var(--muted)
+  font: 700 12px/1.2 var(--f-body)
+  letter-spacing: .12em
+  text-transform: uppercase
+body > div > div.group > div.dtype.seg
+  box-sizing: border-box
+  display: grid
+  gap: 6px
+  grid-auto-columns: 1fr
+  grid-auto-flow: row
+  grid-template-columns: repeat(4,1fr)
+div > div.group > div.dtype.seg > button
+  -webkit-tap-highlight-color: transparent
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 12px
+  box-sizing: border-box
+  color: inherit
+  cursor: pointer
+  font: 700 22px/1 var(--f-mono)
+  font-size: 19px
+  font-variant-numeric: tabular-nums
+  min-height: 58px
+div > div.group > div.dtype.seg > button
+  -webkit-tap-highlight-color: transparent
+  background: var(--accent)
+  border: 2px solid var(--line)
+  border-color: var(--accent)
+  border-radius: 12px
+  box-sizing: border-box
+  color: var(--accent-ink)
+  cursor: pointer
+  font: 700 22px/1 var(--f-mono)
+  font-size: 19px
+  font-variant-numeric: tabular-nums
+  min-height: 58px
+div > div.group > div.dtype.seg > button
+  -webkit-tap-highlight-color: transparent
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 12px
+  box-sizing: border-box
+  color: inherit
+  cursor: pointer
+  font: 700 22px/1 var(--f-mono)
+  font-size: 19px
+  font-variant-numeric: tabular-nums
+  min-height: 58px
+div > div.group > div.dtype.seg > button
+  -webkit-tap-highlight-color: transparent
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 12px
+  box-sizing: border-box
+  color: inherit
+  cursor: pointer
+  font: 700 22px/1 var(--f-mono)
+  font-size: 19px
+  font-variant-numeric: tabular-nums
+  min-height: 58px
+div > div.group > div.dtype.seg > button
+  -webkit-tap-highlight-color: transparent
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 12px
+  box-sizing: border-box
+  color: inherit
+  cursor: pointer
+  font: 700 22px/1 var(--f-mono)
+  font-size: 19px
+  font-variant-numeric: tabular-nums
+  min-height: 58px
+div > div.group > div.dtype.seg > button
+  -webkit-tap-highlight-color: transparent
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 12px
+  box-sizing: border-box
+  color: inherit
+  cursor: pointer
+  font: 700 22px/1 var(--f-mono)
+  font-size: 19px
+  font-variant-numeric: tabular-nums
+  min-height: 58px
+div > div.group > div.dtype.seg > button
+  -webkit-tap-highlight-color: transparent
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 12px
+  box-sizing: border-box
+  color: inherit
+  cursor: pointer
+  font: 700 22px/1 var(--f-mono)
+  font-size: 19px
+  font-variant-numeric: tabular-nums
+  min-height: 58px
+body > div > div.dock.one
+  background: var(--bg)
+  border-top: 1px solid var(--line)
+  bottom: -28px
+  box-sizing: border-box
+  display: grid
+  gap: 8px
+  grid-template-columns: 2fr 1fr
+  margin: auto -16px -28px
+  padding: 10px 16px
+  position: sticky
+body > div > div.dock.one > button.btn.reroll
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: var(--surface)
+  border: 2px solid var(--ink)
+  border-color: var(--accent)
+  border-radius: 14px
+  box-sizing: border-box
+  color: var(--accent)
+  cursor: pointer
+  display: flex
+  font: 800 23px/1 var(--f-display)
+  gap: 8px
+  justify-content: center
+  letter-spacing: .05em
+  min-height: 56px
+  text-transform: uppercase
+  width: 100%
+div > div.dock.one > button.btn.reroll > svg.icon
+  box-sizing: border-box
+  flex: none
+  vertical-align: -.2em
+div.dock.one > button.btn.reroll > svg.icon > g
+  box-sizing: border-box
+button.btn.reroll > svg.icon > g > path
+  box-sizing: border-box
+button.btn.reroll > svg.icon > g > path
+  box-sizing: border-box
+button.btn.reroll > svg.icon > g > path
+  box-sizing: border-box
+button.btn.reroll > svg.icon > g > path
+  box-sizing: border-box
+div.dock.one > button.btn.reroll > svg.icon > path
+  box-sizing: border-box
+div.dock.one > button.btn.reroll > svg.icon > g
+  box-sizing: border-box
+button.btn.reroll > svg.icon > g > circle
+  box-sizing: border-box
+button.btn.reroll > svg.icon > g > circle
+  box-sizing: border-box
+button.btn.reroll > svg.icon > g > circle
+  box-sizing: border-box
+button.btn.reroll > svg.icon > g > circle
+  box-sizing: border-box
+button.btn.reroll > svg.icon > g > circle
+  box-sizing: border-box
+body > div > div.dock.one > button.btn.keep
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: var(--accent)
+  border: 2px solid var(--ink)
+  border-color: var(--accent)
+  border-radius: 14px
+  box-sizing: border-box
+  color: var(--accent-ink)
+  cursor: pointer
+  display: flex
+  font: 800 23px/1 var(--f-display)
+  gap: 8px
+  justify-content: center
+  letter-spacing: .05em
+  min-height: 56px
+  text-transform: uppercase
+  width: 100%
+div > div.dock.one > button.btn.keep > svg.icon
+  box-sizing: border-box
+  flex: none
+  vertical-align: -.2em
+div.dock.one > button.btn.keep > svg.icon > path
+  box-sizing: border-box
+body > div > div.dock.one > p.dock-note
+  box-sizing: border-box
+  color: var(--muted)
+  font-size: 13px
+  grid-column: 1/-1
+  line-height: 1.3
+  margin: 0
+  text-align: center

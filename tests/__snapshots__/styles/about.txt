@@ -1,0 +1,41 @@
+body
+  background: var(--bg)
+  box-sizing: border-box
+  color: var(--ink)
+  font: 400 17px/1.4 var(--f-body)
+  height: 100%
+  margin: 0
+  overscroll-behavior: none
+body > div
+  box-sizing: border-box
+body > div > section.about.group
+  box-sizing: border-box
+  display: flex
+  flex-direction: column
+  gap: 10px
+  max-height: 55vh
+  overflow-y: auto
+body > div > section.about.group > h2
+  box-sizing: border-box
+  font: 800 34px/1 var(--f-display)
+  letter-spacing: .01em
+  margin: 0
+  text-transform: uppercase
+  text-wrap: balance
+body > div > section.about.group > p
+  box-sizing: border-box
+  margin: 0
+body > div > section.about.group > p
+  box-sizing: border-box
+  margin: 0
+body > div > section.about.group > p
+  box-sizing: border-box
+  margin: 0
+body > div > section.about.group > p
+  box-sizing: border-box
+  margin: 0
+body > div > section.about.group > p.hint
+  box-sizing: border-box
+  color: var(--muted)
+  font-size: 15px
+  margin: 0

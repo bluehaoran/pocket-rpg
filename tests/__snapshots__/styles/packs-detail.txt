@@ -1,0 +1,94 @@
+body
+  background: var(--bg)
+  box-sizing: border-box
+  color: var(--ink)
+  font: 400 17px/1.4 var(--f-body)
+  height: 100%
+  margin: 0
+  overscroll-behavior: none
+body > div
+  box-sizing: border-box
+body > div > div.toolhead
+  align-items: center
+  box-sizing: border-box
+  display: flex
+  gap: 12px
+  justify-content: space-between
+  margin-bottom: -10px
+body > div > div.toolhead > a.back
+  background: none
+  border: 0
+  box-sizing: border-box
+  color: var(--accent)
+  font: 700 17px var(--f-body)
+  min-height: 44px
+  padding: 0 4px 0 0
+  text-decoration: none
+body > div > section.group
+  box-sizing: border-box
+  display: flex
+  flex-direction: column
+  gap: 10px
+body > div > section.group > div.eyebrow
+  box-sizing: border-box
+  color: var(--muted)
+  font: 700 12px/1.2 var(--f-body)
+  letter-spacing: .12em
+  text-transform: uppercase
+body > div > section.group > h2
+  box-sizing: border-box
+  font: 800 34px/1 var(--f-display)
+  letter-spacing: .01em
+  margin: 0
+  text-transform: uppercase
+  text-wrap: balance
+body > div > section.group > p.hint
+  box-sizing: border-box
+  color: var(--muted)
+  font-size: 15px
+  margin: 0
+body > div > section.group
+  box-sizing: border-box
+  display: flex
+  flex-direction: column
+  gap: 10px
+body > div > section.group > div.eyebrow
+  box-sizing: border-box
+  color: var(--muted)
+  font: 700 12px/1.2 var(--f-body)
+  letter-spacing: .12em
+  text-transform: uppercase
+body > div > section.group > ul.check
+  box-sizing: border-box
+  display: flex
+  flex-direction: column
+  font-size: 15px
+  gap: 6px
+  list-style: none
+  margin: 0
+  padding: 0
+div > section.group > ul.check > li
+  background: var(--surface)
+  border: 1px solid var(--line)
+  border-radius: 10px
+  box-sizing: border-box
+  padding: 10px 12px
+body > div > section.group
+  box-sizing: border-box
+  display: flex
+  flex-direction: column
+  gap: 10px
+body > div > section.group > div.eyebrow
+  box-sizing: border-box
+  color: var(--muted)
+  font: 700 12px/1.2 var(--f-body)
+  letter-spacing: .12em
+  text-transform: uppercase
+body > div > section.group > pre.card
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 18px
+  box-sizing: border-box
+  display: flex
+  flex-direction: column
+  padding: 6px 18px

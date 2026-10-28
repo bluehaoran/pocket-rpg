@@ -1,0 +1,730 @@
+body
+  background: var(--bg)
+  box-sizing: border-box
+  color: var(--ink)
+  font: 400 17px/1.4 var(--f-body)
+  height: 100%
+  margin: 0
+  overscroll-behavior: none
+body > div
+  box-sizing: border-box
+body > div > div.app
+  background: var(--bg)
+  box-sizing: border-box
+  display: grid
+  grid-template-rows: auto minmax(0,1fr) auto
+  height: 100%
+  margin: 0 auto
+  max-width: 460px
+body > div > div.app > header.gutter.top
+  align-items: center
+  border-bottom: 1px solid var(--line)
+  box-sizing: border-box
+  display: flex
+  gap: 12px
+  justify-content: space-between
+  padding-block: 12px
+  padding-left: max(16px,env(safe-area-inset-left,0px))
+  padding-right: max(16px,env(safe-area-inset-right,0px))
+div > div.app > header.gutter.top > div.logo
+  align-items: center
+  box-sizing: border-box
+  display: flex
+  font: 800 24px/1 var(--f-display)
+  letter-spacing: .02em
+  text-transform: uppercase
+div.app > header.gutter.top > div.logo > svg.mark
+  box-sizing: border-box
+  flex: none
+header.gutter.top > div.logo > svg.mark > defs
+  box-sizing: border-box
+div.logo > svg.mark > defs > mask
+  box-sizing: border-box
+svg.mark > defs > mask > rect
+  box-sizing: border-box
+svg.mark > defs > mask > path
+  box-sizing: border-box
+header.gutter.top > div.logo > svg.mark > g
+  box-sizing: border-box
+div.logo > svg.mark > g > g
+  box-sizing: border-box
+svg.mark > g > g > rect
+  box-sizing: border-box
+svg.mark > g > g > g
+  box-sizing: border-box
+g > g > g > circle
+  box-sizing: border-box
+g > g > g > circle
+  box-sizing: border-box
+g > g > g > circle
+  box-sizing: border-box
+g > g > g > circle
+  box-sizing: border-box
+g > g > g > circle
+  box-sizing: border-box
+header.gutter.top > div.logo > svg.mark > g
+  box-sizing: border-box
+div.logo > svg.mark > g > path
+  box-sizing: border-box
+div.logo > svg.mark > g > path
+  box-sizing: border-box
+div.app > header.gutter.top > div.logo > span
+  box-sizing: border-box
+header.gutter.top > div.logo > span > b
+  box-sizing: border-box
+  color: var(--accent)
+  font-weight: inherit
+div > div.app > header.gutter.top > div.hdr
+  align-items: center
+  box-sizing: border-box
+  display: flex
+  gap: 10px
+  min-width: 0
+div.app > header.gutter.top > div.hdr > div.chip
+  box-sizing: border-box
+  color: var(--muted)
+  font: 500 12px/1.3 var(--f-mono)
+  min-width: 0
+  text-align: right
+div.app > header.gutter.top > div.hdr > button.menubtn
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 12px
+  box-sizing: border-box
+  color: inherit
+  cursor: pointer
+  display: flex
+  flex: none
+  flex-direction: column
+  font: inherit
+  gap: 4px
+  height: 44px
+  justify-content: center
+  width: 44px
+header.gutter.top > div.hdr > button.menubtn > i
+  background: var(--ink)
+  border-radius: 2px
+  box-sizing: border-box
+  display: block
+  height: 2.5px
+  width: 18px
+header.gutter.top > div.hdr > button.menubtn > i
+  background: var(--ink)
+  border-radius: 2px
+  box-sizing: border-box
+  display: block
+  height: 2.5px
+  width: 18px
+header.gutter.top > div.hdr > button.menubtn > i
+  background: var(--ink)
+  border-radius: 2px
+  box-sizing: border-box
+  display: block
+  height: 2.5px
+  width: 18px
+body > div > div.app > main.gutter
+  -webkit-overflow-scrolling: touch
+  box-sizing: border-box
+  display: flex
+  flex-direction: column
+  gap: 22px
+  overflow-y: auto
+  overscroll-behavior: contain
+  padding-block: 18px 28px
+  padding-left: max(16px,env(safe-area-inset-left,0px))
+  padding-right: max(16px,env(safe-area-inset-right,0px))
+div > div.app > main.gutter > section.mock
+  box-sizing: border-box
+  flex: none
+div.app > main.gutter > section.mock > div.eyebrow
+  box-sizing: border-box
+  color: var(--muted)
+  font: 700 12px/1.2 var(--f-body)
+  letter-spacing: .12em
+  text-transform: uppercase
+div.app > main.gutter > section.mock > ul.chips
+  box-sizing: border-box
+  display: flex
+  flex-wrap: wrap
+  gap: 6px
+  list-style: none
+  margin: 0
+  padding: 0
+main.gutter > section.mock > ul.chips > li
+  box-sizing: border-box
+section.mock > ul.chips > li > button.tog
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: var(--accent)
+  border: 2px solid var(--line)
+  border-color: var(--accent)
+  border-radius: 999px
+  box-sizing: border-box
+  color: var(--accent-ink)
+  cursor: pointer
+  display: inline-flex
+  font: 700 15px var(--f-body)
+  min-height: 46px
+  padding: 0 14px
+main.gutter > section.mock > ul.chips > li
+  box-sizing: border-box
+section.mock > ul.chips > li > button.tog
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 999px
+  box-sizing: border-box
+  color: inherit
+  cursor: pointer
+  display: inline-flex
+  font: 700 15px var(--f-body)
+  min-height: 46px
+  padding: 0 14px
+main.gutter > section.mock > ul.chips > li
+  box-sizing: border-box
+section.mock > ul.chips > li > button.tog
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 999px
+  box-sizing: border-box
+  color: inherit
+  cursor: pointer
+  display: inline-flex
+  font: 700 15px var(--f-body)
+  min-height: 46px
+  padding: 0 14px
+div > div.app > main.gutter > section.group
+  box-sizing: border-box
+  display: flex
+  flex: none
+  flex-direction: column
+  gap: 10px
+div.app > main.gutter > section.group > div.eyebrow
+  box-sizing: border-box
+  color: var(--muted)
+  font: 700 12px/1.2 var(--f-body)
+  letter-spacing: .12em
+  text-transform: uppercase
+div.app > main.gutter > section.group > div.card.story
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 18px
+  box-sizing: border-box
+  display: flex
+  flex-direction: column
+  padding: 6px 18px
+main.gutter > section.group > div.card.story > div.drows
+  border-top: 1px solid var(--line)
+  box-sizing: border-box
+  display: flex
+  flex-direction: column
+section.group > div.card.story > div.drows > button.drow
+  align-items: center
+  all: unset
+  border-bottom: 1px solid var(--line)
+  cursor: pointer
+  display: grid
+  font: 400 17px/1.3 var(--f-body)
+  gap: 2px 12px
+  grid-template-columns: minmax(0,1fr) auto
+  padding: 10px 0
+div.card.story > div.drows > button.drow > span.eyebrow
+  box-sizing: border-box
+  color: var(--muted)
+  font: 700 12px/1.2 var(--f-body)
+  grid-column: 1
+  letter-spacing: .12em
+  text-transform: uppercase
+div.card.story > div.drows > button.drow > span.v
+  box-sizing: border-box
+  color: var(--accent)
+  font-weight: 700
+  grid-column: 1
+div.card.story > div.drows > button.drow > span.chev
+  box-sizing: border-box
+  color: var(--muted)
+  font: 700 18px/1 var(--f-mono)
+  grid-column: 2
+  grid-row: 1/span 2
+section.group > div.card.story > div.drows > button.drow
+  align-items: center
+  all: unset
+  border-bottom: 0
+  cursor: pointer
+  display: grid
+  font: 400 17px/1.3 var(--f-body)
+  gap: 2px 12px
+  grid-template-columns: minmax(0,1fr) auto
+  padding: 10px 0
+div.card.story > div.drows > button.drow > span.eyebrow
+  box-sizing: border-box
+  color: var(--muted)
+  font: 700 12px/1.2 var(--f-body)
+  grid-column: 1
+  letter-spacing: .12em
+  text-transform: uppercase
+div.card.story > div.drows > button.drow > span.v
+  box-sizing: border-box
+  color: var(--accent)
+  font-weight: 700
+  grid-column: 1
+div.card.story > div.drows > button.drow > span.chev
+  box-sizing: border-box
+  color: var(--muted)
+  font: 700 18px/1 var(--f-mono)
+  grid-column: 2
+  grid-row: 1/span 2
+div.app > main.gutter > section.group > ul.chips.gchips
+  box-sizing: border-box
+  display: flex
+  flex-wrap: wrap
+  gap: 6px
+  list-style: none
+  margin: 0
+  padding: 0
+main.gutter > section.group > ul.chips.gchips > li
+  box-sizing: border-box
+section.group > ul.chips.gchips > li > a.tog
+  align-items: center
+  background: var(--sunk)
+  border: 2px solid var(--line)
+  border-color: var(--sunk)
+  border-radius: 999px
+  box-sizing: border-box
+  color: inherit
+  display: inline-flex
+  font: 700 15px var(--f-body)
+  min-height: 46px
+  padding: 0 14px
+  text-decoration: none
+div > div.app > main.gutter > section.group
+  box-sizing: border-box
+  display: flex
+  flex: none
+  flex-direction: column
+  gap: 10px
+div.app > main.gutter > section.group > div.eyebrow
+  box-sizing: border-box
+  color: var(--muted)
+  font: 700 12px/1.2 var(--f-body)
+  letter-spacing: .12em
+  text-transform: uppercase
+div.app > main.gutter > section.group > div.compact.pcard
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-bottom: 0
+  border-radius: 18px
+  box-sizing: border-box
+  display: flex
+  flex-direction: column
+  gap: 10px
+  padding: 4px 14px 14px
+  padding-bottom: 18px
+main.gutter > section.group > div.compact.pcard > a.prow
+  align-items: center
+  all: unset
+  border-top: 0
+  box-sizing: border-box
+  cursor: pointer
+  display: grid
+  gap: 8px 10px
+  grid-template-columns: minmax(0,1fr) auto
+  min-height: 64px
+  padding: 10px 0 8px
+section.group > div.compact.pcard > a.prow > span.pn
+  box-sizing: border-box
+div.compact.pcard > a.prow > span.pn > b
+  box-sizing: border-box
+  display: block
+  font-size: 20px
+div.compact.pcard > a.prow > span.pn > small
+  box-sizing: border-box
+  color: var(--muted)
+  font-size: 14px
+section.group > div.compact.pcard > a.prow > span.stats
+  box-sizing: border-box
+  display: flex
+  flex-wrap: wrap
+  gap: 6px
+  grid-column: 1
+div.compact.pcard > a.prow > span.stats > span.stat
+  align-items: baseline
+  background: var(--sunk)
+  border-radius: 999px
+  box-sizing: border-box
+  color: var(--muted)
+  display: flex
+  font: 400 13px/1 var(--f-body)
+  gap: 6px
+  padding: 6px 10px
+a.prow > span.stats > span.stat > b
+  box-sizing: border-box
+  color: var(--ink)
+  font: 700 16px/1 var(--f-mono)
+section.group > div.compact.pcard > a.prow > span.chev
+  box-sizing: border-box
+  color: var(--muted)
+  font: 700 20px/1 var(--f-mono)
+  grid-column: 2
+  grid-row: 1/span 2
+main.gutter > section.group > div.compact.pcard > div.rollbox
+  box-sizing: border-box
+section.group > div.compact.pcard > div.rollbox > ul.chips
+  box-sizing: border-box
+  display: flex
+  flex-wrap: wrap
+  gap: 6px
+  list-style: none
+  margin: 0
+  padding: 0
+div.compact.pcard > div.rollbox > ul.chips > li
+  box-sizing: border-box
+div.rollbox > ul.chips > li > button.tog
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 999px
+  box-sizing: border-box
+  color: inherit
+  cursor: pointer
+  display: inline-flex
+  font: 700 15px var(--f-body)
+  font-size: 14px
+  min-height: 44px
+  padding: 0 12px
+div.compact.pcard > div.rollbox > ul.chips > li
+  box-sizing: border-box
+div.rollbox > ul.chips > li > button.tog
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 999px
+  box-sizing: border-box
+  color: inherit
+  cursor: pointer
+  display: inline-flex
+  font: 700 15px var(--f-body)
+  font-size: 14px
+  min-height: 44px
+  padding: 0 12px
+section.group > div.compact.pcard > div.rollbox > div.checks.compact
+  box-sizing: border-box
+  display: grid
+  gap: 8px
+  grid-template-columns: 1fr 1fr
+div.compact.pcard > div.rollbox > div.checks.compact > button.chk
+  -webkit-tap-highlight-color: transparent
+  background: var(--accent)
+  border: 2px solid var(--accent)
+  border-radius: 16px
+  box-sizing: border-box
+  color: var(--accent-ink)
+  cursor: pointer
+  display: flex
+  flex-direction: column
+  font: inherit
+  gap: 6px
+  justify-content: space-between
+  min-height: 76px
+  min-width: 0
+  padding: 10px 12px
+  text-align: left
+div.rollbox > div.checks.compact > button.chk > b
+  box-sizing: border-box
+  font: 800 30px/1 var(--f-display)
+  font-size: 26px
+  letter-spacing: .02em
+  overflow-wrap: anywhere
+  text-transform: uppercase
+div.rollbox > div.checks.compact > button.chk > span
+  box-sizing: border-box
+  font: 700 14px/1.2 var(--f-mono)
+div.compact.pcard > div.rollbox > div.checks.compact > button.alt.chk
+  -webkit-tap-highlight-color: transparent
+  background: var(--surface)
+  border: 2px solid var(--accent)
+  border-radius: 16px
+  box-sizing: border-box
+  color: var(--ink)
+  cursor: pointer
+  display: flex
+  flex-direction: column
+  font: inherit
+  gap: 6px
+  justify-content: space-between
+  min-height: 76px
+  min-width: 0
+  padding: 10px 12px
+  text-align: left
+div.rollbox > div.checks.compact > button.alt.chk > b
+  box-sizing: border-box
+  font: 800 30px/1 var(--f-display)
+  font-size: 26px
+  letter-spacing: .02em
+  overflow-wrap: anywhere
+  text-transform: uppercase
+div.rollbox > div.checks.compact > button.alt.chk > span
+  box-sizing: border-box
+  font: 700 14px/1.2 var(--f-mono)
+div > div.app > main.gutter > a.btn.ghost
+  align-items: center
+  background: transparent
+  border: 2px solid var(--accent)
+  border-color: var(--line)
+  border-radius: 14px
+  box-sizing: border-box
+  color: var(--ink)
+  display: flex
+  flex: none
+  font: 800 23px/1 var(--f-display)
+  gap: 10px
+  justify-content: center
+  letter-spacing: .05em
+  min-height: 62px
+  text-decoration: none
+  text-transform: uppercase
+  width: 100%
+body > div > div.app > nav.gutter.tabs
+  background: var(--surface)
+  border-top: 1px solid var(--line)
+  box-sizing: border-box
+  display: grid
+  grid-template-columns: repeat(2,1fr)
+  padding-left: max(16px,env(safe-area-inset-left,0px))
+  padding-right: max(16px,env(safe-area-inset-right,0px))
+div > div.app > nav.gutter.tabs > a
+  align-items: center
+  border-top: 3px solid transparent
+  border-top-color: var(--accent)
+  box-sizing: border-box
+  color: var(--ink)
+  display: flex
+  flex-direction: row
+  font: 800 22px/1 var(--f-display)
+  gap: 10px
+  justify-content: center
+  letter-spacing: .06em
+  min-height: 64px
+  text-decoration: none
+  text-transform: uppercase
+div.app > nav.gutter.tabs > a > span.n
+  box-sizing: border-box
+  font-size: 24px
+  letter-spacing: 0
+  line-height: 1
+nav.gutter.tabs > a > span.n > svg.icon
+  box-sizing: border-box
+  flex: none
+  vertical-align: -.2em
+a > span.n > svg.icon > defs
+  box-sizing: border-box
+span.n > svg.icon > defs > mask
+  box-sizing: border-box
+svg.icon > defs > mask > rect
+  box-sizing: border-box
+svg.icon > defs > mask > path
+  box-sizing: border-box
+a > span.n > svg.icon > g
+  box-sizing: border-box
+span.n > svg.icon > g > rect
+  box-sizing: border-box
+span.n > svg.icon > g > path
+  box-sizing: border-box
+a > span.n > svg.icon > path
+  box-sizing: border-box
+div > div.app > nav.gutter.tabs > a
+  align-items: center
+  border-top: 3px solid transparent
+  box-sizing: border-box
+  color: var(--muted)
+  display: flex
+  flex-direction: row
+  font: 800 22px/1 var(--f-display)
+  gap: 10px
+  justify-content: center
+  letter-spacing: .06em
+  min-height: 64px
+  text-decoration: none
+  text-transform: uppercase
+div.app > nav.gutter.tabs > a > span.n
+  box-sizing: border-box
+  font-size: 24px
+  letter-spacing: 0
+  line-height: 1
+nav.gutter.tabs > a > span.n > svg.icon
+  box-sizing: border-box
+  flex: none
+  vertical-align: -.2em
+a > span.n > svg.icon > g
+  box-sizing: border-box
+span.n > svg.icon > g > path
+  box-sizing: border-box
+span.n > svg.icon > g > path
+  box-sizing: border-box
+span.n > svg.icon > g > path
+  box-sizing: border-box
+body > div > button.scrim
+  -webkit-tap-highlight-color: transparent
+  background: rgba(5,8,12,.45)
+  border: 0
+  box-sizing: border-box
+  color: inherit
+  cursor: pointer
+  font: inherit
+  inset: 0
+  padding: 0
+  position: fixed
+  width: 100%
+  z-index: 20
+body > div > div.gutter.sheet
+  animation: rise .2s ease-out
+  background: var(--surface)
+  border-radius: 20px 20px 0 0
+  border-top: 1px solid var(--line)
+  bottom: 0
+  box-shadow: 0 -8px 30px rgba(0,0,0,.25)
+  box-sizing: border-box
+  display: flex
+  flex-direction: column
+  gap: 14px
+  left: 0
+  margin: 0 auto
+  max-width: 460px
+  padding-bottom: calc(18px + env(safe-area-inset-bottom,0px))
+  padding-left: max(16px,env(safe-area-inset-left,0px))
+  padding-right: max(16px,env(safe-area-inset-right,0px))
+  padding-top: 18px
+  position: fixed
+  right: 0
+  z-index: 21
+body > div > div.gutter.sheet > div.eyebrow
+  box-sizing: border-box
+  color: var(--muted)
+  flex: none
+  font: 700 12px/1.2 var(--f-body)
+  letter-spacing: .12em
+  text-transform: uppercase
+body > div > div.gutter.sheet > button.btn.secondary
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: var(--sunk)
+  border: 2px solid var(--accent)
+  border-color: var(--sunk)
+  border-radius: 14px
+  box-sizing: border-box
+  color: var(--ink)
+  cursor: pointer
+  display: flex
+  flex: none
+  font: 800 23px/1 var(--f-display)
+  gap: 10px
+  justify-content: center
+  letter-spacing: .05em
+  min-height: 62px
+  text-transform: uppercase
+  width: 100%
+body > div > div.gutter.sheet > button.btn.secondary
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: var(--sunk)
+  border: 2px solid var(--accent)
+  border-color: var(--pin)
+  border-radius: 14px
+  box-sizing: border-box
+  color: var(--pin)
+  cursor: pointer
+  display: flex
+  flex: none
+  font: 800 23px/1 var(--f-display)
+  gap: 10px
+  justify-content: center
+  letter-spacing: .05em
+  min-height: 62px
+  text-transform: uppercase
+  width: 100%
+body > div > div.gutter.sheet > button.btn.more.secondary
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: var(--sunk)
+  border: 2px solid var(--accent)
+  border-color: var(--sunk)
+  border-radius: 14px
+  box-sizing: border-box
+  color: var(--ink)
+  cursor: pointer
+  display: flex
+  flex: none
+  font: 800 23px/1 var(--f-display)
+  gap: 10px
+  justify-content: space-between
+  letter-spacing: .05em
+  min-height: 62px
+  padding: 0 20px
+  text-transform: uppercase
+  width: 100%
+div > div.gutter.sheet > button.btn.more.secondary > span
+  box-sizing: border-box
+body > div > div.gutter.sheet > button.btn.dev.secondary
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: var(--sunk)
+  border: 2px dashed var(--dev)
+  border-color: var(--sunk)
+  border-radius: 14px
+  box-sizing: border-box
+  color: var(--dev)
+  cursor: pointer
+  display: flex
+  flex: none
+  font: 800 23px/1 var(--f-display)
+  gap: 10px
+  justify-content: center
+  letter-spacing: .05em
+  min-height: 62px
+  text-transform: uppercase
+  width: 100%
+body > div > div.gutter.sheet > button.btn.secondary
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: var(--sunk)
+  border: 2px solid var(--accent)
+  border-color: var(--sunk)
+  border-radius: 14px
+  box-sizing: border-box
+  color: var(--ink)
+  cursor: pointer
+  display: flex
+  flex: none
+  font: 800 23px/1 var(--f-display)
+  gap: 10px
+  justify-content: center
+  letter-spacing: .05em
+  min-height: 62px
+  text-transform: uppercase
+  width: 100%
+body > div > div.gutter.sheet > button.btn.ghost
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: transparent
+  border: 2px solid var(--accent)
+  border-color: var(--line)
+  border-radius: 14px
+  box-sizing: border-box
+  color: var(--ink)
+  cursor: pointer
+  display: flex
+  flex: none
+  font: 800 23px/1 var(--f-display)
+  gap: 10px
+  justify-content: center
+  letter-spacing: .05em
+  min-height: 62px
+  text-transform: uppercase
+  width: 100%
