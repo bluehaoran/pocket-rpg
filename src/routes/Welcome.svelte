@@ -2,13 +2,14 @@
   import welcome from '../../content/welcome.json';
   import { app } from '../lib/session.svelte.ts';
   import { hideWelcome, setHideWelcome } from '../lib/prefs.ts';
+  import Mark from '../components/Mark.svelte';
 
   let showAtStart = $state(!hideWelcome());
   const inPlay = $derived(app.session?.started === true);
 </script>
 
 <section class="group">
-  <h2 class="brandline">Pocket<b>RPG</b></h2>
+  <h2 class="brandline"><span>Pocket<b>RPG</b></span><Mark size="1.3em" /></h2>
   <p class="hint welcome-intro">{welcome.intro}</p>
 </section>
 

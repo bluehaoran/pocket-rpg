@@ -6,6 +6,7 @@
   import { resetPlay } from './lib/play.svelte.ts';
   import Sheet from './components/Sheet.svelte';
   import Icon from './components/Icon.svelte';
+  import Mark from './components/Mark.svelte';
   import Track from './routes/Track.svelte';
   import Tools from './routes/Tools.svelte';
   import ToolPage from './routes/ToolPage.svelte';
@@ -60,7 +61,7 @@
 
 <div class="app">
   <header class="top gutter">
-    <div class="brand">Pocket<b>RPG</b></div>
+    <div class="brand"><span>Pocket<b>RPG</b></span><Mark /></div>
     <div class="hdr">
       {#if app.ready && chipText(app.session)}
         <div class="chip">{chipText(app.session)}</div>
