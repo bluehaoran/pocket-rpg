@@ -20,10 +20,12 @@ Offline, tap-only phone PWA that helps a GM run conversational RPGs (Lasers & Fe
 
 Run `npm run ci` before pushing.
 
+After making changes, make sure the tests pass (`npm run ci`) and that the changes are committed.
+
 ## Conventions
 - Content is data: genre packs in `content/packs/` (unpublishable ones in the gitignored `content/private/packs/`; see NOTICE), tools library in `content/tools/`. Adding a list entry or a tool is a JSON edit, not a code change. Update `schemas/` and `src/lib/content/types.ts` together when a shape changes, and record the change in `docs/02-data-model.md` or `docs/05-tools-library.md`.
 - Game logic lives in pure TS under `src/lib/` with an injectable RNG; components only render and dispatch. Every engine rule gets a unit test with a seeded RNG.
-- CSS: a component's styles live in its own `<style>` block. `src/app.css` holds only tokens, the reset and primitives shared by several screens (`.btn`, `.card`, `.chips`/`.tog`, `.eyebrow`, ...). Use `:global()` only to style slotted or child-component content, and `:where()` to keep it at zero specificity. `tests/styles.test.ts` snapshots every element's resolved styles (specificity-aware, see `tests/helpers/styles.ts`); update it with `-u` only for an intended visual change and review the diff.
+- CSS: prefer component `<style>` blocks over `src/app.css`. New styles go in the component that renders the element; add to `app.css` only when several unrelated components genuinely share them, and extract a component first if the markup is repeated. `src/app.css` holds only tokens, the reset and primitives shared by several screens (`.btn`, `.card`, `.chips`/`.tog`, `.eyebrow`, ...). Use `:global()` only to style slotted or child-component content, and `:where()` to keep it at zero specificity. `tests/styles.test.ts` snapshots every element's resolved styles (specificity-aware, see `tests/helpers/styles.ts`); update it with `-u` only for an intended visual change and review the diff.
 - Svelte 5 runes only (`$state`, `$derived`, `$props`, `$effect`). Shared reactive state goes in `*.svelte.ts` modules.
 - Persist `$state.snapshot(x)` to IndexedDB, never the proxy.
 - No runtime network calls. Anything the app needs at runtime is bundled or precached.
