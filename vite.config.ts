@@ -13,7 +13,7 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       injectRegister: false,
-      includeAssets: ['icon.svg', 'apple-touch-icon.png'],
+      includeAssets: ['pocketrpg-icon-large.svg', 'apple-touch-icon.png'],
       manifest: {
         name: 'PocketRPG',
         short_name: 'PocketRPG',
