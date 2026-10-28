@@ -2,11 +2,11 @@
   import { go, href } from '../../lib/router.svelte.ts';
   import BackBar from '../../components/BackBar.svelte';
   import { app } from '../../lib/session.svelte.ts';
-  import { closeRoll, play } from '../../lib/play.svelte.ts';
+  import { play } from '../../lib/play.svelte.ts';
   import CharacterCard from '../../components/CharacterCard.svelte';
   import RulesControls from '../../components/RulesControls.svelte';
   import GmControls from '../../components/GmControls.svelte';
-  import RollResult from '../../components/RollResult.svelte';
+  import InlineRoll from '../../components/InlineRoll.svelte';
   import PlayerNav from '../../components/PlayerNav.svelte';
 
   let { idx }: { idx: number } = $props();
@@ -23,6 +23,6 @@
   <CharacterCard index={idx} />
   <RulesControls ci={idx} />
   {#if play.mode === 'inline' && play.roll?.ci === idx}
-    <div class="result"><RollResult roll={play.roll} /><button class="btn ghost" onclick={closeRoll}>Done</button></div>
+    <InlineRoll roll={play.roll} />
   {/if}
 </div>

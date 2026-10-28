@@ -2,6 +2,8 @@
   import { app, currentPack } from '../lib/session.svelte.ts';
   import { skillTree, statuses } from '../lib/characters.ts';
   import { play, rollRfsSkill, toggle } from '../lib/play.svelte.ts';
+  import SkillChips from './SkillChips.svelte';
+  import SkillRow from './SkillRow.svelte';
 
   let { ci, compact = false }: { ci: number; compact?: boolean } = $props();
 
@@ -21,19 +23,12 @@
     </ul>
   {/if}
   {#if compact}
-    <ul class="chips skchips" aria-label="Skills">
-      {#each tree.filter(sk => sk.name) as sk (sk.key)}
-        <li><button class="tog skchip" onclick={() => rollRfsSkill(ci, sk.key)}>{sk.name} <small>{sk.level}d6</small></button></li>
-      {/each}
-    </ul>
+    <SkillChips skills={tree.filter(sk => sk.name).map(sk => ({ key: sk.key, name: sk.name, level: `${sk.level}d6` }))} onroll={key => rollRfsSkill(ci, key)} />
   {:else}
     <div class="card skills">
       {#each tree as sk (sk.key)}
-        <button class="skill sroll" style="--dep:{sk.depth}" disabled={!sk.name} onclick={() => rollRfsSkill(ci, sk.key)}>
-          <span class="tw" aria-hidden="true">{sk.depth ? '└' : ''}</span>
-          <span class="sn">{sk.name || 'Unnamed skill'}</span>
-          <span class="lv">{sk.level}<small>d6</small></span><span class="go">Roll</span>
-        </button>
+        <SkillRow mods="sroll" depth={sk.depth} disabled={!sk.name} name={sk.name || 'Unnamed skill'} glyph={sk.depth ? '└' : ''} level={sk.level} unit="d6"
+          trail="go" onclick={() => rollRfsSkill(ci, sk.key)} />
       {/each}
     </div>
   {/if}

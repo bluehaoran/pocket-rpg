@@ -3,6 +3,7 @@
   import { app, currentPack } from '../lib/session.svelte.ts';
   import { skillTree, statuses } from '../lib/characters.ts';
   import type { FieldRef } from '../lib/fields.ts';
+  import SkillRow from './SkillRow.svelte';
 
   let { index, onedit }: { index: number; onedit?: (ref: FieldRef) => void } = $props();
 
@@ -17,40 +18,18 @@
     <div class="skills">
       {#each tree as sk (sk.key)}
         {#if sk.root}
-          <div class="skill root"><span class="sn">{sk.name}</span><span class="lv">{sk.level}<small>d6</small></span></div>
+          <SkillRow mods="root" trail="none" name={sk.name} level={sk.level} unit="d6" />
         {:else if sk.earned != null}
-          <div class="skill child earned" style="--dep:{sk.depth}">
-            <span class="tw" aria-hidden="true">└</span>
-            <span class="sn">{sk.name}<small>Earned in play</small></span>
-            <span class="lv">{sk.level}<small>d6</small></span><span></span>
-          </div>
+          <SkillRow mods="child earned" glyph="└" depth={sk.depth} name={sk.name} note="Earned in play" level={sk.level} unit="d6" />
         {:else}
           {@const ref = sk.field ? { scope: 'char' as const, id: sk.field, ci: index } : { scope: 'skill' as const, id: String(sk.extra), ci: index }}
-          {#snippet skillInner()}
-            <span class="tw" aria-hidden="true">└</span>
-            <span class="sn" class:empty={!sk.name}>{sk.name || 'Name this skill'}{#if sk.label}<small>{sk.label}</small>{/if}</span>
-            <span class="lv">{sk.level}<small>d6</small></span>
-            {#if onedit}<span class="chev" aria-hidden="true">›</span>{:else}<span></span>{/if}
-          {/snippet}
-          {#if onedit}
-            <button class="skill child" onclick={() => onedit(ref)}>{@render skillInner()}</button>
-          {:else}
-            <div class="skill child">{@render skillInner()}</div>
-          {/if}
+          <SkillRow mods="child" glyph="└" nameEmpty={!sk.name} name={sk.name || 'Name this skill'} note={sk.label} level={sk.level} unit="d6"
+            trail={onedit ? 'chev' : 'blank'} onclick={onedit ? () => onedit(ref) : undefined} />
         {/if}
       {/each}
       {#each sts as t (t.field)}
-        {#snippet statusInner()}
-          <span class="tw" aria-hidden="true">!</span>
-          <span class="sn">{t.text}{#if t.optional}<small>GM may apply</small>{/if}</span>
-          <span class="lv neg">{t.level}</span>
-          {#if onedit}<span class="chev" aria-hidden="true">›</span>{:else}<span></span>{/if}
-        {/snippet}
-        {#if onedit}
-          <button class="skill child status" onclick={() => onedit({ scope: 'char', id: t.field, ci: index })}>{@render statusInner()}</button>
-        {:else}
-          <div class="skill child status">{@render statusInner()}</div>
-        {/if}
+        <SkillRow mods="child status" glyph="!" name={t.text} note={t.optional ? 'GM may apply' : undefined} level={t.level} levelClass="neg"
+          trail={onedit ? 'chev' : 'blank'} onclick={onedit ? () => onedit({ scope: 'char', id: t.field, ci: index }) : undefined} />
       {/each}
     </div>
   </div>

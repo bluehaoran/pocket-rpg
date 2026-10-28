@@ -7,7 +7,7 @@
   import PartyCard from '../../components/PartyCard.svelte';
   import GmControls from '../../components/GmControls.svelte';
   import RollSheet from '../../components/RollSheet.svelte';
-  import RollResult from '../../components/RollResult.svelte';
+  import InlineRoll from '../../components/InlineRoll.svelte';
   import NewSkillSheet from '../../components/NewSkillSheet.svelte';
   import CharPage from './CharPage.svelte';
   import History from '../History.svelte';
@@ -22,7 +22,7 @@
 {:else if play.roll && play.mode === 'page'}
   <BackBar label="Track" title="Roll" onclick={closeRoll} />
   <h2>{play.roll.kind === 'lf' ? play.roll.check : play.roll.skillName}</h2>
-  <div class="result big"><RollResult roll={play.roll} /></div>
+  <InlineRoll roll={play.roll} page />
   <p class="hint">Same layout as the Dice tool. Done returns to Track.</p>
   <button class="btn" onclick={closeRoll}>Done</button>
   {#if play.naming}<NewSkillSheet />{/if}

@@ -3,6 +3,7 @@
   import { app, currentPack } from '../lib/session.svelte.ts';
   import { kinFlavour } from '../lib/characters.ts';
   import { kinSkills } from '../lib/rules/kintsugi.ts';
+  import SkillRow from './SkillRow.svelte';
 
   let { index, editable = false }: { index: number; editable?: boolean } = $props();
 
@@ -16,11 +17,7 @@
   <div class="card">
     <div class="skills">
       {#each skills as sk (sk.key)}
-        <div class="skill" class:out={sk.out}>
-          <span class="tw" aria-hidden="true"></span>
-          <span class="sn">{sk.name}{#if sk.out}<small>Crossed out</small>{:else if !sk.root}<small>Earned in play</small>{/if}</span>
-          <span class="lv">{sk.level}</span><span></span>
-        </div>
+        <SkillRow name={sk.name} note={sk.out ? 'Crossed out' : !sk.root ? 'Earned in play' : undefined} level={sk.level} out={sk.out} />
       {/each}
     </div>
   </div>

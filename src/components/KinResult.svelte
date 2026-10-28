@@ -4,6 +4,7 @@
   import { kinFlavour } from '../lib/characters.ts';
   import { learnKinSkill, suggestKinSkill } from '../lib/play.svelte.ts';
   import { isFull, type KinRoll } from '../lib/rules/kintsugi.ts';
+  import DiceButton from './DiceButton.svelte';
   import Die from './Die.svelte';
   import InputRow from './InputRow.svelte';
 
@@ -47,7 +48,7 @@
       <div class="newskill">
         <InputRow variant="gmrow">
           <input aria-label="Skill name" placeholder="e.g. Kicking: welded a sturdy leg on" autocomplete="off" bind:value={name} />
-          <button class="dice" aria-label="Suggest a skill name" onclick={() => (name = suggestKinSkill(name))}><Die value={5} size="sm" /></button>
+          <DiceButton label="Suggest a skill name" onclick={() => (name = suggestKinSkill(name))}><Die value={5} size="sm" /></DiceButton>
         </InputRow>
         {#if full && c?.skills}
           <span>You hold the most skills allowed. Which one does it replace?</span>

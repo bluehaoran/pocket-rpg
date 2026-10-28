@@ -2,9 +2,9 @@
   import { href } from '../lib/router.svelte.ts';
   import { app, currentPack } from '../lib/session.svelte.ts';
   import { charName, fieldsOf, isEmptyValue, isKin, isRfs, lfFlavour, numberFieldId, showValue, skillTree } from '../lib/characters.ts';
-  import { closeRoll, play } from '../lib/play.svelte.ts';
+  import { play } from '../lib/play.svelte.ts';
   import RulesControls from './RulesControls.svelte';
-  import RollResult from './RollResult.svelte';
+  import InlineRoll from './InlineRoll.svelte';
 
   let { ci }: { ci: number } = $props();
 
@@ -41,7 +41,7 @@
   </a>
   <RulesControls {ci} compact />
   {#if play.mode === 'inline' && play.roll?.ci === ci}
-    <div class="result"><RollResult roll={play.roll} /><button class="btn ghost" onclick={closeRoll}>Done</button></div>
+    <InlineRoll roll={play.roll} />
   {/if}
 </div>
 

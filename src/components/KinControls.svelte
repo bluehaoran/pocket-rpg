@@ -3,6 +3,8 @@
   import { kinFlavour } from '../lib/characters.ts';
   import { rollKinSkill } from '../lib/play.svelte.ts';
   import { kinSkills } from '../lib/rules/kintsugi.ts';
+  import SkillChips from './SkillChips.svelte';
+  import SkillRow from './SkillRow.svelte';
 
   let { ci, compact = false }: { ci: number; compact?: boolean } = $props();
 
@@ -14,19 +16,12 @@
 
 {#if c}
   {#if compact}
-    <ul class="chips skchips" aria-label="Skills">
-      {#each skills as sk (sk.key)}
-        <li><button class="tog skchip" class:out={sk.out} disabled={sk.out} onclick={() => rollKinSkill(ci, sk.key)}>{sk.name} <small>{sk.level}</small></button></li>
-      {/each}
-    </ul>
+    <SkillChips skills={skills.map(sk => ({ key: sk.key, name: sk.name, level: String(sk.level), out: sk.out }))} onroll={key => rollKinSkill(ci, key)} />
   {:else}
     <div class="card skills">
       {#each skills as sk (sk.key)}
-        <button class="skill sroll" class:out={sk.out} disabled={sk.out} onclick={() => rollKinSkill(ci, sk.key)}>
-          <span class="tw" aria-hidden="true"></span>
-          <span class="sn">{sk.name}{#if sk.out}<small>Crossed out</small>{/if}</span>
-          <span class="lv">{sk.level}</span><span class="go">Roll</span>
-        </button>
+        <SkillRow mods="sroll" name={sk.name} note={sk.out ? 'Crossed out' : undefined} level={sk.level} out={sk.out} disabled={sk.out} trail="go"
+          onclick={() => rollKinSkill(ci, sk.key)} />
       {/each}
     </div>
   {/if}

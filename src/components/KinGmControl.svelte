@@ -1,6 +1,7 @@
 <script lang="ts">
   import { app } from '../lib/session.svelte.ts';
   import { randomGmSkill, setGmSkill } from '../lib/play.svelte.ts';
+  import DiceButton from './DiceButton.svelte';
   import Die from './Die.svelte';
   import InputRow from './InputRow.svelte';
   import Seg from './Seg.svelte';
@@ -13,6 +14,6 @@
   <div class="eyebrow">Opposed by GM · skill</div>
   <InputRow variant="gmrow">
     <Seg class="gmseg" label="GM skill" {options} bind:value={() => skill, setGmSkill} />
-    <button class="dice" aria-label="Random GM skill" onclick={randomGmSkill}><Die value={skill || 5} size="sm" /></button>
+    <DiceButton label="Random GM skill" onclick={randomGmSkill}><Die value={skill || 5} size="sm" /></DiceButton>
   </InputRow>
 </div>

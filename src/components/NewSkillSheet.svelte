@@ -1,6 +1,7 @@
 <script lang="ts">
   import { nameSkill, play, suggestSkillName } from '../lib/play.svelte.ts';
   import Sheet from './Sheet.svelte';
+  import DiceButton from './DiceButton.svelte';
   import Die from './Die.svelte';
   import InputRow from './InputRow.svelte';
 
@@ -12,7 +13,7 @@
   <Sheet title="New skill · level {e.level + 1} · from {e.skillName}" onclose={() => (play.naming = false)}>
     <InputRow>
       <input aria-label="Skill name" placeholder="Name it after the action" autocomplete="off" bind:value={name} />
-      <button class="dice" aria-label="Suggest a skill name" onclick={() => (name = suggestSkillName(name))}><Die value={5} size="sm" /></button>
+      <DiceButton label="Suggest a skill name" onclick={() => (name = suggestSkillName(name))}><Die value={5} size="sm" /></DiceButton>
     </InputRow>
     <p class="hint">Roll for Shoes: name it after what the character just did, e.g. "Jump the gap".</p>
     <button class="btn" disabled={!name.trim()} onclick={() => nameSkill(name)}>Add skill</button>

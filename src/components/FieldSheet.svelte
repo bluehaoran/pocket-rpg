@@ -9,6 +9,7 @@
   import { shortLabel } from '../lib/engine/template.ts';
   import { buzz } from '../lib/device.ts';
   import Sheet from './Sheet.svelte';
+  import DiceButton from './DiceButton.svelte';
   import Icon from './Icon.svelte';
   import InputRow from './InputRow.svelte';
   import Seg from './Seg.svelte';
@@ -87,7 +88,7 @@
           oninput={e => set(e.currentTarget.value)} />
       {/if}
       {#if randomisable}
-        <button class="dice" aria-label="Random {shortLabel(f.label).toLowerCase()}" onclick={randomise}><Icon name="reroll" size="28px" /></button>
+        <DiceButton label="Random {shortLabel(f.label).toLowerCase()}" onclick={randomise}><Icon name="reroll" size="28px" /></DiceButton>
       {:else}<span></span>{/if}
     </InputRow>
     {#if f.kind === 'number' && typeof value === 'number' && under && over}
