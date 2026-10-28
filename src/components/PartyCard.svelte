@@ -1,7 +1,7 @@
 <script lang="ts">
   import { href } from '../lib/router.svelte.ts';
   import { app, currentPack } from '../lib/session.svelte.ts';
-  import { charName, fieldsOf, isEmptyValue, isKin, isRfs, lfFlavour, showValue, skillTree } from '../lib/characters.ts';
+  import { charName, fieldsOf, isEmptyValue, isKin, isRfs, lfFlavour, numberFieldId, showValue, skillTree } from '../lib/characters.ts';
   import { closeRoll, play } from '../lib/play.svelte.ts';
   import RulesControls from './RulesControls.svelte';
   import RollResult from './RollResult.svelte';
@@ -22,7 +22,7 @@
     );
     return f ? showValue(c.fields[f.id]) : '';
   });
-  const N = $derived(c.fields[lfFlavour(pack).fields.find(x => x.kind === 'number')?.id ?? 'number']);
+  const N = $derived(c.fields[numberFieldId(lfFlavour(pack))]);
 </script>
 
 <div class="pcard compact">

@@ -4,7 +4,7 @@ import type { Field, Pack } from '../src/lib/content/types.ts';
 import { newSession } from '../src/lib/db.ts';
 import { mulberry32 } from '../src/lib/engine/rng.ts';
 import {
-  charName, derive, evalFormula, fieldsOf, groupFieldsOf, isRfs, lfFlavour, listOf, newCharacter, pickSkill,
+  charName, derive, exactText, lfChecks, numberField, numberFieldId, numberRange, evalFormula, fieldsOf, groupFieldsOf, isRfs, lfFlavour, listOf, newCharacter, pickSkill,
   rfsFlavour, skillTree, statuses, syncResources, canRandom, randomValue, type CharCtx
 } from '../src/lib/characters.ts';
 import {
@@ -338,5 +338,40 @@ describe('randomPackId', () => {
   });
   it('falls back to the only pack', () => {
     expect(randomPackId([ps[0]!], 'a', mulberry32(1))).toBe('a');
+  });
+});
+
+describe('Lasers & Feelings number helpers', () => {
+  const lf = lfFlavour(packs['lasers-feelings-space'] ?? all[0]!);
+  const bare = { checks: [], fields: [] } as unknown as ReturnType<typeof lfFlavour>;
+
+  it('finds the number field, falling back to the id "number"', () => {
+    expect(numberField(lf.fields)?.kind).toBe('number');
+    expect(numberFieldId(lf)).toBe(numberField(lf.fields)!.id);
+    expect(numberField([])).toBeUndefined();
+    expect(numberFieldId(bare)).toBe('number');
+  });
+
+  it('prefers the field range, then the flavour range, then 2-5', () => {
+    const f = { id: 'n', label: 'N', kind: 'number' } as Field;
+    expect(numberRange({ ...bare, numberRange: [1, 6] }, { ...f, range: [3, 4] })).toEqual([3, 4]);
+    expect(numberRange({ ...bare, numberRange: [1, 6] }, f)).toEqual([1, 6]);
+    expect(numberRange(bare, f)).toEqual([2, 5]);
+    expect(numberRange(bare)).toEqual([2, 5]);
+  });
+
+  it('splits the checks into under and over', () => {
+    const checks = [
+      { id: 'a', label: 'Lasers', roll: 'under' as const },
+      { id: 'b', label: 'Feelings', roll: 'over' as const }
+    ];
+    expect(lfChecks({ ...bare, checks })).toEqual({ under: checks[0], over: checks[1] });
+    expect(lfChecks(bare)).toEqual({ under: undefined, over: undefined });
+  });
+
+  it('words the exact-number rule, flagging when it is not a success', () => {
+    expect(exactText(bare, 3)).toBe('Exactly 3: special effect.');
+    expect(exactText({ ...bare, exact: { name: 'LASER FEELINGS' } }, 4)).toBe('Exactly 4: LASER FEELINGS.');
+    expect(exactText({ ...bare, exact: { name: 'Odd', countsAsSuccess: false } }, 2)).toBe('Exactly 2: Odd (not a success).');
   });
 });

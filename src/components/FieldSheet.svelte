@@ -2,7 +2,7 @@
   import { untrack } from 'svelte';
   import { app, mutate } from '../lib/session.svelte.ts';
   import { sessionPack } from '../lib/toolctx.svelte.ts';
-  import { lfFlavour, type FieldValue } from '../lib/characters.ts';
+  import { exactText, lfChecks, lfFlavour, numberRange, type FieldValue } from '../lib/characters.ts';
   import { canRandomFor, fieldDef, getVal, listFor, randomFor, setVal, type FieldRef } from '../lib/fields.ts';
   import { charCtx } from '../lib/setup.ts';
   import { mathRng } from '../lib/engine/rng.ts';
@@ -37,9 +37,8 @@
     set(arr);
   };
   const opts = (cur: string) => (!cur || list?.includes(cur) ? (list ?? []) : [cur, ...(list ?? [])]);
-  const under = $derived(lf.checks.find(c => c.roll === 'under'));
-  const over = $derived(lf.checks.find(c => c.roll === 'over'));
-  const range = $derived((f?.range ?? lf.numberRange ?? [2, 5]) as [number, number]);
+  const { under, over } = $derived(lfChecks(lf));
+  const range = $derived(numberRange(lf, f));
 </script>
 
 {#if f}
@@ -95,7 +94,7 @@
     {#if f.kind === 'number' && typeof value === 'number' && under && over}
       <p class="hint">
         Higher number = better at {under.label}. {under.label}: roll under {value}. {over.label}: roll over {value}.
-        Exactly {value}: {lf.exact?.name ?? 'special effect'}{lf.exact?.countsAsSuccess === false ? ' (not a success)' : ''}.
+        {exactText(lf, value)}
       </p>
     {/if}
     {#each [f.hint, f.note].filter(Boolean) as t (t)}<p class="hint">{t}</p>{/each}

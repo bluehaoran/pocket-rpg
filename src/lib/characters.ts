@@ -1,7 +1,7 @@
 // Character logic for both rule systems: field values, random generation, derived stats, skill trees.
 // Pure TypeScript with an injectable Rng. Rules: docs/02-data-model.md §1.3, §1.6, §1.8, §2.
 import type { Character } from './db.ts';
-import type { Entry, Field, KintsugiFlavour, LasersFeelingsFlavour, Pack, RollForShoesFlavour } from './content/types.ts';
+import type { Check, Entry, Field, KintsugiFlavour, LasersFeelingsFlavour, Pack, RollForShoesFlavour } from './content/types.ts';
 import { draw, pool, type Recent, type Selection } from './engine/table.ts';
 import { pick, randInt, type Rng } from './engine/rng.ts';
 import { expand, shortLabel } from './engine/template.ts';
@@ -117,11 +117,24 @@ export function canRandom(pack: Pack, f: Field): boolean {
   return f.kind === 'number' || !!listOf(pack, f) || !!(f.examples && pack.tables[f.examples]) || !!f.generator;
 }
 
-const numberRange = (lf: LfFlavour): [number, number] => lf.numberRange ?? [2, 5];
+/** The field holding the Lasers & Feelings number. */
+export const numberField = (fields: Field[]): Field | undefined => fields.find(f => f.kind === 'number');
+/** Its id in a character's `fields`; 'number' when the flavour declares none. */
+export const numberFieldId = (lf: LfFlavour): string => numberField(lf.fields)?.id ?? 'number';
+/** The inclusive range the number can take: the field's own, else the flavour's, else 2-5. */
+export const numberRange = (lf: LfFlavour, f?: Field): [number, number] => f?.range ?? lf.numberRange ?? [2, 5];
+/** The two checks: roll under the number, roll over it. */
+export const lfChecks = (lf: LfFlavour): { under?: Check; over?: Check } => ({
+  under: lf.checks.find(c => c.roll === 'under'),
+  over: lf.checks.find(c => c.roll === 'over')
+});
+/** What rolling exactly the number does, e.g. "Exactly 3: LASER FEELINGS (not a success)." */
+export const exactText = (lf: LfFlavour, n: number): string =>
+  `Exactly ${n}: ${lf.exact?.name ?? 'special effect'}${lf.exact?.countsAsSuccess === false ? ' (not a success)' : ''}.`;
 
 export function rollNumber(ctx: CharCtx, f: Field, avoid?: number): number {
   const lf = lfFlavour(ctx.pack);
-  const [lo, hi] = f.range ?? numberRange(lf);
+  const [lo, hi] = numberRange(lf, f);
   const reroll = lf.numberRoll?.reroll;
   for (let i = 0; i < 20; i++) {
     let n: number;

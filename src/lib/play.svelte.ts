@@ -3,7 +3,7 @@
 import { packs } from './content/index.ts';
 import type { Pack } from './content/types.ts';
 import { app, mutate } from './session.svelte.ts';
-import { GENERIC_SKILLS, charName, isKin, isRfs, kinFlavour, lfFlavour } from './characters.ts';
+import { GENERIC_SKILLS, charName, isKin, isRfs, kinFlavour, lfFlavour, numberFieldId } from './characters.ts';
 import { mathRng, type Rng } from './engine/rng.ts';
 import { buzz } from './device.ts';
 import type { TrackHistoryEntry } from './db.ts';
@@ -67,8 +67,7 @@ export function rollCheck(ci: number, checkId: string): void {
   const c = s?.characters[ci];
   if (!s || !c) return;
   const f = lfFlavour(pack());
-  const numId = f.fields.find(x => x.kind === 'number')?.id ?? 'number';
-  const N = Number(c.fields[numId]);
+  const N = Number(c.fields[numberFieldId(f)]);
   const r = rollLf(f, N, checkId, play.bonuses[ci] ?? {}, rng, { ci, name: charName(c, ci) });
   play.bonuses[ci] = {};
   log('roll', ci, lfLogText(r, f), $state.snapshot(r));

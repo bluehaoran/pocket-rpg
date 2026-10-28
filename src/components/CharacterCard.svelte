@@ -3,7 +3,7 @@
   // fields and skill tree for Roll for Shoes. `onedit` makes parts tappable; without it the card is read-only.
   import { app, currentPack } from '../lib/session.svelte.ts';
   import {
-    derive, fieldsOf, isKin, isRfs, kinFlavour, lfFlavour, rfsFlavour, skillTree, statuses
+    derive, fieldsOf, isKin, isRfs, kinFlavour, lfChecks, lfFlavour, numberField, numberRange, rfsFlavour, skillTree, statuses
   } from '../lib/characters.ts';
   import { kinSkills } from '../lib/rules/kintsugi.ts';
   import { display, type FieldRef } from '../lib/fields.ts';
@@ -25,9 +25,8 @@
   const fields = $derived(fieldsOf(pack, s.rulesId));
   const template = $derived((kin ? kf.sentence : rfs ? rf.sentence : lf.sentence) ?? defaultSentence(s.rulesId, fields.map(f => f.id)));
   let used = $state(new Set<string>());
-  const numF = $derived(fields.find(f => f.kind === 'number'));
-  const under = $derived(lf.checks.find(x => x.roll === 'under'));
-  const over = $derived(lf.checks.find(x => x.roll === 'over'));
+  const numF = $derived(numberField(fields));
+  const { under, over } = $derived(lfChecks(lf));
 
   const rest = $derived(
     fields.filter(f => !used.has(f.id) && f.kind !== 'number' && !(rfs && (f.skill || (f.status && !f.status.optional))))
@@ -51,7 +50,7 @@
     <div class="sentence crew">
       <Sentence template={template} {fields} values={c.fields} onpick={onedit ? edit : undefined} plain={!onedit} bind:used />
       {#if !rfs && !kin && numF && typeof c.fields[numF.id] === 'number' && under && over}
-        <ScaleBar n={c.fields[numF.id] as number} range={(numF.range ?? lf.numberRange ?? [2, 5]) as [number, number]}
+        <ScaleBar n={c.fields[numF.id] as number} range={numberRange(lf, numF)}
           over={over.label} under={under.label} onclick={onedit ? () => edit(numF.id) : undefined} />
       {/if}
       {#if kin}

@@ -1,6 +1,6 @@
 <script lang="ts">
   import { app, currentPack } from '../lib/session.svelte.ts';
-  import { lfFlavour } from '../lib/characters.ts';
+  import { exactText, lfFlavour, numberFieldId } from '../lib/characters.ts';
   import { poolSize, resourceState } from '../lib/rules/lasers-feelings.ts';
   import { adjust, play, rollCheck, toggle } from '../lib/play.svelte.ts';
 
@@ -10,7 +10,7 @@
   const pack = $derived(currentPack());
   const f = $derived(lfFlavour(pack));
   const c = $derived(s.characters[ci]);
-  const N = $derived(Number(c?.fields[f.fields.find(x => x.kind === 'number')?.id ?? 'number']));
+  const N = $derived(Number(c?.fields[numberFieldId(f)]));
   const pool = $derived(poolSize(f, play.bonuses[ci]));
   const res = $derived((f.resources ?? []).filter(r => c && c.resources[r.id] != null));
 </script>
@@ -48,7 +48,7 @@
     </div>
     {#if !compact}
       <p class="hint">
-        Exactly {N}: {f.exact?.name ?? 'special effect'}{f.exact?.countsAsSuccess === false ? ' (not a success)' : ''}.{f.help?.text ? ' Helping: ' + f.help.text : ''}
+        {exactText(f, N)}{f.help?.text ? ' Helping: ' + f.help.text : ''}
       </p>
     {/if}
   </div>

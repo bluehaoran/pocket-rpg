@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { seedParts } from '../src/lib/engine/template.ts';
+import { seedColumnText, seedParts } from '../src/lib/engine/template.ts';
 
 describe('seedParts', () => {
   it('glues punctuation after a slot to that slot', () => {
@@ -12,5 +12,23 @@ describe('seedParts', () => {
       { text: ' which will ' },
       { col: 3, trail: '.' },
     ]);
+  });
+});
+
+describe('seedColumnText', () => {
+  const seed = { columns: [{}, { case: 'lower' as const }] };
+
+  it('returns the value as drawn when the column has no case rule', () => {
+    expect(seedColumnText(seed, ['A Robot', 'Find A Cure'], 0)).toBe('A Robot');
+  });
+
+  it('lower-cases only the first letter for case: lower columns', () => {
+    expect(seedColumnText(seed, ['A Robot', 'Find A Cure'], 1)).toBe('find A Cure');
+  });
+
+  it('is empty when the seed has not been rolled or the column is missing', () => {
+    expect(seedColumnText(seed, undefined, 1)).toBe('');
+    expect(seedColumnText(seed, ['x'], 1)).toBe('');
+    expect(seedColumnText(seed, ['x'], 5)).toBe('');
   });
 });
