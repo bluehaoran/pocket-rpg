@@ -30,7 +30,7 @@
       {/each}
     </div>
   {/if}
-  <div class="rollbox">
+  <div>
     {#if f.dice?.bonuses?.length}
       <ul class="chips" aria-label="Bonus dice">
         {#each f.dice.bonuses as b (b.id)}

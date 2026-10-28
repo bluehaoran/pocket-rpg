@@ -13,24 +13,24 @@ body > div > section.group
   display: flex
   flex-direction: column
   gap: 10px
-body > div > section.group > h2.brandline
+body > div > section.group > h2
   box-sizing: border-box
   font: 800 34px/1 var(--f-display)
   letter-spacing: .01em
   margin: 0
   text-transform: uppercase
   text-wrap: balance
-div > section.group > h2.brandline > div.logo
+div > section.group > h2 > div.logo
   align-items: center
   box-sizing: border-box
   display: flex
   font: 800 var(--logo-size)/1 var(--f-display)
   letter-spacing: .02em
   text-transform: uppercase
-section.group > h2.brandline > div.logo > svg.mark
+section.group > h2 > div.logo > svg.mark
   box-sizing: border-box
   flex: none
-h2.brandline > div.logo > svg.mark > defs
+h2 > div.logo > svg.mark > defs
   box-sizing: border-box
 div.logo > svg.mark > defs > mask
   box-sizing: border-box
@@ -38,7 +38,7 @@ svg.mark > defs > mask > rect
   box-sizing: border-box
 svg.mark > defs > mask > path
   box-sizing: border-box
-h2.brandline > div.logo > svg.mark > g
+h2 > div.logo > svg.mark > g
   box-sizing: border-box
 div.logo > svg.mark > g > g
   box-sizing: border-box
@@ -56,15 +56,15 @@ g > g > g > circle
   box-sizing: border-box
 g > g > g > circle
   box-sizing: border-box
-h2.brandline > div.logo > svg.mark > g
+h2 > div.logo > svg.mark > g
   box-sizing: border-box
 div.logo > svg.mark > g > path
   box-sizing: border-box
 div.logo > svg.mark > g > path
   box-sizing: border-box
-section.group > h2.brandline > div.logo > span
+section.group > h2 > div.logo > span
   box-sizing: border-box
-h2.brandline > div.logo > span > b
+h2 > div.logo > span > b
   box-sizing: border-box
   color: var(--accent)
   font-weight: inherit

@@ -31,7 +31,7 @@
     <CharPage {idx} />
   {:else}
     {#if import.meta.env.DEV}
-      <section class="mock" aria-label="Mockup options">
+      <section aria-label="Mockup options">
         <div class="eyebrow">Dev: roll result placement</div>
         <ul class="chips">
           {#each ['sheet', 'inline', 'page'] as m (m)}

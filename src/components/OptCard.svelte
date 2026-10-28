@@ -32,7 +32,7 @@
   .opt[aria-pressed="true"] .radio{border:8px solid var(--accent)}
   .opt .t{font-weight:700;font-size:19px}
   .opt .m{font:500 12px/1.3 var(--f-mono);color:var(--muted)}
-  .opt .m.err{color:#C0392B}
+  .opt .m.err{color:var(--danger)}
   .opt .m.more{grid-column:2;font:400 14px/1.35 var(--f-body);color:var(--ink)}
   a.opt{text-decoration:none;color:inherit}
 </style>

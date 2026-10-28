@@ -9,7 +9,7 @@
 </script>
 
 <section class="group">
-  <h2 class="brandline"><Logo /></h2>
+  <h2><Logo /></h2>
   <p class="hint welcome-intro">{welcome.intro}</p>
 </section>
 
@@ -47,7 +47,7 @@
   .switchrow input::after{content:"";position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:var(--muted);transition:transform .15s,background .15s}
   .switchrow input:checked{background:var(--accent);border-color:var(--accent)}
   .switchrow input:checked::after{transform:translateX(18px);background:var(--accent-ink)}
-  .switchrow input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+  .switchrow input:focus-visible{outline:var(--ring);outline-offset:2px}
   .welcome-cols{flex:1 0 auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 16px}
   .welcome-col{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px}
   .welcome-intro{color:var(--ink)}

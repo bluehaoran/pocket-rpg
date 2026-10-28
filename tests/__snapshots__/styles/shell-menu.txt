@@ -135,16 +135,16 @@ body > div > div.app > main.gutter
   padding-block: 18px 28px
   padding-left: max(16px,env(safe-area-inset-left,0px))
   padding-right: max(16px,env(safe-area-inset-right,0px))
-div > div.app > main.gutter > section.mock
+div > div.app > main.gutter > section
   box-sizing: border-box
   flex: none
-div.app > main.gutter > section.mock > div.eyebrow
+div.app > main.gutter > section > div.eyebrow
   box-sizing: border-box
   color: var(--muted)
   font: 700 12px/1.2 var(--f-body)
   letter-spacing: .12em
   text-transform: uppercase
-div.app > main.gutter > section.mock > ul.chips
+div.app > main.gutter > section > ul.chips
   box-sizing: border-box
   display: flex
   flex-wrap: wrap
@@ -152,9 +152,9 @@ div.app > main.gutter > section.mock > ul.chips
   list-style: none
   margin: 0
   padding: 0
-main.gutter > section.mock > ul.chips > li
+main.gutter > section > ul.chips > li
   box-sizing: border-box
-section.mock > ul.chips > li > button.tog
+section > ul.chips > li > button.tog
   -webkit-tap-highlight-color: transparent
   align-items: center
   background: var(--accent)
@@ -168,9 +168,9 @@ section.mock > ul.chips > li > button.tog
   font: 700 15px var(--f-body)
   min-height: 46px
   padding: 0 14px
-main.gutter > section.mock > ul.chips > li
+main.gutter > section > ul.chips > li
   box-sizing: border-box
-section.mock > ul.chips > li > button.tog
+section > ul.chips > li > button.tog
   -webkit-tap-highlight-color: transparent
   align-items: center
   background: var(--surface)
@@ -183,9 +183,9 @@ section.mock > ul.chips > li > button.tog
   font: 700 15px var(--f-body)
   min-height: 46px
   padding: 0 14px
-main.gutter > section.mock > ul.chips > li
+main.gutter > section > ul.chips > li
   box-sizing: border-box
-section.mock > ul.chips > li > button.tog
+section > ul.chips > li > button.tog
   -webkit-tap-highlight-color: transparent
   align-items: center
   background: var(--surface)
@@ -372,9 +372,9 @@ section.group > div.compact.pcard > a.prow > span.chev
   font: 700 20px/1 var(--f-mono)
   grid-column: 2
   grid-row: 1/span 2
-main.gutter > section.group > div.compact.pcard > div.rollbox
+main.gutter > section.group > div.compact.pcard > div
   box-sizing: border-box
-section.group > div.compact.pcard > div.rollbox > ul.chips
+section.group > div.compact.pcard > div > ul.chips
   box-sizing: border-box
   display: flex
   flex-wrap: wrap
@@ -382,9 +382,9 @@ section.group > div.compact.pcard > div.rollbox > ul.chips
   list-style: none
   margin: 0
   padding: 0
-div.compact.pcard > div.rollbox > ul.chips > li
+div.compact.pcard > div > ul.chips > li
   box-sizing: border-box
-div.rollbox > ul.chips > li > button.tog
+div > ul.chips > li > button.tog
   -webkit-tap-highlight-color: transparent
   align-items: center
   background: var(--surface)
@@ -398,9 +398,9 @@ div.rollbox > ul.chips > li > button.tog
   font-size: 14px
   min-height: 44px
   padding: 0 12px
-div.compact.pcard > div.rollbox > ul.chips > li
+div.compact.pcard > div > ul.chips > li
   box-sizing: border-box
-div.rollbox > ul.chips > li > button.tog
+div > ul.chips > li > button.tog
   -webkit-tap-highlight-color: transparent
   align-items: center
   background: var(--surface)
@@ -414,12 +414,12 @@ div.rollbox > ul.chips > li > button.tog
   font-size: 14px
   min-height: 44px
   padding: 0 12px
-section.group > div.compact.pcard > div.rollbox > div.checks.compact
+section.group > div.compact.pcard > div > div.checks.compact
   box-sizing: border-box
   display: grid
   gap: 8px
   grid-template-columns: 1fr 1fr
-div.compact.pcard > div.rollbox > div.checks.compact > button.chk
+div.compact.pcard > div > div.checks.compact > button.chk
   -webkit-tap-highlight-color: transparent
   background: var(--accent)
   border: 2px solid var(--accent)
@@ -436,17 +436,17 @@ div.compact.pcard > div.rollbox > div.checks.compact > button.chk
   min-width: 0
   padding: 10px 12px
   text-align: left
-div.rollbox > div.checks.compact > button.chk > b
+div > div.checks.compact > button.chk > b
   box-sizing: border-box
   font: 800 30px/1 var(--f-display)
   font-size: 26px
   letter-spacing: .02em
   overflow-wrap: anywhere
   text-transform: uppercase
-div.rollbox > div.checks.compact > button.chk > span
+div > div.checks.compact > button.chk > span
   box-sizing: border-box
   font: 700 14px/1.2 var(--f-mono)
-div.compact.pcard > div.rollbox > div.checks.compact > button.alt.chk
+div.compact.pcard > div > div.checks.compact > button.alt.chk
   -webkit-tap-highlight-color: transparent
   background: var(--surface)
   border: 2px solid var(--accent)
@@ -463,14 +463,14 @@ div.compact.pcard > div.rollbox > div.checks.compact > button.alt.chk
   min-width: 0
   padding: 10px 12px
   text-align: left
-div.rollbox > div.checks.compact > button.alt.chk > b
+div > div.checks.compact > button.alt.chk > b
   box-sizing: border-box
   font: 800 30px/1 var(--f-display)
   font-size: 26px
   letter-spacing: .02em
   overflow-wrap: anywhere
   text-transform: uppercase
-div.rollbox > div.checks.compact > button.alt.chk > span
+div > div.checks.compact > button.alt.chk > span
   box-sizing: border-box
   font: 700 14px/1.2 var(--f-mono)
 div > div.app > main.gutter > a.btn.ghost

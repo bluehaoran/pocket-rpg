@@ -8,15 +8,15 @@ body
   overscroll-behavior: none
 body > div
   box-sizing: border-box
-body > div > section.mock
+body > div > section
   box-sizing: border-box
-body > div > section.mock > div.eyebrow
+body > div > section > div.eyebrow
   box-sizing: border-box
   color: var(--muted)
   font: 700 12px/1.2 var(--f-body)
   letter-spacing: .12em
   text-transform: uppercase
-body > div > section.mock > ul.chips
+body > div > section > ul.chips
   box-sizing: border-box
   display: flex
   flex-wrap: wrap
@@ -24,9 +24,9 @@ body > div > section.mock > ul.chips
   list-style: none
   margin: 0
   padding: 0
-div > section.mock > ul.chips > li
+div > section > ul.chips > li
   box-sizing: border-box
-section.mock > ul.chips > li > button.tog
+section > ul.chips > li > button.tog
   -webkit-tap-highlight-color: transparent
   align-items: center
   background: var(--accent)
@@ -40,9 +40,9 @@ section.mock > ul.chips > li > button.tog
   font: 700 15px var(--f-body)
   min-height: 46px
   padding: 0 14px
-div > section.mock > ul.chips > li
+div > section > ul.chips > li
   box-sizing: border-box
-section.mock > ul.chips > li > button.tog
+section > ul.chips > li > button.tog
   -webkit-tap-highlight-color: transparent
   align-items: center
   background: var(--surface)
@@ -55,9 +55,9 @@ section.mock > ul.chips > li > button.tog
   font: 700 15px var(--f-body)
   min-height: 46px
   padding: 0 14px
-div > section.mock > ul.chips > li
+div > section > ul.chips > li
   box-sizing: border-box
-section.mock > ul.chips > li > button.tog
+section > ul.chips > li > button.tog
   -webkit-tap-highlight-color: transparent
   align-items: center
   background: var(--surface)
@@ -145,13 +145,13 @@ div > section.group > div.group > div.gmrow
   display: grid
   gap: 8px
   grid-template-columns: minmax(0,1fr) 58px
-section.group > div.group > div.gmrow > div.gmseg.seg
+section.group > div.group > div.gmrow > div.seg
   box-sizing: border-box
   display: grid
   gap: 6px
   grid-auto-columns: 1fr
   grid-auto-flow: column
-div.group > div.gmrow > div.gmseg.seg > button
+div.group > div.gmrow > div.seg > button
   -webkit-tap-highlight-color: transparent
   background: var(--accent)
   border: 2px solid var(--line)
@@ -163,7 +163,7 @@ div.group > div.gmrow > div.gmseg.seg > button
   font: 700 22px/1 var(--f-mono)
   font-variant-numeric: tabular-nums
   min-height: 58px
-div.group > div.gmrow > div.gmseg.seg > button
+div.group > div.gmrow > div.seg > button
   -webkit-tap-highlight-color: transparent
   background: var(--surface)
   border: 2px solid var(--line)
@@ -174,7 +174,7 @@ div.group > div.gmrow > div.gmseg.seg > button
   font: 700 22px/1 var(--f-mono)
   font-variant-numeric: tabular-nums
   min-height: 58px
-div.group > div.gmrow > div.gmseg.seg > button
+div.group > div.gmrow > div.seg > button
   -webkit-tap-highlight-color: transparent
   background: var(--surface)
   border: 2px solid var(--line)
@@ -185,7 +185,7 @@ div.group > div.gmrow > div.gmseg.seg > button
   font: 700 22px/1 var(--f-mono)
   font-variant-numeric: tabular-nums
   min-height: 58px
-div.group > div.gmrow > div.gmseg.seg > button
+div.group > div.gmrow > div.seg > button
   -webkit-tap-highlight-color: transparent
   background: var(--surface)
   border: 2px solid var(--line)
@@ -196,7 +196,7 @@ div.group > div.gmrow > div.gmseg.seg > button
   font: 700 22px/1 var(--f-mono)
   font-variant-numeric: tabular-nums
   min-height: 58px
-div.group > div.gmrow > div.gmseg.seg > button
+div.group > div.gmrow > div.seg > button
   -webkit-tap-highlight-color: transparent
   background: var(--surface)
   border: 2px solid var(--line)
@@ -207,7 +207,7 @@ div.group > div.gmrow > div.gmseg.seg > button
   font: 700 22px/1 var(--f-mono)
   font-variant-numeric: tabular-nums
   min-height: 58px
-div.group > div.gmrow > div.gmseg.seg > button
+div.group > div.gmrow > div.seg > button
   -webkit-tap-highlight-color: transparent
   background: var(--surface)
   border: 2px solid var(--line)
@@ -218,7 +218,7 @@ div.group > div.gmrow > div.gmseg.seg > button
   font: 700 22px/1 var(--f-mono)
   font-variant-numeric: tabular-nums
   min-height: 58px
-div.group > div.gmrow > div.gmseg.seg > button
+div.group > div.gmrow > div.seg > button
   -webkit-tap-highlight-color: transparent
   background: var(--surface)
   border: 2px solid var(--line)

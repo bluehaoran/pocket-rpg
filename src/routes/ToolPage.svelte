@@ -180,7 +180,7 @@
 
   <Dock one>
     <button class="btn reroll" onclick={roll} disabled={empty || (tool.kind === 'gen' && missing.length > 0)}>Reroll <Icon name="reroll" /></button>
-    <button class="btn keep" aria-label="Keep result" onclick={run.finish} disabled={!result}>
+    <button class="btn" aria-label="Keep result" onclick={run.finish} disabled={!result}>
       <Icon name="check" size="30px" stroke={4} />
     </button>
     <p class="dock-note">✓ keeps this result in History. Reroll or Back discards it.</p>
@@ -212,7 +212,7 @@
   .underres{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 12px;margin-top:-12px}
   .underres .mini-btn{margin-left:auto}
   .letterbtn{all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;border:2px solid var(--line);border-radius:14px;background:var(--surface);padding:0 16px;min-height:58px;font:400 17px/1.3 var(--f-body)}
-  .letterbtn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+  .letterbtn:focus-visible{outline:var(--ring);outline-offset:2px}
   .letterbtn .v{font-size:20px;font-weight:700;color:var(--accent)}
   .letterbtn .chev{color:var(--muted);font:700 18px/1 var(--f-mono)}
   .letters{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}

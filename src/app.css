@@ -4,24 +4,20 @@
 
 :root{
   --bg:#E8EBEF; --surface:#FBFCFD; --sunk:#DCE1E7; --ink:#11151B; --muted:#566070;
-  --line:#CBD2DA; --accent:#9A4E00; --accent-ink:#FFFFFF; --accent-soft:#F5E2CB; --pin:#2D6AD0; --dev:#8A2BB8; --dev-soft:#EFDDF7;
+  --line:#CBD2DA; --danger:#C0392B; --accent:#9A4E00; --accent-ink:#FFFFFF; --accent-soft:#F5E2CB; --pin:#2D6AD0; --dev:#8A2BB8; --dev-soft:#EFDDF7; --ring:3px solid var(--accent);
   --f-display:"Big Shoulders Display",Impact,"Arial Narrow",system-ui,sans-serif;
   --f-body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
   --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+@media (prefers-color-scheme: dark){:root{
   --bg:#0C0F14; --surface:#161A21; --sunk:#1F242D; --ink:#EDF0F4; --muted:#909AA9;
   --line:#2A313C; --accent:#FFA53D; --accent-ink:#1A1205; --accent-soft:#3A2810; --pin:#7EA9FF; --dev:#D29BFF; --dev-soft:#2E1B3A; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#0C0F14; --surface:#161A21; --sunk:#1F242D; --ink:#EDF0F4; --muted:#909AA9;
-  --line:#2A313C; --accent:#FFA53D; --accent-ink:#1A1205; --accent-soft:#3A2810; --pin:#7EA9FF; --dev:#D29BFF; --dev-soft:#2E1B3A; color-scheme:dark}
 
-/* Reset */
 *,*::before,*::after{box-sizing:border-box}
 html{height:100%;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{margin:0;height:100%;overscroll-behavior:none;background:var(--bg);color:var(--ink);font:400 17px/1.4 var(--f-body)}
 button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
-button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible,summary:focus-visible{outline:var(--ring);outline-offset:2px}
 
 /* Layout and type */
 .gutter{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}

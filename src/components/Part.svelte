@@ -9,6 +9,6 @@
 
 <style>
   .part{all:unset;cursor:pointer;color:var(--accent);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:5px;border-radius:4px;padding:10px 6px;margin:-10px -6px}
-  .part:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+  .part:focus-visible{outline:var(--ring);outline-offset:2px}
   .part.empty{color:var(--muted);text-decoration-style:dashed}
 </style>

@@ -48,7 +48,7 @@
   .skill:first-child{border-top:0}
   .skill.root{grid-template-columns:minmax(0,1fr) auto}
   button.skill{cursor:pointer}
-  button.skill:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
+  button.skill:focus-visible{outline:var(--ring);outline-offset:2px;border-radius:6px}
   .skill .sn{min-width:0}
   .skill.child .sn{color:var(--accent)}
   .skill .sn.empty{color:var(--muted);font-style:italic;font-weight:400}

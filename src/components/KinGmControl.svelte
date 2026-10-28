@@ -13,7 +13,7 @@
 <div class="group">
   <div class="eyebrow">Opposed by GM · skill</div>
   <InputRow variant="gmrow">
-    <Seg class="gmseg" label="GM skill" {options} bind:value={() => skill, setGmSkill} />
+    <Seg label="GM skill" {options} bind:value={() => skill, setGmSkill} />
     <DiceButton label="Random GM skill" onclick={randomGmSkill}><Die value={skill || 5} size="sm" /></DiceButton>
   </InputRow>
 </div>

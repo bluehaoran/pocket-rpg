@@ -136,7 +136,7 @@
   .cols{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--surface)}
   .col{all:unset;cursor:pointer;display:grid;grid-template-columns:42px minmax(0,1fr) auto;gap:14px;align-items:center;padding:12px 16px;min-height:66px;border-top:1px solid var(--line)}
   .col:first-child{border-top:0}
-  .col:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}
+  .col:focus-visible{outline:var(--ring);outline-offset:-3px}
   .col .val{font-weight:700;font-size:18px;line-height:1.25}
   .col .re{font:700 20px/1 var(--f-mono);color:var(--muted)}
   .col .re :global(.icon){width:26px;height:26px;vertical-align:middle}

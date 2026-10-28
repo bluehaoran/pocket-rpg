@@ -50,7 +50,7 @@
   .pcard.compact .prow{border-top:0;padding:10px 0 8px}
   .prow{all:unset;cursor:pointer;box-sizing:border-box;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 10px;align-items:center;padding:12px 0;border-top:1px solid var(--line);min-height:64px}
   .prow:first-child{border-top:0}
-  .prow:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
+  .prow:focus-visible{outline:var(--ring);outline-offset:2px;border-radius:6px}
   .prow .pn b{display:block;font-size:20px}
   .prow .pn small{color:var(--muted);font-size:14px}
   .prow .stats{grid-column:1}

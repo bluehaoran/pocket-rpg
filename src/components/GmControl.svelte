@@ -8,5 +8,5 @@
 
 <div class="group">
   <div class="eyebrow">Opposed by GM</div>
-  <Seg class="gmseg" label="Opposed by GM" {options} bind:value={() => app.session?.gmDice ?? 0, setGm} />
+  <Seg label="Opposed by GM" {options} bind:value={() => app.session?.gmDice ?? 0, setGm} />
 </div>

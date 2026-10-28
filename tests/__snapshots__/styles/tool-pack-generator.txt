@@ -269,7 +269,7 @@ button.btn.reroll > svg.icon > g > circle
   box-sizing: border-box
 button.btn.reroll > svg.icon > g > circle
   box-sizing: border-box
-body > div > div.dock.one > button.btn.keep
+body > div > div.dock.one > button.btn
   -webkit-tap-highlight-color: transparent
   align-items: center
   background: var(--accent)
@@ -287,11 +287,11 @@ body > div > div.dock.one > button.btn.keep
   min-height: 56px
   text-transform: uppercase
   width: 100%
-div > div.dock.one > button.btn.keep > svg.icon
+div > div.dock.one > button.btn > svg.icon
   box-sizing: border-box
   flex: none
   vertical-align: -.2em
-div.dock.one > button.btn.keep > svg.icon > path
+div.dock.one > button.btn > svg.icon > path
   box-sizing: border-box
 body > div > div.dock.one > p.dock-note
   box-sizing: border-box

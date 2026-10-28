@@ -14,7 +14,7 @@
 <style>
   .drow{all:unset;cursor:pointer;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);font:400 17px/1.3 var(--f-body)}
   .drow:last-child{border-bottom:0}
-  .drow:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
+  .drow:focus-visible{outline:var(--ring);outline-offset:2px;border-radius:6px}
   .drow .eyebrow{grid-column:1}
   .drow .v{grid-column:1;font-weight:700;color:var(--accent)}
   .drow .v.empty{color:var(--muted);font-weight:400;font-style:italic}

@@ -67,5 +67,5 @@
 
 <style>
   .link{all:unset;box-sizing:border-box;cursor:pointer;align-self:flex-start;min-height:44px;display:flex;align-items:center;color:var(--accent);font:700 15px var(--f-body);text-decoration:underline;text-underline-offset:3px}
-  .link:focus-visible{outline:3px solid var(--accent);outline-offset:-2px;border-radius:8px}
+  .link:focus-visible{outline:var(--ring);outline-offset:-2px;border-radius:8px}
 </style>
