@@ -44,3 +44,15 @@
     <div class="result"><RollResult roll={play.roll} /><button class="btn ghost" onclick={closeRoll}>Done</button></div>
   {/if}
 </div>
+
+<style>
+  .pcard.compact{background:var(--surface);border:2px solid var(--line);border-radius:18px;padding:4px 14px 14px;gap:10px}
+  .pcard.compact .prow{border-top:0;padding:10px 0 8px}
+  .prow{all:unset;cursor:pointer;box-sizing:border-box;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 10px;align-items:center;padding:12px 0;border-top:1px solid var(--line);min-height:64px}
+  .prow:first-child{border-top:0}
+  .prow:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
+  .prow .pn b{display:block;font-size:20px}
+  .prow .pn small{color:var(--muted);font-size:14px}
+  .prow .stats{grid-column:1}
+  .prow .chev{grid-column:2;grid-row:1/span 2;color:var(--muted);font:700 20px/1 var(--f-mono)}
+</style>

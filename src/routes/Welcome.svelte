@@ -40,3 +40,20 @@
     {@render arrow()}
   </section>
 </div>
+
+<style>
+  .switchrow{display:flex;align-items:center;justify-content:flex-end;gap:12px;min-height:44px;font-size:15px;color:var(--muted);cursor:pointer}
+  .switchrow input{appearance:none;position:relative;flex:none;width:46px;height:28px;margin:0;border-radius:14px;background:var(--sunk);border:2px solid var(--line);cursor:pointer;transition:background .15s}
+  .switchrow input::after{content:"";position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:var(--muted);transition:transform .15s,background .15s}
+  .switchrow input:checked{background:var(--accent);border-color:var(--accent)}
+  .switchrow input:checked::after{transform:translateX(18px);background:var(--accent-ink)}
+  .switchrow input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+  .welcome-cols{flex:1 0 auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 16px}
+  .welcome-col{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px}
+  .welcome-intro{color:var(--ink)}
+  .welcome-col .eyebrow{font:800 22px/1 var(--f-display);letter-spacing:.06em;color:var(--ink)}
+  .welcome-col p{margin:0;font-size:15px;line-height:1.4}
+  .welcome-col .hand{margin-top:auto;font:700 20px/1.1 "Segoe Print","Bradley Hand","Comic Sans MS","Chalkboard SE",cursive;color:var(--accent);transform:rotate(-3deg)}
+  .welcome-col:last-child .hand{transform:rotate(2deg)}
+  .doodle{width:44px;height:88px;flex:none;fill:none;stroke:var(--accent);stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round}
+</style>

@@ -15,3 +15,7 @@
     <button class="btn" onclick={closeRoll}>Done</button>
   </Sheet>
 {/if}
+
+<style>
+  .rollsheet{max-height:88vh;overflow-y:auto}
+</style>

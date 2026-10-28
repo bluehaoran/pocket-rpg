@@ -90,3 +90,16 @@
   {#if adding}<AddEntrySheet {list} onclose={() => (adding = false)} />{/if}
   {#if importing}<ImportSheet {list} onclose={() => (importing = false)} />{/if}
 {/if}
+
+<style>
+  .msearch{width:100%;min-height:50px;border-radius:12px;border:2px solid var(--line);background:var(--surface);color:var(--ink);font:700 17px var(--f-body);padding:0 14px}
+  .mlist{list-style:none;margin:0}
+  .mrow{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 0;border-top:1px solid var(--line)}
+  .mrow:first-child{border-top:0}
+  .mrow>div{min-width:0;display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 8px}
+  .mrow .lt{font-weight:700;font-size:16px;line-height:1.35;overflow-wrap:anywhere}
+  .mrow small{flex-basis:100%;font:500 11px/1.3 var(--f-mono);color:var(--muted)}
+  .mrow.off .lt{opacity:.5;text-decoration:line-through}
+  .mbtn{min-height:44px;min-width:72px;border-radius:10px;border:2px solid var(--line);background:transparent;color:var(--ink);font:700 14px var(--f-body);padding:0 12px}
+  .badge{font:700 10px/1 var(--f-body);text-transform:uppercase;letter-spacing:.08em;border:1px solid var(--accent);color:var(--accent);border-radius:6px;padding:2px 5px}
+</style>

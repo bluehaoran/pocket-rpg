@@ -20,3 +20,7 @@
     {/if}
   </div>
 {/key}
+
+<style>
+  .rollbody{display:flex;flex-direction:column;gap:8px}
+</style>

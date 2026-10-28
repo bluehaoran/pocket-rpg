@@ -44,3 +44,10 @@
   <div class="eyebrow" id="sheet-title">{title}</div>
   {@render children()}
 </div>
+
+<style>
+  .scrim{position:fixed;inset:0;background:rgba(5,8,12,.45);z-index:20;border:0;padding:0;width:100%}
+  .sheet{position:fixed;left:0;right:0;bottom:0;z-index:21;max-width:460px;margin:0 auto;background:var(--surface);border-top:1px solid var(--line);border-radius:20px 20px 0 0;padding-top:18px;padding-bottom:calc(18px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:14px;box-shadow:0 -8px 30px rgba(0,0,0,.25);animation:rise .2s ease-out}
+  @keyframes rise{from{transform:translateY(24px);opacity:.6}}
+  @media (prefers-reduced-motion: reduce){.sheet{animation:none}}
+</style>

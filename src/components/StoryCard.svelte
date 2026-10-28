@@ -70,3 +70,8 @@
 {#if editing}
   <FieldSheet fieldRef={editing} onclose={closed} />
 {/if}
+
+<style>
+  .story .seedline{padding:14px 0 12px;font:700 20px/1.45 var(--f-body);text-wrap:pretty}
+  .gchips .tog{background:var(--sunk);border-color:var(--sunk)}
+</style>

@@ -96,3 +96,10 @@
   </details>
   <button class="btn ghost" onclick={onclose}>Close</button>
 </Sheet>
+
+<style>
+  .mtext{width:100%;min-height:96px;border-radius:12px;border:2px solid var(--line);background:var(--surface);color:var(--ink);font:500 15px var(--f-mono);padding:10px 14px;resize:vertical}
+  .fmtbox{display:flex;flex-direction:column;gap:8px}
+  .fmtbox summary{min-height:44px;display:flex;align-items:center}
+  .fmt{margin:0;padding:10px 12px;border-radius:12px;border:2px solid var(--line);background:var(--surface);font:500 12px/1.4 var(--f-mono);overflow-x:auto;user-select:all}
+</style>

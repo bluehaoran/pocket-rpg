@@ -61,3 +61,8 @@
     {/if}
   </div>
 {/if}
+
+<style>
+  .newskill{display:grid;gap:8px;margin-top:8px}
+  .newskill .gmrow input{min-height:44px}
+</style>

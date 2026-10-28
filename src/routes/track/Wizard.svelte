@@ -21,3 +21,10 @@
 </nav>
 
 {#if step === 'setup'}<Setup />{:else if step === 'setting'}<Setting />{:else if step === 'story'}<Story />{:else}<Players />{/if}
+
+<style>
+  .vtabs.four{grid-template-columns:repeat(4,1fr)}
+  .vtabs.four a.steplink{font-size:13px;letter-spacing:.03em;padding:0 2px}
+  .vtabs a.steplink{min-height:50px;border-radius:10px;color:var(--muted);font:700 16px/1 var(--f-body);text-transform:uppercase;letter-spacing:.08em;display:flex;align-items:center;justify-content:center;text-decoration:none;text-align:center}
+  .vtabs a.steplink[aria-current="step"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.15)}
+</style>

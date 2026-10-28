@@ -49,3 +49,9 @@
     {/each}
   </section>
 {/if}
+
+<style>
+  .check{display:flex;flex-direction:column;gap:6px;margin:0;padding:0;list-style:none;font-size:15px}
+  .check li{padding:10px 12px;border-radius:10px;background:var(--surface);border:1px solid var(--line)}
+  .check li.err{border-color:#C0392B}
+</style>

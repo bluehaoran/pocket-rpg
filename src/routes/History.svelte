@@ -50,3 +50,10 @@
 <button class="btn ghost" disabled={!rows.length} aria-pressed={confirm.armed} onclick={clear}>
   {confirm.armed ? 'Tap again to clear' : 'Clear history'}
 </button>
+
+<style>
+  .hrow{display:grid;grid-template-columns:48px minmax(0,1fr);gap:10px;padding:10px 0;border-top:1px solid var(--line)}
+  .hrow:first-child{border-top:0}
+  .hrow time{font:500 12px/1.6 var(--f-mono);color:var(--muted)}
+  .hrow .lt{font-weight:700;font-size:16px;line-height:1.35;overflow-wrap:anywhere}
+</style>

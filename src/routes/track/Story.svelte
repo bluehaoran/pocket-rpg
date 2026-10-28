@@ -131,3 +131,21 @@
 {#if editing}
   <FieldSheet fieldRef={editing} onclose={() => (editing = null)} />
 {/if}
+
+<style>
+  .cols{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--surface)}
+  .col{all:unset;cursor:pointer;display:grid;grid-template-columns:42px minmax(0,1fr) auto;gap:14px;align-items:center;padding:12px 16px;min-height:66px;border-top:1px solid var(--line)}
+  .col:first-child{border-top:0}
+  .col:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}
+  .col .val{font-weight:700;font-size:18px;line-height:1.25}
+  .col .re{font:700 20px/1 var(--f-mono);color:var(--muted)}
+  .col .re :global(.icon){width:26px;height:26px;vertical-align:middle}
+  .outline{list-style:none;margin:0;padding:0;counter-reset:sc;display:flex;flex-direction:column;border:2px solid var(--line);border-radius:18px;background:var(--surface)}
+  .outline li{counter-increment:sc;display:grid;grid-template-columns:34px minmax(0,1fr);gap:4px 10px;padding:14px 16px;border-top:1px solid var(--line);font-size:16px;line-height:1.4}
+  .outline li:first-child{border-top:0}
+  .outline li::before{content:counter(sc);grid-row:1/span 3;font:700 22px/1.1 var(--f-mono);color:var(--accent)}
+  .outline b{font:800 20px/1.1 var(--f-display);text-transform:uppercase;letter-spacing:.03em}
+  .outline .rolls{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font:700 11px/1 var(--f-body);text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-top:4px}
+  .outline .rolls i{font:500 12px/1 var(--f-mono);font-style:normal;text-transform:none;letter-spacing:0;color:var(--ink);background:var(--sunk);padding:5px 8px;border-radius:999px}
+  .premise{margin:0;font-size:16px;line-height:1.45}
+</style>

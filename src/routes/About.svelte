@@ -22,3 +22,8 @@
     <p class="hint">{about.donateLabel} link coming soon.</p>
   {/if}
 </section>
+
+<style>
+  .about p{margin:0}
+  .about p a{color:inherit}
+</style>

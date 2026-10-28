@@ -18,3 +18,14 @@
 {:else}
   <div class="scalebtn static" role="img" aria-label="{over} … {under}, number {n}">{@render inner()}</div>
 {/if}
+
+<style>
+  .scalebtn{all:unset;cursor:pointer;display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;gap:10px;align-items:center;min-height:56px;padding:6px 0 0;border-top:1px solid var(--line)}
+  .scalebtn:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
+  .scalebtn .lab{font:700 12px/1 var(--f-body);text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+  .scalebtn .ticks{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
+  .scalebtn .ticks i{height:12px;border-radius:3px;background:var(--sunk)}
+  .scalebtn .ticks i.on{background:var(--accent)}
+  .scalebtn .n{font:700 34px/1 var(--f-mono);color:var(--accent);min-width:1.2em;text-align:right}
+  .scalebtn.static{cursor:default}
+</style>

@@ -67,6 +67,11 @@ describe('cascade', () => {
     expect(styleSnapshot(el('<p id="x" class="a"></p>'))).toContain('color: red');
   });
 
+  it('strips the scoped prefix from animation names so scoping a keyframe is not a change', () => {
+    sheet('.a{animation:svelte-q1-rise .2s ease-out}');
+    expect(styleSnapshot(el('<p class="a"></p>'))).toContain('animation: rise .2s ease-out');
+  });
+
   it('ignores the hash class in the element label so moving CSS does not rename elements', () => {
     sheet('.a{color:red}');
     expect(styleSnapshot(el('<p class="svelte-abc a"></p>'))).toContain('p.a\n');

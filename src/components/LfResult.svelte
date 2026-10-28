@@ -35,3 +35,8 @@
       {/if}
     </div>
   {/if}
+
+<style>
+  .choice{min-height:48px;width:100%;border-radius:12px;border:2px solid var(--line);background:var(--bg);text-align:left;padding:8px 12px;font-size:15px;line-height:1.3}
+  .choice b{display:block}
+</style>

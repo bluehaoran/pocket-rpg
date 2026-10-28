@@ -109,7 +109,7 @@ export function styleSnapshot(root: Element = document.body): string {
     const keys = Object.keys(decls).sort();
     if (keys.length) {
       lines.push(here.slice(-4).join(' > '));
-      for (const k of keys) lines.push(`  ${k}: ${decls[k]}`);
+      for (const k of keys) lines.push(`  ${k}: ${decls[k]!.replace(/\bsvelte-[a-z0-9]+-(?=[a-z])/g, '')}`);
     }
     for (const c of el.children) walk(c, here);
   };

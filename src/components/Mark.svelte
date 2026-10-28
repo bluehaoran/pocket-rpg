@@ -26,3 +26,7 @@
     <path d="M12.6 23.6H35.4V32L24 38 12.6 32Z" stroke-width="1.6" stroke-dasharray="2.2 2.6" />
   </g>
 </svg>
+
+<style>
+  .mark{flex:none}
+</style>

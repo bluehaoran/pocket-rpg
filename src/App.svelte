@@ -125,3 +125,20 @@
     {/if}
   </Sheet>
 {/if}
+
+<style>
+  .app{height:100%;max-width:460px;margin:0 auto;display:grid;grid-template-rows:auto minmax(0,1fr) auto;background:var(--bg)}
+  @media (min-width:600px){.app{border-inline:1px solid var(--line)}}
+  .top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:12px;border-bottom:1px solid var(--line)}
+  .chip{font:500 12px/1.3 var(--f-mono);color:var(--muted);text-align:right;min-width:0}
+  main{overscroll-behavior:contain;overflow-y:auto;padding-block:18px 28px;display:flex;flex-direction:column;gap:22px;-webkit-overflow-scrolling:touch}
+  .menubtn{width:44px;height:44px;border-radius:12px;border:2px solid var(--line);background:var(--surface);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;flex:none}
+  .menubtn i{display:block;width:18px;height:2.5px;border-radius:2px;background:var(--ink)}
+  .hdr{display:flex;align-items:center;gap:10px;min-width:0}
+  .tabs{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--line);background:var(--surface)}
+  .tabs a{min-height:64px;border-top:3px solid transparent;color:var(--muted);font:800 22px/1 var(--f-display);text-transform:uppercase;letter-spacing:.06em;display:flex;flex-direction:row;align-items:center;justify-content:center;gap:10px;text-decoration:none}
+  .tabs a .n{font-size:24px;line-height:1;letter-spacing:0}
+  .tabs a[aria-current="page"]{color:var(--ink);border-top-color:var(--accent)}
+  .chip.cta{color:var(--accent);text-decoration:none;font:700 13px/1.25 var(--f-body);display:flex;align-items:center;min-height:44px;max-width:13em}
+  main > :global(*){flex:none}
+</style>

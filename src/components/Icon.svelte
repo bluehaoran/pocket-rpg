@@ -11,3 +11,7 @@
 
 <svg class="icon" viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor"
   stroke-width={stroke} stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">{@html body}</svg>
+
+<style>
+  .icon{vertical-align:-.2em;flex:none}
+</style>
