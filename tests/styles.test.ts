@@ -335,6 +335,50 @@ describe('Kintsugi in play', () => {
   });
 });
 
+describe('skill lists', () => {
+  const setSkills = () => {
+    const c = app.session!.characters[0]!;
+    c.extra = ['Climb walls', ''];
+    c.earned = [{ name: 'Tumble', level: 2, parent: 'r' }, { name: 'Roll out', level: 3, parent: 'e:0' }];
+  };
+
+  it('Roll for Shoes tree with setting skills, extras, earned skills and statuses', async () => {
+    await begin('minimon', 'roll-for-shoes', 1);
+    setSkills();
+    render(CharPage, { idx: 0 });
+    await snap('char-rfs-tree');
+    cleanup();
+    render(Play);
+    await snap('play-rfs-tree');
+    cleanup();
+    await begin('minimon', 'roll-for-shoes', 1, false);
+    setSkills();
+    render(Players);
+    await snap('players-rfs-tree');
+  });
+
+  it('Roll for Shoes optional status', async () => {
+    await begin('outbreak-hotel', 'roll-for-shoes', 1);
+    render(CharPage, { idx: 0 });
+    await snap('char-rfs-optional-status');
+  });
+
+  it('Kintsugi skills, including a crossed-out one', async () => {
+    await begin('kintsugi', 'kintsugi', 1);
+    app.session!.characters[0]!.skills = [{ name: 'Kicking', level: 3 }, { name: 'Welded', level: 6, out: true }];
+    render(CharPage, { idx: 0 });
+    await snap('char-kin-skills');
+    cleanup();
+    render(Play);
+    await snap('play-kin-skills');
+    cleanup();
+    await begin('kintsugi', 'kintsugi', 1, false);
+    app.session!.characters[0]!.skills = [{ name: 'Kicking', level: 3 }];
+    render(Players);
+    await snap('players-kin-skills');
+  });
+});
+
 describe('global inventory', () => {
   it('media queries and keyframes', async () => {
     await expect(mediaInventory()).toMatchFileSnapshot('./__snapshots__/styles/media-inventory.txt');
