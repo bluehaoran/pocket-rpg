@@ -1,18 +1,12 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { registry } from '../lib/content/index.ts';
-  import { href, go } from '../lib/router.svelte.ts';
-  import { app, mutate } from '../lib/session.svelte.ts';
-  import { toolPack, toolCtx } from '../lib/toolctx.svelte.ts';
-  import { buzz } from '../lib/device.ts';
-  import { availableLetters } from '../lib/engine/table.ts';
-  import {
-    allHidden, countOpt, diceOpts, glyphRows, drawFollowUp, effectiveOpts, entriesOf, findTool, followOn, historyText, isEmptyList,
-    modDefs, partOn, partOrderOn, rollTool, segments, valueLabel, type ToolOpts, type ToolResult
-  } from '../lib/tools.ts';
+  import { href } from '../lib/router.svelte.ts';
+  import { createToolRun } from '../lib/toolrun.svelte.ts';
+  import { countOpt, followOn, glyphRows, partOn, partOrderOn, segments, valueLabel } from '../lib/tools.ts';
   import Sheet from '../components/Sheet.svelte';
   import Crumb from '../components/Crumb.svelte';
   import Chips from '../components/Chips.svelte';
+  import OnOff from '../components/OnOff.svelte';
   import Seg from '../components/Seg.svelte';
   import Stepper from '../components/Stepper.svelte';
   import Die from '../components/Die.svelte';
@@ -21,99 +15,31 @@
 
   let { toolId }: { toolId: string } = $props();
 
-  const pack = $derived(toolPack());
-  const tool = $derived(findTool(toolId, registry, pack));
-  const opts = $derived<ToolOpts>(app.session?.toolModifiers[toolId] ?? {});
-  const eff = $derived(tool ? effectiveOpts(tool, opts, toolCtx()) : {});
-  const defs = $derived(tool ? modDefs(tool, toolCtx()) : []);
-  const empty = $derived(tool ? isEmptyList(tool, toolCtx()) : false);
-  const hidden = $derived(tool ? allHidden(tool, toolCtx()) : false);
-  const hasToggles = $derived(tool?.kind === 'list' && (!!tool.parts?.length || !!tool.followUp));
-  const countFirst = $derived(tool?.kind === 'list' && tool.countFirst === true);
-  const modsFirst = $derived(tool?.kind === 'list' && tool.modifiersFirst === true);
+  const run = createToolRun(() => toolId);
+  const { roll, setOpt, setFollow, rerollFollow } = run;
+  const pack = $derived(run.pack);
+  const tool = $derived(run.tool);
+  const opts = $derived(run.opts);
+  const eff = $derived(run.eff);
+  const defs = $derived(run.defs);
+  const result = $derived(run.result);
+  const followUp = $derived(run.followUp);
+  const rolls = $derived(run.rolls);
+  const empty = $derived(run.empty);
+  const hidden = $derived(run.hidden);
+  const hasToggles = $derived(run.hasToggles);
+  const countFirst = $derived(run.countFirst);
+  const modsFirst = $derived(run.modsFirst);
+  const dice = $derived(run.dice);
+  const missing = $derived(run.missing);
+  const haveLetters = $derived(run.haveLetters);
 
-  let result = $state<ToolResult | null>(null);
-  let followUp = $state<string | null>(null);
-  let rolls = $state(0);
   let lettersOpen = $state(false);
-  let logged = false;
-
-  function roll() {
-    if (!tool) return;
-    mutate(() => {
-      result = rollTool(tool, opts, toolCtx(), result);
-    });
-    rolls++;
-    if (result) buzz();
-    if (result && tool.kind === 'list' && followOn(tool, opts)) {
-      mutate(() => (followUp = drawFollowUp(tool, toolCtx(), null)));
-    } else followUp = null;
-  }
-
-  function setOpt(key: string, value: string | number | boolean, reroll = true) {
-    mutate(s => {
-      s.toolModifiers[toolId] = { ...(s.toolModifiers[toolId] ?? {}), [key]: value };
-    });
-    if (reroll) roll();
-  }
-
-  function setFollow(on: boolean) {
-    // Turning the follow-up on or off leaves the main result alone.
-    setOpt('followUp', on, false);
-    followUp = on && result && tool?.kind === 'list' ? mutateDraw() : null;
-    rolls++;
-  }
-  function mutateDraw(): string | null {
-    let v: string | null = null;
-    if (tool?.kind === 'list') mutate(() => (v = drawFollowUp(tool, toolCtx(), null)));
-    return v;
-  }
-  function rerollFollow() {
-    if (tool?.kind !== 'list') return;
-    const prev = followUp;
-    mutate(() => (followUp = drawFollowUp(tool, toolCtx(), prev)));
-    rolls++;
-    buzz();
-  }
-
-  /** Keep the result on screen in Tools History. Happens at most once per visit. */
-  function keep() {
-    if (logged || !tool || !result) return;
-    logged = true;
-    const r = result;
-    const modifiers: Record<string, string> = {};
-    if (r.kind !== 'dice') for (const [k, v] of Object.entries(r.mods)) if (v) modifiers[k] = v;
-    mutate(s => {
-      s.toolHistory.push({
-        t: new Date().toISOString(),
-        tool: toolId,
-        label: tool.label,
-        text: tool.kind === 'dice' ? `${r.text} (${r.kind === 'dice' ? r.note : ''})` : historyText(tool, r, followUp, opts),
-        ...(Object.keys(modifiers).length ? { modifiers } : {}),
-        ...(r.kind !== 'dice' && r.relaxed ? { relaxed: true } : {})
-      });
-    });
-  }
-
-  function done() {
-    keep();
-    go('/tools');
-  }
+  const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
   onMount(() => {
     if (tool && !empty) roll();
   });
-
-  const letterSel = $derived.by(() => {
-    const sel: Record<string, string> = {};
-    for (const d of defs) if (d.key !== 'letter' && typeof eff[d.key] === 'string' && eff[d.key]) sel[d.key] = eff[d.key] as string;
-    return sel;
-  });
-  const haveLetters = $derived(tool && tool.kind === 'list' ? availableLetters(entriesOf(tool, toolCtx()), letterSel) : new Set<string>());
-  const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-
-  const dice = $derived(tool?.kind === 'dice' ? diceOpts(tool, opts) : null);
-  const missing = $derived(defs.filter(d => d.required && !eff[d.key]));
 </script>
 
 {#if !tool}
@@ -131,20 +57,10 @@
 {#if tool?.kind === 'list'}
   <div class="toggles">
     {#each tool.parts ?? [] as part (part.key)}
-      <div class="group">
-        <div class="eyebrow">{part.label}</div>
-        <Chips label={part.label}
-          items={[{ id: 'off', label: 'Off', pressed: !partOn(part, opts) }, { id: 'on', label: 'On', pressed: partOn(part, opts) }]}
-          onpick={v => setOpt(part.key, v === 'on')} />
-      </div>
+      <OnOff label={part.label} on={partOn(part, opts)} onchange={on => setOpt(part.key, on)} />
     {/each}
     {#if tool.followUp}
-      <div class="group">
-        <div class="eyebrow">{tool.followUp.label}</div>
-        <Chips label={tool.followUp.label}
-          items={[{ id: 'off', label: 'Off', pressed: !followOn(tool, opts) }, { id: 'on', label: 'On', pressed: followOn(tool, opts) }]}
-          onpick={v => setFollow(v === 'on')} />
-      </div>
+      <OnOff label={tool.followUp.label} on={followOn(tool, opts)} onchange={setFollow} />
     {/if}
   </div>
 {/if}
@@ -233,7 +149,7 @@
           {#if orderPart?.order}
             <label class="checkrow">
               <input type="checkbox" checked={partOrderOn(orderPart, opts)}
-                onchange={e => { setOpt(orderPart.key + ':order', e.currentTarget.checked, false); rolls++; }} />
+                onchange={e => { setOpt(orderPart.key + ':order', e.currentTarget.checked, false); run.replay(); }} />
               {orderPart.order.label}?
             </label>
           {/if}
@@ -264,7 +180,7 @@
 
   <Dock one>
     <button class="btn reroll" onclick={roll} disabled={empty || (tool.kind === 'gen' && missing.length > 0)}>Reroll <Icon name="reroll" /></button>
-    <button class="btn keep" aria-label="Keep result" onclick={done} disabled={!result}>
+    <button class="btn keep" aria-label="Keep result" onclick={run.finish} disabled={!result}>
       <Icon name="check" size="30px" stroke={4} />
     </button>
     <p class="dock-note">✓ keeps this result in History. Reroll or Back discards it.</p>
