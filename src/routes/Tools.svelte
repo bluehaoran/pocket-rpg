@@ -3,6 +3,7 @@
   import { href } from '../lib/router.svelte.ts';
   import { app } from '../lib/session.svelte.ts';
   import { toolPack, toolCtx } from '../lib/toolctx.svelte.ts';
+  import GenTile from '../components/GenTile.svelte';
   import { packTools, toolSub, type AnyTool } from '../lib/tools.ts';
 
   const pack = $derived(toolPack());
@@ -18,9 +19,7 @@
 <section class="gens">
   {#each registry.tools as t (t.id)}
     {@const s = sub(t)}
-    <a class="gen" class:req={/^(Choose|Empty|All hidden)/.test(s)} href={href(`/tools/${t.id}`)}>
-      <b>{t.label}</b><small>{s}</small>
-    </a>
+    <GenTile req={/^(Choose|Empty|All hidden)/.test(s)} href={href(`/tools/${t.id}`)} label={t.label} sub={s} />
   {/each}
 </section>
 
@@ -30,9 +29,7 @@
     <div class="gens">
       {#each gens as t (t.id)}
         {@const s = sub(t)}
-        <a class="gen" class:req={/^Choose/.test(s)} href={href(`/tools/${encodeURIComponent(t.id)}`)}>
-          <b>{t.label}</b><small>{s}</small>
-        </a>
+        <GenTile req={/^Choose/.test(s)} href={href(`/tools/${encodeURIComponent(t.id)}`)} label={t.label} sub={s} />
       {/each}
     </div>
   </section>

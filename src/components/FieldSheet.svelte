@@ -10,6 +10,8 @@
   import { buzz } from '../lib/device.ts';
   import Sheet from './Sheet.svelte';
   import Icon from './Icon.svelte';
+  import InputRow from './InputRow.svelte';
+  import Seg from './Seg.svelte';
 
   /** `onclose` gets the value the field had when the sheet opened, so callers can log an edit. */
   let { fieldRef, onclose }: { fieldRef: FieldRef; onclose: (before: FieldValue) => void } = $props();
@@ -43,13 +45,10 @@
 
 {#if f}
   <Sheet title={f.label} onclose={() => onclose(before)}>
-    <div class="row">
+    <InputRow>
       {#if f.kind === 'number'}
-        <div class="seg" role="group" aria-label={shortLabel(f.label)}>
-          {#each Array.from({ length: range[1] - range[0] + 1 }, (_, i) => range[0] + i) as n (n)}
-            <button type="button" aria-pressed={value === n} onclick={() => set(n)}>{n}</button>
-          {/each}
-        </div>
+        <Seg label={shortLabel(f.label)} options={Array.from({ length: range[1] - range[0] + 1 }, (_, i) => ({ value: range[0] + i }))}
+          bind:value={() => value as number, set} />
       {:else if f.kind === 'multi'}
         <div class="stack">
           {#each Array.from({ length: f.count ?? 2 }, (_, i) => i) as i (i)}
@@ -90,7 +89,7 @@
       {#if randomisable}
         <button class="dice" aria-label="Random {shortLabel(f.label).toLowerCase()}" onclick={randomise}><Icon name="reroll" size="28px" /></button>
       {:else}<span></span>{/if}
-    </div>
+    </InputRow>
     {#if f.kind === 'number' && typeof value === 'number' && under && over}
       <p class="hint">
         Higher number = better at {under.label}. {under.label}: roll under {value}. {over.label}: roll over {value}.
@@ -102,3 +101,10 @@
     <button class="btn" onclick={() => onclose(before)}>Done</button>
   </Sheet>
 {/if}
+
+<style>
+  .sel{position:relative;min-width:0}
+  .sel::after{content:"";position:absolute;right:16px;top:50%;width:9px;height:9px;border-right:2.5px solid var(--muted);border-bottom:2.5px solid var(--muted);transform:translateY(-70%) rotate(45deg);pointer-events:none}
+  .stack{display:flex;flex-direction:column;gap:8px;min-width:0}
+  .free{min-height:52px;width:100%;border-radius:12px;border:2px dashed var(--line);background:var(--bg);color:var(--ink);font:700 17px var(--f-body);padding:0 14px}
+</style>

@@ -2,6 +2,7 @@
   import { packs, rawPacks } from '../lib/content/index.ts';
   import { validatePack } from '../lib/content/validate.ts';
   import { href } from '../lib/router.svelte.ts';
+  import OptCard from '../components/OptCard.svelte';
   import BackBar from '../components/BackBar.svelte';
 
   let { packId }: { packId?: string } = $props();
@@ -39,13 +40,8 @@
   <section class="group">
     {#each all as p (p.id)}
       {@const r = validatePack(p)}
-      <a class="opt" href={href(`/packs/${p.id}`)}>
-        <span class="radio"></span>
-        <span class="t">{p.genre ?? p.name}</span>
-        <span class="m" class:err={r.errors.length > 0}>
-          {p.name} v{p.version}{p.library ? ' · library' : ''} · {r.tables} tables{r.errors.length ? ` · ${r.errors.length} errors` : ''}
-        </span>
-      </a>
+      <OptCard href={href(`/packs/${p.id}`)} title={p.genre ?? p.name} err={r.errors.length > 0}
+        meta={`${p.name} v${p.version}${p.library ? ' · library' : ''} · ${r.tables} tables${r.errors.length ? ` · ${r.errors.length} errors` : ''}`} />
     {/each}
   </section>
 {/if}

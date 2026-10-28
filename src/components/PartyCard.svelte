@@ -55,4 +55,5 @@
   .prow .pn small{color:var(--muted);font-size:14px}
   .prow .stats{grid-column:1}
   .prow .chev{grid-column:2;grid-row:1/span 2;color:var(--muted);font:700 20px/1 var(--f-mono)}
+  .pcard.compact :global(.tog){min-height:44px;font-size:14px;padding:0 12px}
 </style>

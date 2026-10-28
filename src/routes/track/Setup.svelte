@@ -5,6 +5,7 @@
   import { app, mutate } from '../../lib/session.svelte.ts';
   import { MAX_PLAYERS, setPlayers, setRules } from '../../lib/setup.ts';
   import { RULES_INFO, runs } from '../../lib/rulesInfo.ts';
+  import OptCard from '../../components/OptCard.svelte';
   import Sheet from '../../components/Sheet.svelte';
   import Stepper from '../../components/Stepper.svelte';
   import Icon from '../../components/Icon.svelte';
@@ -40,11 +41,8 @@
   <div class="eyebrow">Rule system</div>
   {#each Object.entries(RULES) as [id, label] (id)}
     <div class="opt-wrap">
-      <button class="opt" aria-pressed={s.rulesId === id} onclick={() => mutate(x => setRules(x, id as RulesId, orderedPacks()))}>
-        <span class="radio"></span><span class="t">{label}</span>
-        <span class="m">{RULE_META[id as RulesId].short}</span>
-        <span class="m more">{RULE_META[id as RulesId].more}</span>
-      </button>
+      <OptCard title={label} meta={RULE_META[id as RulesId].short} more={RULE_META[id as RulesId].more}
+        pressed={s.rulesId === id} onclick={() => mutate(x => setRules(x, id as RulesId, orderedPacks()))} />
       <button class="learn" aria-label="Learn more about {label}" aria-haspopup="dialog" onclick={() => (about = id as RulesId)}>Learn more?</button>
     </div>
   {/each}
@@ -74,7 +72,7 @@
 
 <style>
   .opt-wrap{position:relative}
-  .opt-wrap .opt{padding-bottom:50px}
+  .opt-wrap :global(.opt){padding-bottom:50px}
   .learn{all:unset;box-sizing:border-box;cursor:pointer;position:absolute;right:16px;bottom:4px;min-height:44px;display:flex;align-items:center;color:var(--accent);font:700 15px var(--f-body);text-decoration:underline;text-underline-offset:3px}
   .learn:focus-visible{outline:3px solid var(--accent);outline-offset:-2px;border-radius:8px}
   .rules-about{display:flex;flex-direction:column;gap:10px;max-height:55vh;overflow-y:auto}

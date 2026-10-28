@@ -5,6 +5,7 @@
   import { learnKinSkill, suggestKinSkill } from '../lib/play.svelte.ts';
   import { isFull, type KinRoll } from '../lib/rules/kintsugi.ts';
   import Die from './Die.svelte';
+  import InputRow from './InputRow.svelte';
 
   let { roll }: { roll: KinRoll } = $props();
 
@@ -44,10 +45,10 @@
     {:else}
       <span>Describe how you changed, then name the new skill (level {level}).</span>
       <div class="newskill">
-        <div class="gmrow">
+        <InputRow variant="gmrow">
           <input aria-label="Skill name" placeholder="e.g. Kicking: welded a sturdy leg on" autocomplete="off" bind:value={name} />
           <button class="dice" aria-label="Suggest a skill name" onclick={() => (name = suggestKinSkill(name))}><Die value={5} size="sm" /></button>
-        </div>
+        </InputRow>
         {#if full && c?.skills}
           <span>You hold the most skills allowed. Which one does it replace?</span>
           <ul class="chips" aria-label="Skill to replace">
@@ -64,5 +65,5 @@
 
 <style>
   .newskill{display:grid;gap:8px;margin-top:8px}
-  .newskill .gmrow input{min-height:44px}
+  .newskill :global(.gmrow input){min-height:44px}
 </style>

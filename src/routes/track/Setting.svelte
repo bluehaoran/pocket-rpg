@@ -6,6 +6,7 @@
   import { charCtx, nativeFor, randomPackId, setPack, setStarter, starterOf } from '../../lib/setup.ts';
   import { mathRng } from '../../lib/engine/rng.ts';
   import { buzz } from '../../lib/device.ts';
+  import OptCard from '../../components/OptCard.svelte';
   import Stepper from '../../components/Stepper.svelte';
   import Icon from '../../components/Icon.svelte';
 
@@ -36,9 +37,7 @@
   {#if own.length}
     <div class="group" role="group" aria-label={rfs ? 'Settings' : 'Genres'}>
       {#each own as p (p.id)}
-        <button class="opt" aria-pressed={p.id === pack.id} onclick={() => mutate(x => setPack(x, p.id))}>
-          <span class="radio"></span><span class="t">{p.genre ?? p.name}</span><span class="m">{basis(p)}</span>
-        </button>
+        <OptCard title={p.genre ?? p.name} meta={basis(p)} pressed={p.id === pack.id} onclick={() => mutate(x => setPack(x, p.id))} />
       {/each}
     </div>
     {#if own.length > 1}

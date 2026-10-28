@@ -6,6 +6,7 @@
   import { editCounts, emptyEdits } from '../lib/edits.ts';
   import { applyEditsFile, exportEdits, previewEditsFile, type FilePreview } from '../lib/editsfile.ts';
   import { ImportError } from '../lib/importer.ts';
+  import GenTile from '../components/GenTile.svelte';
   import { href } from '../lib/router.svelte.ts';
   import Crumb from '../components/Crumb.svelte';
 
@@ -63,9 +64,7 @@
 
 <section class="gens">
   {#each ids as id (id)}
-    <a class="gen" href={href(`/manage/${id}`)}>
-      <b>{lists[id]!.label}</b><small>{sub(id)}</small>
-    </a>
+    <GenTile href={href(`/manage/${id}`)} label={lists[id]!.label} sub={sub(id)} />
   {/each}
 </section>
 
