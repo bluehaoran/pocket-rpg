@@ -57,10 +57,10 @@
 {#if tool?.kind === 'list'}
   <div class="toggles">
     {#each tool.parts ?? [] as part (part.key)}
-      <Toggle rule={false} label={part.label} on={partOn(part, opts)} onchange={on => setOpt(part.key, on)} />
+      <Toggle rule={false} label="{part.label}?" on={partOn(part, opts)} onchange={on => setOpt(part.key, on)} />
     {/each}
     {#if tool.followUp}
-      <Toggle rule={false} label={tool.followUp.label} on={followOn(tool, opts)} onchange={setFollow} />
+      <Toggle rule={false} label="{tool.followUp.label}?" on={followOn(tool, opts)} onchange={setFollow} />
     {/if}
   </div>
 {/if}

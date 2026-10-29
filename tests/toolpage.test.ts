@@ -62,7 +62,7 @@ describe('tool page', () => {
   it('family name order re-orders the shown name without rerolling', async () => {
     render(ToolPage, { toolId: 'names' });
     await fireEvent.click(screen.getByRole('button', { name: 'Samurai' }));
-    await fireEvent.click(screen.getByRole('switch', { name: 'Last name' }));
+    await fireEvent.click(screen.getByRole('switch', { name: 'Last name?' }));
     const box = screen.getByRole('switch', { name: 'Honour traditional family name order?' });
     expect(box.getAttribute('aria-checked')).toBe('true');
     const parts = () => [...document.querySelectorAll('.tres .tbig span')].map(s => s.textContent);
@@ -80,7 +80,7 @@ describe('tool page', () => {
     render(ToolPage, { toolId: 'names' });
     const base = () => document.querySelector('.tres .tbig span')?.textContent;
     const name = base();
-    await fireEvent.click(screen.getByRole('switch', { name: 'Description' }));
+    await fireEvent.click(screen.getByRole('switch', { name: 'Description?' }));
     expect(base()).toBe(name);
     const x = () => document.querySelector('.xtra')?.textContent;
     const first = x();
@@ -122,7 +122,7 @@ describe('tool page', () => {
   it('Names puts Last name and Description toggles above the result', () => {
     render(ToolPage, { toolId: 'names' });
     const toggles = document.querySelector('.toggles')!;
-    expect([...toggles.querySelectorAll('[role="switch"]')].map(e => e.textContent?.trim())).toEqual(['Last name', 'Description']);
+    expect([...toggles.querySelectorAll('[role="switch"]')].map(e => e.textContent?.trim())).toEqual(['Last name?', 'Description?']);
     expect(toggles.compareDocumentPosition(document.querySelector('.tres')!) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   });
 
@@ -130,7 +130,7 @@ describe('tool page', () => {
     render(ToolPage, { toolId: 'names' });
     await fireEvent.click(screen.getByRole('button', { name: 'Samurai' }));
     expect(screen.queryByRole('switch', { name: 'Honour traditional family name order?' })).toBeNull();
-    await fireEvent.click(screen.getByRole('switch', { name: 'Last name' }));
+    await fireEvent.click(screen.getByRole('switch', { name: 'Last name?' }));
     const box = screen.getByRole('switch', { name: 'Honour traditional family name order?' });
     expect(document.querySelector('.toggles')!.contains(box)).toBe(false);
     expect(document.querySelector('.tres')!.compareDocumentPosition(box) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
