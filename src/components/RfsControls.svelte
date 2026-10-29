@@ -3,7 +3,7 @@
   import { skillTree, statuses } from '../lib/characters.ts';
   import { play, rollRfsSkill, toggle } from '../lib/play.svelte.ts';
   import SkillChips from './SkillChips.svelte';
-  import Tog from './Tog.svelte';
+  import Toggle from './Toggle.svelte';
   import SkillRow from './SkillRow.svelte';
 
   let { ci, compact = false }: { ci: number; compact?: boolean } = $props();
@@ -17,11 +17,11 @@
 
 {#if c}
   {#if sts.length}
-    <ul class="chips" aria-label="Statuses for the next roll">
+    <div role="group" aria-label="Statuses for the next roll">
       {#each sts as t (t.field)}
-        <li><Tog pressed={!!play.apply[ci]?.[t.field]} onclick={() => toggle('apply', ci, t.field)}>{t.level} {t.text}</Tog></li>
+        <Toggle label="{t.level} {t.text}" on={!!play.apply[ci]?.[t.field]} onchange={() => toggle('apply', ci, t.field)} />
       {/each}
-    </ul>
+    </div>
   {/if}
   {#if compact}
     <SkillChips skills={tree.filter(sk => sk.name).map(sk => ({ key: sk.key, name: sk.name, level: `${sk.level}d6` }))} onroll={key => rollRfsSkill(ci, key)} />

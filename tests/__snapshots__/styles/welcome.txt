@@ -73,32 +73,45 @@ body > div > section.group > p.hint.welcome-intro
   color: var(--ink)
   font-size: 15px
   margin: 0
-body > div > label.switchrow
+body > div > button.toggle
+  -webkit-tap-highlight-color: transparent
   align-items: center
+  background: none
+  border: 0
+  border-bottom: 1px solid var(--line)
+  border-radius: 0
   box-sizing: border-box
-  color: var(--muted)
+  color: var(--ink)
   cursor: pointer
   display: flex
-  font-size: 15px
-  gap: 12px
-  justify-content: flex-end
-  min-height: 44px
-body > div > label.switchrow > span
+  font: 400 17px/1.3 var(--f-body)
+  gap: 14px
+  min-height: 56px
+  padding: 4px 0
+  text-align: right
+  width: 100%
+body > div > button.toggle > span.lab
   box-sizing: border-box
-body > div > label.switchrow > input
-  appearance: none
+  flex: 1
+  min-width: 0
+body > div > button.toggle > span.tile
   background: var(--sel)
-  border: 2px solid var(--line)
+  border: 2px solid var(--outline)
   border-color: var(--sel)
-  border-radius: 14px
+  border-radius: 10px
   box-sizing: border-box
-  cursor: pointer
+  color: var(--sel-ink)
+  display: grid
   flex: none
-  height: 28px
-  margin: 0
-  position: relative
-  transition: background .15s
-  width: 46px
+  height: 38px
+  place-items: center
+  width: 38px
+div > button.toggle > span.tile > svg.icon
+  box-sizing: border-box
+  flex: none
+  vertical-align: -.2em
+button.toggle > span.tile > svg.icon > path
+  box-sizing: border-box
 body > div > div.welcome-cols
   box-sizing: border-box
   display: grid

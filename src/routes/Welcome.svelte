@@ -3,6 +3,7 @@
   import { app } from '../lib/session.svelte.ts';
   import { hideWelcome, setHideWelcome } from '../lib/prefs.ts';
   import Logo from '../components/Logo.svelte';
+  import Toggle from '../components/Toggle.svelte';
 
   let showAtStart = $state(!hideWelcome());
   const inPlay = $derived(app.session?.started === true);
@@ -21,10 +22,7 @@
   </svg>
 {/snippet}
 
-<label class="switchrow">
-  <span>Show me this when I start</span>
-  <input type="checkbox" role="switch" bind:checked={showAtStart} onchange={() => setHideWelcome(!showAtStart)} />
-</label>
+<Toggle label="Show me this when I start" on={showAtStart} onchange={on => { showAtStart = on; setHideWelcome(!on); }} />
 
 <div class="welcome-cols">
   <section class="welcome-col" aria-labelledby="w-track">
@@ -42,12 +40,6 @@
 </div>
 
 <style>
-  .switchrow{display:flex;align-items:center;justify-content:flex-end;gap:12px;min-height:44px;font-size:15px;color:var(--muted);cursor:pointer}
-  .switchrow input{appearance:none;position:relative;flex:none;width:46px;height:28px;margin:0;border-radius:14px;background:var(--sunk);border:2px solid var(--line);cursor:pointer;transition:background .15s}
-  .switchrow input::after{content:"";position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:var(--muted);transition:transform .15s,background .15s}
-  .switchrow input:checked{background:var(--sel);border-color:var(--sel)}
-  .switchrow input:checked::after{transform:translateX(18px);background:var(--sel-ink)}
-  .switchrow input:focus-visible{outline:var(--ring);outline-offset:2px}
   .welcome-cols{flex:1 0 auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 16px}
   .welcome-col{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px}
   .welcome-intro{color:var(--ink)}

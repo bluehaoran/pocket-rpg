@@ -65,7 +65,7 @@ describe('Lasers & Feelings in play', () => {
     const bonus = packs['starfarers']!.flavour!['lasers-feelings']!.dice!.bonuses![0]!;
     setPlayRng(dice(1, 1, 1, 1));
     render(Play);
-    await click(screen.getByRole('button', { name: new RegExp(`\\+${bonus.dice}d ${bonus.label}`) }));
+    await click(screen.getByRole('switch', { name: new RegExp(`\\+${bonus.dice}d ${bonus.label}`) }));
     await click(screen.getAllByRole('button', { name: /^Lasers/ })[0]!);
     expect(s().trackHistory.at(-1)!.text).toMatch(/Lasers 2d6/);
     await click(within(screen.getByRole('dialog')).getByRole('button', { name: 'Done' }));
@@ -204,7 +204,7 @@ describe('Roll for Shoes in play', () => {
     const c = s().characters[0]!;
     setPlayRng(dice(5));
     render(Play);
-    const chip = screen.getAllByRole('button').find(b => /^-2 Weak to/.test(b.textContent ?? ''))!;
+    const chip = screen.getAllByRole('switch').find(b => /^-2 Weak to/.test(b.textContent ?? ''))!;
     await click(chip);
     await click(rollSkillButton(/Do anything/));
     expect(s().trackHistory.at(-1)!.text).toContain('(-2)');

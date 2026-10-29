@@ -6,7 +6,7 @@
   import Sheet from '../components/Sheet.svelte';
   import Crumb from '../components/Crumb.svelte';
   import Chips from '../components/Chips.svelte';
-  import OnOff from '../components/OnOff.svelte';
+  import Toggle from '../components/Toggle.svelte';
   import Seg from '../components/Seg.svelte';
   import Stepper from '../components/Stepper.svelte';
   import Die from '../components/Die.svelte';
@@ -57,10 +57,10 @@
 {#if tool?.kind === 'list'}
   <div class="toggles">
     {#each tool.parts ?? [] as part (part.key)}
-      <OnOff label={part.label} on={partOn(part, opts)} onchange={on => setOpt(part.key, on)} />
+      <Toggle label={part.label} on={partOn(part, opts)} onchange={on => setOpt(part.key, on)} />
     {/each}
     {#if tool.followUp}
-      <OnOff label={tool.followUp.label} on={followOn(tool, opts)} onchange={setFollow} />
+      <Toggle label={tool.followUp.label} on={followOn(tool, opts)} onchange={setFollow} />
     {/if}
   </div>
 {/if}
@@ -147,11 +147,8 @@
       {#if orderPart?.order || (tool.followUp && followUp)}
         <div class="underres">
           {#if orderPart?.order}
-            <label class="checkrow">
-              <input type="checkbox" checked={partOrderOn(orderPart, opts)}
-                onchange={e => { setOpt(orderPart.key + ':order', e.currentTarget.checked, false); run.replay(); }} />
-              {orderPart.order.label}?
-            </label>
+            <Toggle label="{orderPart.order.label}?" on={partOrderOn(orderPart, opts)}
+              onchange={on => { setOpt(orderPart.key + ':order', on, false); run.replay(); }} />
           {/if}
           {#if tool.followUp && followUp}
             <button class="mini-btn" onclick={rerollFollow}>New {tool.followUp.label.toLowerCase()} <Icon name="reroll" /></button>
@@ -210,8 +207,8 @@
   .tbig .ul{text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:6px}
   .rfoot{font:500 12px/1.3 var(--f-mono);color:var(--muted);display:flex;gap:4px 12px;flex-wrap:wrap}
   .rfoot .relax{color:var(--accent)}
-  .underres{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 12px;margin-top:-12px}
-  .underres .mini-btn{margin-left:auto}
+  .underres{display:flex;flex-direction:column;align-items:stretch;margin-top:-12px}
+  .underres .mini-btn{align-self:flex-end}
   .letterbtn{all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;border:2px solid var(--line);border-radius:14px;background:var(--surface);padding:0 16px;min-height:58px;font:400 17px/1.3 var(--f-body)}
   .letterbtn:focus-visible{outline:var(--ring);outline-offset:2px}
   .letterbtn .v{font-size:20px;font-weight:700}
@@ -221,9 +218,6 @@
   .letters button.any{grid-column:span 2;font-family:var(--f-body);font-size:16px}
   .letters button[aria-pressed="true"]{background:var(--sel);border-color:var(--sel);color:var(--sel-ink)}
   .letters button:disabled{opacity:.3;cursor:not-allowed}
-  .checkrow{display:flex;align-items:center;gap:10px;min-height:44px;font-size:15px;color:var(--muted);cursor:pointer}
-  .checkrow input{width:22px;height:22px;margin:0;accent-color:var(--sel);flex:none}
-  .toggles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 16px;align-items:start}
   .glyphs{display:flex;flex-direction:column;align-items:center;gap:.12em;font-size:clamp(44px,16vw,72px);line-height:1.15}
   .glyphs .grow{display:flex;justify-content:center;gap:.3em}
 </style>

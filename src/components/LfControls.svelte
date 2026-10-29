@@ -3,7 +3,7 @@
   import { exactText, lfFlavour, numberFieldId } from '../lib/characters.ts';
   import { poolSize, resourceState } from '../lib/rules/lasers-feelings.ts';
   import { adjust, play, rollCheck, toggle } from '../lib/play.svelte.ts';
-  import Tog from './Tog.svelte';
+  import Toggle from './Toggle.svelte';
 
   let { ci, compact = false }: { ci: number; compact?: boolean } = $props();
 
@@ -33,11 +33,11 @@
   {/if}
   <div>
     {#if f.dice?.bonuses?.length}
-      <ul class="chips" aria-label="Bonus dice">
+      <div role="group" aria-label="Bonus dice">
         {#each f.dice.bonuses as b (b.id)}
-          <li><Tog pressed={!!play.bonuses[ci]?.[b.id]} onclick={() => toggle('bonuses', ci, b.id)}>+{b.dice}d {b.label}</Tog></li>
+          <Toggle label="+{b.dice}d {b.label}" on={!!play.bonuses[ci]?.[b.id]} onchange={() => toggle('bonuses', ci, b.id)} />
         {/each}
-      </ul>
+      </div>
     {/if}
     <div class="checks" class:compact>
       {#each f.checks as k (k.id)}

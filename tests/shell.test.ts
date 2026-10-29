@@ -61,14 +61,14 @@ describe('welcome screen', () => {
 
   it('the toggle is on by default and saves the choice', async () => {
     render(Welcome);
-    const toggle = screen.getByRole('switch', { name: 'Show me this when I start' }) as HTMLInputElement;
-    expect(toggle.checked).toBe(true);
+    const toggle = screen.getByRole('switch', { name: 'Show me this when I start' });
+    expect(toggle.getAttribute('aria-checked')).toBe('true');
     expect(hideWelcome()).toBe(false);
     await fireEvent.click(toggle);
     expect(hideWelcome()).toBe(true);
     cleanup();
     render(Welcome);
-    expect((screen.getByRole('switch') as HTMLInputElement).checked).toBe(false);
+    expect(screen.getByRole('switch').getAttribute('aria-checked')).toBe('false');
     await fireEvent.click(screen.getByRole('switch'));
     expect(hideWelcome()).toBe(false);
   });

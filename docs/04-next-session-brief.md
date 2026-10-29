@@ -15,6 +15,7 @@ Read first: `06-build-plan.md`, then `01-product-spec.md`, `05-tools-library.md`
 
 - **Manage Tools (2026-10-26):** menu item for per-device edits to the Tools lists: add, import (JSON or plain text, with a per-list format example), delete your own entries, hide and unhide stock ones, export and import an edits file. Rules in `05-tools-library.md` §8. Not yet checked on a phone.
 
+- **Toggle rows (2026-10-29):** `Toggle.svelte` replaces the Welcome switch, the family-name-order checkbox, `OnOff` chip pairs, and the bonus-dice and status chips. It has `role="switch"`, a new `cross` icon and an `--outline` token (dark #566070, light #7C8796; the light value is unreviewed). Welcome hides the top bar.
 - **Colour roles (2026-10-29):** design review of dark mode. Selected state moved from orange to ink with a check icon (`Tog.svelte`, `Seg.svelte`), `--pin` blue removed, Lasers and Feelings buttons made equal. Roles are in `01-product-spec.md` (Shell). Not done yet: the light-mode review (check `--sel` and `--line` contrast there), `--danger` has no dark-mode value (3.5:1 on the background), and the rest of the dark-mode findings (wizard heading stack, tool-page dock hint, small mono text, the empty Complication tile). `docs/mockup/pocketrpg-mockup.html` still uses `--pin`; it is a reference, not updated.
 
 ## Next
