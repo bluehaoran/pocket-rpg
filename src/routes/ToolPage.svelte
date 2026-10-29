@@ -70,7 +70,7 @@
   {#if tool?.kind === 'list' && tool.count}
     <div class="group">
       <div class="eyebrow">How many</div>
-      <Stepper compact label="how many" min={tool.count.min} max={tool.count.max}
+      <Stepper label="how many" min={tool.count.min} max={tool.count.max}
         bind:value={() => countOpt(tool, opts), v => setOpt('count', v)} />
     </div>
   {/if}

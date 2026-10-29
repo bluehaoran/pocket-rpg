@@ -75,18 +75,17 @@ body > div > div.group > div.eyebrow
   font: 700 12px/1.2 var(--f-body)
   letter-spacing: .12em
   text-transform: uppercase
-body > div > div.group > div.compact.stepper
+body > div > div.group > div.stepper
   align-items: stretch
   background: var(--surface)
   border: 2px solid var(--line)
-  border-radius: 12px
+  border-radius: 14px
   box-sizing: border-box
   display: grid
-  grid-template-columns: 48px 52px 48px
-  min-height: 48px
+  grid-template-columns: 64px minmax(0,1fr) 64px
+  min-height: 64px
   overflow: hidden
-  width: max-content
-div > div.group > div.compact.stepper > button
+div > div.group > div.stepper > button
   -webkit-tap-highlight-color: transparent
   background: var(--sunk)
   border: 0
@@ -94,21 +93,19 @@ div > div.group > div.compact.stepper > button
   color: inherit
   cursor: pointer
   font: 700 28px/1 var(--f-mono)
-  font-size: 24px
-div.group > div.compact.stepper > button > svg.icon
+div.group > div.stepper > button > svg.icon
   box-sizing: border-box
   flex: none
   vertical-align: -.2em
-div.compact.stepper > button > svg.icon > path
+div.stepper > button > svg.icon > path
   box-sizing: border-box
-div > div.group > div.compact.stepper > output
+div > div.group > div.stepper > output
   box-sizing: border-box
   display: grid
   font: 700 30px/1 var(--f-mono)
-  font-size: 24px
   font-variant-numeric: tabular-nums
   place-items: center
-div > div.group > div.compact.stepper > button
+div > div.group > div.stepper > button
   -webkit-tap-highlight-color: transparent
   background: var(--sunk)
   border: 0
@@ -116,14 +113,13 @@ div > div.group > div.compact.stepper > button
   color: inherit
   cursor: pointer
   font: 700 28px/1 var(--f-mono)
-  font-size: 24px
-div.group > div.compact.stepper > button > svg.icon
+div.group > div.stepper > button > svg.icon
   box-sizing: border-box
   flex: none
   vertical-align: -.2em
-div.compact.stepper > button > svg.icon > path
+div.stepper > button > svg.icon > path
   box-sizing: border-box
-div.compact.stepper > button > svg.icon > path
+div.stepper > button > svg.icon > path
   box-sizing: border-box
 body > div > div.dock.one
   background: var(--bg)
