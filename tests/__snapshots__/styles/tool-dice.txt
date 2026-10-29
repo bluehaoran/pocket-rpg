@@ -45,6 +45,7 @@ body > div > div.fresh.tres > div.num.tbig
   font: 700 72px/1 var(--f-mono)
   font-variant-numeric: tabular-nums
   overflow-wrap: anywhere
+  text-align: center
   text-wrap: balance
 body > div > div.fresh.tres > div.dicerow
   align-items: center

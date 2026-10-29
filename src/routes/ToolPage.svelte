@@ -202,7 +202,7 @@
   .tres{background:var(--surface);border:2px solid var(--ink);border-radius:18px;padding:22px 18px 16px;display:flex;flex-direction:column;gap:12px;min-height:150px;justify-content:center;-webkit-user-select:none;user-select:none}
   .tbig{font:700 34px/1.2 var(--f-body);text-wrap:balance;overflow-wrap:anywhere}
   .tres .dicerow{justify-content:center}
-  .tbig.num{font:700 72px/1 var(--f-mono);font-variant-numeric:tabular-nums}
+  .tbig.num{font:700 72px/1 var(--f-mono);font-variant-numeric:tabular-nums;text-align:center}
   .tbig .xtra{color:var(--accent)}
   .tbig .ul{text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:6px}
   .rfoot{font:500 12px/1.3 var(--f-mono);color:var(--muted);display:flex;gap:4px 12px;flex-wrap:wrap}
