@@ -52,6 +52,7 @@ body > div > div.fresh.tres > div.dicerow
   display: flex
   flex-wrap: wrap
   gap: 8px
+  justify-content: center
 div > div.fresh.tres > div.dicerow > span.die.lg
   background: var(--sunk)
   border: 1px solid var(--line)

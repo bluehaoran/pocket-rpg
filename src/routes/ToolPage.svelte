@@ -204,6 +204,7 @@
   .d20{width:50px;height:50px;display:grid;place-items:center;border-radius:11px;background:var(--sunk);border:1px solid var(--line);font:700 20px/1 var(--f-mono)}
   .tres{background:var(--surface);border:2px solid var(--ink);border-radius:18px;padding:22px 18px 16px;display:flex;flex-direction:column;gap:12px;min-height:150px;justify-content:center;-webkit-user-select:none;user-select:none}
   .tbig{font:700 34px/1.2 var(--f-body);text-wrap:balance;overflow-wrap:anywhere}
+  .tres .dicerow{justify-content:center}
   .tbig.num{font:700 72px/1 var(--f-mono);font-variant-numeric:tabular-nums}
   .tbig .xtra{color:var(--accent)}
   .tbig .ul{text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:6px}

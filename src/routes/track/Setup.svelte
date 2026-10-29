@@ -56,6 +56,8 @@
 {/if}
 
 <style>
+  /* The page title sits above its section headings. */
+  h1{font-size:44px}
   .opt-wrap{position:relative}
   .opt-wrap :global(.opt){padding-bottom:50px}
   .learn{all:unset;box-sizing:border-box;cursor:pointer;position:absolute;right:16px;bottom:4px;min-height:44px;display:flex;align-items:center;color:var(--accent);font:700 15px var(--f-body);text-decoration:underline;text-underline-offset:3px}

@@ -220,6 +220,7 @@ div > div.app > main.gutter > section.group
 div.app > main.gutter > section.group > h1
   box-sizing: border-box
   font: 800 34px/1 var(--f-display)
+  font-size: 44px
   letter-spacing: .01em
   margin: 0
   text-transform: uppercase
