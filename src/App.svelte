@@ -35,7 +35,8 @@
   const closeMenu = () => (menuOpen = false);
 </script>
 
-<div class="app">
+<div class="app" class:bare={route.page === 'welcome'}>
+  {#if route.page !== 'welcome'}
   <header class="top gutter">
     <Logo />
     <div class="hdr">
@@ -47,6 +48,7 @@
       <button class="menubtn" aria-label="Menu" onclick={() => (menuOpen = true)}><i></i><i></i><i></i></button>
     </div>
   </header>
+  {/if}
 
   <main class="gutter" bind:this={mainEl}>
     {#if !app.ready}
@@ -88,6 +90,8 @@
 
 <style>
   .app{height:100%;max-width:460px;margin:0 auto;display:grid;grid-template-rows:auto minmax(0,1fr) auto;background:var(--bg)}
+  /* The Welcome screen has no top bar: the story chip and menu only matter once you are using the app. */
+  .app.bare{grid-template-rows:minmax(0,1fr) auto}
   @media (min-width:600px){.app{border-inline:1px solid var(--line)}}
   .top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:12px;border-bottom:1px solid var(--line)}
   .chip{font:500 12px/1.3 var(--f-mono);color:var(--muted);text-align:right;min-width:0}

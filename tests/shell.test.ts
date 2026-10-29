@@ -82,6 +82,17 @@ describe('welcome screen', () => {
     expect(router.route.page).toBe('welcome');
     expect(screen.getByRole('heading', { level: 2 }).textContent).toBe('PocketRPG');
   });
+
+  it('has no top bar, which only matters once the app is in use', async () => {
+    location.hash = '#/welcome';
+    render(App);
+    await tock();
+    expect(document.querySelector('header.top')).toBeNull();
+    expect(screen.queryByRole('button', { name: 'Menu' })).toBeNull();
+    location.hash = '#/track';
+    await tock();
+    expect(document.querySelector('header.top')).not.toBeNull();
+  });
 });
 
 describe('startup', () => {
