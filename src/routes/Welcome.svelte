@@ -9,7 +9,7 @@
 </script>
 
 <section class="group">
-  <h2><Logo /></h2>
+  <h2><Logo size="34px" /></h2>
   <p class="hint welcome-intro">{welcome.intro}</p>
 </section>
 
