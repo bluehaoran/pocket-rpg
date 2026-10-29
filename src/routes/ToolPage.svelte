@@ -57,10 +57,10 @@
 {#if tool?.kind === 'list'}
   <div class="toggles">
     {#each tool.parts ?? [] as part (part.key)}
-      <Toggle label={part.label} on={partOn(part, opts)} onchange={on => setOpt(part.key, on)} />
+      <Toggle rule={false} label={part.label} on={partOn(part, opts)} onchange={on => setOpt(part.key, on)} />
     {/each}
     {#if tool.followUp}
-      <Toggle label={tool.followUp.label} on={followOn(tool, opts)} onchange={setFollow} />
+      <Toggle rule={false} label={tool.followUp.label} on={followOn(tool, opts)} onchange={setFollow} />
     {/if}
   </div>
 {/if}
@@ -209,6 +209,7 @@
   .rfoot .relax{color:var(--accent)}
   .underres{display:flex;flex-direction:column;align-items:stretch;margin-top:-12px}
   .underres .mini-btn{align-self:flex-end}
+  .toggles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 20px}
   .letterbtn{all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;border:2px solid var(--line);border-radius:14px;background:var(--surface);padding:0 16px;min-height:58px;font:400 17px/1.3 var(--f-body)}
   .letterbtn:focus-visible{outline:var(--ring);outline-offset:2px}
   .letterbtn .v{font-size:20px;font-weight:700}

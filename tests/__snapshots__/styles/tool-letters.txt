@@ -28,12 +28,14 @@ body > div > h2 > span.sep
   margin-inline: .25em
 body > div > div.toggles
   box-sizing: border-box
+  display: grid
+  gap: 0 20px
+  grid-template-columns: repeat(2,minmax(0,1fr))
 body > div > div.toggles > button.toggle
   -webkit-tap-highlight-color: transparent
   align-items: center
   background: none
   border: 0
-  border-bottom: 1px solid var(--line)
   border-radius: 0
   box-sizing: border-box
   color: var(--ink)
@@ -73,7 +75,6 @@ body > div > div.toggles > button.toggle
   align-items: center
   background: none
   border: 0
-  border-bottom: 0
   border-radius: 0
   box-sizing: border-box
   color: var(--ink)

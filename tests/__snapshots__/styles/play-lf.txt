@@ -453,7 +453,7 @@ div > section.group > div.compact.pcard > div
   box-sizing: border-box
 section.group > div.compact.pcard > div > div
   box-sizing: border-box
-div.compact.pcard > div > div > button.toggle
+div.compact.pcard > div > div > button.rule.toggle
   -webkit-tap-highlight-color: transparent
   align-items: center
   background: none
@@ -470,11 +470,11 @@ div.compact.pcard > div > div > button.toggle
   padding: 4px 0
   text-align: right
   width: 100%
-div > div > button.toggle > span.lab
+div > div > button.rule.toggle > span.lab
   box-sizing: border-box
   flex: 1
   min-width: 0
-div > div > button.toggle > span.tile
+div > div > button.rule.toggle > span.tile
   background: var(--bg)
   border: 2px solid var(--outline)
   border-radius: 10px
@@ -485,15 +485,15 @@ div > div > button.toggle > span.tile
   height: 38px
   place-items: center
   width: 38px
-div > button.toggle > span.tile > svg.icon
+div > button.rule.toggle > span.tile > svg.icon
   box-sizing: border-box
   flex: none
   vertical-align: -.2em
-button.toggle > span.tile > svg.icon > path
+button.rule.toggle > span.tile > svg.icon > path
   box-sizing: border-box
-button.toggle > span.tile > svg.icon > path
+button.rule.toggle > span.tile > svg.icon > path
   box-sizing: border-box
-div.compact.pcard > div > div > button.toggle
+div.compact.pcard > div > div > button.rule.toggle
   -webkit-tap-highlight-color: transparent
   align-items: center
   background: none
@@ -510,11 +510,11 @@ div.compact.pcard > div > div > button.toggle
   padding: 4px 0
   text-align: right
   width: 100%
-div > div > button.toggle > span.lab
+div > div > button.rule.toggle > span.lab
   box-sizing: border-box
   flex: 1
   min-width: 0
-div > div > button.toggle > span.tile
+div > div > button.rule.toggle > span.tile
   background: var(--bg)
   border: 2px solid var(--outline)
   border-radius: 10px
@@ -525,15 +525,15 @@ div > div > button.toggle > span.tile
   height: 38px
   place-items: center
   width: 38px
-div > button.toggle > span.tile > svg.icon
+div > button.rule.toggle > span.tile > svg.icon
   box-sizing: border-box
   flex: none
   vertical-align: -.2em
-button.toggle > span.tile > svg.icon > path
+button.rule.toggle > span.tile > svg.icon > path
   box-sizing: border-box
-button.toggle > span.tile > svg.icon > path
+button.rule.toggle > span.tile > svg.icon > path
   box-sizing: border-box
-div.compact.pcard > div > div > button.toggle
+div.compact.pcard > div > div > button.rule.toggle
   -webkit-tap-highlight-color: transparent
   align-items: center
   background: none
@@ -550,11 +550,11 @@ div.compact.pcard > div > div > button.toggle
   padding: 4px 0
   text-align: right
   width: 100%
-div > div > button.toggle > span.lab
+div > div > button.rule.toggle > span.lab
   box-sizing: border-box
   flex: 1
   min-width: 0
-div > div > button.toggle > span.tile
+div > div > button.rule.toggle > span.tile
   background: var(--bg)
   border: 2px solid var(--outline)
   border-radius: 10px
@@ -565,15 +565,15 @@ div > div > button.toggle > span.tile
   height: 38px
   place-items: center
   width: 38px
-div > button.toggle > span.tile > svg.icon
+div > button.rule.toggle > span.tile > svg.icon
   box-sizing: border-box
   flex: none
   vertical-align: -.2em
-button.toggle > span.tile > svg.icon > path
+button.rule.toggle > span.tile > svg.icon > path
   box-sizing: border-box
-button.toggle > span.tile > svg.icon > path
+button.rule.toggle > span.tile > svg.icon > path
   box-sizing: border-box
-div.compact.pcard > div > div > button.toggle
+div.compact.pcard > div > div > button.rule.toggle
   -webkit-tap-highlight-color: transparent
   align-items: center
   background: none
@@ -590,11 +590,11 @@ div.compact.pcard > div > div > button.toggle
   padding: 4px 0
   text-align: right
   width: 100%
-div > div > button.toggle > span.lab
+div > div > button.rule.toggle > span.lab
   box-sizing: border-box
   flex: 1
   min-width: 0
-div > div > button.toggle > span.tile
+div > div > button.rule.toggle > span.tile
   background: var(--bg)
   border: 2px solid var(--outline)
   border-radius: 10px
@@ -605,13 +605,13 @@ div > div > button.toggle > span.tile
   height: 38px
   place-items: center
   width: 38px
-div > button.toggle > span.tile > svg.icon
+div > button.rule.toggle > span.tile > svg.icon
   box-sizing: border-box
   flex: none
   vertical-align: -.2em
-button.toggle > span.tile > svg.icon > path
+button.rule.toggle > span.tile > svg.icon > path
   box-sizing: border-box
-button.toggle > span.tile > svg.icon > path
+button.rule.toggle > span.tile > svg.icon > path
   box-sizing: border-box
 section.group > div.compact.pcard > div > div.checks.compact
   box-sizing: border-box
@@ -821,7 +821,7 @@ div > section.group > div.compact.pcard > div
   box-sizing: border-box
 section.group > div.compact.pcard > div > div
   box-sizing: border-box
-div.compact.pcard > div > div > button.toggle
+div.compact.pcard > div > div > button.rule.toggle
   -webkit-tap-highlight-color: transparent
   align-items: center
   background: none
@@ -838,11 +838,11 @@ div.compact.pcard > div > div > button.toggle
   padding: 4px 0
   text-align: right
   width: 100%
-div > div > button.toggle > span.lab
+div > div > button.rule.toggle > span.lab
   box-sizing: border-box
   flex: 1
   min-width: 0
-div > div > button.toggle > span.tile
+div > div > button.rule.toggle > span.tile
   background: var(--bg)
   border: 2px solid var(--outline)
   border-radius: 10px
@@ -853,15 +853,15 @@ div > div > button.toggle > span.tile
   height: 38px
   place-items: center
   width: 38px
-div > button.toggle > span.tile > svg.icon
+div > button.rule.toggle > span.tile > svg.icon
   box-sizing: border-box
   flex: none
   vertical-align: -.2em
-button.toggle > span.tile > svg.icon > path
+button.rule.toggle > span.tile > svg.icon > path
   box-sizing: border-box
-button.toggle > span.tile > svg.icon > path
+button.rule.toggle > span.tile > svg.icon > path
   box-sizing: border-box
-div.compact.pcard > div > div > button.toggle
+div.compact.pcard > div > div > button.rule.toggle
   -webkit-tap-highlight-color: transparent
   align-items: center
   background: none
@@ -878,11 +878,11 @@ div.compact.pcard > div > div > button.toggle
   padding: 4px 0
   text-align: right
   width: 100%
-div > div > button.toggle > span.lab
+div > div > button.rule.toggle > span.lab
   box-sizing: border-box
   flex: 1
   min-width: 0
-div > div > button.toggle > span.tile
+div > div > button.rule.toggle > span.tile
   background: var(--bg)
   border: 2px solid var(--outline)
   border-radius: 10px
@@ -893,15 +893,15 @@ div > div > button.toggle > span.tile
   height: 38px
   place-items: center
   width: 38px
-div > button.toggle > span.tile > svg.icon
+div > button.rule.toggle > span.tile > svg.icon
   box-sizing: border-box
   flex: none
   vertical-align: -.2em
-button.toggle > span.tile > svg.icon > path
+button.rule.toggle > span.tile > svg.icon > path
   box-sizing: border-box
-button.toggle > span.tile > svg.icon > path
+button.rule.toggle > span.tile > svg.icon > path
   box-sizing: border-box
-div.compact.pcard > div > div > button.toggle
+div.compact.pcard > div > div > button.rule.toggle
   -webkit-tap-highlight-color: transparent
   align-items: center
   background: none
@@ -918,11 +918,11 @@ div.compact.pcard > div > div > button.toggle
   padding: 4px 0
   text-align: right
   width: 100%
-div > div > button.toggle > span.lab
+div > div > button.rule.toggle > span.lab
   box-sizing: border-box
   flex: 1
   min-width: 0
-div > div > button.toggle > span.tile
+div > div > button.rule.toggle > span.tile
   background: var(--bg)
   border: 2px solid var(--outline)
   border-radius: 10px
@@ -933,15 +933,15 @@ div > div > button.toggle > span.tile
   height: 38px
   place-items: center
   width: 38px
-div > button.toggle > span.tile > svg.icon
+div > button.rule.toggle > span.tile > svg.icon
   box-sizing: border-box
   flex: none
   vertical-align: -.2em
-button.toggle > span.tile > svg.icon > path
+button.rule.toggle > span.tile > svg.icon > path
   box-sizing: border-box
-button.toggle > span.tile > svg.icon > path
+button.rule.toggle > span.tile > svg.icon > path
   box-sizing: border-box
-div.compact.pcard > div > div > button.toggle
+div.compact.pcard > div > div > button.rule.toggle
   -webkit-tap-highlight-color: transparent
   align-items: center
   background: none
@@ -958,11 +958,11 @@ div.compact.pcard > div > div > button.toggle
   padding: 4px 0
   text-align: right
   width: 100%
-div > div > button.toggle > span.lab
+div > div > button.rule.toggle > span.lab
   box-sizing: border-box
   flex: 1
   min-width: 0
-div > div > button.toggle > span.tile
+div > div > button.rule.toggle > span.tile
   background: var(--bg)
   border: 2px solid var(--outline)
   border-radius: 10px
@@ -973,13 +973,13 @@ div > div > button.toggle > span.tile
   height: 38px
   place-items: center
   width: 38px
-div > button.toggle > span.tile > svg.icon
+div > button.rule.toggle > span.tile > svg.icon
   box-sizing: border-box
   flex: none
   vertical-align: -.2em
-button.toggle > span.tile > svg.icon > path
+button.rule.toggle > span.tile > svg.icon > path
   box-sizing: border-box
-button.toggle > span.tile > svg.icon > path
+button.rule.toggle > span.tile > svg.icon > path
   box-sizing: border-box
 section.group > div.compact.pcard > div > div.checks.compact
   box-sizing: border-box
