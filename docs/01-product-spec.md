@@ -111,6 +111,7 @@ Shows the current state of the session. Not history.
   - Fail: +1 XP (automatic when opposed, otherwise a "Failed: +1 XP" button).
   - Spend XP: turns the lowest non-6 die into a 6. XP earned from this roll can't be spent on it.
   - All sixes: prompt to name a new skill one level higher, as a child of the skill used.
+- The roll ends with **Cancel** (hollow) or **Accept** (solid). Accept keeps everything the roll did: the history lines, failure XP, spent XP and any new skill. Cancel throws the roll away: the character and history go back as they were before it, and the statuses come back. Each button has a reroll button beside it that does the same and rolls the skill again (Cancel and roll again, Accept and roll again). Closing the sheet counts as Accept. Other rules still end with Done.
 
 **Roll result placement:** deferred (2026-10-24). Built as one swappable component with three presentations: bottom sheet (default), inline on the card, full page. Dev builds keep the mockup's toggle; pick one after play-testing on a phone.
 

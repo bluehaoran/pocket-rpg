@@ -6,7 +6,7 @@ import { app, mutate } from './session.svelte.ts';
 import { GENERIC_SKILLS, charName, isKin, isRfs, kinFlavour, lfFlavour, numberFieldId } from './characters.ts';
 import { mathRng, type Rng } from './engine/rng.ts';
 import { buzz } from './device.ts';
-import type { TrackHistoryEntry } from './db.ts';
+import type { Character, TrackHistoryEntry } from './db.ts';
 import {
   adjustResource, drawExactQuestion, lfLogText, rollLf, type LfRoll
 } from './rules/lasers-feelings.ts';
@@ -30,6 +30,16 @@ export const play = $state<{
   naming: boolean;
 }>({ roll: null, mode: 'sheet', bonuses: {}, apply: {}, rolls: 0, naming: false });
 
+/** What a Roll for Shoes roll can still undo: the character and history as they were before it. Plain data, not reactive. */
+interface PendingRoll {
+  ci: number;
+  skill: string;
+  character: Character;
+  logLen: number;
+  apply: Record<string, boolean>;
+}
+let pending: PendingRoll | null = null;
+
 let rng: Rng = mathRng;
 /** Tests inject a seeded Rng. */
 export function setPlayRng(r: Rng): void {
@@ -41,6 +51,7 @@ export function resetPlay(): void {
   play.bonuses = {};
   play.apply = {};
   play.naming = false;
+  pending = null;
   play.rolls = 0;
 }
 
@@ -78,9 +89,13 @@ export function rollRfsSkill(ci: number, key: string): void {
   const s = app.session;
   const c = s?.characters[ci];
   if (!s || !c) return;
+  const before: PendingRoll = {
+    ci, skill: key, character: $state.snapshot(c) as Character, logLen: s.trackHistory.length, apply: { ...play.apply[ci] }
+  };
   const applied = Object.entries(play.apply[ci] ?? {}).filter(([, on]) => on).map(([k]) => k);
   const e = rollSkill(pack(), c, { ci, name: charName(c, ci) }, key, applied, s.gmDice ?? 0, rng);
   if (!e) return;
+  pending = before;
   play.apply[ci] = {};
   log('roll', ci, rfsLogText(e), $state.snapshot(e));
   if (e.result === 'lose') failXp(e);
@@ -228,9 +243,39 @@ export function toggle(map: 'bonuses' | 'apply', ci: number, id: string): void {
   m[id] = !m[id];
 }
 
+/** Put the character and history back as they were before the pending Roll for Shoes roll, and give its statuses back. */
+function undoPending(): void {
+  const p = pending;
+  pending = null;
+  if (!p) return;
+  mutate(s => {
+    s.characters[p.ci] = structuredClone(p.character);
+    s.trackHistory.length = p.logLen;
+  });
+  play.apply[p.ci] = p.apply;
+}
+
+/** Dismiss the roll and keep everything it did (Done, Accept, or closing the sheet). */
 export function closeRoll(): void {
   play.roll = null;
   play.naming = false;
+  pending = null;
+}
+
+/** Roll for Shoes: throw the roll away. Its XP, spent XP, new skill and history lines are undone. */
+export function cancelRoll(): void {
+  undoPending();
+  play.roll = null;
+  play.naming = false;
+}
+
+/** Roll the same skill again, either keeping this roll (`accept`) or undoing it first. */
+export function rerollRfs(accept: boolean): void {
+  const p = pending;
+  if (!p) return;
+  if (accept) pending = null;
+  else undoPending();
+  rollRfsSkill(p.ci, p.skill);
 }
 
 export const rulesRfs = (): boolean => isRfs(app.session?.rulesId ?? '');

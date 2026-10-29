@@ -2,6 +2,7 @@
   import { href, router } from '../../lib/router.svelte.ts';
   import { app } from '../../lib/session.svelte.ts';
   import BackBar from '../../components/BackBar.svelte';
+  import RollActions from '../../components/RollActions.svelte';
   import { closeRoll, play } from '../../lib/play.svelte.ts';
   import StoryCard from '../../components/StoryCard.svelte';
   import PartyCard from '../../components/PartyCard.svelte';
@@ -25,7 +26,7 @@
   <h2>{play.roll.kind === 'lf' ? play.roll.check : play.roll.skillName}</h2>
   <InlineRoll roll={play.roll} page />
   <p class="hint">Same layout as the Dice tool. Done returns to Track.</p>
-  <button class="btn" onclick={closeRoll}>Done</button>
+  <RollActions roll={play.roll} />
   {#if play.naming}<NewSkillSheet />{/if}
 {:else}
   {#if sub === 'char' && s.characters[idx]}

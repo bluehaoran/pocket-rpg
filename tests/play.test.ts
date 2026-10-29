@@ -175,6 +175,46 @@ describe('Roll for Shoes in play', () => {
     expect(within(dialog).queryByRole('button', { name: 'Failed: +1 XP' })).toBeNull();
   });
 
+  it('Accept keeps the roll and its failure XP; Cancel undoes both, and the statuses come back', async () => {
+    await begin('minimon', 'roll-for-shoes');
+    const c = () => s().characters[0]!;
+    setPlayRng(dice(2, 2));
+    render(Play);
+    await click(screen.getAllByRole('switch').find(b => /^-2 Weak to/.test(b.textContent ?? ''))!);
+    const rolled = log().length;
+    await click(rollSkillButton(/Do anything/));
+    await click(within(screen.getByRole('dialog')).getByRole('button', { name: 'Failed: +1 XP' }));
+    expect(c().xp).toBe(1);
+    await click(within(screen.getByRole('dialog')).getByRole('button', { name: 'Cancel' }));
+    expect(screen.queryByRole('dialog')).toBeNull();
+    expect(c().xp ?? 0).toBe(0);
+    expect(log()).toHaveLength(rolled);
+    expect(Object.values(play.apply[0] ?? {})).toContain(true);
+    await click(rollSkillButton(/Do anything/));
+    await click(within(screen.getByRole('dialog')).getByRole('button', { name: 'Failed: +1 XP' }));
+    await click(within(screen.getByRole('dialog')).getByRole('button', { name: 'Accept' }));
+    expect(c().xp).toBe(1);
+    expect(log().map(l => l.kind)).toEqual(['roll', 'progress']);
+  });
+
+  it('Cancel and Accept each have a roll-again button that keeps the sheet open', async () => {
+    await begin('the-heist', 'roll-for-shoes');
+    const c = () => s().characters[0]!;
+    setPlayRng(dice(2, 3, 4));
+    render(Play);
+    await click(rollSkillButton(/Do anything/));
+    await click(within(screen.getByRole('dialog')).getByRole('button', { name: 'Failed: +1 XP' }));
+    await click(within(screen.getByRole('dialog')).getByRole('button', { name: 'Cancel and roll again' }));
+    expect(c().xp ?? 0).toBe(0);
+    expect(log().map(l => l.kind)).toEqual(['roll']);
+    expect(screen.getByRole('dialog').textContent).toContain('Total 3');
+    await click(within(screen.getByRole('dialog')).getByRole('button', { name: 'Failed: +1 XP' }));
+    await click(within(screen.getByRole('dialog')).getByRole('button', { name: 'Accept and roll again' }));
+    expect(c().xp).toBe(1);
+    expect(log().map(l => l.kind)).toEqual(['roll', 'progress', 'roll']);
+    expect(screen.getByRole('dialog').textContent).toContain('Total 4');
+  });
+
   it('all sixes: name a new skill; it joins the tree under the skill used and is logged', async () => {
     await begin('the-heist', 'roll-for-shoes');
     const c = s().characters[0]!;
@@ -209,7 +249,7 @@ describe('Roll for Shoes in play', () => {
     await click(rollSkillButton(/Do anything/));
     expect(s().trackHistory.at(-1)!.text).toContain('(-2)');
     expect(c.xp ?? 0).toBe(0);
-    await click(within(screen.getByRole('dialog')).getByRole('button', { name: 'Done' }));
+    await click(within(screen.getByRole('dialog')).getByRole('button', { name: 'Accept' }));
     expect(play.apply[0]).toEqual({});
   });
 });

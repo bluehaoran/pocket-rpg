@@ -1,6 +1,7 @@
 <script lang="ts">
-  import { closeRoll, type Roll } from '../lib/play.svelte.ts';
+  import type { Roll } from '../lib/play.svelte.ts';
   import RollResult from './RollResult.svelte';
+  import RollActions from './RollActions.svelte';
 
   // A roll result shown in place on the Track screen. `page` is the full-screen variant, which has no Done
   // button of its own because the page supplies one.
@@ -9,7 +10,7 @@
 
 <div class="result" class:big={page}>
   <RollResult {roll} />
-  {#if !page}<button class="btn ghost" onclick={closeRoll}>Done</button>{/if}
+  {#if !page}<RollActions {roll} doneGhost />{/if}
 </div>
 
 <style>

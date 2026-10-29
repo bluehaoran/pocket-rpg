@@ -3,6 +3,7 @@
   import Sheet from './Sheet.svelte';
   import RollResult from './RollResult.svelte';
   import NewSkillSheet from './NewSkillSheet.svelte';
+  import RollActions from './RollActions.svelte';
 
   let { roll }: { roll: Roll } = $props();
 </script>
@@ -12,7 +13,7 @@
 {:else}
   <Sheet title="Roll result" onclose={closeRoll}>
     <div class="rollsheet"><RollResult {roll} /></div>
-    <button class="btn" onclick={closeRoll}>Done</button>
+    <RollActions {roll} />
   </Sheet>
 {/if}
 
