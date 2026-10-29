@@ -1,5 +1,5 @@
 @keyframes pop { from{background:var(--accent-soft)} }
 @keyframes rise { from{transform:translateY(24px);opacity:.6} }
 @media (min-width:600px) { border-inline: 1px solid var(--line) }
-@media (prefers-color-scheme: dark) { --bg: #0C0F14; --surface: #161A21; --sunk: #1F242D; --ink: #EDF0F4; --muted: #909AA9; --line: #2A313C; --accent: #FFA53D; --accent-ink: #1A1205; --accent-soft: #3A2810; --pin: #7EA9FF; --dev: #D29BFF; --dev-soft: #2E1B3A; color-scheme: dark }
+@media (prefers-color-scheme: dark) { --bg: #0C0F14; --surface: #161A21; --sunk: #1F242D; --ink: #EDF0F4; --muted: #909AA9; --line: #2A313C; --accent: #FFA53D; --accent-ink: #1A1205; --accent-soft: #3A2810; --dev: #D29BFF; --dev-soft: #2E1B3A; color-scheme: dark }
 @media (prefers-reduced-motion: reduce) { animation: none }

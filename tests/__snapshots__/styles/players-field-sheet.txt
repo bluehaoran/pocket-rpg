@@ -115,12 +115,13 @@ section.group > div.crew.sentence > p > span.nm
 div.crew.sentence > p > span.nm > button.part
   all: unset
   border-radius: 4px
-  color: var(--accent)
+  color: var(--ink)
   cursor: pointer
   font-size: inherit
   margin: -10px -6px
   padding: 10px 6px
   text-decoration: underline
+  text-decoration-color: var(--accent)
   text-decoration-thickness: 2px
   text-underline-offset: 5px
 section.group > div.crew.sentence > p > br
@@ -130,11 +131,12 @@ section.group > div.crew.sentence > p > span
 div.crew.sentence > p > span > button.part
   all: unset
   border-radius: 4px
-  color: var(--accent)
+  color: var(--ink)
   cursor: pointer
   margin: -10px -6px
   padding: 10px 6px
   text-decoration: underline
+  text-decoration-color: var(--accent)
   text-decoration-thickness: 2px
   text-underline-offset: 5px
 section.group > div.crew.sentence > p > span
@@ -142,11 +144,12 @@ section.group > div.crew.sentence > p > span
 div.crew.sentence > p > span > button.part
   all: unset
   border-radius: 4px
-  color: var(--accent)
+  color: var(--ink)
   cursor: pointer
   margin: -10px -6px
   padding: 10px 6px
   text-decoration: underline
+  text-decoration-color: var(--accent)
   text-decoration-thickness: 2px
   text-underline-offset: 5px
 section.group > div.crew.sentence > p > br
@@ -156,11 +159,12 @@ section.group > div.crew.sentence > p > span
 div.crew.sentence > p > span > button.part
   all: unset
   border-radius: 4px
-  color: var(--accent)
+  color: var(--ink)
   cursor: pointer
   margin: -10px -6px
   padding: 10px 6px
   text-decoration: underline
+  text-decoration-color: var(--accent)
   text-decoration-thickness: 2px
   text-underline-offset: 5px
 div > section.group > div.crew.sentence > button.scalebtn
@@ -200,7 +204,7 @@ div.crew.sentence > button.scalebtn > span.ticks > i
   box-sizing: border-box
   height: 12px
 div.crew.sentence > button.scalebtn > span.ticks > i.on
-  background: var(--accent)
+  background: var(--sel)
   border-radius: 3px
   box-sizing: border-box
   height: 12px
@@ -212,7 +216,6 @@ section.group > div.crew.sentence > button.scalebtn > span.lab
   text-transform: uppercase
 section.group > div.crew.sentence > button.scalebtn > span.n
   box-sizing: border-box
-  color: var(--accent)
   font: 700 34px/1 var(--f-mono)
   min-width: 1.2em
   text-align: right

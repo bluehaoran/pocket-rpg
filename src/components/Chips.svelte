@@ -1,4 +1,6 @@
 <script lang="ts">
+  import Tog from './Tog.svelte';
+
   interface Chip {
     id: string;
     label: string;
@@ -11,7 +13,7 @@
   {#each items as c (c.id)}
     <li>
       {#if onpick}
-        <button type="button" class="tog" aria-pressed={c.pressed ?? false} onclick={() => onpick(c.id)}>{c.label}</button>
+        <Tog pressed={c.pressed ?? false} onclick={() => onpick(c.id)}>{c.label}</Tog>
       {:else}
         <span class="tog static">{c.label}</span>
       {/if}

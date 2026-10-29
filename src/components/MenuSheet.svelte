@@ -52,7 +52,7 @@
 
 <style>
   .secondary{background:var(--sunk);color:var(--ink);border-color:var(--sunk)}
-  .secondary[aria-pressed="true"]{border-color:var(--pin);color:var(--pin)}
+  .secondary[aria-pressed="true"]{border-color:var(--accent);color:var(--accent)}
   /* Rows that open a sub-menu: label stays centred like the others, the chevron hangs off the right edge. */
   .more{position:relative}
   .more span{position:absolute;right:20px}

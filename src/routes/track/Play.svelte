@@ -10,6 +10,7 @@
   import InlineRoll from '../../components/InlineRoll.svelte';
   import NewSkillSheet from '../../components/NewSkillSheet.svelte';
   import CharPage from './CharPage.svelte';
+  import Tog from '../../components/Tog.svelte';
   import History from '../History.svelte';
 
   const s = $derived(app.session!);
@@ -35,7 +36,7 @@
         <div class="eyebrow">Dev: roll result placement</div>
         <ul class="chips">
           {#each ['sheet', 'inline', 'page'] as m (m)}
-            <li><button class="tog" aria-pressed={play.mode === m} onclick={() => (play.mode = m as typeof play.mode)}>{m}</button></li>
+            <li><Tog pressed={play.mode === m} onclick={() => (play.mode = m as typeof play.mode)}>{m}</Tog></li>
           {/each}
         </ul>
       </section>

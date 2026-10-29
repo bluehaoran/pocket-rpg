@@ -25,7 +25,7 @@
   .scalebtn .lab{font:700 12px/1 var(--f-body);text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
   .scalebtn .ticks{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
   .scalebtn .ticks i{height:12px;border-radius:3px;background:var(--sunk)}
-  .scalebtn .ticks i.on{background:var(--accent)}
-  .scalebtn .n{font:700 34px/1 var(--f-mono);color:var(--accent);min-width:1.2em;text-align:right}
+  .scalebtn .ticks i.on{background:var(--sel)}
+  .scalebtn .n{font:700 34px/1 var(--f-mono);min-width:1.2em;text-align:right}
   .scalebtn.static{cursor:default}
 </style>

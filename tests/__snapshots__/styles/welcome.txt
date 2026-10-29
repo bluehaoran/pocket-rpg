@@ -87,9 +87,9 @@ body > div > label.switchrow > span
   box-sizing: border-box
 body > div > label.switchrow > input
   appearance: none
-  background: var(--accent)
+  background: var(--sel)
   border: 2px solid var(--line)
-  border-color: var(--accent)
+  border-color: var(--sel)
   border-radius: 14px
   box-sizing: border-box
   cursor: pointer

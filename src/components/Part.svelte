@@ -8,7 +8,7 @@
 <button class="part" class:empty aria-label={label} {onclick}>{@render children()}</button>
 
 <style>
-  .part{all:unset;cursor:pointer;color:var(--accent);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:5px;border-radius:4px;padding:10px 6px;margin:-10px -6px}
+  .part{all:unset;cursor:pointer;color:var(--ink);text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:5px;border-radius:4px;padding:10px 6px;margin:-10px -6px}
   .part:focus-visible{outline:var(--ring);outline-offset:2px}
-  .part.empty{color:var(--muted);text-decoration-style:dashed}
+  .part.empty{color:var(--muted);text-decoration-color:var(--muted);text-decoration-style:dashed}
 </style>

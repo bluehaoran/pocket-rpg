@@ -54,15 +54,38 @@ body > div > ul.chips > li
 div > ul.chips > li > button.tog
   -webkit-tap-highlight-color: transparent
   align-items: center
-  background: var(--accent)
+  background: var(--sel)
   border: 2px solid var(--line)
-  border-color: var(--accent)
+  border-color: var(--sel)
   border-radius: 999px
   box-sizing: border-box
-  color: var(--accent-ink)
+  color: var(--sel-ink)
   cursor: pointer
   display: inline-flex
   font: 700 15px var(--f-body)
+  gap: 6px
+  min-height: 46px
+  padding: 0 14px
+ul.chips > li > button.tog > svg.icon
+  box-sizing: border-box
+  flex: none
+  vertical-align: -.2em
+li > button.tog > svg.icon > path
+  box-sizing: border-box
+body > div > ul.chips > li
+  box-sizing: border-box
+div > ul.chips > li > button.tog
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 999px
+  box-sizing: border-box
+  color: inherit
+  cursor: pointer
+  display: inline-flex
+  font: 700 15px var(--f-body)
+  gap: 6px
   min-height: 46px
   padding: 0 14px
 body > div > ul.chips > li
@@ -78,21 +101,7 @@ div > ul.chips > li > button.tog
   cursor: pointer
   display: inline-flex
   font: 700 15px var(--f-body)
-  min-height: 46px
-  padding: 0 14px
-body > div > ul.chips > li
-  box-sizing: border-box
-div > ul.chips > li > button.tog
-  -webkit-tap-highlight-color: transparent
-  align-items: center
-  background: var(--surface)
-  border: 2px solid var(--line)
-  border-radius: 999px
-  box-sizing: border-box
-  color: inherit
-  cursor: pointer
-  display: inline-flex
-  font: 700 15px var(--f-body)
+  gap: 6px
   min-height: 46px
   padding: 0 14px
 body > div > ul.card.mlist
@@ -1615,6 +1624,7 @@ div.gutter.sheet > ul.chips > li > button.tog
   cursor: pointer
   display: inline-flex
   font: 700 15px var(--f-body)
+  gap: 6px
   min-height: 46px
   padding: 0 14px
 div > div.gutter.sheet > ul.chips > li
@@ -1630,6 +1640,7 @@ div.gutter.sheet > ul.chips > li > button.tog
   cursor: pointer
   display: inline-flex
   font: 700 15px var(--f-body)
+  gap: 6px
   min-height: 46px
   padding: 0 14px
 div > div.gutter.sheet > ul.chips > li
@@ -1645,6 +1656,7 @@ div.gutter.sheet > ul.chips > li > button.tog
   cursor: pointer
   display: inline-flex
   font: 700 15px var(--f-body)
+  gap: 6px
   min-height: 46px
   padding: 0 14px
 div > div.gutter.sheet > ul.chips > li
@@ -1660,6 +1672,7 @@ div.gutter.sheet > ul.chips > li > button.tog
   cursor: pointer
   display: inline-flex
   font: 700 15px var(--f-body)
+  gap: 6px
   min-height: 46px
   padding: 0 14px
 div > div.gutter.sheet > ul.chips > li
@@ -1675,6 +1688,7 @@ div.gutter.sheet > ul.chips > li > button.tog
   cursor: pointer
   display: inline-flex
   font: 700 15px var(--f-body)
+  gap: 6px
   min-height: 46px
   padding: 0 14px
 div > div.gutter.sheet > ul.chips > li
@@ -1690,6 +1704,7 @@ div.gutter.sheet > ul.chips > li > button.tog
   cursor: pointer
   display: inline-flex
   font: 700 15px var(--f-body)
+  gap: 6px
   min-height: 46px
   padding: 0 14px
 body > div > div.gutter.sheet > button.btn

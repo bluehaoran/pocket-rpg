@@ -53,12 +53,13 @@ section.group > div.crew.sentence > p > span.nm
 div.crew.sentence > p > span.nm > button.part
   all: unset
   border-radius: 4px
-  color: var(--accent)
+  color: var(--ink)
   cursor: pointer
   font-size: inherit
   margin: -10px -6px
   padding: 10px 6px
   text-decoration: underline
+  text-decoration-color: var(--accent)
   text-decoration-thickness: 2px
   text-underline-offset: 5px
 section.group > div.crew.sentence > p > span
@@ -66,25 +67,12 @@ section.group > div.crew.sentence > p > span
 div.crew.sentence > p > span > button.part
   all: unset
   border-radius: 4px
-  color: var(--accent)
+  color: var(--ink)
   cursor: pointer
   margin: -10px -6px
   padding: 10px 6px
   text-decoration: underline
-  text-decoration-thickness: 2px
-  text-underline-offset: 5px
-section.group > div.crew.sentence > p > br
-  box-sizing: border-box
-section.group > div.crew.sentence > p > span
-  box-sizing: border-box
-div.crew.sentence > p > span > button.part
-  all: unset
-  border-radius: 4px
-  color: var(--accent)
-  cursor: pointer
-  margin: -10px -6px
-  padding: 10px 6px
-  text-decoration: underline
+  text-decoration-color: var(--accent)
   text-decoration-thickness: 2px
   text-underline-offset: 5px
 section.group > div.crew.sentence > p > br
@@ -94,11 +82,27 @@ section.group > div.crew.sentence > p > span
 div.crew.sentence > p > span > button.part
   all: unset
   border-radius: 4px
-  color: var(--accent)
+  color: var(--ink)
   cursor: pointer
   margin: -10px -6px
   padding: 10px 6px
   text-decoration: underline
+  text-decoration-color: var(--accent)
+  text-decoration-thickness: 2px
+  text-underline-offset: 5px
+section.group > div.crew.sentence > p > br
+  box-sizing: border-box
+section.group > div.crew.sentence > p > span
+  box-sizing: border-box
+div.crew.sentence > p > span > button.part
+  all: unset
+  border-radius: 4px
+  color: var(--ink)
+  cursor: pointer
+  margin: -10px -6px
+  padding: 10px 6px
+  text-decoration: underline
+  text-decoration-color: var(--accent)
   text-decoration-thickness: 2px
   text-underline-offset: 5px
 div > section.group > div.crew.sentence > div.stats

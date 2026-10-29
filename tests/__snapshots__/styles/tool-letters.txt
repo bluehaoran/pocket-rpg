@@ -56,17 +56,24 @@ div.toggles > div.group > ul.chips > li
 div.group > ul.chips > li > button.tog
   -webkit-tap-highlight-color: transparent
   align-items: center
-  background: var(--accent)
+  background: var(--sel)
   border: 2px solid var(--line)
-  border-color: var(--accent)
+  border-color: var(--sel)
   border-radius: 999px
   box-sizing: border-box
-  color: var(--accent-ink)
+  color: var(--sel-ink)
   cursor: pointer
   display: inline-flex
   font: 700 15px var(--f-body)
+  gap: 6px
   min-height: 46px
   padding: 0 14px
+ul.chips > li > button.tog > svg.icon
+  box-sizing: border-box
+  flex: none
+  vertical-align: -.2em
+li > button.tog > svg.icon > path
+  box-sizing: border-box
 div.toggles > div.group > ul.chips > li
   box-sizing: border-box
 div.group > ul.chips > li > button.tog
@@ -80,6 +87,7 @@ div.group > ul.chips > li > button.tog
   cursor: pointer
   display: inline-flex
   font: 700 15px var(--f-body)
+  gap: 6px
   min-height: 46px
   padding: 0 14px
 body > div > div.toggles > div.group
@@ -106,17 +114,24 @@ div.toggles > div.group > ul.chips > li
 div.group > ul.chips > li > button.tog
   -webkit-tap-highlight-color: transparent
   align-items: center
-  background: var(--accent)
+  background: var(--sel)
   border: 2px solid var(--line)
-  border-color: var(--accent)
+  border-color: var(--sel)
   border-radius: 999px
   box-sizing: border-box
-  color: var(--accent-ink)
+  color: var(--sel-ink)
   cursor: pointer
   display: inline-flex
   font: 700 15px var(--f-body)
+  gap: 6px
   min-height: 46px
   padding: 0 14px
+ul.chips > li > button.tog > svg.icon
+  box-sizing: border-box
+  flex: none
+  vertical-align: -.2em
+li > button.tog > svg.icon > path
+  box-sizing: border-box
 div.toggles > div.group > ul.chips > li
   box-sizing: border-box
 div.group > ul.chips > li > button.tog
@@ -130,6 +145,7 @@ div.group > ul.chips > li > button.tog
   cursor: pointer
   display: inline-flex
   font: 700 15px var(--f-body)
+  gap: 6px
   min-height: 46px
   padding: 0 14px
 body > div > div.fresh.tres
@@ -177,15 +193,38 @@ div > div.group > ul.chips > li
 div.group > ul.chips > li > button.tog
   -webkit-tap-highlight-color: transparent
   align-items: center
-  background: var(--accent)
+  background: var(--sel)
   border: 2px solid var(--line)
-  border-color: var(--accent)
+  border-color: var(--sel)
   border-radius: 999px
   box-sizing: border-box
-  color: var(--accent-ink)
+  color: var(--sel-ink)
   cursor: pointer
   display: inline-flex
   font: 700 15px var(--f-body)
+  gap: 6px
+  min-height: 46px
+  padding: 0 14px
+ul.chips > li > button.tog > svg.icon
+  box-sizing: border-box
+  flex: none
+  vertical-align: -.2em
+li > button.tog > svg.icon > path
+  box-sizing: border-box
+div > div.group > ul.chips > li
+  box-sizing: border-box
+div.group > ul.chips > li > button.tog
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 999px
+  box-sizing: border-box
+  color: inherit
+  cursor: pointer
+  display: inline-flex
+  font: 700 15px var(--f-body)
+  gap: 6px
   min-height: 46px
   padding: 0 14px
 div > div.group > ul.chips > li
@@ -201,6 +240,7 @@ div.group > ul.chips > li > button.tog
   cursor: pointer
   display: inline-flex
   font: 700 15px var(--f-body)
+  gap: 6px
   min-height: 46px
   padding: 0 14px
 div > div.group > ul.chips > li
@@ -216,21 +256,7 @@ div.group > ul.chips > li > button.tog
   cursor: pointer
   display: inline-flex
   font: 700 15px var(--f-body)
-  min-height: 46px
-  padding: 0 14px
-div > div.group > ul.chips > li
-  box-sizing: border-box
-div.group > ul.chips > li > button.tog
-  -webkit-tap-highlight-color: transparent
-  align-items: center
-  background: var(--surface)
-  border: 2px solid var(--line)
-  border-radius: 999px
-  box-sizing: border-box
-  color: inherit
-  cursor: pointer
-  display: inline-flex
-  font: 700 15px var(--f-body)
+  gap: 6px
   min-height: 46px
   padding: 0 14px
 body > div > div.group
@@ -265,6 +291,7 @@ div.group > ul.chips > li > button.tog
   cursor: pointer
   display: inline-flex
   font: 700 15px var(--f-body)
+  gap: 6px
   min-height: 46px
   padding: 0 14px
 div > div.group > ul.chips > li
@@ -280,6 +307,7 @@ div.group > ul.chips > li > button.tog
   cursor: pointer
   display: inline-flex
   font: 700 15px var(--f-body)
+  gap: 6px
   min-height: 46px
   padding: 0 14px
 div > div.group > ul.chips > li
@@ -287,15 +315,38 @@ div > div.group > ul.chips > li
 div.group > ul.chips > li > button.tog
   -webkit-tap-highlight-color: transparent
   align-items: center
-  background: var(--accent)
+  background: var(--sel)
   border: 2px solid var(--line)
-  border-color: var(--accent)
+  border-color: var(--sel)
   border-radius: 999px
   box-sizing: border-box
-  color: var(--accent-ink)
+  color: var(--sel-ink)
   cursor: pointer
   display: inline-flex
   font: 700 15px var(--f-body)
+  gap: 6px
+  min-height: 46px
+  padding: 0 14px
+ul.chips > li > button.tog > svg.icon
+  box-sizing: border-box
+  flex: none
+  vertical-align: -.2em
+li > button.tog > svg.icon > path
+  box-sizing: border-box
+div > div.group > ul.chips > li
+  box-sizing: border-box
+div.group > ul.chips > li > button.tog
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 999px
+  box-sizing: border-box
+  color: inherit
+  cursor: pointer
+  display: inline-flex
+  font: 700 15px var(--f-body)
+  gap: 6px
   min-height: 46px
   padding: 0 14px
 div > div.group > ul.chips > li
@@ -311,6 +362,7 @@ div.group > ul.chips > li > button.tog
   cursor: pointer
   display: inline-flex
   font: 700 15px var(--f-body)
+  gap: 6px
   min-height: 46px
   padding: 0 14px
 div > div.group > ul.chips > li
@@ -326,6 +378,7 @@ div.group > ul.chips > li > button.tog
   cursor: pointer
   display: inline-flex
   font: 700 15px var(--f-body)
+  gap: 6px
   min-height: 46px
   padding: 0 14px
 div > div.group > ul.chips > li
@@ -341,21 +394,7 @@ div.group > ul.chips > li > button.tog
   cursor: pointer
   display: inline-flex
   font: 700 15px var(--f-body)
-  min-height: 46px
-  padding: 0 14px
-div > div.group > ul.chips > li
-  box-sizing: border-box
-div.group > ul.chips > li > button.tog
-  -webkit-tap-highlight-color: transparent
-  align-items: center
-  background: var(--surface)
-  border: 2px solid var(--line)
-  border-radius: 999px
-  box-sizing: border-box
-  color: inherit
-  cursor: pointer
-  display: inline-flex
-  font: 700 15px var(--f-body)
+  gap: 6px
   min-height: 46px
   padding: 0 14px
 body > div > div.group
@@ -384,7 +423,6 @@ body > div > div.group > button.letterbtn
   padding: 0 16px
 div > div.group > button.letterbtn > span.v
   box-sizing: border-box
-  color: var(--accent)
   font-size: 20px
   font-weight: 700
 div > div.group > button.letterbtn > span.chev
@@ -529,12 +567,12 @@ body > div > div.gutter.sheet > div.letters
   grid-template-columns: repeat(6,1fr)
 div > div.gutter.sheet > div.letters > button.any
   -webkit-tap-highlight-color: transparent
-  background: var(--accent)
+  background: var(--sel)
   border: 2px solid var(--line)
-  border-color: var(--accent)
+  border-color: var(--sel)
   border-radius: 10px
   box-sizing: border-box
-  color: var(--accent-ink)
+  color: var(--sel-ink)
   cursor: pointer
   font: 700 19px var(--f-mono)
   font-family: var(--f-body)

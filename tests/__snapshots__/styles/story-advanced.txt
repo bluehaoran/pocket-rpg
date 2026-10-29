@@ -575,7 +575,6 @@ div.card > div.drows > button.drow > span.eyebrow
   text-transform: uppercase
 div.card > div.drows > button.drow > span.v
   box-sizing: border-box
-  color: var(--accent)
   font-weight: 700
   grid-column: 1
 div.card > div.drows > button.drow > span.chev
@@ -603,7 +602,6 @@ div.card > div.drows > button.drow > span.eyebrow
   text-transform: uppercase
 div.card > div.drows > button.drow > span.v
   box-sizing: border-box
-  color: var(--accent)
   font-weight: 700
   grid-column: 1
 div.card > div.drows > button.drow > span.chev

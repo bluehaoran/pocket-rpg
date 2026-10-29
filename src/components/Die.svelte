@@ -18,7 +18,6 @@
   .die.lg{width:50px;height:50px;padding:8px;border-radius:11px}
   .die.ok{background:var(--accent-soft);border:2px solid var(--accent)}
   .die.ok i.on{background:var(--accent)}
-  .die.ex{border:3px solid var(--pin)}
-  .die.ex i.on{background:var(--pin)}
+  .die.ex{border:3px solid var(--ink)}
   .die.no{opacity:.4}
 </style>

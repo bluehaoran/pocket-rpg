@@ -260,9 +260,9 @@ div.app > main.gutter > section.group > div.opt-wrap
 main.gutter > section.group > div.opt-wrap > button.opt
   -webkit-tap-highlight-color: transparent
   align-items: center
-  background: var(--accent-soft)
+  background: var(--sunk)
   border: 2px solid var(--line)
-  border-color: var(--accent)
+  border-color: var(--sel)
   border-radius: 14px
   box-sizing: border-box
   color: inherit
@@ -277,7 +277,7 @@ main.gutter > section.group > div.opt-wrap > button.opt
   text-align: left
   width: 100%
 section.group > div.opt-wrap > button.opt > span.radio
-  border: 8px solid var(--accent)
+  border: 8px solid var(--sel)
   border-radius: 50%
   box-sizing: border-box
   grid-row: span 2

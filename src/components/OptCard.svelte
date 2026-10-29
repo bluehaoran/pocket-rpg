@@ -26,10 +26,10 @@
 
 <style>
   .opt{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 14px;align-items:center;text-align:left;width:100%;min-height:68px;padding:12px 16px;border:2px solid var(--line);border-radius:14px;background:var(--surface)}
-  .opt[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+  .opt[aria-pressed="true"]{border-color:var(--sel);background:var(--sunk)}
   .opt:disabled{opacity:.5;cursor:not-allowed}
   .radio{width:24px;height:24px;border-radius:50%;border:2px solid var(--muted);grid-row:span 2}
-  .opt[aria-pressed="true"] .radio{border:8px solid var(--accent)}
+  .opt[aria-pressed="true"] .radio{border:8px solid var(--sel)}
   .opt .t{font-weight:700;font-size:19px}
   .opt .m{font:500 12px/1.3 var(--f-mono);color:var(--muted)}
   .opt .m.err{color:var(--danger)}

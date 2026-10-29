@@ -213,15 +213,15 @@
   .underres .mini-btn{margin-left:auto}
   .letterbtn{all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;border:2px solid var(--line);border-radius:14px;background:var(--surface);padding:0 16px;min-height:58px;font:400 17px/1.3 var(--f-body)}
   .letterbtn:focus-visible{outline:var(--ring);outline-offset:2px}
-  .letterbtn .v{font-size:20px;font-weight:700;color:var(--accent)}
+  .letterbtn .v{font-size:20px;font-weight:700}
   .letterbtn .chev{color:var(--muted);font:700 18px/1 var(--f-mono)}
   .letters{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
   .letters button{min-height:50px;border-radius:10px;border:2px solid var(--line);background:var(--surface);font:700 19px var(--f-mono)}
   .letters button.any{grid-column:span 2;font-family:var(--f-body);font-size:16px}
-  .letters button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+  .letters button[aria-pressed="true"]{background:var(--sel);border-color:var(--sel);color:var(--sel-ink)}
   .letters button:disabled{opacity:.3;cursor:not-allowed}
   .checkrow{display:flex;align-items:center;gap:10px;min-height:44px;font-size:15px;color:var(--muted);cursor:pointer}
-  .checkrow input{width:22px;height:22px;margin:0;accent-color:var(--accent);flex:none}
+  .checkrow input{width:22px;height:22px;margin:0;accent-color:var(--sel);flex:none}
   .toggles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 16px;align-items:start}
   .glyphs{display:flex;flex-direction:column;align-items:center;gap:.12em;font-size:clamp(44px,16vw,72px);line-height:1.15}
   .glyphs .grow{display:flex;justify-content:center;gap:.3em}

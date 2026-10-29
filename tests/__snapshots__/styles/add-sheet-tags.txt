@@ -92,6 +92,7 @@ div.gutter.sheet > ul.chips > li > button.tog
   cursor: pointer
   display: inline-flex
   font: 700 15px var(--f-body)
+  gap: 6px
   min-height: 46px
   padding: 0 14px
 div > div.gutter.sheet > ul.chips > li
@@ -107,6 +108,7 @@ div.gutter.sheet > ul.chips > li > button.tog
   cursor: pointer
   display: inline-flex
   font: 700 15px var(--f-body)
+  gap: 6px
   min-height: 46px
   padding: 0 14px
 div > div.gutter.sheet > ul.chips > li
@@ -122,6 +124,7 @@ div.gutter.sheet > ul.chips > li > button.tog
   cursor: pointer
   display: inline-flex
   font: 700 15px var(--f-body)
+  gap: 6px
   min-height: 46px
   padding: 0 14px
 div > div.gutter.sheet > ul.chips > li
@@ -137,6 +140,7 @@ div.gutter.sheet > ul.chips > li > button.tog
   cursor: pointer
   display: inline-flex
   font: 700 15px var(--f-body)
+  gap: 6px
   min-height: 46px
   padding: 0 14px
 div > div.gutter.sheet > ul.chips > li
@@ -152,6 +156,7 @@ div.gutter.sheet > ul.chips > li > button.tog
   cursor: pointer
   display: inline-flex
   font: 700 15px var(--f-body)
+  gap: 6px
   min-height: 46px
   padding: 0 14px
 div > div.gutter.sheet > ul.chips > li
@@ -167,6 +172,7 @@ div.gutter.sheet > ul.chips > li > button.tog
   cursor: pointer
   display: inline-flex
   font: 700 15px var(--f-body)
+  gap: 6px
   min-height: 46px
   padding: 0 14px
 body > div > div.gutter.sheet > button.btn

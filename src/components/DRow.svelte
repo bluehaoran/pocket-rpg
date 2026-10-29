@@ -16,7 +16,7 @@
   .drow:last-child{border-bottom:0}
   .drow:focus-visible{outline:var(--ring);outline-offset:2px;border-radius:6px}
   .drow .eyebrow{grid-column:1}
-  .drow .v{grid-column:1;font-weight:700;color:var(--accent)}
+  .drow .v{grid-column:1;font-weight:700}
   .drow .v.empty{color:var(--muted);font-weight:400;font-style:italic}
   .drow .chev{grid-column:2;grid-row:1/span 2;color:var(--muted);font:700 18px/1 var(--f-mono)}
   .drow .qt{grid-column:1;font:700 16px/1.3 var(--f-body);color:var(--ink)}

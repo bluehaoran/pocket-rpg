@@ -29,15 +29,38 @@ div > section > ul.chips > li
 section > ul.chips > li > button.tog
   -webkit-tap-highlight-color: transparent
   align-items: center
-  background: var(--accent)
+  background: var(--sel)
   border: 2px solid var(--line)
-  border-color: var(--accent)
+  border-color: var(--sel)
   border-radius: 999px
   box-sizing: border-box
-  color: var(--accent-ink)
+  color: var(--sel-ink)
   cursor: pointer
   display: inline-flex
   font: 700 15px var(--f-body)
+  gap: 6px
+  min-height: 46px
+  padding: 0 14px
+ul.chips > li > button.tog > svg.icon
+  box-sizing: border-box
+  flex: none
+  vertical-align: -.2em
+li > button.tog > svg.icon > path
+  box-sizing: border-box
+div > section > ul.chips > li
+  box-sizing: border-box
+section > ul.chips > li > button.tog
+  -webkit-tap-highlight-color: transparent
+  align-items: center
+  background: var(--surface)
+  border: 2px solid var(--line)
+  border-radius: 999px
+  box-sizing: border-box
+  color: inherit
+  cursor: pointer
+  display: inline-flex
+  font: 700 15px var(--f-body)
+  gap: 6px
   min-height: 46px
   padding: 0 14px
 div > section > ul.chips > li
@@ -53,21 +76,7 @@ section > ul.chips > li > button.tog
   cursor: pointer
   display: inline-flex
   font: 700 15px var(--f-body)
-  min-height: 46px
-  padding: 0 14px
-div > section > ul.chips > li
-  box-sizing: border-box
-section > ul.chips > li > button.tog
-  -webkit-tap-highlight-color: transparent
-  align-items: center
-  background: var(--surface)
-  border: 2px solid var(--line)
-  border-radius: 999px
-  box-sizing: border-box
-  color: inherit
-  cursor: pointer
-  display: inline-flex
-  font: 700 15px var(--f-body)
+  gap: 6px
   min-height: 46px
   padding: 0 14px
 body > div > section.group
@@ -194,7 +203,6 @@ div.card.story > div.drows > button.drow > span.eyebrow
   text-transform: uppercase
 div.card.story > div.drows > button.drow > span.v
   box-sizing: border-box
-  color: var(--accent)
   font-weight: 700
   grid-column: 1
 div.card.story > div.drows > button.drow > span.chev
@@ -223,6 +231,7 @@ section.group > ul.chips.gchips > li > a.tog
   color: inherit
   display: inline-flex
   font: 700 15px var(--f-body)
+  gap: 6px
   min-height: 46px
   padding: 0 14px
   text-decoration: none
@@ -238,6 +247,7 @@ section.group > ul.chips.gchips > li > a.tog
   color: inherit
   display: inline-flex
   font: 700 15px var(--f-body)
+  gap: 6px
   min-height: 46px
   padding: 0 14px
   text-decoration: none
@@ -253,6 +263,7 @@ section.group > ul.chips.gchips > li > a.tog
   color: inherit
   display: inline-flex
   font: 700 15px var(--f-body)
+  gap: 6px
   min-height: 46px
   padding: 0 14px
   text-decoration: none
@@ -268,6 +279,7 @@ section.group > ul.chips.gchips > li > a.tog
   color: inherit
   display: inline-flex
   font: 700 15px var(--f-body)
+  gap: 6px
   min-height: 46px
   padding: 0 14px
   text-decoration: none
@@ -297,63 +309,89 @@ div > section.group > div.group > div.seg
   box-sizing: border-box
   display: grid
   gap: 6px
-  grid-auto-columns: 1fr
+  grid-auto-columns: minmax(0,1fr)
   grid-auto-flow: column
 section.group > div.group > div.seg > button
   -webkit-tap-highlight-color: transparent
-  background: var(--accent)
+  align-items: center
+  background: var(--sel)
   border: 2px solid var(--line)
-  border-color: var(--accent)
+  border-color: var(--sel)
   border-radius: 12px
   box-sizing: border-box
-  color: var(--accent-ink)
+  color: var(--sel-ink)
   cursor: pointer
+  display: flex
   font: 700 22px/1 var(--f-mono)
   font-variant-numeric: tabular-nums
+  gap: 4px
+  justify-content: center
   min-height: 58px
+div.group > div.seg > button > svg.icon
+  box-sizing: border-box
+  flex: none
+  vertical-align: -.2em
+div.seg > button > svg.icon > path
+  box-sizing: border-box
 section.group > div.group > div.seg > button
   -webkit-tap-highlight-color: transparent
+  align-items: center
   background: var(--surface)
   border: 2px solid var(--line)
   border-radius: 12px
   box-sizing: border-box
   color: inherit
   cursor: pointer
+  display: flex
   font: 700 22px/1 var(--f-mono)
   font-variant-numeric: tabular-nums
+  gap: 4px
+  justify-content: center
   min-height: 58px
 section.group > div.group > div.seg > button
   -webkit-tap-highlight-color: transparent
+  align-items: center
   background: var(--surface)
   border: 2px solid var(--line)
   border-radius: 12px
   box-sizing: border-box
   color: inherit
   cursor: pointer
+  display: flex
   font: 700 22px/1 var(--f-mono)
   font-variant-numeric: tabular-nums
+  gap: 4px
+  justify-content: center
   min-height: 58px
 section.group > div.group > div.seg > button
   -webkit-tap-highlight-color: transparent
+  align-items: center
   background: var(--surface)
   border: 2px solid var(--line)
   border-radius: 12px
   box-sizing: border-box
   color: inherit
   cursor: pointer
+  display: flex
   font: 700 22px/1 var(--f-mono)
   font-variant-numeric: tabular-nums
+  gap: 4px
+  justify-content: center
   min-height: 58px
 section.group > div.group > div.seg > button
   -webkit-tap-highlight-color: transparent
+  align-items: center
   background: var(--surface)
   border: 2px solid var(--line)
   border-radius: 12px
   box-sizing: border-box
   color: inherit
   cursor: pointer
+  display: flex
   font: 700 22px/1 var(--f-mono)
   font-variant-numeric: tabular-nums
+  gap: 4px
+  justify-content: center
   min-height: 58px
 body > div > section.group > div.compact.pcard
   background: var(--surface)
@@ -449,6 +487,7 @@ div.compact.pcard > ul.chips > li > button.tog
   display: inline-flex
   font: 700 15px var(--f-body)
   font-size: 14px
+  gap: 6px
   min-height: 44px
   padding: 0 12px
 div > section.group > div.compact.pcard > ul.chips.skchips
@@ -474,6 +513,7 @@ div.compact.pcard > ul.chips.skchips > li > button.skchip.tog
   display: inline-flex
   font: 700 15px var(--f-body)
   font-size: 14px
+  gap: 6px
   min-height: 44px
   padding: 0 12px
 ul.chips.skchips > li > button.skchip.tog > small
@@ -496,6 +536,7 @@ div.compact.pcard > ul.chips.skchips > li > button.skchip.tog
   display: inline-flex
   font: 700 15px var(--f-body)
   font-size: 14px
+  gap: 6px
   min-height: 44px
   padding: 0 12px
 ul.chips.skchips > li > button.skchip.tog > small
@@ -518,6 +559,7 @@ div.compact.pcard > ul.chips.skchips > li > button.skchip.tog
   display: inline-flex
   font: 700 15px var(--f-body)
   font-size: 14px
+  gap: 6px
   min-height: 44px
   padding: 0 12px
 ul.chips.skchips > li > button.skchip.tog > small
@@ -540,6 +582,7 @@ div.compact.pcard > ul.chips.skchips > li > button.skchip.tog
   display: inline-flex
   font: 700 15px var(--f-body)
   font-size: 14px
+  gap: 6px
   min-height: 44px
   padding: 0 12px
 ul.chips.skchips > li > button.skchip.tog > small
@@ -562,6 +605,7 @@ div.compact.pcard > ul.chips.skchips > li > button.skchip.tog
   display: inline-flex
   font: 700 15px var(--f-body)
   font-size: 14px
+  gap: 6px
   min-height: 44px
   padding: 0 12px
 ul.chips.skchips > li > button.skchip.tog > small
@@ -584,6 +628,7 @@ div.compact.pcard > ul.chips.skchips > li > button.skchip.tog
   display: inline-flex
   font: 700 15px var(--f-body)
   font-size: 14px
+  gap: 6px
   min-height: 44px
   padding: 0 12px
 ul.chips.skchips > li > button.skchip.tog > small

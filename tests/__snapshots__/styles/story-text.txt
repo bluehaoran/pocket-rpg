@@ -84,11 +84,12 @@ section.group > div.sentence > p > span.nw
 div.sentence > p > span.nw > button.part
   all: unset
   border-radius: 4px
-  color: var(--accent)
+  color: var(--ink)
   cursor: pointer
   margin: -10px -6px
   padding: 10px 6px
   text-decoration: underline
+  text-decoration-color: var(--accent)
   text-decoration-thickness: 2px
   text-underline-offset: 5px
 section.group > div.sentence > p > span.nw
@@ -97,11 +98,12 @@ section.group > div.sentence > p > span.nw
 div.sentence > p > span.nw > button.part
   all: unset
   border-radius: 4px
-  color: var(--accent)
+  color: var(--ink)
   cursor: pointer
   margin: -10px -6px
   padding: 10px 6px
   text-decoration: underline
+  text-decoration-color: var(--accent)
   text-decoration-thickness: 2px
   text-underline-offset: 5px
 section.group > div.sentence > p > span.nw
@@ -110,11 +112,12 @@ section.group > div.sentence > p > span.nw
 div.sentence > p > span.nw > button.part
   all: unset
   border-radius: 4px
-  color: var(--accent)
+  color: var(--ink)
   cursor: pointer
   margin: -10px -6px
   padding: 10px 6px
   text-decoration: underline
+  text-decoration-color: var(--accent)
   text-decoration-thickness: 2px
   text-underline-offset: 5px
 section.group > div.sentence > p > span.nw
@@ -123,11 +126,12 @@ section.group > div.sentence > p > span.nw
 div.sentence > p > span.nw > button.part
   all: unset
   border-radius: 4px
-  color: var(--accent)
+  color: var(--ink)
   cursor: pointer
   margin: -10px -6px
   padding: 10px 6px
   text-decoration: underline
+  text-decoration-color: var(--accent)
   text-decoration-thickness: 2px
   text-underline-offset: 5px
 body > div > section.group > p.hint
@@ -224,7 +228,6 @@ div.card > div.drows > button.drow > span.eyebrow
   text-transform: uppercase
 div.card > div.drows > button.drow > span.v
   box-sizing: border-box
-  color: var(--accent)
   font-weight: 700
   grid-column: 1
 div.card > div.drows > button.drow > span.chev
@@ -252,7 +255,6 @@ div.card > div.drows > button.drow > span.eyebrow
   text-transform: uppercase
 div.card > div.drows > button.drow > span.v
   box-sizing: border-box
-  color: var(--accent)
   font-weight: 700
   grid-column: 1
 div.card > div.drows > button.drow > span.chev

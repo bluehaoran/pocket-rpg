@@ -3,6 +3,7 @@
   import { exactText, lfFlavour, numberFieldId } from '../lib/characters.ts';
   import { poolSize, resourceState } from '../lib/rules/lasers-feelings.ts';
   import { adjust, play, rollCheck, toggle } from '../lib/play.svelte.ts';
+  import Tog from './Tog.svelte';
 
   let { ci, compact = false }: { ci: number; compact?: boolean } = $props();
 
@@ -34,13 +35,13 @@
     {#if f.dice?.bonuses?.length}
       <ul class="chips" aria-label="Bonus dice">
         {#each f.dice.bonuses as b (b.id)}
-          <li><button class="tog" aria-pressed={!!play.bonuses[ci]?.[b.id]} onclick={() => toggle('bonuses', ci, b.id)}>+{b.dice}d {b.label}</button></li>
+          <li><Tog pressed={!!play.bonuses[ci]?.[b.id]} onclick={() => toggle('bonuses', ci, b.id)}>+{b.dice}d {b.label}</Tog></li>
         {/each}
       </ul>
     {/if}
     <div class="checks" class:compact>
-      {#each f.checks as k, j (k.id)}
-        <button class="chk" class:alt={j > 0} onclick={() => rollCheck(ci, k.id)}>
+      {#each f.checks as k (k.id)}
+        <button class="chk" onclick={() => rollCheck(ci, k.id)}>
           <b>{k.label}</b><span>{pool}d6 · {k.roll} {N}</span>
           {#if !compact && k.hint}<small>{k.hint}</small>{/if}
         </button>
@@ -56,8 +57,7 @@
 
 <style>
   .checks{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-  .chk{min-height:112px;border-radius:16px;border:2px solid var(--accent);background:var(--accent);color:var(--accent-ink);padding:12px 14px;text-align:left;display:flex;flex-direction:column;gap:6px;justify-content:space-between;min-width:0}
-  .chk.alt{background:var(--surface);color:var(--ink)}
+  .chk{min-height:112px;border-radius:16px;border:2px solid var(--accent);background:var(--surface);color:var(--ink);padding:12px 14px;text-align:left;display:flex;flex-direction:column;gap:6px;justify-content:space-between;min-width:0}
   .chk b{font:800 30px/1 var(--f-display);text-transform:uppercase;letter-spacing:.02em;overflow-wrap:anywhere}
   .chk span{font:700 14px/1.2 var(--f-mono)}
   .chk small{font-size:12px;line-height:1.3;opacity:.85}

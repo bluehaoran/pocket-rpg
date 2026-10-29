@@ -7,6 +7,7 @@
   import DiceButton from './DiceButton.svelte';
   import Die from './Die.svelte';
   import InputRow from './InputRow.svelte';
+  import Tog from './Tog.svelte';
 
   let { roll }: { roll: KinRoll } = $props();
 
@@ -54,7 +55,7 @@
           <span>You hold the most skills allowed. Which one does it replace?</span>
           <ul class="chips" aria-label="Skill to replace">
             {#each c.skills as sk, i (i)}
-              <li><button class="tog" aria-pressed={replace === i} onclick={() => (replace = i)}>{sk.name} {sk.level}{sk.out ? ' (out)' : ''}</button></li>
+              <li><Tog pressed={replace === i} onclick={() => (replace = i)}>{sk.name} {sk.level}{sk.out ? ' (out)' : ''}</Tog></li>
             {/each}
           </ul>
         {/if}

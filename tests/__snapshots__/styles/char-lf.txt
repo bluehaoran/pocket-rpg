@@ -165,7 +165,7 @@ div.crew.sentence > div.scalebtn.static > span.ticks > i
   box-sizing: border-box
   height: 12px
 div.crew.sentence > div.scalebtn.static > span.ticks > i.on
-  background: var(--accent)
+  background: var(--sel)
   border-radius: 3px
   box-sizing: border-box
   height: 12px
@@ -187,7 +187,6 @@ section.group > div.crew.sentence > div.scalebtn.static > span.lab
   text-transform: uppercase
 section.group > div.crew.sentence > div.scalebtn.static > span.n
   box-sizing: border-box
-  color: var(--accent)
   font: 700 34px/1 var(--f-mono)
   min-width: 1.2em
   text-align: right
@@ -285,7 +284,6 @@ div.card > div.drows > button.drow > span.eyebrow
   text-transform: uppercase
 div.card > div.drows > button.drow > span.v
   box-sizing: border-box
-  color: var(--accent)
   font-weight: 700
   grid-column: 1
 div.card > div.drows > button.drow > span.chev
@@ -313,7 +311,6 @@ div.card > div.drows > button.drow > span.eyebrow
   text-transform: uppercase
 div.card > div.drows > button.drow > span.v
   box-sizing: border-box
-  color: var(--accent)
   font-weight: 700
   grid-column: 1
 div.card > div.drows > button.drow > span.chev
@@ -432,6 +429,7 @@ div > ul.chips > li > button.tog
   cursor: pointer
   display: inline-flex
   font: 700 15px var(--f-body)
+  gap: 6px
   min-height: 46px
   padding: 0 14px
 div.pcard > div > ul.chips > li
@@ -447,6 +445,7 @@ div > ul.chips > li > button.tog
   cursor: pointer
   display: inline-flex
   font: 700 15px var(--f-body)
+  gap: 6px
   min-height: 46px
   padding: 0 14px
 div.pcard > div > ul.chips > li
@@ -462,6 +461,7 @@ div > ul.chips > li > button.tog
   cursor: pointer
   display: inline-flex
   font: 700 15px var(--f-body)
+  gap: 6px
   min-height: 46px
   padding: 0 14px
 div.pcard > div > ul.chips > li
@@ -477,6 +477,7 @@ div > ul.chips > li > button.tog
   cursor: pointer
   display: inline-flex
   font: 700 15px var(--f-body)
+  gap: 6px
   min-height: 46px
   padding: 0 14px
 div > div.pcard > div > div.checks
@@ -486,11 +487,11 @@ div > div.pcard > div > div.checks
   grid-template-columns: 1fr 1fr
 div.pcard > div > div.checks > button.chk
   -webkit-tap-highlight-color: transparent
-  background: var(--accent)
+  background: var(--surface)
   border: 2px solid var(--accent)
   border-radius: 16px
   box-sizing: border-box
-  color: var(--accent-ink)
+  color: var(--ink)
   cursor: pointer
   display: flex
   flex-direction: column
@@ -515,7 +516,7 @@ div > div.checks > button.chk > small
   font-size: 12px
   line-height: 1.3
   opacity: .85
-div.pcard > div > div.checks > button.alt.chk
+div.pcard > div > div.checks > button.chk
   -webkit-tap-highlight-color: transparent
   background: var(--surface)
   border: 2px solid var(--accent)
@@ -532,16 +533,16 @@ div.pcard > div > div.checks > button.alt.chk
   min-width: 0
   padding: 12px 14px
   text-align: left
-div > div.checks > button.alt.chk > b
+div > div.checks > button.chk > b
   box-sizing: border-box
   font: 800 30px/1 var(--f-display)
   letter-spacing: .02em
   overflow-wrap: anywhere
   text-transform: uppercase
-div > div.checks > button.alt.chk > span
+div > div.checks > button.chk > span
   box-sizing: border-box
   font: 700 14px/1.2 var(--f-mono)
-div > div.checks > button.alt.chk > small
+div > div.checks > button.chk > small
   box-sizing: border-box
   font-size: 12px
   line-height: 1.3

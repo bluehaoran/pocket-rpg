@@ -51,85 +51,119 @@ div > div.group > div.gmrow > div.seg
   box-sizing: border-box
   display: grid
   gap: 6px
-  grid-auto-columns: 1fr
+  grid-auto-columns: minmax(0,1fr)
   grid-auto-flow: column
 div.group > div.gmrow > div.seg > button
   -webkit-tap-highlight-color: transparent
-  background: var(--accent)
+  align-items: center
+  background: var(--sel)
   border: 2px solid var(--line)
-  border-color: var(--accent)
+  border-color: var(--sel)
   border-radius: 12px
   box-sizing: border-box
-  color: var(--accent-ink)
+  color: var(--sel-ink)
   cursor: pointer
+  display: flex
   font: 700 22px/1 var(--f-mono)
   font-variant-numeric: tabular-nums
+  gap: 4px
+  justify-content: center
   min-height: 58px
+div.gmrow > div.seg > button > svg.icon
+  box-sizing: border-box
+  flex: none
+  vertical-align: -.2em
+div.seg > button > svg.icon > path
+  box-sizing: border-box
 div.group > div.gmrow > div.seg > button
   -webkit-tap-highlight-color: transparent
+  align-items: center
   background: var(--surface)
   border: 2px solid var(--line)
   border-radius: 12px
   box-sizing: border-box
   color: inherit
   cursor: pointer
+  display: flex
   font: 700 22px/1 var(--f-mono)
   font-variant-numeric: tabular-nums
+  gap: 4px
+  justify-content: center
   min-height: 58px
 div.group > div.gmrow > div.seg > button
   -webkit-tap-highlight-color: transparent
+  align-items: center
   background: var(--surface)
   border: 2px solid var(--line)
   border-radius: 12px
   box-sizing: border-box
   color: inherit
   cursor: pointer
+  display: flex
   font: 700 22px/1 var(--f-mono)
   font-variant-numeric: tabular-nums
+  gap: 4px
+  justify-content: center
   min-height: 58px
 div.group > div.gmrow > div.seg > button
   -webkit-tap-highlight-color: transparent
+  align-items: center
   background: var(--surface)
   border: 2px solid var(--line)
   border-radius: 12px
   box-sizing: border-box
   color: inherit
   cursor: pointer
+  display: flex
   font: 700 22px/1 var(--f-mono)
   font-variant-numeric: tabular-nums
+  gap: 4px
+  justify-content: center
   min-height: 58px
 div.group > div.gmrow > div.seg > button
   -webkit-tap-highlight-color: transparent
+  align-items: center
   background: var(--surface)
   border: 2px solid var(--line)
   border-radius: 12px
   box-sizing: border-box
   color: inherit
   cursor: pointer
+  display: flex
   font: 700 22px/1 var(--f-mono)
   font-variant-numeric: tabular-nums
+  gap: 4px
+  justify-content: center
   min-height: 58px
 div.group > div.gmrow > div.seg > button
   -webkit-tap-highlight-color: transparent
+  align-items: center
   background: var(--surface)
   border: 2px solid var(--line)
   border-radius: 12px
   box-sizing: border-box
   color: inherit
   cursor: pointer
+  display: flex
   font: 700 22px/1 var(--f-mono)
   font-variant-numeric: tabular-nums
+  gap: 4px
+  justify-content: center
   min-height: 58px
 div.group > div.gmrow > div.seg > button
   -webkit-tap-highlight-color: transparent
+  align-items: center
   background: var(--surface)
   border: 2px solid var(--line)
   border-radius: 12px
   box-sizing: border-box
   color: inherit
   cursor: pointer
+  display: flex
   font: 700 22px/1 var(--f-mono)
   font-variant-numeric: tabular-nums
+  gap: 4px
+  justify-content: center
   min-height: 58px
 div > div.group > div.gmrow > button.dice
   -webkit-tap-highlight-color: transparent
