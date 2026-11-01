@@ -20,12 +20,16 @@ Offline, tap-only phone PWA that helps a GM run conversational RPGs (Lasers & Fe
 
 Run `npm run ci` before pushing.
 
+`npm run dev` serves no manifest or service worker, so PWA changes (icons, caching, install) can only be checked on a built site (`npm run build && npm run preview`, or the deployed one). To check a UI change by eye, run the dev server and screenshot at 390×844 in dark mode.
+
 After making changes, make sure the tests pass (`npm run ci`) and that the changes are committed.
 
 ## Conventions
 - Content is data: genre packs in `content/packs/` (unpublishable ones in the gitignored `content/private/packs/`; see NOTICE), tools library in `content/tools/`. Adding a list entry or a tool is a JSON edit, not a code change. Update `schemas/` and `src/lib/content/types.ts` together when a shape changes, and record the change in `docs/02-data-model.md` or `docs/05-tools-library.md`.
 - Game logic lives in pure TS under `src/lib/` with an injectable RNG; components only render and dispatch. Every engine rule gets a unit test with a seeded RNG.
 - CSS: prefer component `<style>` blocks over `src/app.css`. New styles go in the component that renders the element; add to `app.css` only when several unrelated components genuinely share them, and extract a component first if the markup is repeated. `src/app.css` holds only tokens, the reset and primitives shared by several screens (`.btn`, `.card`, `.chips`/`.tog`, `.eyebrow`, ...). Use `:global()` only to style slotted or child-component content, and `:where()` to keep it at zero specificity. `tests/styles.test.ts` snapshots every element's resolved styles (specificity-aware, see `tests/helpers/styles.ts`); update it with `-u` only for an intended visual change and review the diff.
+- Colour roles (spec: `docs/01-product-spec.md`, Shell): orange `--accent` means "do something" (actions, roll buttons, links). Selection and current state use ink (`--sel`/`--sel-ink`) and never rely on hue alone, so chips and segments also show the check icon. Dark mode is the reviewed theme; light mode still needs its own review. The mockup's colours (it still has `--pin`) are not the spec.
+- Reuse the shared controls before writing new markup: `Toggle` for on/off (tick or cross, `role="switch"`), `Tog`/`Chips`/`Seg`/`OptCard` for pick-one, `Stepper` for counts (one size), `Sheet`, `Icon` (add new icons to `src/lib/icons.ts`). A chip means "choose", a row means "on or off".
 - Svelte 5 runes only (`$state`, `$derived`, `$props`, `$effect`). Shared reactive state goes in `*.svelte.ts` modules.
 - Persist `$state.snapshot(x)` to IndexedDB, never the proxy.
 - No runtime network calls. Anything the app needs at runtime is bundled or precached.
