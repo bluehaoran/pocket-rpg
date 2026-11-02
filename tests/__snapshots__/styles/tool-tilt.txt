@@ -164,33 +164,16 @@ div.group > ul.chips > li > button.tog
   gap: 6px
   min-height: 46px
   padding: 0 14px
-body > div > div.fresh.tres
-  -webkit-user-select: none
-  animation: pop .45s ease-out
+body > div > div.empty-card
   background: var(--surface)
-  border: 2px solid var(--ink)
+  border: 2px dashed var(--line)
   border-radius: 18px
   box-sizing: border-box
-  display: flex
-  flex-direction: column
-  gap: 12px
-  justify-content: center
-  min-height: 150px
-  padding: 22px 18px 16px
-  user-select: none
-body > div > div.fresh.tres > div.eyebrow
-  box-sizing: border-box
   color: var(--muted)
-  font: 700 12px/1.2 var(--f-body)
-  letter-spacing: .12em
-  text-transform: uppercase
-body > div > div.fresh.tres > div.tbig
+  padding: 18px
+body > div > div.empty-card > code
   box-sizing: border-box
-  font: 700 34px/1.2 var(--f-body)
-  overflow-wrap: anywhere
-  text-wrap: balance
-div > div.fresh.tres > div.tbig > span
-  box-sizing: border-box
+  font: 500 14px var(--f-mono)
 body > div > div.dock.one
   background: var(--bg)
   border-top: 1px solid var(--line)
@@ -211,13 +194,14 @@ body > div > div.dock.one > button.btn.reroll
   border-radius: 14px
   box-sizing: border-box
   color: var(--accent)
-  cursor: pointer
+  cursor: not-allowed
   display: flex
   font: 800 23px/1 var(--f-display)
   gap: 8px
   justify-content: center
   letter-spacing: .05em
   min-height: 56px
+  opacity: .45
   text-transform: uppercase
   width: 100%
 div > div.dock.one > button.btn.reroll > svg.icon
@@ -257,13 +241,14 @@ body > div > div.dock.one > button.btn
   border-radius: 14px
   box-sizing: border-box
   color: var(--accent-ink)
-  cursor: pointer
+  cursor: not-allowed
   display: flex
   font: 800 23px/1 var(--f-display)
   gap: 8px
   justify-content: center
   letter-spacing: .05em
   min-height: 56px
+  opacity: .45
   text-transform: uppercase
   width: 100%
 div > div.dock.one > button.btn > svg.icon

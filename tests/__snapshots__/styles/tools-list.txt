@@ -180,7 +180,7 @@ div > section.gens > a.gen.req > small
   color: var(--accent)
   font: 500 11px/1.3 var(--f-mono)
   overflow-wrap: anywhere
-body > div > section.gens > a.gen
+body > div > section.gens > a.gen.req
   background: var(--surface)
   border: 2px solid var(--line)
   border-radius: 14px
@@ -195,14 +195,14 @@ body > div > section.gens > a.gen
   padding: 12px 14px
   text-align: left
   text-decoration: none
-div > section.gens > a.gen > b
+div > section.gens > a.gen.req > b
   box-sizing: border-box
   font: 800 clamp(17px,5vw,22px)/1.05 var(--f-display)
   letter-spacing: .01em
   text-transform: uppercase
-div > section.gens > a.gen > small
+div > section.gens > a.gen.req > small
   box-sizing: border-box
-  color: var(--muted)
+  color: var(--accent)
   font: 500 11px/1.3 var(--f-mono)
   overflow-wrap: anywhere
 body > div > section.gens > a.gen

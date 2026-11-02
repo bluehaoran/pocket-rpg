@@ -5,15 +5,19 @@ import type { Pack, Registry, ToolList } from './types.ts';
 const stem = (path: string) => path.split('/').pop()!.replace(/\.json$/, '');
 
 // content/private/packs/ is gitignored: packs that can't be published (see NOTICE). Local builds include them if present.
-const packFiles = import.meta.glob<Pack>(['../../../content/packs/*.json', '../../../content/private/packs/*.json'], {
+// Tests ignore private content, so they give the same result on CI as on the author's machine.
+const isPrivate = (path: string) => path.includes('/private/');
+const usable = <T>(files: Record<string, T>) =>
+  Object.fromEntries(Object.entries(files).filter(([path]) => !(import.meta.env.VITEST && isPrivate(path))));
+const packFiles = usable(import.meta.glob<Pack>(['../../../content/packs/*.json', '../../../content/private/packs/*.json'], {
   eager: true,
   import: 'default'
-});
+}));
 // content/private/tools/ is gitignored too. A private list with the same id replaces the public one.
-const toolFiles = import.meta.glob<ToolList | Registry>(['../../../content/tools/*.json', '../../../content/private/tools/*.json'], {
+const toolFiles = usable(import.meta.glob<ToolList | Registry>(['../../../content/tools/*.json', '../../../content/private/tools/*.json'], {
   eager: true,
   import: 'default'
-});
+}));
 
 export const rawPacks: Record<string, Pack> = Object.fromEntries(
   Object.entries(packFiles).map(([path, p]) => [stem(path), p])
@@ -22,7 +26,6 @@ export const packs: Record<string, Pack> = resolvePacks(rawPacks);
 
 export const registry = toolFiles['../../../content/tools/registry.json'] as Registry;
 // Glob keys sort with private/ before tools/, so apply public lists first and private ones last to let them win.
-const isPrivate = (path: string) => path.includes('/private/');
 export const lists: Record<string, ToolList> = Object.fromEntries(
   Object.entries(toolFiles)
     .filter(([path]) => stem(path) !== 'registry')

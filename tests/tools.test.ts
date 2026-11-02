@@ -1,5 +1,3 @@
-import { existsSync } from 'node:fs';
-import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { lists, packs, registry } from '../src/lib/content/index.ts';
 import type { ToolList } from '../src/lib/content/types.ts';
@@ -295,11 +293,9 @@ describe('hub summaries', () => {
 });
 
 describe('private tool lists', () => {
-  it('a private list replaces the public one with the same id', () => {
-    // content/private/ exists only on the author's machine; where it does, tilts come from it.
-    const privateTilts = existsSync(join(import.meta.dirname, '..', 'content/private/tools/tilts.json'));
-    if (privateTilts) expect(lists.tilts!.entries.length).toBeGreaterThan(0);
-    else expect(lists.tilts!.entries).toEqual([]);
+  it('tests load public content only, so results match CI on any machine', () => {
+    // content/private/ exists only on the author's machine and is skipped under Vitest (src/lib/content/index.ts).
+    expect(lists.tilts!.entries).toEqual([]);
   });
 });
 
