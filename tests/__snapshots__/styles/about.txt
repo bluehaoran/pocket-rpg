@@ -13,13 +13,49 @@ body > div > section.about.group
   display: flex
   flex-direction: column
   gap: 10px
-body > div > section.about.group > h2
+body > div > section.about.group > div.head
+  align-items: center
+  box-sizing: border-box
+  display: flex
+  justify-content: space-between
+div > section.about.group > div.head > h2
   box-sizing: border-box
   font: 800 34px/1 var(--f-display)
   letter-spacing: .01em
   margin: 0
   text-transform: uppercase
   text-wrap: balance
+div > section.about.group > div.head > button.die-tap
+  -webkit-tap-highlight-color: transparent
+  background: none
+  border: 0
+  box-sizing: border-box
+  color: var(--muted)
+  cursor: pointer
+  display: grid
+  font: inherit
+  min-height: 44px
+  min-width: 44px
+  padding: 0
+  place-items: center
+section.about.group > div.head > button.die-tap > svg.icon
+  box-sizing: border-box
+  flex: none
+  vertical-align: -.2em
+div.head > button.die-tap > svg.icon > rect
+  box-sizing: border-box
+div.head > button.die-tap > svg.icon > g
+  box-sizing: border-box
+button.die-tap > svg.icon > g > circle
+  box-sizing: border-box
+button.die-tap > svg.icon > g > circle
+  box-sizing: border-box
+button.die-tap > svg.icon > g > circle
+  box-sizing: border-box
+button.die-tap > svg.icon > g > circle
+  box-sizing: border-box
+button.die-tap > svg.icon > g > circle
+  box-sizing: border-box
 body > div > section.about.group > p
   box-sizing: border-box
   margin: 0

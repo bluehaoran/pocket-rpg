@@ -15,6 +15,7 @@ export const ICONS = {
   cross: `<path d="M5.4 5.6Q12.2 12 18.7 18.5"/><path d="M18.5 5.3Q11.9 12.1 5.5 18.6"/>`,
   plus: `<path d="M12.2 4.4Q11.7 12 12.1 19.8"/><path d="M4.3 12.3Q12 11.6 19.9 12.1"/>`,
   minus: `<path d="M4.3 12.4Q12 11.5 19.9 12.1"/>`,
+  dice: `<rect x="4" y="4" width="16" height="16" rx="3.5"/><g fill="currentColor" stroke="none"><circle cx="8.6" cy="8.6" r="1.3"/><circle cx="15.4" cy="8.6" r="1.3"/><circle cx="12" cy="12" r="1.3"/><circle cx="8.6" cy="15.4" r="1.3"/><circle cx="15.4" cy="15.4" r="1.3"/></g>`,
   question: `<path d="M8.2 8.8C8.4 5.8 10.4 4.1 12.4 4.2 15 4.3 16.4 6 16.2 8.4 16 10.4 14.4 11.3 13.2 12.2 12.2 13 12 14 12.1 15.2"/><circle cx="12.2" cy="19.5" r="1.35" fill="currentColor" stroke="none"/>`
 } as const;
 

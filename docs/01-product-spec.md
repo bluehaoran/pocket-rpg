@@ -186,4 +186,4 @@ From the header menu: installed packs, validation results, licence, raw JSON. Im
 ## Next steps
 - See `06-build-plan.md`.
 
-- **About screen** (`#/about`, copy in `content/about.json`): why the app exists, credits for Ben Wray and John Harper, a contact line and a PayPal donate link (a plain outbound `<a>`, no PayPal script, so it respects the no-network rule; it needs a connection to open). Reached from the menu. `contactUrl` and `donateUrl` empty means the line shows as plain text / "coming soon".
+- **About screen** (`#/about`, copy in `content/about.json`): why the app exists, credits for Ben Wray and John Harper, a contact line and a PayPal donate link (a plain outbound `<a>`, no PayPal script, so it respects the no-network rule; it needs a connection to open). Reached from the menu. `contactUrl` and `donateUrl` empty means the line shows as plain text / "coming soon". A die icon beside the heading is a hidden refresh: three taps within 1.5 s each unregister the service worker, delete the Cache Storage entries and reload, so an installed phone app fetches the latest build. Sessions and settings (IndexedDB) are kept.
