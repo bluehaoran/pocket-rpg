@@ -15,7 +15,7 @@
 
   const sub = (id: string): string => {
     const c = editCounts(lists[id]!, editsState.map[id] ?? emptyEdits(id));
-    const parts = [c.added ? `+${c.added}` : '', c.hidden ? `${c.hidden} hidden` : ''].filter(Boolean);
+    const parts = [c.added ? `+${c.added}` : '', c.hidden ? `${c.hidden} hidden` : '', c.partial ? `${c.partial} partly hidden` : ''].filter(Boolean);
     return parts.length ? parts.join(' · ') : 'Stock';
   };
 
@@ -42,13 +42,13 @@
   const summary = $derived.by(() => {
     if (!preview) return [];
     const lines = Object.entries(preview.perList).map(([id, p]) => {
-      const bits = [`${p.fresh.length} new`, p.hide.length ? `${p.hide.length} to hide` : '', p.duplicates.length ? `${p.duplicates.length} already there` : '', p.invalid.length ? `${p.invalid.length} invalid` : ''];
+      const bits = [`${p.fresh.length} new`, p.hide.length ? `${p.hide.length} to hide` : '', p.exclude.length ? `${p.exclude.length} partly hidden` : '', p.duplicates.length ? `${p.duplicates.length} already there` : '', p.invalid.length ? `${p.invalid.length} invalid` : ''];
       return `${lists[id]!.label}: ${bits.filter(Boolean).join(', ')}`;
     });
     if (preview.unknownLists.length) lines.push(`Not in this version, skipped: ${preview.unknownLists.join(', ')}`);
     return lines;
   });
-  const nothingToApply = $derived(!preview || Object.values(preview.perList).every(p => !p.fresh.length && !p.hide.length));
+  const nothingToApply = $derived(!preview || Object.values(preview.perList).every(p => !p.fresh.length && !p.hide.length && !p.exclude.length));
 
   async function apply() {
     if (!preview) return;

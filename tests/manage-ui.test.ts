@@ -409,3 +409,109 @@ describe('import sheet', () => {
     expect(screen.getByRole('textbox', { name: 'Paste text' })).toBeTruthy();
   });
 });
+
+describe('hide menu on a rolled name (press and hold, right-click)', () => {
+  const nameEl = () => document.querySelector('.tres .tbig .ent') as HTMLElement;
+  const shownName = () => nameEl().textContent!;
+
+  it('right-click opens the menu for that name, with the hint under the dock', async () => {
+    render(ToolPage, { toolId: 'names' });
+    const name = shownName();
+    expect(document.body.textContent).toMatch(/Press and hold a name to hide it/);
+    await fireEvent.contextMenu(nameEl());
+    const dialog = screen.getByRole('dialog');
+    expect(dialog.textContent).toContain(name);
+    expect(screen.getByRole('button', { name: 'Never show this again' })).toBeTruthy();
+    expect(screen.getAllByRole('button').some(b => /^Not in /.test(b.textContent!.trim()))).toBe(true);
+    expect(screen.getAllByRole('button').some(b => /^Not a (male|female|neutral) name/.test(b.textContent!.trim()))).toBe(true);
+  });
+
+  it('Never show this again needs a second tap, hides the name for good and rerolls', async () => {
+    render(ToolPage, { toolId: 'names' });
+    const name = shownName();
+    await fireEvent.contextMenu(nameEl());
+    await fireEvent.click(screen.getByRole('button', { name: 'Never show this again' }));
+    expect(editsState.map.names).toBeUndefined();
+    await fireEvent.click(screen.getByRole('button', { name: 'Tap again to confirm' }));
+    await tock();
+    expect(editsState.map.names!.hidden).toEqual([name]);
+    expect((await loadEdits()).names!.hidden).toEqual([name]);
+    expect(screen.queryByRole('dialog')).toBeNull();
+    expect(shownName()).not.toBe(name);
+  });
+
+  it('Not in <setting> removes only that setting, and rerolls when it is the setting in use', async () => {
+    app.session!.toolModifiers['names'] = { setting: 'fantasy' };
+    render(ToolPage, { toolId: 'names' });
+    const name = shownName();
+    await fireEvent.contextMenu(nameEl());
+    await fireEvent.click(screen.getByRole('button', { name: 'Not in Fantasy' }));
+    await tock();
+    expect(editsState.map.names!.excluded).toEqual([{ v: name, key: 'setting', value: 'fantasy' }]);
+    expect(editsState.map.names!.hidden).toEqual([]);
+    expect(shownName()).not.toBe(name);
+  });
+
+  it('a partial hide that does not cover the current filter leaves the result alone', async () => {
+    render(ToolPage, { toolId: 'names' });
+    const name = shownName();
+    await fireEvent.contextMenu(nameEl());
+    const btn = screen.getAllByRole('button').find(b => /^Not a (male|female|neutral) name/.test(b.textContent!.trim()))!;
+    await fireEvent.click(btn);
+    await tock();
+    expect(editsState.map.names!.excluded).toHaveLength(1);
+    expect(shownName()).toBe(name);
+  });
+
+  it('shows what is already hidden for the name, and Undo restores it', async () => {
+    render(ToolPage, { toolId: 'names' });
+    const name = shownName();
+    await fireEvent.contextMenu(nameEl());
+    const btn = screen.getAllByRole('button').find(b => /^Not a (male|female|neutral) name/.test(b.textContent!.trim()))!;
+    const phrase = btn.textContent!.trim();
+    await fireEvent.click(btn);
+    await tock();
+    expect(shownName()).toBe(name);
+    await fireEvent.contextMenu(nameEl());
+    await fireEvent.click(screen.getByRole('button', { name: `Undo: ${phrase}` }));
+    await tock();
+    expect(editsState.map.names!.excluded).toEqual([]);
+  });
+});
+
+describe('hide menu in Manage Tools', () => {
+  const search = (q: string) => fireEvent.input(screen.getByRole('searchbox', { name: 'Search' }), { target: { value: q } });
+
+  it('More options opens the same menu; a partial hide shows on the row, under Hidden, and can be undone', async () => {
+    render(ManageList, { listId: 'names' });
+    await search('Liria');
+    await fireEvent.click(screen.getByRole('button', { name: 'More options for Liria' }));
+    await fireEvent.click(screen.getByRole('button', { name: 'Not in Fantasy' }));
+    await tock();
+    expect(editsState.map.names!.excluded).toEqual([{ v: 'Liria', key: 'setting', value: 'fantasy' }]);
+    const row = document.querySelector('li.mrow')!;
+    expect(row.textContent).toContain('Not in Fantasy');
+    await fireEvent.click(screen.getByRole('button', { name: 'Hidden' }));
+    expect(document.querySelectorAll('li.mrow').length).toBe(1);
+    await fireEvent.click(screen.getByRole('button', { name: 'More options for Liria' }));
+    await fireEvent.click(screen.getByRole('button', { name: 'Undo: Not in Fantasy' }));
+    await tock();
+    expect(editsState.map.names!.excluded).toEqual([]);
+  });
+
+  it('right-clicking a row opens the menu; for my own entry it offers Delete', async () => {
+    await updateEdits('names', e => ({ ...e, added: [{ v: 'Zzzest', tags: { gender: 'x' }, src: 'user' }] }));
+    render(ManageList, { listId: 'names' });
+    await fireEvent.contextMenu(document.querySelector('li.mrow')!);
+    await fireEvent.click(screen.getByRole('button', { name: 'Delete this entry' }));
+    await fireEvent.click(screen.getByRole('button', { name: 'Tap again to confirm' }));
+    await tock();
+    expect(editsState.map.names!.added).toEqual([]);
+  });
+
+  it('the overview counts partly hidden names', async () => {
+    await updateEdits('names', e => ({ ...e, excluded: [{ v: 'Liria', key: 'setting', value: 'fantasy' }] }));
+    render(ManageTools);
+    expect(screen.getByRole('link', { name: /Names/ }).textContent).toContain('1 partly hidden');
+  });
+});

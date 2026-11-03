@@ -3,10 +3,12 @@
   import type { Entry } from '../lib/content/types.ts';
   import { downloadJson } from '../lib/device.ts';
   import { editsState, updateEdits } from '../lib/edits.svelte.ts';
-  import { emptyEdits, hideText, removeAdded, stockRows, unhideText } from '../lib/edits.ts';
+  import { emptyEdits, exclusionLabel, hideText, removeAdded, stockRows, unhideText, type Exclusion } from '../lib/edits.ts';
   import { exportEdits } from '../lib/editsfile.ts';
   import { href } from '../lib/router.svelte.ts';
   import AddEntrySheet from '../components/AddEntrySheet.svelte';
+  import EntryMenu from '../components/EntryMenu.svelte';
+  import { longpress } from '../lib/longpress.ts';
   import Chips from '../components/Chips.svelte';
   import ImportSheet from '../components/ImportSheet.svelte';
   import Crumb from '../components/Crumb.svelte';
@@ -22,19 +24,22 @@
   let limit = $state(PAGE);
   let adding = $state(false);
   let importing = $state(false);
+  let menu = $state<string | null>(null);
 
   // The tag values an entry carries, for the small line under its text.
   const tagLine = (entries: Entry[]): string =>
     [...new Set(entries.flatMap(e => Object.values(e.tags ?? {}).flat()))].join(' · ');
 
-  type Row = { key: string; v: string; sub: string; mine: boolean; hidden: boolean; index: number };
+  type Row = { key: string; v: string; sub: string; mine: boolean; hidden: boolean; partial: string; index: number };
+  const phrases = (xs: Exclusion[]): string =>
+    xs.map(x => exclusionLabel(list, x)).join(' · ');
   const rows = $derived.by((): Row[] => {
     if (!list) return [];
-    const mine = edits.added.map((e, index): Row => ({ key: 'm' + index, v: e.v, sub: tagLine([e]), mine: true, hidden: false, index }));
-    const stock = stockRows(list, edits).map((r): Row => ({ key: 's' + r.v, v: r.v, sub: tagLine(r.entries), mine: false, hidden: r.hidden, index: -1 }));
+    const mine = edits.added.map((e, index): Row => ({ key: 'm' + index, v: e.v, sub: tagLine([e]), mine: true, hidden: false, partial: '', index }));
+    const stock = stockRows(list, edits).map((r): Row => ({ key: 's' + r.v, v: r.v, sub: tagLine(r.entries), mine: false, hidden: r.hidden, partial: phrases(r.excluded), index: -1 }));
     const q = query.trim().toLowerCase();
     return [...mine, ...stock]
-      .filter(r => (filter === 'mine' ? r.mine : filter === 'hidden' ? r.hidden : true))
+      .filter(r => (filter === 'mine' ? r.mine : filter === 'hidden' ? r.hidden || !!r.partial : true))
       .filter(r => !q || r.v.toLowerCase().includes(q));
   });
 
@@ -62,15 +67,17 @@
   {#if rows.length}
     <ul class="card mlist">
       {#each rows.slice(0, limit) as r (r.key)}
-        <li class="mrow" class:off={r.hidden}>
+        <li class="mrow" class:off={r.hidden} use:longpress={() => (menu = r.v)}>
           <div>
             <span class="lt">{r.v}</span>{#if r.mine}<span class="badge">mine</span>{/if}
             {#if r.sub}<small>{r.sub}</small>{/if}
+            {#if r.partial}<small class="part">{r.partial}</small>{/if}
           </div>
           {#if r.mine}
             <button class="mbtn" aria-label={`Delete ${r.v}`} onclick={() => remove(r)}>Delete</button>
           {:else}
-            <button class="mbtn" aria-label={`${r.hidden ? 'Unhide' : 'Hide'} ${r.v}`} onclick={() => toggle(r)}>{r.hidden ? 'Unhide' : 'Hide'}</button>
+            <span class="acts"><button class="mbtn" aria-label={`${r.hidden ? 'Unhide' : 'Hide'} ${r.v}`} onclick={() => toggle(r)}>{r.hidden ? 'Unhide' : 'Hide'}</button>
+            <button class="mbtn more" aria-label={`More options for ${r.v}`} onclick={() => (menu = r.v)}>⋯</button></span>
           {/if}
         </li>
       {/each}
@@ -87,6 +94,7 @@
     <button class="btn ghost" onclick={() => (importing = true)}>Import file or text</button>
     <button class="btn ghost" onclick={() => downloadJson(`pocketrpg-${listId}.json`, exportEdits($state.snapshot(editsState.map), [listId]))}>Export this list</button>
   </div>
+  {#if menu}<EntryMenu {listId} v={menu} onclose={() => (menu = null)} />{/if}
   {#if adding}<AddEntrySheet {list} onclose={() => (adding = false)} />{/if}
   {#if importing}<ImportSheet {list} onclose={() => (importing = false)} />{/if}
 {/if}
@@ -101,5 +109,8 @@
   .mrow small{flex-basis:100%;font:500 11px/1.3 var(--f-mono);color:var(--muted)}
   .mrow.off .lt{opacity:.5;text-decoration:line-through}
   .mbtn{min-height:44px;min-width:72px;border-radius:10px;border:2px solid var(--line);background:transparent;color:var(--ink);font:700 14px var(--f-body);padding:0 12px}
+  .mrow small.part{color:var(--accent)}
+  .acts{display:flex;gap:6px;flex:none}
+  .mbtn.more{min-width:44px;padding:0;font-size:20px}
   .badge{font:700 10px/1 var(--f-body);text-transform:uppercase;letter-spacing:.08em;border:1px solid var(--accent);color:var(--accent);border-radius:6px;padding:2px 5px}
 </style>

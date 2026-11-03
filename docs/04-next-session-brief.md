@@ -15,12 +15,13 @@ Read first: `06-build-plan.md`, then `01-product-spec.md`, `05-tools-library.md`
 
 - **Manage Tools (2026-10-26):** menu item for per-device edits to the Tools lists: add, import (JSON or plain text, with a per-list format example), delete your own entries, hide and unhide stock ones, export and import an edits file. Rules in `05-tools-library.md` §8. Not yet checked on a phone.
 
+- **Manage Tools v2, hide menu (2026-11-04):** press and hold or right-click a rolled name, or a row in a Manage Tools list, to hide it for good or remove one setting or gender from it (`excluded` in `ListEdits`). Rules in `05-tools-library.md` §8. Not yet checked on a phone, where the hold gesture needs trying.
 - **Roll for Shoes Cancel / Accept (2026-10-29):** `RollActions.svelte` replaces Done for Roll for Shoes rolls. The roll is still applied at once; `rollRfsSkill` keeps a plain-data snapshot (`pending` in `play.svelte.ts`) of the character, history length and statuses, and `cancelRoll` restores it. `rerollRfs(accept)` rolls the same skill again.
 - **Toggle rows (2026-10-29):** `Toggle.svelte` replaces the Welcome switch, the family-name-order checkbox, `OnOff` chip pairs, and the bonus-dice and status chips. It has `role="switch"`, a new `cross` icon and an `--outline` token (dark #566070, light #7C8796; the light value is unreviewed). Welcome hides the top bar.
 - **Colour roles (2026-10-29):** design review of dark mode. Selected state moved from orange to ink with a check icon (`Tog.svelte`, `Seg.svelte`), `--pin` blue removed, Lasers and Feelings buttons made equal. Roles are in `01-product-spec.md` (Shell). Not done yet: the light-mode review (check `--sel` and `--line` contrast there), `--danger` has no dark-mode value (3.5:1 on the background), and the rest of the dark-mode findings (wizard heading stack, tool-page dock hint, small mono text, the empty Complication tile). `docs/mockup/pocketrpg-mockup.html` still uses `--pin`; it is a reference, not updated.
 
 ## Next
-- **Manage Tools v2:** long-press (right-click on desktop) on a result or entry to "Hide this". Same `hidden` list, UI only.
+- **Manage Tools v3 ideas:** favourite a name; "this *is* a female name" (adds a tag value; see `05-tools-library.md` §8). Not yet checked on a phone: v2 hide menu.
 - **Welcome copy:** `content/welcome.json` holds placeholder text; replace it with your blurb.
 - Pick the roll result placement (`play.mode`), then remove the dev toggle.
 - Content review session (below).

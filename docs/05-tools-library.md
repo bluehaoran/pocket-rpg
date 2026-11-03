@@ -151,10 +151,12 @@ Menu → **Manage Tools** (`#/manage`, `#/manage/<listId>`). Design: `docs/super
 
 The stock JSON is never modified. Edits are an overlay stored on the device (IndexedDB table `listEdits`, one record per list id), shared by every session:
 ```ts
-interface ListEdits { listId: string; added: Entry[]; hidden: string[] }
+interface ListEdits { listId: string; added: Entry[]; hidden: string[]; excluded?: Exclusion[] }
+interface Exclusion { v: string; key: string; value: string }
 ```
 - `added`: entries the person added or imported, stamped `src: "user"`.
 - `hidden`: stock texts (`v`) to omit. Matches every stock entry in that list with exactly that text, whatever its tags. Hiding a stock entry is reversible; deleting is only for entries the person added.
+- `excluded`: partial hides (v2). Each `{ v, key, value }` removes one tag value from every stock entry with text `v` that carries it, so the name stays in the list for its other settings or genders. An entry left with no value for that key is dropped. Entries without that tag, and entries the person added, are unaffected. Optional, so records saved before v2 load unchanged.
 - The Tools engine rolls from the **effective** list: stock minus hidden, plus added (`src/lib/edits.ts`, `toolCtx()` in `toolctx.svelte.ts`). Overlay is loaded in `initSession()` before first render; if it can't be read the app runs on stock.
 - Duplicates (same trimmed text and identical tags) are skipped on add and import. An untagged entry is valid and matches any value (`02-data-model.md` §1.2).
 - A saved edit that no longer fits a changed stock list (hidden text gone, tag value dropped) is harmless: ignored at read time, never re-validated.
@@ -163,6 +165,12 @@ interface ListEdits { listId: string; added: Entry[]; hidden: string[] }
 
 **Import formats** (`src/lib/importer.ts`): JSON in list-file shape (`{ "entries": [...] }`), a bare array of entries, a bare array of strings, or plain text with one entry per line (tags from the pickers apply to every plain line). Entries with undeclared tag keys or values are reported and skipped; malformed input writes nothing.
 
-**Edits file** (`src/lib/editsfile.ts`): `{ "version": 1, "lists": { "<listId>": { "added": [...], "hidden": [...] } } }`. Import previews per list, skips list ids this build lacks, and merges (union of hidden, deduplicated added).
+**Edits file** (`src/lib/editsfile.ts`): `{ "version": 1, "lists": { "<listId>": { "added": [...], "hidden": [...], "excluded": [...] } } }`. `excluded` is optional, so the version stays 1; an older build ignores it. Import previews per list, skips list ids this build lacks, and merges (union of hidden and excluded, deduplicated added).
 
-**Next (v2):** long-press (right-click on desktop) on a result or entry opens a menu with "Hide this", writing to the same `hidden` list. Packs are not covered; see the custom pack import item in the brief.
+**Hide menu (v2, `EntryMenu.svelte`, `src/lib/longpress.ts`):** press and hold (500 ms, cancelled by moving), right-click, the menu key, or Enter / Space on a focused name opens a sheet for that entry. It works on a rolled result (the main entry, an added part such as a last name, and the follow-up description; not dice, glyph or pack results) and on any row of a Manage Tools list (also via its "⋯" button). Choices:
+- **Never show this again** (two taps): hides the stock text; for an entry the person added it reads "Delete this entry" and deletes it.
+- **One per declared modifier the entry carries, a button per value:** "Not in Samurai" (`setting`), "Not a male name" (`gender`), "Not <value>" otherwise. Each adds an `excluded` item. Values already excluded are not offered again.
+- **Already hidden:** "Undo" buttons for this entry's exclusions, or "Unhide" if the text is hidden.
+On a result, the page rerolls if what was hidden covers the current choice: always for "never again", and for a partial hide only when the matching modifier is currently set to that value (with "Any" the name can still roll from its other values). Manage Tools shows partial hides under the entry, includes them in the Hidden filter, and counts them as "N partly hidden" on the overview. Entries with no tag for a modifier get no partial-hide choice for it (nothing to remove).
+
+**Not built (v3):** favouriting a name you love. **Also not built:** the opposite correction, "this *is* a female name", which would add a tag value to an entry (needs a `tagged` overlay next to `excluded`). Packs are not covered; see the custom pack import item in the brief.

@@ -1,23 +1,30 @@
 // The whole-device edits file: export, preview and merge. Pure. Shape: docs/superpowers/specs/2026-10-26-manage-tools-design.md.
 import type { Entry, ToolList } from './content/types.ts';
-import { emptyEdits, type EditsMap } from './edits.ts';
+import { emptyEdits, exclusionsOf, type EditsMap, type Exclusion } from './edits.ts';
 import { ImportError, parseImport, type ImportPreview } from './importer.ts';
 
 export interface EditsFile {
   version: 1;
-  lists: Record<string, { added: Entry[]; hidden: string[] }>;
+  lists: Record<string, { added: Entry[]; hidden: string[]; excluded?: Exclusion[] }>;
 }
 
 export interface FilePreview {
-  perList: Record<string, ImportPreview & { hide: string[] }>;
+  perList: Record<string, ImportPreview & { hide: string[]; exclude: Exclusion[] }>;
   unknownLists: string[];
 }
+
+const isExclusion = (x: unknown): x is Exclusion => {
+  const o = x as Partial<Exclusion> | null;
+  return !!o && typeof o.v === 'string' && typeof o.key === 'string' && typeof o.value === 'string';
+};
+const sameEx = (a: Exclusion, b: Exclusion): boolean => a.v === b.v && a.key === b.key && a.value === b.value;
 
 export function exportEdits(edits: EditsMap, listIds?: string[]): EditsFile {
   const lists: EditsFile['lists'] = {};
   for (const [id, e] of Object.entries(edits)) {
     if (listIds && !listIds.includes(id)) continue;
-    if (e.added.length || e.hidden.length) lists[id] = { added: e.added, hidden: e.hidden };
+    const excluded = exclusionsOf(e);
+    if (e.added.length || e.hidden.length || excluded.length) lists[id] = { added: e.added, hidden: e.hidden, ...(excluded.length ? { excluded } : {}) };
   }
   return { version: 1, lists };
 }
@@ -43,10 +50,13 @@ export function previewEditsFile(stock: Record<string, ToolList>, edits: EditsMa
     const current = edits[id] ?? emptyEdits(id);
     const added = Array.isArray(body?.added) ? body.added : [];
     const hidden = Array.isArray(body?.hidden) ? body.hidden.filter((h): h is string => typeof h === 'string') : [];
+    const excluded = Array.isArray(body?.excluded) ? body.excluded.filter(isExclusion) : [];
+    const have = exclusionsOf(current);
     const entries: ImportPreview = added.length
       ? parseImport(list, current, JSON.stringify(added), 'json')
       : { fresh: [], duplicates: [], invalid: [] };
-    preview.perList[id] = { ...entries, hide: hidden.filter(h => !current.hidden.includes(h)) };
+    const exclude = excluded.filter((x, i) => excluded.findIndex(y => sameEx(x, y)) === i && !have.some(y => sameEx(x, y)));
+    preview.perList[id] = { ...entries, hide: hidden.filter(h => !current.hidden.includes(h)), exclude };
   }
   return preview;
 }
@@ -54,9 +64,10 @@ export function previewEditsFile(stock: Record<string, ToolList>, edits: EditsMa
 export function applyEditsFile(stock: Record<string, ToolList>, edits: EditsMap, preview: FilePreview): EditsMap {
   const next: EditsMap = { ...edits };
   for (const [id, p] of Object.entries(preview.perList)) {
-    if (!stock[id] || (!p.fresh.length && !p.hide.length)) continue;
+    if (!stock[id] || (!p.fresh.length && !p.hide.length && !p.exclude.length)) continue;
     const current = next[id] ?? emptyEdits(id);
     next[id] = { ...current, added: [...current.added, ...p.fresh], hidden: [...current.hidden, ...p.hide] };
+    if (p.exclude.length) next[id]!.excluded = [...exclusionsOf(current), ...p.exclude];
   }
   return next;
 }

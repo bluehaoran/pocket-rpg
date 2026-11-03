@@ -57,3 +57,23 @@ describe('previewEditsFile and applyEditsFile', () => {
     expect(() => previewEditsFile(stock, {}, t)).toThrow(ImportError);
   });
 });
+
+describe('partial hides in the edits file', () => {
+  const x = { v: 'Rope snaps', key: 'group', value: 'Mayhem' };
+  const withX: EditsMap = { tilts: { listId: 'tilts', added: [], hidden: [], excluded: [x] } };
+  it('exports them, including for a list with nothing else', () => {
+    expect(exportEdits(withX).lists.tilts).toEqual({ added: [], hidden: [], excluded: [x] });
+  });
+  it('round-trips, ignores malformed ones, and is idempotent', () => {
+    const text = JSON.stringify({ version: 1, lists: { tilts: { added: [], hidden: [], excluded: [x, x, { v: 1 }, 'no'] } } });
+    const p = previewEditsFile(stock, {}, text);
+    expect(p.perList.tilts!.exclude).toEqual([x]);
+    const once = applyEditsFile(stock, {}, p);
+    expect(once.tilts!.excluded).toEqual([x]);
+    expect(previewEditsFile(stock, once, text).perList.tilts!.exclude).toEqual([]);
+  });
+  it('reads a file from before partial hides existed', () => {
+    const p = previewEditsFile(stock, {}, JSON.stringify(exportEdits(edits)));
+    expect(p.perList.tilts!.exclude).toEqual([]);
+  });
+});

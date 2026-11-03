@@ -134,16 +134,26 @@ export interface Segment {
   text: string;
   /** Added parts (like a last name) are underlined on screen. */
   underline?: boolean;
+  /** Set when the text is one list entry: press and hold opens its hide menu (`EntryMenu`). */
+  entry?: { list: string; v: string };
 }
+
+/** The list a tool's follow-up draws from, if any. */
+export const followUpList = (t: AnyTool, registry: Registry): string | undefined =>
+  isGen(t) || !t.followUp ? undefined : registry.tools.find(x => x.id === t.followUp?.tool)?.list;
 
 /** The result as display segments. Re-evaluates part order from `opts`, so toggling it needs no reroll. */
 export function segments(t: AnyTool, r: ToolResult, opts: ToolOpts): Segment[] {
   if (r.kind !== 'list' || isGen(t)) return [{ text: r.text }];
-  let out: Segment[] = [{ text: r.base.join(t.join ?? ', ') }];
+  const sep = t.join ?? ', ';
+  let out: Segment[] = r.base.flatMap((v, i): Segment[] => [
+    ...(i ? [{ text: sep }] : []),
+    { text: v, ...(t.list && !r.glyph ? { entry: { list: t.list, v } } : {}) }
+  ]);
   for (const d of r.drawn) {
     const part = t.parts?.find(p => p.key === d.key);
     const lead = d.before && !!part?.order && partOrderOn(part, opts);
-    const seg: Segment = { text: d.v, underline: true };
+    const seg: Segment = { text: d.v, underline: true, ...(part ? { entry: { list: part.list, v: d.v } } : {}) };
     out = lead ? [seg, { text: d.join }, ...out] : [...out, { text: d.join }, seg];
   }
   return out;

@@ -2,7 +2,10 @@
   import { onMount } from 'svelte';
   import { href } from '../lib/router.svelte.ts';
   import { createToolRun } from '../lib/toolrun.svelte.ts';
-  import { countOpt, followOn, glyphRows, partOn, partOrderOn, segments, valueLabel } from '../lib/tools.ts';
+  import { registry } from '../lib/content/index.ts';
+  import { longpress } from '../lib/longpress.ts';
+  import { countOpt, followOn, followUpList, glyphRows, partOn, partOrderOn, segments, valueLabel } from '../lib/tools.ts';
+  import EntryMenu, { type EntryAction } from '../components/EntryMenu.svelte';
   import Sheet from '../components/Sheet.svelte';
   import Crumb from '../components/Crumb.svelte';
   import Chips from '../components/Chips.svelte';
@@ -35,6 +38,17 @@
   const haveLetters = $derived(run.haveLetters);
 
   let lettersOpen = $state(false);
+  // The list entry whose hide menu is open (press and hold, or right-click, on a name).
+  let menu = $state<{ list: string; v: string } | null>(null);
+  const followList = $derived(tool ? followUpList(tool, registry) : undefined);
+
+  /** Reroll what the person just hid, so it does not stay on screen. A partial hide only matters if it covers the current filter. */
+  function acted(a: EntryAction) {
+    if (!menu || a.kind === 'undo') return;
+    if (a.kind === 'exclude' && eff[a.key] !== a.value) return;
+    if (menu.list === followList) rerollFollow();
+    else roll();
+  }
   const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
   onMount(() => {
@@ -134,7 +148,7 @@
             </div>
           {:else}
           <div class="tbig">
-            {#each segments(tool, result, opts) as seg, i (i)}<span class:ul={seg.underline}>{seg.text}</span>{/each}{#if followUp && tool.kind === 'list' && tool.followUp}<span class="xtra">{tool.followUp.join ?? ' — '}{followUp}</span>{/if}
+            {#each segments(tool, result, opts) as seg, i (i)}{#if seg.entry}{@const en = seg.entry}<span class="ent" class:ul={seg.underline} role="button" tabindex="0" aria-haspopup="dialog" use:longpress={() => (menu = en)}>{seg.text}</span>{:else}<span class:ul={seg.underline}>{seg.text}</span>{/if}{/each}{#if followUp && tool.kind === 'list' && tool.followUp}<span class="xtra">{tool.followUp.join ?? ' — '}{#if followList}<span class="ent" role="button" tabindex="0" aria-haspopup="dialog" use:longpress={() => (menu = { list: followList, v: followUp })}>{followUp}</span>{:else}{followUp}{/if}</span>{/if}
           </div>
           {/if}
           {#if result.kind === 'gen' && result.sub}<p class="rsub">{result.sub}</p>{/if}
@@ -180,8 +194,12 @@
     <button class="btn" aria-label="Keep result" onclick={run.finish} disabled={!result}>
       <Icon name="check" size="30px" stroke={4} />
     </button>
-    <p class="dock-note">✓ keeps this result in History. Reroll or Back discards it.</p>
+    <p class="dock-note">✓ keeps this result in History. Reroll or Back discards it.{#if result?.kind === 'list' && !result.glyph} Press and hold a name to hide it.{/if}</p>
   </Dock>
+{/if}
+
+{#if menu}
+  <EntryMenu listId={menu.list} v={menu.v} onclose={() => (menu = null)} onact={acted} />
 {/if}
 
 {#if lettersOpen}
@@ -204,6 +222,8 @@
   .tres .dicerow{justify-content:center}
   .tbig.num{font:700 72px/1 var(--f-mono);font-variant-numeric:tabular-nums;text-align:center}
   .tbig .xtra{color:var(--accent)}
+  .tbig .ent{-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent}
+  .tbig .ent:focus-visible{outline:var(--ring);outline-offset:3px;border-radius:4px}
   .tbig .ul{text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:6px}
   .rfoot{font:500 12px/1.3 var(--f-mono);color:var(--muted);display:flex;gap:4px 12px;flex-wrap:wrap}
   .rfoot .relax{color:var(--accent)}

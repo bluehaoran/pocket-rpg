@@ -45,7 +45,9 @@ body > div > div.fresh.tres > div.tbig
   font: 700 34px/1.2 var(--f-body)
   overflow-wrap: anywhere
   text-wrap: balance
-div > div.fresh.tres > div.tbig > span
+div > div.fresh.tres > div.tbig > span.ent
+  -webkit-tap-highlight-color: transparent
+  -webkit-touch-callout: none
   box-sizing: border-box
 body > div > div.dock.one
   background: var(--bg)
